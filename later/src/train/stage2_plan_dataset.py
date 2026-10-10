@@ -102,6 +102,14 @@ def build_views(tokenizer: Any, row: Dict[str, Any], latent_steps: int, toks: St
             seg.append("E")
         else:
             seg.append("C")
+    # monitoring only (labels unchanged): execution tokens on lines that restate a plan line verbatim
+    plan_lines = {l.strip() for l in plan.split("\n") if len(l.strip()) > 3}
+    rep_spans, pos = [], exec_char0
+    for line in execution.split("\n"):
+        if line.strip() in plan_lines:
+            rep_spans.append((pos, pos + len(line)))
+        pos += len(line) + 1
+    rep_tok = [i >= exec_start and any(a < e and b > st for st, e in rep_spans) for i, (a, b) in enumerate(offs)]
 
     # teacher prefix: Stage-1 ids up to and including the boundary token
     b_T = P + exec_start - 1
@@ -117,10 +125,12 @@ def build_views(tokenizer: Any, row: Dict[str, Any], latent_steps: int, toks: St
     assert student_ids[b_S] == toks.boundary_id
     s_labels = [-100] * (b_S + 1) + exec_tail
     s_seg = ["-"] * (b_S + 1) + seg[exec_start:]
+    s_rep = [False] * (b_S + 1) + rep_tok[exec_start:]
 
     # student explicit path = the Stage-1 sample itself
     x_labels = [-100] * P + resp_ids
     x_seg = ["-"] * P + seg
+    x_rep = [False] * P + rep_tok
     b_X = b_T
 
     if len(full) > max_length or len(student_ids) > max_length:
@@ -132,6 +142,7 @@ def build_views(tokenizer: Any, row: Dict[str, Any], latent_steps: int, toks: St
         "latent_start": latent_start, "latent_positions": latent_positions, "student_boundary": b_S,
         "explicit_ids": full, "explicit_labels": x_labels, "explicit_seg": "".join(x_seg), "explicit_boundary": b_X,
         "prompt_len": P,
+        "student_rep": s_rep, "explicit_rep": x_rep,
     }
 
 
@@ -188,6 +199,8 @@ class Stage2Collator:
             segs = [b[f"{view}_seg"] for b in batch]
             for name, letters in [("P", "P"), ("E", "E"), ("A", "A"), ("C", "C")]:
                 out[f"{view}_seg_{name}"] = _seg_mask(segs, n, letters)
+            reps = [b[f"{view}_rep"] for b in batch]   # monitoring only: plan-restatement tokens
+            out[f"{view}_seg_R"] = torch.tensor([list(r) + [False] * (n - len(r)) for r in reps], dtype=torch.bool)
         out["latent_start_positions"] = torch.tensor([b["latent_start"] for b in batch], dtype=torch.long)
         out["latent_positions"] = torch.tensor([b["latent_positions"] for b in batch], dtype=torch.long)
         out["student_boundary"] = torch.tensor([b["student_boundary"] for b in batch], dtype=torch.long)

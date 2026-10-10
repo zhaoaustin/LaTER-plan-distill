@@ -24,6 +24,7 @@ from torch.utils.data import DataLoader, DistributedSampler
 from later.src.train.stage2_common import checkpoint_hash, dump_json, load_stage2_model, load_tokenizer, tokenizer_hashes
 from later.src.train.stage2_objective import Stage2Module
 from later.src.train.stage2_plan_dataset import BOUNDARY_RULE_VERSION, Stage2Collator, Stage2PlanDataset
+from later.src.train.stage2_monitor import Stage2Monitor
 from later.src.train.stage2_teacher_cache import TeacherBoundaryCache
 from later.src.train.utils import load_yaml
 
@@ -99,6 +100,68 @@ def evaluate(module, loader, cache, layer_ids, device, max_batches):
         n += 1
     module.train()
     return {f"val/{k}": all_mean(v / max(n, 1), device) for k, v in sums.items()}
+
+
+def git_state(path: str) -> Dict[str, Any]:
+    import subprocess
+    run = lambda *a: subprocess.run(["git", "-C", path, *a], capture_output=True, text=True).stdout
+    return {"commit": run("rev-parse", "HEAD").strip(), "branch": run("rev-parse", "--abbrev-ref", "HEAD").strip(),
+            "dirty_files": [l[3:] for l in run("status", "--porcelain").splitlines() if l.strip()]}
+
+
+def init_wandb(cfg, model, train_ds, val_ds, layer_ids, world, mbs, accum, seed, monitor, clean_meta):
+    """rank 0 only. Logging-only: nothing here feeds back into training."""
+    import transformers
+    import wandb
+    from later.src.train.stage2_common import file_sha256
+    audit = json.load(open(os.path.join(os.path.dirname(cfg["train_data"]), "stage1_to_stage2_data_audit.json")))
+    repo_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+    wcfg = {
+        "objective_mode": cfg["objective_mode"],
+        "stage1_checkpoint": {"path": cfg["model_path"], "hf_repo": cfg.get("stage1_hf_repo"),
+                              "hf_revision": cfg.get("stage1_hf_revision"),
+                              "checkpoint_hash": checkpoint_hash(cfg["model_path"])},
+        "git": git_state(repo_root),
+        "dataset": {"train_parquet": cfg["train_data"], "train_sha256": file_sha256(cfg["train_data"]),
+                    "val_parquet": cfg["val_data"], "val_sha256": file_sha256(cfg["val_data"]),
+                    "n_train": len(train_ds), "n_val": len(val_ds),
+                    "stage1_source_sha256": audit["sha256"], "stage1_source_paths": audit["stage1_dataset_paths"],
+                    "split": "Stage-1 train/val split kept; val rows whose question is in train removed",
+                    "data_source_policy": cfg["data_source_policy"], "later69k_samples": 0},
+        "loss": {"formula": "L_execution + lambda_a*L_alignment + lambda_r*L_explicit",
+                 "lambda_a": float(cfg["lambda_a"]), "lambda_r": float(cfg["lambda_r"]),
+                 "execution_ce_weight": float(cfg.get("execution_ce_weight", 1.0)),
+                 "alignment": f'{cfg["alignment_distance"]}/{cfg["alignment_scale"]}/eps={cfg["alignment_epsilon"]}',
+                 "kl_loss_weight": 0.0, "halting_loss": False, "noise_std": 0.0, "rl": False},
+        "latent_steps": int(cfg["latent_steps"]), "alignment_layers": cfg["alignment_layers"],
+        "alignment_layer_ids": layer_ids,
+        "projector_rms_normalization": {"mode": cfg.get("latent_projector_output_rms"),
+                                        "value": model.latent_projector.output_rms},
+        "learning_rate": float(cfg["learning_rate"]), "latent_projector_lr": float(cfg.get("latent_projector_lr", cfg["learning_rate"])),
+        "global_batch": mbs * accum * world, "micro_batch_size": mbs, "gradient_accumulation_steps": accum,
+        "world_size": world, "seed": seed, "max_train_steps": int(cfg["max_train_steps"]),
+        "model": {"base": "Qwen/Qwen3-4B", "stage1": "Qwen3-4B-E2C-SFT-only step 800", "class": "LatentQwenForCausalLM",
+                  "num_layers": model.config.num_hidden_layers, "hidden": model.config.hidden_size,
+                  "transformers": transformers.__version__, "torch": torch.__version__},
+        "gradient": {"max_grad_norm": float(cfg.get("max_grad_norm", 1.0)), "master_dtype": cfg.get("master_dtype"),
+                     "autocast": "bfloat16", "gradient_checkpointing": bool(cfg.get("gradient_checkpointing", False)),
+                     "latent_embed_builder_no_grad": model.config.latent_embed_builder_no_grad,
+                     "warmup_steps": int(cfg.get("warmup_steps", 0)), "schedule": "cosine", "optimizer": "AdamW",
+                     "adam_betas": cfg.get("adam_betas"), "weight_decay": cfg.get("weight_decay")},
+        "monitoring": {"probe_val_record_ids": monitor.probe_ids, "probe_every": cfg.get("probe_every_steps"),
+                       "loss_log_every": cfg.get("wandb_loss_every"), "grad_log_every": cfg.get("wandb_grad_every"),
+                       "gen_eval_steps": cfg.get("save_steps"), "gen_eval_set": clean_meta,
+                       "gen_decoding": f'greedy, max_new_tokens={cfg.get("gen_eval_max_new_tokens", 3072)}'},
+        "contamination_risk": ("Stage-1 checkpoint was trained on 320 records overlapping AIME24/25, MATH-500, "
+                               "OlympiadBench, AMC23 (exact/13-gram); Stage-2 data excludes them. The gen-eval set is "
+                               "13-gram clean against the full E2C SFT source; paraphrases are not detected."),
+    }
+    id_file = os.path.join(cfg["output_dir"], "wandb_run_id.txt")
+    run_id = open(id_file).read().strip() if os.path.exists(id_file) else __import__("uuid").uuid4().hex[:12]
+    open(id_file, "w").write(run_id)
+    return wandb.init(project=cfg.get("wandb_project", "stage2-plan-distill"), entity=cfg.get("wandb_entity"),
+                      name=cfg.get("wandb_run_name", os.path.basename(cfg["output_dir"])), id=run_id, resume="allow",
+                      config=wcfg, dir=cfg["output_dir"])
 
 
 def save(cfg, model, tok, optimizer, step, rank, layer_ids, tag=None):
@@ -200,6 +263,44 @@ def main():
                   os.path.join(cfg["output_dir"], "run_config_resolved.json"))
         print(json.dumps({"start_step": step, "max_steps": max_steps, "global_batch": mbs * accum * world}), flush=True)
     debug_every = int(cfg.get("debug_latent_grad_every", 10))
+    # ---- monitoring (read-only) ----
+    import pandas as pd
+    monitor = Stage2Monitor(model, tok, val_ds.frame, val_cache, layer_ids, L,
+                            probe_n=int(cfg.get("probe_n", 128)), probe_batch_size=int(cfg.get("probe_batch_size", 8)),
+                            grad_batch_size=int(cfg.get("grad_split_batch_size", 4)))
+    probe_every = int(cfg.get("probe_every_steps", 0) or 0)
+    loss_every = int(cfg.get("wandb_loss_every", 10))
+    grad_every = int(cfg.get("wandb_grad_every", 20))
+    save_steps = set(int(x) for x in (cfg.get("save_steps") or []))
+    gen_problems, clean_meta = [], None
+    if cfg.get("gen_eval_data"):
+        gen_problems = pd.read_parquet(cfg["gen_eval_data"]).iloc[: int(cfg.get("gen_eval_n", 50))].to_dict("records")
+        meta_path = cfg["gen_eval_data"].replace(".parquet", ".json")
+        clean_meta = json.load(open(meta_path)) if os.path.exists(meta_path) else {"path": cfg["gen_eval_data"]}
+    wb = None
+    if rank == 0 and cfg.get("wandb", False):
+        wb = init_wandb(cfg, model, train_ds, val_ds, layer_ids, world, mbs, accum, seed, monitor, clean_meta)
+
+    def wlog(d, at):
+        if wb is not None:
+            wb.log(d, step=at)
+        if rank == 0:
+            log_f.write(json.dumps({"step": at, **d}) + "\n"); log_f.flush()
+
+    def run_probe(at):
+        res = monitor.probe_ce()
+        if rank == 0:
+            res.update(monitor.projector_grad_split(float(cfg["lambda_a"])))
+        if dist.is_initialized():
+            dist.barrier()
+        wlog(res, at)
+        if rank == 0:
+            print(json.dumps({k: round(v, 5) for k, v in res.items()}), flush=True)
+
+    if probe_every and step == 0:
+        run_probe(0)                       # baseline before any update
+    win = {k: 0.0 for k in ("loss_total", "loss_execution", "loss_alignment", "loss_explicit")}
+    win_n = 0
     epoch = 0
     it = None
     t_last = time.time()
@@ -213,6 +314,7 @@ def main():
             for _ in range(skip):
                 next(it)
         torch.cuda.reset_peak_memory_stats()
+        t_step0 = time.time()
         f = cosine_lr(step, max_steps, warmup)
         for g, lr0 in zip(optimizer.param_groups, base_lrs):
             g["lr"] = lr0 * f
@@ -256,6 +358,8 @@ def main():
         optimizer.step()
         optimizer.zero_grad(set_to_none=True)
         step += 1
+        pure_step_time = time.time() - t_step0
+        last_stats = out.get("latent", {}).get("builder_stats", {}) if isinstance(out, dict) else {}
         rec = {"step": step, "lr": optimizer.param_groups[0]["lr"], "lr_projector": optimizer.param_groups[1]["lr"],
                "batch_size": mbs * accum * world, "supervised_E_tokens": agg["tE"], "supervised_A_tokens": agg["tA"],
                "supervised_close_tokens": agg["tC"], "supervised_P_tokens": agg["tP"],
@@ -273,19 +377,58 @@ def main():
                "step_time_s": time.time() - t_last}
         t_last = time.time()
         if int(cfg.get("eval_every_steps", 0)) and step % int(cfg["eval_every_steps"]) == 0:
-            rec.update(evaluate(module, val_loader, val_cache, layer_ids, device, int(cfg.get("eval_max_batches", 50))))
+            vres = evaluate(module, val_loader, val_cache, layer_ids, device, int(cfg.get("eval_max_batches", 50)))
+            rec.update(vres)
+            if wb is not None:
+                wb.log({k.replace("val/", "val/loss_"): v for k, v in vres.items()}, step=step)
         if rank == 0:
             log_f.write(json.dumps(rec) + "\n"); log_f.flush()
             if step % int(cfg.get("log_every_steps", 1)) == 0:
                 print(json.dumps({k: (round(v, 5) if isinstance(v, float) else v) for k, v in rec.items()}), flush=True)
-        if step % int(cfg.get("save_every_steps", 100)) == 0 or step == max_steps:
+        # ---- W&B scalars (rank 0 only; values already all-reduced above) ----
+        for k, v in (("loss_total", rec["L_total"]), ("loss_execution", rec["L_execution"]),
+                     ("loss_alignment", rec["L_alignment"]), ("loss_explicit", rec["L_explicit"])):
+            win[k] += v
+        win_n += 1
+        if wb is not None and step % loss_every == 0:
+            m = {f"train/{k}": v / win_n for k, v in win.items()}
+            m["train/loss_alignment_weighted"] = float(cfg["lambda_a"]) * m["train/loss_alignment"]
+            m["train/loss_explicit_weighted"] = float(cfg["lambda_r"]) * m["train/loss_explicit"]
+            m["train/learning_rate"] = rec["lr"]
+            m["train/learning_rate_projector"] = rec["lr_projector"]
+            wb.log(m, step=step)
+        if step % loss_every == 0:
+            win = {k: 0.0 for k in win}
+            win_n = 0
+        if wb is not None and step % grad_every == 0:
+            lr_ms, tr_ms = last_stats.get("latent_rms", float("nan")), last_stats.get("token_embedding_rms", float("nan"))
+            wb.log({"train/grad_projector": gn_proj, "train/grad_backbone": gn_back,
+                    "train/grad_total_preclip": float(total_norm), "train/latent_rms": lr_ms,
+                    "train/token_embedding_rms": tr_ms, "train/latent_rms_ratio": lr_ms / tr_ms if tr_ms else float("nan"),
+                    "train/step_time": pure_step_time,
+                    "train/peak_gpu_memory": torch.cuda.max_memory_allocated() / 2 ** 30}, step=step)
+        if probe_every and step % probe_every == 0:
+            run_probe(step)
+        do_save = step in save_steps or step == max_steps or (
+            not save_steps and step % int(cfg.get("save_every_steps", 100)) == 0)
+        if do_save:
             if dist.is_initialized():
                 dist.barrier()
             save(cfg, model, tok, optimizer, step, rank, layer_ids)
             if dist.is_initialized():
                 dist.barrier()
+            if gen_problems:
+                gres = monitor.generation_eval(gen_problems, list(cfg.get("gen_eval_conditions",
+                                                                           ["learned", "zero", "shuffled", "explicit"])),
+                                               int(cfg.get("gen_eval_max_new_tokens", 3072)),
+                                               int(cfg.get("gen_eval_batch_size", 25)))
+                wlog(gres, step)
+                if rank == 0:
+                    print(json.dumps(gres), flush=True)
     if rank == 0:
         print("TRAINING_DONE", step, flush=True)
+        if wb is not None:
+            wb.finish()
     if dist.is_initialized():
         dist.destroy_process_group()
 

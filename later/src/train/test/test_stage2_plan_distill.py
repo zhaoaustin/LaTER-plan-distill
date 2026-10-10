@@ -438,3 +438,54 @@ def test_projector_output_rms(model, tok, val_frame):
         model.config.save_pretrained(d)
         import json as _j
         assert abs(_j.load(open(os.path.join(d, "config.json")))["latent_projector_output_rms"] - target) < 1e-9
+
+
+@GPU
+def test_shuffled_latents_are_rolled_learned(model, tok, val_frame):
+    batch, _ = make_batch(tok, val_frame, [20, 21, 22], 8)
+    kw = dict(input_ids=batch["student_input_ids"].cuda(), attention_mask=batch["student_attention_mask"].cuda(),
+              position_ids=batch["student_position_ids"].cuda(), labels=batch["student_labels"].cuda(),
+              boundary_positions=batch["student_boundary"].cuda(), layer_ids=[36],
+              latent_positions=batch["latent_positions"].cuda(), latent_start_positions=batch["latent_start_positions"].cuda())
+    with torch.no_grad():
+        a = model.forward_plan_distill_stage2(**kw, latent_mode="learned")
+        b = model.forward_plan_distill_stage2(**kw, latent_mode="shuffled")
+    rows = torch.arange(3, device="cuda").unsqueeze(1)
+    lp = batch["latent_positions"].cuda()
+    za, zb = a["inputs_embeds"][rows, lp], b["inputs_embeds"][rows, lp]
+    assert torch.equal(zb, torch.roll(za, -1, 0))                      # same L / positions, other rows' latents
+    nonlat = torch.ones_like(batch["student_attention_mask"], dtype=torch.bool).cuda()
+    nonlat[rows, lp] = False
+    assert torch.equal(a["inputs_embeds"][nonlat], b["inputs_embeds"][nonlat])   # everything else identical
+    assert torch.equal(a["target_mask"], b["target_mask"])               # identical execution targets
+
+
+@GPU
+def test_monitor_is_read_only(model, tok, val_frame):
+    from later.src.train.stage2_common import checkpoint_hash, tokenizer_hashes
+    from later.src.train.stage2_monitor import Stage2Monitor
+    from later.src.train.stage2_plan_dataset import BOUNDARY_RULE_VERSION
+    from later.src.train.stage2_teacher_cache import TeacherBoundaryCache
+    cache = TeacherBoundaryCache("/scratch/hz33227/e2c/stage2/teacher_cache", "val",
+                                 {"teacher_checkpoint_hash": checkpoint_hash(CKPT), **tokenizer_hashes(tok, CKPT),
+                                  "boundary_rule_version": BOUNDARY_RULE_VERSION})
+    layers = list(range(1, 37))
+    mon = Stage2Monitor(model, tok, val_frame, cache, layers, 8, probe_n=8, probe_batch_size=4, grad_batch_size=2)
+    model.train()
+    model.zero_grad(set_to_none=True)
+    before = {n: p.detach().clone() for n, p in model.named_parameters() if "latent_projector" in n or n.endswith("layers.0.mlp.down_proj.weight")}
+    res = mon.probe_ce()
+    res.update(mon.projector_grad_split(0.1))
+    probs = [{"question": val_frame.question.iloc[i], "answer": val_frame.answer.iloc[i]} for i in range(2)]
+    res.update(mon.generation_eval(probs, ["learned", "zero", "shuffled", "explicit"], max_new_tokens=16, batch_size=2))
+    assert model.training                                                # train mode restored
+    assert all(p.grad is None for p in model.parameters())               # nothing written to .grad
+    for n, p in model.named_parameters():
+        if n in before:
+            assert torch.equal(p.detach(), before[n]), n                 # no parameter update
+    for k in ("val/ce_learned", "val/ce_zero", "val/ce_shuffled", "val/ce_no_latent", "val/ce_explicit",
+              "val/latent_gain_ce", "val/alignment_learned", "val/alignment_zero", "val/ce_learned_nonrep",
+              "val/grad_projector_from_execution", "val/grad_projector_from_alignment", "gen/acc_shuffled"):
+        assert k in res and res[k] == res[k], k                         # present and not NaN
+    assert res["val/grad_projector_from_execution"] > 0 and res["val/grad_projector_from_alignment"] > 0
+    model.eval()

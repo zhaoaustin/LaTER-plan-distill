@@ -1266,6 +1266,13 @@ class LatentQwenForCausalLM(Qwen3ForCausalLM):
                 raise RuntimeError(f"latent builder filled {int(emb_mask.sum())} slots, expected {expected}")
             if latent_mode == "zero":  # ablation: same positions, all-zero latent embeddings
                 overrides = torch.zeros_like(overrides)
+            elif latent_mode == "shuffled":  # ablation: row i receives row (i+1)'s own latents, same L/positions
+                if input_ids.size(0) < 2:
+                    raise ValueError("latent_mode=shuffled needs batch size >= 2")
+                rows = torch.arange(input_ids.size(0), device=input_ids.device).unsqueeze(1)
+                z = overrides[rows, latent_positions]                     # [B, L, d]
+                overrides = overrides.clone()
+                overrides[rows, latent_positions] = torch.roll(z, shifts=-1, dims=0)
             elif latent_mode != "learned":
                 raise ValueError(latent_mode)
             inputs_embeds = torch.where(emb_mask.unsqueeze(-1), overrides.to(token_embeds.dtype), token_embeds)
@@ -1273,6 +1280,9 @@ class LatentQwenForCausalLM(Qwen3ForCausalLM):
             lat = overrides[emb_mask].float()
             stats["latent_embed_norm_mean"] = float(lat.norm(dim=-1).mean()) if lat.numel() else 0.0
             stats["token_embed_norm_mean"] = float(token_embeds[~emb_mask & attention_mask.bool()].float().norm(dim=-1).mean())
+            # per-dimension RMS (monitoring only)
+            stats["latent_rms"] = float(lat.pow(2).mean().sqrt()) if lat.numel() else 0.0
+            stats["token_embedding_rms"] = float(token_embeds[~emb_mask & attention_mask.bool()].float().pow(2).mean().sqrt())
         else:
             inputs_embeds = token_embeds
         with self.capture_layer_outputs_at(boundary_positions, layer_ids) as (store, calls):
@@ -1299,6 +1309,29 @@ class LatentQwenForCausalLM(Qwen3ForCausalLM):
         }
 
     @torch.no_grad()
+    def _latents_for_prompts(self, prompt_ids: List[List[int]], latent_steps: int, pad_token_id: int) -> torch.Tensor:
+        """Each row's own latent sequence (same recursion as generation), shape [B, L, d]."""
+        device = self.get_input_embeddings().weight.device
+        embed_dtype = self.get_input_embeddings().weight.dtype
+        B, n = len(prompt_ids), max(len(p) for p in prompt_ids)
+        ids = torch.full((B, n), pad_token_id, dtype=torch.long, device=device)
+        mask = torch.zeros((B, n), dtype=torch.long, device=device)
+        for i, p in enumerate(prompt_ids):
+            ids[i, n - len(p):] = torch.tensor(p, device=device)
+            mask[i, n - len(p):] = 1
+        pos = (mask.cumsum(-1) - 1).clamp(min=0)
+        out = self.model(input_ids=ids, attention_mask=mask, position_ids=pos, use_cache=True, return_dict=True)
+        cache, prev, next_pos, zs = out.past_key_values, out.last_hidden_state[:, -1, :], pos[:, -1] + 1, []
+        for _ in range(int(latent_steps)):
+            z = self.latent_projector(prev)
+            zs.append(z)
+            mask = torch.cat([mask, torch.ones((B, 1), dtype=mask.dtype, device=device)], dim=1)
+            out = self.model(inputs_embeds=z.unsqueeze(1).to(embed_dtype), attention_mask=mask,
+                             position_ids=next_pos.unsqueeze(1), past_key_values=cache, use_cache=True, return_dict=True)
+            cache, prev, next_pos = out.past_key_values, out.last_hidden_state[:, -1, :], next_pos + 1
+        return torch.stack(zs, dim=1)
+
+    @torch.no_grad()
     def generate_plan_latent(
         self,
         prompt_ids: List[List[int]],
@@ -1318,8 +1351,13 @@ class LatentQwenForCausalLM(Qwen3ForCausalLM):
         latent_mode="zero" keeps the L latent positions but feeds all-zero embeddings (ablation).
         latent_steps=0 with suffix_ids=[] is plain explicit greedy decoding from the prompt.
         """
-        if latent_mode not in ("learned", "zero"):
+        if latent_mode not in ("learned", "zero", "shuffled"):
             raise ValueError(latent_mode)
+        z_fixed = None
+        if latent_mode == "shuffled":
+            if len(prompt_ids) < 2:
+                raise ValueError("latent_mode=shuffled needs batch size >= 2")
+            z_fixed = torch.roll(self._latents_for_prompts(prompt_ids, latent_steps, pad_token_id), shifts=-1, dims=0)
         device = self.get_input_embeddings().weight.device
         embed_dtype = self.get_input_embeddings().weight.dtype
         B = len(prompt_ids)
@@ -1334,10 +1372,12 @@ class LatentQwenForCausalLM(Qwen3ForCausalLM):
         cache = out.past_key_values
         prev_hidden = out.last_hidden_state[:, -1, :]
         next_pos = pos[:, -1] + 1
-        for _ in range(int(latent_steps)):
+        for step_i in range(int(latent_steps)):
             z = self.latent_projector(prev_hidden)
             if latent_mode == "zero":
                 z = torch.zeros_like(z)
+            elif z_fixed is not None:
+                z = z_fixed[:, step_i].to(z.dtype)
             mask = torch.cat([mask, torch.ones((B, 1), dtype=mask.dtype, device=device)], dim=1)
             out = self.model(inputs_embeds=z.unsqueeze(1).to(embed_dtype), attention_mask=mask,
                              position_ids=next_pos.unsqueeze(1), past_key_values=cache, use_cache=True,
