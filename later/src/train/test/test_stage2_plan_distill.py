@@ -489,3 +489,102 @@ def test_monitor_is_read_only(model, tok, val_frame):
         assert k in res and res[k] == res[k], k                         # present and not NaN
     assert res["val/grad_projector_from_execution"] > 0 and res["val/grad_projector_from_alignment"] > 0
     model.eval()
+
+
+# ------------------------------------------------------------------ execution-KL pilot
+KL_DIR = "/scratch/hz33227/e2c/stage2/exec_kl_pilot/teacher_topk"
+
+
+def _kl_cache():
+    from later.src.train.stage2_teacher_cache import ExecKLTeacherCache
+    return ExecKLTeacherCache(KL_DIR, "val_probe", {})
+
+
+def _student_latent(model, batch, ret=True):
+    return model.forward_plan_distill_stage2(
+        input_ids=batch["student_input_ids"].cuda(), attention_mask=batch["student_attention_mask"].cuda(),
+        position_ids=batch["student_position_ids"].cuda(), labels=batch["student_labels"].cuda(),
+        boundary_positions=batch["student_boundary"].cuda(), layer_ids=list(range(1, 37)),
+        latent_positions=batch["latent_positions"].cuda(), latent_start_positions=batch["latent_start_positions"].cuda(),
+        return_target_logits=ret, debug_latent_grad=True)
+
+
+@GPU
+def test_exec_kl_cache_matches_full_kl(model, tok, val_frame):
+    from later.src.train.losses import stage2_exec_kl_full, stage2_exec_kl_topk_tail
+    cache = _kl_cache()
+    for i in range(4):
+        batch, views = make_batch(tok, val_frame, [i], 8)
+        e = cache.get(views[0]["record_id"])
+        offs = e["offsets"].long().cuda()
+        assert offs.tolist() == views[0]["kl_offsets"]
+        model.zero_grad(set_to_none=True)
+        out = _student_latent(model, batch)
+        s_logits = out["target_logits"][offs]
+        # teacher logits online (explicit path; projector unused -> identical to the frozen Stage-1 weights)
+        with torch.no_grad():
+            ids = batch["explicit_input_ids"].cuda()
+            hid = model.model(input_ids=ids, attention_mask=batch["explicit_attention_mask"].cuda(),
+                              position_ids=batch["explicit_position_ids"].cuda(), use_cache=False).last_hidden_state
+            t_logits = model.lm_head(hid[0, views[0]["explicit_boundary"] + offs]).float()
+        kl_full = stage2_exec_kl_full(s_logits, t_logits)
+        kl_cache = stage2_exec_kl_topk_tail(s_logits, e["ids"].cuda(), e["probs"].cuda(), e["tail"].cuda())
+        assert abs(kl_full.mean().item() - kl_cache.mean().item()) < 0.02 + 0.05 * kl_full.mean().item(), \
+            (kl_full.mean().item(), kl_cache.mean().item())
+        g_full = torch.autograd.grad(kl_full.mean(), s_logits, retain_graph=True)[0].flatten()
+        g_cache = torch.autograd.grad(kl_cache.mean(), s_logits)[0].flatten()
+        assert torch.nn.functional.cosine_similarity(g_full, g_cache, dim=0) > 0.98
+        assert torch.equal(e["target"].int(), batch["student_labels"][0, 1:][batch["student_labels"][0, 1:] != -100][offs.cpu()].int())
+
+
+@GPU
+def test_exec_kl_mask_and_teacher_causality(model, tok, val_frame):
+    r = val_frame.iloc[5].to_dict()
+    T = stage2_tokens(tok)
+    v = build_views(tok, r, 8, T, 4096)
+    seg, rep = v["student_seg"][v["student_boundary"] + 1:], v["student_rep"][v["student_boundary"] + 1:]
+    assert v["kl_offsets"] and len(v["kl_offsets"]) <= 128
+    assert all(seg[j] == "E" and not rep[j] for j in v["kl_offsets"])            # no P / latent / A / closing / repeats
+    assert v["kl_offsets"] == sorted(v["kl_offsets"])
+    # teacher distribution at offset j only depends on E_<j: corrupt every execution token after offset j0
+    j0 = v["kl_offsets"][10]
+    ids = torch.tensor([v["explicit_ids"]]).cuda()
+    bx = v["explicit_boundary"]
+    ids2 = ids.clone()
+    ids2[0, bx + 1 + j0 + 1:] = tok.convert_tokens_to_ids("X")
+    with torch.no_grad():
+        pos = torch.arange(ids.size(1), device="cuda").unsqueeze(0)
+        h1 = model.model(input_ids=ids, position_ids=pos, use_cache=False).last_hidden_state[0, bx + j0]
+        h2 = model.model(input_ids=ids2, position_ids=pos, use_cache=False).last_hidden_state[0, bx + j0]
+    assert torch.allclose(h1, h2, atol=1e-4)
+
+
+@GPU
+def test_exec_kl_only_gradients_and_total(model, tok, val_frame):
+    cache = _kl_cache()
+    batch, views = make_batch(tok, val_frame, [6], 8)
+    klt = [cache.get(views[0]["record_id"])]
+    layers = list(range(1, 37))
+    teacher = online_teacher(model, batch, layers)
+    model.zero_grad(set_to_none=True)
+    only_kl = Stage2Module(model, dict(CFG, execution_ce_weight=0.0, lambda_a=0.0, lambda_r=0.0,
+                                       execution_kl_enabled=True, lambda_kl=1.0), layers)
+    out = only_kl(batch, teacher, debug_latent_grad=True, kl_targets=klt)
+    out["loss"].backward()
+    proj, back, finite = _grads(model)
+    assert finite and proj > 0 and back > 0
+    z1 = out["latent"]["projector_outputs"][0]
+    assert z1.grad is not None and z1.grad.abs().sum() > 0                      # first latent reached by KL
+    assert all(not torch.is_tensor(v) or not v.requires_grad for v in klt[0].values())
+    model.zero_grad(set_to_none=True)
+    with torch.no_grad():
+        base = Stage2Module(model, dict(CFG), layers)(batch, teacher)
+        pilot = Stage2Module(model, dict(CFG, execution_kl_enabled=True, lambda_kl=0.3), layers)(batch, teacher, kl_targets=klt)
+    for k in ("l_exec", "l_align", "l_explicit"):
+        assert torch.allclose(base[k], pilot[k])                                # other losses untouched
+    assert torch.allclose(base["loss"], base["l_exec"] + 0.1 * base["l_align"] + 0.3 * base["l_explicit"])
+    assert torch.allclose(pilot["loss"], base["loss"] + 0.3 * pilot["l_exec_kl"], atol=1e-6)
+    assert float(base["l_exec_kl"]) == 0.0 and float(pilot["l_exec_kl"]) > 0
+    bad = [dict(klt[0], target=klt[0]["target"] + 1)]
+    with pytest.raises(RuntimeError):
+        Stage2Module(model, dict(CFG, execution_kl_enabled=True, lambda_kl=0.3), layers)(batch, teacher, kl_targets=bad)

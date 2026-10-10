@@ -25,7 +25,7 @@ from later.src.train.stage2_common import checkpoint_hash, dump_json, load_stage
 from later.src.train.stage2_objective import Stage2Module
 from later.src.train.stage2_plan_dataset import BOUNDARY_RULE_VERSION, Stage2Collator, Stage2PlanDataset
 from later.src.train.stage2_monitor import Stage2Monitor
-from later.src.train.stage2_teacher_cache import TeacherBoundaryCache
+from later.src.train.stage2_teacher_cache import ExecKLTeacherCache, TeacherBoundaryCache
 from later.src.train.utils import load_yaml
 
 REQUIRED = ["objective_mode", "model_path", "reference_teacher_path", "train_data", "val_data", "reference_cache_dir",
@@ -159,7 +159,11 @@ def init_wandb(cfg, model, train_ds, val_ds, layer_ids, world, mbs, accum, seed,
     id_file = os.path.join(cfg["output_dir"], "wandb_run_id.txt")
     run_id = open(id_file).read().strip() if os.path.exists(id_file) else __import__("uuid").uuid4().hex[:12]
     open(id_file, "w").write(run_id)
+    wcfg["exec_kl_pilot"] = {k: cfg.get(k) for k in ("execution_kl_enabled", "lambda_kl", "kl_token_budget",
+                                                      "execution_kl_temperature", "teacher_cache_manifest_dir",
+                                                      "resume_from_checkpoint", "lr_schedule_max_steps", "pilot_group")}
     return wandb.init(project=cfg.get("wandb_project", "stage2-plan-distill"), entity=cfg.get("wandb_entity"),
+                      group=cfg.get("wandb_group"), tags=cfg.get("wandb_tags"),
                       name=cfg.get("wandb_run_name", os.path.basename(cfg["output_dir"])), id=run_id, resume="allow",
                       config=wcfg, dir=cfg["output_dir"])
 
@@ -211,6 +215,9 @@ def main():
     if cfg.get("resume", True) and os.path.exists(latest):
         resume = os.path.join(cfg["output_dir"], open(latest).read().strip())
         init_path = resume
+    elif cfg.get("resume_from_checkpoint"):
+        resume = cfg["resume_from_checkpoint"]          # e.g. pilot A/B both start from the same step-500 ckpt
+        init_path = resume
     tok = load_tokenizer(cfg["model_path"])
     model = load_stage2_model(init_path, latent_embed_builder_no_grad=cfg["latent_embed_builder_no_grad"],
                               latent_projector_dropout=float(cfg.get("latent_projector_dropout", 0.0)),
@@ -253,6 +260,7 @@ def main():
         betas=tuple(cfg.get("adam_betas", [0.9, 0.95])), weight_decay=float(cfg.get("weight_decay", 0.01)))
     base_lrs = [g["lr"] for g in optimizer.param_groups]
     max_steps = int(cfg["max_train_steps"])
+    sched_steps = int(cfg.get("lr_schedule_max_steps", max_steps))   # pilot keeps the original 2,900-step horizon
     warmup = int(cfg.get("warmup_steps", 0))
     step = 0
     if resume:
@@ -277,9 +285,37 @@ def main():
                   os.path.join(cfg["output_dir"], "run_config_resolved.json"))
         print(json.dumps({"start_step": step, "max_steps": max_steps, "global_batch": mbs * accum * world}), flush=True)
     debug_every = int(cfg.get("debug_latent_grad_every", 10))
+    kl_cache, kl_val_cache = None, None
+    if cfg.get("teacher_cache_manifest_dir"):
+        kexp = {"teacher_checkpoint_hash": expect["teacher_checkpoint_hash"], "tokenizer_hash": expect["tokenizer_hash"],
+                "chat_template_hash": expect["chat_template_hash"], "boundary_rule_version": BOUNDARY_RULE_VERSION,
+                "kl_budget": int(cfg.get("kl_token_budget", 128)),
+                "temperature": float(cfg.get("execution_kl_temperature", 1.0))}
+        kl_val_cache = ExecKLTeacherCache(cfg["teacher_cache_manifest_dir"], "val_probe", kexp)   # eval only
+        if cfg.get("execution_kl_enabled", False):
+            assert mbs == 1, "execution-KL pilot assumes micro_batch_size 1"
+            kl_cache = ExecKLTeacherCache(cfg["teacher_cache_manifest_dir"], "train_pilot", kexp)  # training targets
+    start_info = {"start_step": step, "start_checkpoint": resume}
+    if rank == 0:
+        import hashlib
+        def phash(params):
+            h = hashlib.sha256()
+            for prm in params:
+                h.update(prm.detach().float().cpu().numpy().tobytes())
+            return h.hexdigest()
+        start_info.update({"initial_projector_param_hash": phash(proj_params),
+                           "initial_model_param_hash": phash(list(model.parameters())),
+                           "start_checkpoint_trainer_state_sha256": __import__("later.src.train.stage2_common",
+                               fromlist=["file_sha256"]).file_sha256(os.path.join(resume, "trainer_state.pt")) if resume else None,
+                           "optimizer_lr_after_load": [g["lr"] for g in optimizer.param_groups],
+                           "lr_schedule_max_steps": sched_steps})
+        dump_json(start_info, os.path.join(cfg["output_dir"], "start_provenance.json"))
+        print(json.dumps(start_info), flush=True)
+    batch_log = open(os.path.join(cfg["output_dir"], f"batch_record_ids_rank{rank}.jsonl"), "a")
     # ---- monitoring (read-only) ----
     import pandas as pd
-    monitor = Stage2Monitor(model, tok, val_ds.frame, val_cache, layer_ids, L,
+    monitor = Stage2Monitor(model, tok, val_ds.frame, val_cache, layer_ids, L, kl_val_cache=kl_val_cache,
+                            lambdas=(float(cfg["lambda_a"]), float(cfg.get("lambda_kl", 0.0))),
                             probe_n=int(cfg.get("probe_n", 128)), probe_batch_size=int(cfg.get("probe_batch_size", 8)),
                             grad_batch_size=int(cfg.get("grad_split_batch_size", 4)))
     probe_every = int(cfg.get("probe_every_steps", 0) or 0)
@@ -305,14 +341,15 @@ def main():
         res = monitor.probe_ce()
         if rank == 0:
             res.update(monitor.projector_grad_split(float(cfg["lambda_a"])))
+            res["val/kl_enabled_in_training"] = float(bool(cfg.get("execution_kl_enabled", False)))
         if dist.is_initialized():
             dist.barrier()
         wlog(res, at)
         if rank == 0:
             print(json.dumps({k: round(v, 5) for k, v in res.items()}), flush=True)
 
-    if probe_every and step == 0:
-        run_probe(0)                       # baseline before any update
+    if probe_every and (step == 0 or cfg.get("probe_at_start", False)):
+        run_probe(step)                    # baseline before any update of this run
     win = {k: 0.0 for k in ("loss_total", "loss_execution", "loss_alignment", "loss_explicit")}
     win_n = 0
     epoch = 0
@@ -329,11 +366,12 @@ def main():
                 next(it)
         torch.cuda.reset_peak_memory_stats()
         t_step0 = time.time()
-        f = cosine_lr(step, max_steps, warmup)
+        f = cosine_lr(step, sched_steps, warmup)
         for g, lr0 in zip(optimizer.param_groups, base_lrs):
             g["lr"] = lr0 * f
         agg = {"l_exec": 0.0, "l_align": 0.0, "l_explicit": 0.0, "loss": 0.0, "tE": 0, "tA": 0, "tP": 0, "tC": 0,
-               "scale": 0.0, "l1": 0.0, "s_len": 0, "t_len": 0, "early": 0.0}
+               "scale": 0.0, "l1": 0.0, "s_len": 0, "t_len": 0, "early": 0.0, "kl": 0.0, "kl_pos": 0, "kl_rows0": 0}
+        step_rids = []
         debug = debug_every > 0 and step % debug_every == 0
         for micro in range(accum):
             try:
@@ -344,14 +382,20 @@ def main():
                 it = iter(train_loader)
                 batch = next(it)
             th = train_cache.get(batch["record_ids"], layer_ids, device)
+            step_rids += list(batch["record_ids"])
+            klt = [kl_cache.get(r) for r in batch["record_ids"]] if kl_cache is not None else None
             sync = (micro == accum - 1) or world == 1
             ctx = ddp.no_sync() if (world > 1 and not sync) else torch.enable_grad()
             with ctx:
                 with torch.autocast("cuda", dtype=torch.bfloat16):
-                    out = ddp(batch, th, debug_latent_grad=debug and micro == 0)
+                    out = ddp(batch, th, debug_latent_grad=debug and micro == 0, kl_targets=klt)
                 (out["loss"] / accum).backward()
             for k in ("l_exec", "l_align", "l_explicit", "loss"):
                 agg[k] += float(out[k]) / accum
+            agg["kl"] += float(out["l_exec_kl"]) / accum
+            if "n_kl_positions" in out:
+                agg["kl_pos"] += sum(out["n_kl_positions"])
+                agg["kl_rows0"] += sum(1 for n_ in out["n_kl_positions"] if n_ == 0)
             agg["tE"] += int((batch["student_seg_E"] & (batch["student_labels"] != -100)).sum())
             agg["tA"] += int((batch["student_seg_A"] & (batch["student_labels"] != -100)).sum())
             agg["tC"] += int((batch["student_seg_C"] & (batch["student_labels"] != -100)).sum())
@@ -373,6 +417,7 @@ def main():
         optimizer.zero_grad(set_to_none=True)
         step += 1
         pure_step_time = time.time() - t_step0
+        batch_log.write(json.dumps({"step": step, "record_ids": step_rids}) + "\n"); batch_log.flush()
         last_stats = out.get("latent", {}).get("builder_stats", {}) if isinstance(out, dict) else {}
         rec = {"step": step, "lr": optimizer.param_groups[0]["lr"], "lr_projector": optimizer.param_groups[1]["lr"],
                "batch_size": mbs * accum * world, "supervised_E_tokens": agg["tE"], "supervised_A_tokens": agg["tA"],
@@ -388,7 +433,9 @@ def main():
                "peak_allocated_GiB": torch.cuda.max_memory_allocated() / 2 ** 30,
                "peak_reserved_GiB": torch.cuda.max_memory_reserved() / 2 ** 30,
                "explicit_branch_CE": all_mean(agg["l_explicit"], device), "latent_branch_CE": all_mean(agg["l_exec"], device),
-               "step_time_s": time.time() - t_last}
+               "step_time_s": time.time() - t_last,
+               "L_exec_kl": all_mean(agg["kl"], device), "lambda_kl": float(cfg.get("lambda_kl", 0.0)),
+               "kl_positions": agg["kl_pos"], "kl_rows_without_targets": agg["kl_rows0"]}
         t_last = time.time()
         if int(cfg.get("eval_every_steps", 0)) and step % int(cfg["eval_every_steps"]) == 0:
             vres = evaluate(module, val_loader, val_cache, layer_ids, device, int(cfg.get("eval_max_batches", 50)))
@@ -409,6 +456,9 @@ def main():
             m["train/loss_alignment_weighted"] = float(cfg["lambda_a"]) * m["train/loss_alignment"]
             m["train/loss_explicit_weighted"] = float(cfg["lambda_r"]) * m["train/loss_explicit"]
             m["train/learning_rate"] = rec["lr"]
+            m["train/loss_exec_kl"] = rec["L_exec_kl"]
+            m["train/loss_exec_kl_weighted"] = rec["lambda_kl"] * rec["L_exec_kl"]
+            m["train/kl_positions_per_step_rank0"] = rec["kl_positions"]
             m["train/learning_rate_projector"] = rec["lr_projector"]
             wb.log(m, step=step)
         if step % loss_every == 0:

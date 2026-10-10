@@ -833,3 +833,34 @@ def stage2_total_loss(
     lambda_a: float, lambda_r: float, execution_ce_weight: float = 1.0,
 ) -> torch.Tensor:
     return execution_ce_weight * l_exec + lambda_a * l_align + lambda_r * l_explicit
+
+
+# ----------------------------------------------------------------------------------------------------
+# OUR Stage 2 execution-KL pilot (only used when execution_kl_enabled). Forward KL(teacher || student) on
+# execution target tokens, teacher stored as top-k probabilities + explicit tail mass (no renormalisation).
+# ----------------------------------------------------------------------------------------------------
+def stage2_exec_kl_topk_tail(student_logits: torch.Tensor, teacher_ids: torch.Tensor, teacher_probs: torch.Tensor,
+                             teacher_tail: torch.Tensor, temperature: float = 1.0) -> torch.Tensor:
+    """Per-position KL over the (k + 1)-bucket distribution {top-k tokens of the teacher, everything else}.
+
+    student_logits [n, V] (any dtype, computed in fp32); teacher_ids [n, k]; teacher_probs [n, k]; teacher_tail [n].
+    Returns [n] KL values (nats).
+    """
+    z = student_logits.float() / float(temperature)
+    log_z = torch.logsumexp(z, dim=-1, keepdim=True)
+    lp_k = z.gather(1, teacher_ids.long()) - log_z                                   # log p_S(top-k)
+    masked = z.scatter(1, teacher_ids.long(), float("-inf"))
+    lp_tail = torch.logsumexp(masked, dim=-1) - log_z.squeeze(-1)                   # log p_S(rest)
+    pt = teacher_probs.float()
+    tt = teacher_tail.float().clamp(min=0.0)
+    kl_k = torch.xlogy(pt, pt) - pt * lp_k
+    kl_tail = torch.xlogy(tt, tt) - tt * lp_tail
+    return kl_k.sum(-1) + kl_tail
+
+
+def stage2_exec_kl_full(student_logits: torch.Tensor, teacher_logits: torch.Tensor,
+                        temperature: float = 1.0) -> torch.Tensor:
+    """Exact full-vocabulary KL(teacher || student) per position (reference for tests / small checks)."""
+    lt = F.log_softmax(teacher_logits.float() / temperature, dim=-1)
+    ls = F.log_softmax(student_logits.float() / temperature, dim=-1)
+    return (lt.exp() * (lt - ls)).sum(-1)

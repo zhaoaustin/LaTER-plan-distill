@@ -34,3 +34,20 @@ class TeacherBoundaryCache:
         return {l: h[:, j] for j, l in enumerate(layer_ids)}
 
 
+
+
+class ExecKLTeacherCache:
+    """Frozen-teacher execution-token top-k + tail cache (see later/scripts/data/cache_exec_teacher_topk.py)."""
+
+    def __init__(self, cache_dir: str, split: str, expect: dict):
+        self.manifest = json.load(open(os.path.join(cache_dir, "manifest.json")))
+        for k, v in expect.items():
+            if self.manifest.get(k) != v:
+                raise RuntimeError(f"exec-KL cache mismatch on {k}: cache={self.manifest.get(k)} expected={v}")
+        self.data = torch.load(os.path.join(cache_dir, f"{split}.pt"))
+        self.split = split
+
+    def get(self, record_id: str):
+        if record_id not in self.data:
+            raise KeyError(f"exec-KL cache ({self.split}) has no entry for {record_id}")
+        return self.data[record_id]

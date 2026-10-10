@@ -61,8 +61,12 @@ class Stage2RecordError(ValueError):
     pass
 
 
+KL_MASK_RULE = ("e2c-kl-v1: execution targets with segment E (not A, not closing tags), excluding tokens on lines "
+                "that restate a plan line verbatim; first `kl_budget` such targets, indexed by execution offset")
+
+
 def build_views(tokenizer: Any, row: Dict[str, Any], latent_steps: int, toks: Stage2Tokens,
-                max_length: int) -> Dict[str, Any]:
+                max_length: int, kl_budget: int = 128) -> Dict[str, Any]:
     q, plan, execution = str(row["question"]), str(row["plan"]), str(row["execution"])
     response = PLAN_OPEN + plan + SEPARATOR + execution + EXEC_CLOSE + EOS
     if response != str(row["stage1_solution"]) + EOS:
@@ -143,6 +147,11 @@ def build_views(tokenizer: Any, row: Dict[str, Any], latent_steps: int, toks: St
         "explicit_ids": full, "explicit_labels": x_labels, "explicit_seg": "".join(x_seg), "explicit_boundary": b_X,
         "prompt_len": P,
         "student_rep": s_rep, "explicit_rep": x_rep,
+        # execution offsets j (0 = first execution token = target predicted from the boundary) used by the
+        # optional execution-KL pilot; identical meaning in the student and explicit/teacher sequences
+        "kl_offsets": [j for j, (sg, rp) in enumerate(zip(seg[exec_start:], rep_tok[exec_start:]))
+                       if sg == "E" and not rp][:kl_budget],
+        "n_exec_targets": len(exec_tail),
     }
 
 
@@ -201,6 +210,7 @@ class Stage2Collator:
                 out[f"{view}_seg_{name}"] = _seg_mask(segs, n, letters)
             reps = [b[f"{view}_rep"] for b in batch]   # monitoring only: plan-restatement tokens
             out[f"{view}_seg_R"] = torch.tensor([list(r) + [False] * (n - len(r)) for r in reps], dtype=torch.bool)
+        out["kl_offsets"] = [b["kl_offsets"] for b in batch]
         out["latent_start_positions"] = torch.tensor([b["latent_start"] for b in batch], dtype=torch.long)
         out["latent_positions"] = torch.tensor([b["latent_positions"] for b in batch], dtype=torch.long)
         out["student_boundary"] = torch.tensor([b["student_boundary"] for b in batch], dtype=torch.long)

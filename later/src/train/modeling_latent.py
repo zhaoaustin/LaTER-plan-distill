@@ -1206,13 +1206,16 @@ class LatentQwenForCausalLM(Qwen3ForCausalLM):
                 store[lid] = h[rows, positions.to(h.device)]
             raw.clear()
 
-    def _shifted_token_nll(self, hidden: torch.Tensor, labels: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
-        """Per-token NLL for labels[:, t] predicted from hidden[:, t-1]; lm_head only on supervised positions."""
+    def _shifted_token_nll(self, hidden: torch.Tensor, labels: torch.Tensor, return_logits: bool = False):
+        """Per-token NLL for labels[:, t] predicted from hidden[:, t-1]; lm_head only on supervised positions.
+        With return_logits, also returns the fp32 logits of those positions (row-major order of `sel`)."""
         tgt = labels[:, 1:]
         sel = tgt != -100
         src_hidden = hidden[:, :-1][sel]
         logits = self.lm_head(src_hidden).float()
         nll = torch.nn.functional.cross_entropy(logits, tgt[sel], reduction="none")
+        if return_logits:
+            return nll, sel, logits
         return nll, sel
 
     def forward_plan_distill_stage2(
@@ -1227,6 +1230,7 @@ class LatentQwenForCausalLM(Qwen3ForCausalLM):
         latent_start_positions: Optional[torch.Tensor] = None,
         debug_latent_grad: bool = False,
         latent_mode: str = "learned",
+        return_target_logits: bool = False,
     ) -> Dict[str, Any]:
         """Teacher-forced forward for the student latent path (latent_positions given) or explicit path (None).
 
@@ -1297,8 +1301,13 @@ class LatentQwenForCausalLM(Qwen3ForCausalLM):
         missing = [lid for lid in layer_ids if lid not in store]
         if missing:
             raise RuntimeError(f"boundary hidden not captured for layers {missing}")
-        nll, sel = self._shifted_token_nll(outputs.last_hidden_state, labels)
+        target_logits = None
+        if return_target_logits:
+            nll, sel, target_logits = self._shifted_token_nll(outputs.last_hidden_state, labels, return_logits=True)
+        else:
+            nll, sel = self._shifted_token_nll(outputs.last_hidden_state, labels)
         return {
+            "target_logits": target_logits,
             "token_nll": nll,
             "target_mask": sel,
             "boundary_hidden": {lid: store[lid] for lid in layer_ids},
