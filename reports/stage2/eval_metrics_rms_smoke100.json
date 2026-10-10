@@ -1,0 +1,145 @@
+{
+ "latent_steps": 8,
+ "max_new_tokens": 3072,
+ "decoding": "greedy",
+ "stage1": "/scratch/hz33227/e2c/Explore-Execute-Chain/outputs/e2c_qwen3_4b_sft/best_hf",
+ "stage2": "/scratch/hz33227/e2c/stage2/runs/stage2_L8_rms_smoke100/checkpoint-100",
+ "n": {
+  "val": 100,
+  "math500": 100
+ },
+ "results": {
+  "stage1_explicit": {
+   "val": {
+    "accuracy_or_agreement": 0.45,
+    "complete_cot_rate": 0.84,
+    "exec_closed_rate": 0.88,
+    "answer_parse_rate": 0.87,
+    "eos_stop_rate": 0.88,
+    "mean_gen_tokens": 1334.71,
+    "seconds": 861,
+    "plan_present_rate": 1.0
+   },
+   "math500": {
+    "accuracy_or_agreement": 0.75,
+    "complete_cot_rate": 0.95,
+    "exec_closed_rate": 0.96,
+    "answer_parse_rate": 0.96,
+    "eos_stop_rate": 0.96,
+    "mean_gen_tokens": 760.15,
+    "seconds": 580,
+    "plan_present_rate": 1.0
+   }
+  },
+  "stage1_empty_plan": {
+   "val": {
+    "accuracy_or_agreement": 0.15,
+    "complete_cot_rate": 0.24,
+    "exec_closed_rate": 0.99,
+    "answer_parse_rate": 0.25,
+    "eos_stop_rate": 0.99,
+    "mean_gen_tokens": 248.21,
+    "seconds": 333,
+    "regenerated_plan_tags_rate": 0.0
+   },
+   "math500": {
+    "accuracy_or_agreement": 0.29,
+    "complete_cot_rate": 0.36,
+    "exec_closed_rate": 0.99,
+    "answer_parse_rate": 0.36,
+    "eos_stop_rate": 0.99,
+    "mean_gen_tokens": 258.12,
+    "seconds": 348,
+    "regenerated_plan_tags_rate": 0.0
+   }
+  },
+  "stage2_latent": {
+   "val": {
+    "accuracy_or_agreement": 0.44,
+    "complete_cot_rate": 0.83,
+    "exec_closed_rate": 0.86,
+    "answer_parse_rate": 0.86,
+    "eos_stop_rate": 0.86,
+    "mean_gen_tokens": 1178.51,
+    "seconds": 706,
+    "regenerated_plan_tags_rate": 0.0
+   },
+   "math500": {
+    "accuracy_or_agreement": 0.77,
+    "complete_cot_rate": 0.94,
+    "exec_closed_rate": 0.94,
+    "answer_parse_rate": 0.94,
+    "eos_stop_rate": 0.94,
+    "mean_gen_tokens": 654.42,
+    "seconds": 777,
+    "regenerated_plan_tags_rate": 0.0
+   }
+  },
+  "stage2_explicit": {
+   "val": {
+    "accuracy_or_agreement": 0.42,
+    "complete_cot_rate": 0.93,
+    "exec_closed_rate": 0.94,
+    "answer_parse_rate": 0.94,
+    "eos_stop_rate": 0.94,
+    "mean_gen_tokens": 1222.16,
+    "seconds": 704,
+    "plan_present_rate": 1.0
+   },
+   "math500": {
+    "accuracy_or_agreement": 0.76,
+    "complete_cot_rate": 0.97,
+    "exec_closed_rate": 0.97,
+    "answer_parse_rate": 0.97,
+    "eos_stop_rate": 0.97,
+    "mean_gen_tokens": 737.77,
+    "seconds": 574,
+    "plan_present_rate": 1.0
+   }
+  },
+  "stage2_zero_latent": {
+   "val": {
+    "accuracy_or_agreement": 0.44,
+    "complete_cot_rate": 0.87,
+    "exec_closed_rate": 0.89,
+    "answer_parse_rate": 0.89,
+    "eos_stop_rate": 0.89,
+    "mean_gen_tokens": 1126.21,
+    "seconds": 588,
+    "regenerated_plan_tags_rate": 0.0
+   },
+   "math500": {
+    "accuracy_or_agreement": 0.77,
+    "complete_cot_rate": 0.96,
+    "exec_closed_rate": 0.96,
+    "answer_parse_rate": 0.96,
+    "eos_stop_rate": 0.96,
+    "mean_gen_tokens": 591.16,
+    "seconds": 651,
+    "regenerated_plan_tags_rate": 0.0
+   }
+  },
+  "stage2_no_latent": {
+   "val": {
+    "accuracy_or_agreement": 0.42,
+    "complete_cot_rate": 0.83,
+    "exec_closed_rate": 0.85,
+    "answer_parse_rate": 0.85,
+    "eos_stop_rate": 0.85,
+    "mean_gen_tokens": 1184.23,
+    "seconds": 706,
+    "regenerated_plan_tags_rate": 0.0
+   },
+   "math500": {
+    "accuracy_or_agreement": 0.81,
+    "complete_cot_rate": 0.97,
+    "exec_closed_rate": 0.97,
+    "answer_parse_rate": 0.97,
+    "eos_stop_rate": 0.97,
+    "mean_gen_tokens": 597.46,
+    "seconds": 658,
+    "regenerated_plan_tags_rate": 0.0
+   }
+  }
+ }
+}

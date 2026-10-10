@@ -1,0 +1,20 @@
+{
+ "train": {
+  "n": 46510,
+  "view_errors": {},
+  "teacher_len_mean": 289.24958073532576,
+  "student_len_mean_L8": 1009.7976779187271,
+  "explicit_len_mean": 1176.6221672758547,
+  "max_explicit": 2910,
+  "sec": 151
+ },
+ "val": {
+  "n": 2446,
+  "view_errors": {},
+  "teacher_len_mean": 291.8601798855274,
+  "student_len_mean_L8": 1014.6811120196239,
+  "explicit_len_mean": 1182.6631234668846,
+  "max_explicit": 2540,
+  "sec": 8
+ }
+}

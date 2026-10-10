@@ -1,0 +1,217 @@
+{
+ "record_ids": [
+  "s1train-02836-a77d0f47",
+  "s1train-06649-0466e76c"
+ ],
+ "student_input_ids": {
+  "shape": [
+   2,
+   903
+  ],
+  "dtype": "torch.int64"
+ },
+ "student_attention_mask": {
+  "shape": [
+   2,
+   903
+  ],
+  "dtype": "torch.int64"
+ },
+ "student_position_ids": {
+  "shape": [
+   2,
+   903
+  ],
+  "dtype": "torch.int64"
+ },
+ "student_labels": {
+  "shape": [
+   2,
+   903
+  ],
+  "dtype": "torch.int64"
+ },
+ "student_seg_P": {
+  "shape": [
+   2,
+   903
+  ],
+  "dtype": "torch.bool"
+ },
+ "student_seg_E": {
+  "shape": [
+   2,
+   903
+  ],
+  "dtype": "torch.bool"
+ },
+ "student_seg_A": {
+  "shape": [
+   2,
+   903
+  ],
+  "dtype": "torch.bool"
+ },
+ "student_seg_C": {
+  "shape": [
+   2,
+   903
+  ],
+  "dtype": "torch.bool"
+ },
+ "explicit_input_ids": {
+  "shape": [
+   2,
+   1074
+  ],
+  "dtype": "torch.int64"
+ },
+ "explicit_attention_mask": {
+  "shape": [
+   2,
+   1074
+  ],
+  "dtype": "torch.int64"
+ },
+ "explicit_position_ids": {
+  "shape": [
+   2,
+   1074
+  ],
+  "dtype": "torch.int64"
+ },
+ "explicit_labels": {
+  "shape": [
+   2,
+   1074
+  ],
+  "dtype": "torch.int64"
+ },
+ "explicit_seg_P": {
+  "shape": [
+   2,
+   1074
+  ],
+  "dtype": "torch.bool"
+ },
+ "explicit_seg_E": {
+  "shape": [
+   2,
+   1074
+  ],
+  "dtype": "torch.bool"
+ },
+ "explicit_seg_A": {
+  "shape": [
+   2,
+   1074
+  ],
+  "dtype": "torch.bool"
+ },
+ "explicit_seg_C": {
+  "shape": [
+   2,
+   1074
+  ],
+  "dtype": "torch.bool"
+ },
+ "latent_start_positions": {
+  "shape": [
+   2
+  ],
+  "dtype": "torch.int64"
+ },
+ "latent_positions": {
+  "shape": [
+   2,
+   8
+  ],
+  "dtype": "torch.int64"
+ },
+ "student_boundary": {
+  "shape": [
+   2
+  ],
+  "dtype": "torch.int64"
+ },
+ "explicit_boundary": {
+  "shape": [
+   2
+  ],
+  "dtype": "torch.int64"
+ },
+ "teacher_input_ids": {
+  "shape": [
+   2,
+   267
+  ],
+  "dtype": "torch.int64"
+ },
+ "teacher_attention_mask": {
+  "shape": [
+   2,
+   267
+  ],
+  "dtype": "torch.int64"
+ },
+ "teacher_boundary": {
+  "shape": [
+   2
+  ],
+  "dtype": "torch.int64"
+ },
+ "row0": {
+  "student_boundary": 95,
+  "first_supervised_index": 96,
+  "boundary_token": ">Ċ",
+  "first_target": "1",
+  "latent_positions": [
+   79,
+   80,
+   81,
+   82,
+   83,
+   84,
+   85,
+   86
+  ],
+  "latent_start_token": ">Ċ",
+  "n_student_supervised": 807,
+  "n_explicit_supervised": 1001,
+  "teacher_len": 267,
+  "teacher_boundary": 266,
+  "student_len": 903,
+  "explicit_len": 1074,
+  "rope_position_at_boundary": {
+   "teacher": 266,
+   "student": 95
+  }
+ },
+ "row1": {
+  "student_boundary": 141,
+  "first_supervised_index": 142,
+  "boundary_token": ">Ċ",
+  "first_target": "1",
+  "latent_positions": [
+   125,
+   126,
+   127,
+   128,
+   129,
+   130,
+   131,
+   132
+  ],
+  "latent_start_token": ">Ċ",
+  "n_student_supervised": 281,
+  "n_explicit_supervised": 414,
+  "teacher_len": 252,
+  "teacher_boundary": 251,
+  "student_len": 423,
+  "explicit_len": 533,
+  "rope_position_at_boundary": {
+   "teacher": 251,
+   "student": 141
+  }
+ }
+}

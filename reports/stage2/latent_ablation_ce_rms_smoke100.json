@@ -1,0 +1,30 @@
+{
+ "n_records": 200,
+ "latent_steps": 8,
+ "models": {
+  "rms_step50": {
+   "exec_ce": {
+    "gold_plan": 0.15458682343528593,
+    "learned": 0.23805204131111332,
+    "zero": 0.23810844743896176,
+    "no_latent": 0.2380500008250367
+   },
+   "n_exec_tokens": 181799,
+   "plan_info_recovered_learned": -2.444774019450005e-05,
+   "latent_embed_norm_mean": 1.1107479971647263,
+   "token_embed_norm_mean": 1.0133452892303467
+  },
+  "rms_step100": {
+   "exec_ce": {
+    "gold_plan": 0.15252237838122676,
+    "learned": 0.23481129365910036,
+    "zero": 0.23489373735828392,
+    "no_latent": 0.23494174104461343
+   },
+   "n_exec_tokens": 181799,
+   "plan_info_recovered_learned": 0.0015827274234798297,
+   "latent_embed_norm_mean": 1.1107513403892517,
+   "token_embed_norm_mean": 1.0133392360806466
+  }
+ }
+}

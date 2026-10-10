@@ -1,0 +1,42 @@
+{
+ "n_records": 200,
+ "latent_steps": 8,
+ "models": {
+  "stage1_init": {
+   "exec_ce": {
+    "gold_plan": 0.14676967073800548,
+    "learned": 0.27669199497962194,
+    "zero": 0.2765659544015335,
+    "no_latent": 0.27843892644275653
+   },
+   "n_exec_tokens": 181799,
+   "plan_info_recovered_learned": 0.013267573009236342,
+   "latent_embed_norm_mean": 70.76531581878662,
+   "token_embed_norm_mean": 1.0133854767680168,
+   "alignment_loss": {
+    "gold_plan": 0.008417436913587154,
+    "learned": 0.2894677840918304,
+    "zero": 0.28003848582506213,
+    "no_latent": 0.2647239310294391
+   }
+  },
+  "rms_step100": {
+   "exec_ce": {
+    "gold_plan": 0.15252237838122676,
+    "learned": 0.23481129365910036,
+    "zero": 0.23489373735828392,
+    "no_latent": 0.23494174104461343
+   },
+   "n_exec_tokens": 181799,
+   "plan_info_recovered_learned": 0.0015827274234798297,
+   "latent_embed_norm_mean": 1.1107513403892517,
+   "token_embed_norm_mean": 1.0133392360806466,
+   "alignment_loss": {
+    "gold_plan": 0.1327161177247763,
+    "learned": 0.09893121533095832,
+    "zero": 0.11085045337677002,
+    "no_latent": 0.11661364108324052
+   }
+  }
+ }
+}

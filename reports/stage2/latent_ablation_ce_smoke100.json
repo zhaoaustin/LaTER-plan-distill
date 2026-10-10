@@ -1,0 +1,42 @@
+{
+ "n_records": 200,
+ "latent_steps": 8,
+ "models": {
+  "stage1_random_projector": {
+   "exec_ce": {
+    "gold_plan": 0.14676967073800548,
+    "learned": 0.27697081485570546,
+    "zero": 0.2765659544015335,
+    "no_latent": 0.27843892644275653
+   },
+   "n_exec_tokens": 181799,
+   "plan_info_recovered_learned": 0.01114999533636837,
+   "latent_embed_norm_mean": 68.25740631103515,
+   "token_embed_norm_mean": 1.0133854767680168
+  },
+  "stage2_step50": {
+   "exec_ce": {
+    "gold_plan": 0.15487523798086222,
+    "learned": 0.23831335026129147,
+    "zero": 0.23846472139738156,
+    "no_latent": 0.23838212223479038
+   },
+   "n_exec_tokens": 181799,
+   "plan_info_recovered_learned": 0.000823548550677492,
+   "latent_embed_norm_mean": 85.87565841674805,
+   "token_embed_norm_mean": 1.0133452135324479
+  },
+  "stage2_step100": {
+   "exec_ce": {
+    "gold_plan": 0.1526379343488935,
+    "learned": 0.23507239623574905,
+    "zero": 0.23511954013116768,
+    "no_latent": 0.23516968871522403
+   },
+   "n_exec_tokens": 181799,
+   "plan_info_recovered_learned": 0.0011788490408569036,
+   "latent_embed_norm_mean": 86.75939609527587,
+   "token_embed_norm_mean": 1.0133445942401886
+  }
+ }
+}
