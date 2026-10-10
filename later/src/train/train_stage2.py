@@ -94,7 +94,7 @@ def evaluate(module, loader, cache, layer_ids, device, max_batches):
             break
         th = cache.get(batch["record_ids"], layer_ids, device)
         with torch.autocast("cuda", dtype=torch.bfloat16):
-            out = module(batch, th)
+            out = module(batch, th, skip_exec_kl=True)   # val losses = the three Stage-2 terms; exec-KL is probed separately
         for k in sums:
             sums[k] += float(out[k])
         n += 1

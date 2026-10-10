@@ -70,7 +70,8 @@ class Stage2Module(nn.Module):
         return allkl.mean(), n_per_row, allkl
 
     def forward(self, batch: Dict[str, Any], teacher_hidden: Dict[int, torch.Tensor] | None,
-                debug_latent_grad: bool = False, kl_targets: List[Dict[str, Any]] | None = None) -> Dict[str, Any]:
+                debug_latent_grad: bool = False, kl_targets: List[Dict[str, Any]] | None = None,
+                skip_exec_kl: bool = False) -> Dict[str, Any]:
         dev = next(self.model.parameters()).device
         g = lambda k: batch[k].to(dev)
         zero = torch.zeros((), device=dev)
@@ -106,7 +107,7 @@ class Stage2Module(nn.Module):
             l_explicit = zero
         total = stage2_total_loss(l_exec, l_align, l_explicit, self.lambda_a, self.lambda_r, self.exec_w)
         l_kl = zero
-        if self.exec_kl:
+        if self.exec_kl and not skip_exec_kl:      # skip_exec_kl: legacy val-loss evaluation (eval-only path)
             if not run_latent or kl_targets is None:
                 raise ValueError("execution_kl_enabled requires the latent path and kl_targets")
             l_kl, n_kl, kl_vec = self.exec_kl_term(out["latent"], batch, kl_targets)
