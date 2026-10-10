@@ -629,6 +629,8 @@ def load_model_and_tokenizer(
     latent_config.global_stateless_forward = bool(config.get("global_stateless_forward", True))
     latent_config.legacy_staged_forward_fallback = bool(config.get("legacy_staged_forward_fallback", True))
     latent_config.latent_projector_dropout = float(config.get("latent_projector_dropout", 0.1))
+    # Previously never copied from YAML (config default True silently won). Default kept for the LaTER baseline.
+    latent_config.latent_embed_builder_no_grad = bool(config.get("latent_embed_builder_no_grad", True))
 
     attn_impl = str(config.get("attn_implementation", "sdpa"))
     effective_attn_impl = attn_impl

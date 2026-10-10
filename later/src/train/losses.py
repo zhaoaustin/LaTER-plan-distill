@@ -780,3 +780,56 @@ def compute_teacher_kl(
     if total_positions == 0:
         return base_tensor.new_zeros((), dtype=torch.float32), 0
     return total_kl / total_positions, total_positions
+
+
+# ----------------------------------------------------------------------------------------------------
+# OUR Stage 2 (objective_mode=plan_distill_stage2). Independent of the LaTER losses above: no teacher KL,
+# no halting / early-exit term, no answer-only CE.
+#   L_total = L_execution + lambda_a * L_alignment + lambda_r * L_explicit
+# ----------------------------------------------------------------------------------------------------
+def stage2_masked_mean_ce(token_nll: torch.Tensor) -> tuple[torch.Tensor, int]:
+    """Mean NLL over every supervised token (both CE branches use this same reduction)."""
+    n = int(token_nll.numel())
+    if n == 0:
+        raise ValueError("CE branch has zero supervised tokens")
+    return token_nll.float().mean(), n
+
+
+def stage2_normalized_l1_alignment(
+    student_boundary: Dict[int, torch.Tensor],
+    teacher_boundary: Dict[int, torch.Tensor],
+    layer_ids: List[int],
+    eps: float = 1e-6,
+) -> tuple[torch.Tensor, Dict[str, Any]]:
+    """(1/|H|) sum_l mean_b ||h_S^l - sg(h_T^l)||_1 / (d * (sg(s_T^l) + eps)),  s_T = std over d (correction=0).
+
+    Computed in fp32. Teacher tensors are detached here regardless of how they were produced.
+    """
+    per_layer = []
+    scales = []
+    l1s = []
+    for lid in layer_ids:
+        hs = student_boundary[lid].float()
+        ht = teacher_boundary[lid].detach().float().to(hs.device)
+        if hs.shape != ht.shape:
+            raise ValueError(f"layer {lid}: student {tuple(hs.shape)} vs teacher {tuple(ht.shape)}")
+        d = hs.shape[-1]
+        scale = ht.std(dim=-1, correction=0)
+        l1 = (hs - ht).abs().sum(dim=-1)
+        per_layer.append((l1 / (d * (scale + eps))).mean())
+        scales.append(scale.mean().detach())
+        l1s.append((l1 / d).mean().detach())
+    loss = torch.stack(per_layer).mean()
+    info = {
+        "per_layer": torch.stack([x.detach() for x in per_layer]),
+        "teacher_scale_mean": torch.stack(scales).mean(),
+        "boundary_l1_mean": torch.stack(l1s).mean(),
+    }
+    return loss, info
+
+
+def stage2_total_loss(
+    l_exec: torch.Tensor, l_align: torch.Tensor, l_explicit: torch.Tensor,
+    lambda_a: float, lambda_r: float, execution_ce_weight: float = 1.0,
+) -> torch.Tensor:
+    return execution_ce_weight * l_exec + lambda_a * l_align + lambda_r * l_explicit

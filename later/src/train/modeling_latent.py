@@ -73,8 +73,16 @@ class LatentProjector(nn.Module):
             self._compat_remap_messages.append(message)
             warnings.warn(message)
 
+    # Optional (OUR Stage 2): rescale every output vector to a fixed per-dim RMS (the token-embedding RMS),
+    # so latent inputs live at the same scale as token embeddings. None = original LaTER behaviour.
+    output_rms: Optional[float] = None
+
     def forward(self, hidden_states: torch.Tensor) -> torch.Tensor:
-        return self.net(hidden_states)
+        out = self.net(hidden_states)
+        if self.output_rms:
+            rms = out.float().pow(2).mean(dim=-1, keepdim=True).add(1e-12).sqrt()
+            out = (out.float() * (float(self.output_rms) / rms)).to(out.dtype)
+        return out
 
 
 class LatentQwenConfig(Qwen3Config):
@@ -99,6 +107,7 @@ class LatentQwenConfig(Qwen3Config):
         global_stateless_forward: bool = True,
         latent_embed_builder_no_grad: bool = True,
         legacy_staged_forward_fallback: bool = True,
+        latent_projector_output_rms: Optional[float] = None,
         **kwargs: Any,
     ):
         super().__init__(**kwargs)
@@ -122,6 +131,9 @@ class LatentQwenConfig(Qwen3Config):
         self.global_stateless_forward = bool(global_stateless_forward)
         self.latent_embed_builder_no_grad = bool(latent_embed_builder_no_grad)
         self.legacy_staged_forward_fallback = bool(legacy_staged_forward_fallback)
+        self.latent_projector_output_rms = (
+            float(latent_projector_output_rms) if latent_projector_output_rms else None
+        )
         self.architectures = ["LatentQwenForCausalLM"]
 
 
@@ -154,6 +166,7 @@ class LatentQwenForCausalLM(Qwen3ForCausalLM):
             embed_dim,  # type: ignore
             dropout=config.latent_projector_dropout,
         )  # type: ignore[arg-type]
+        self.latent_projector.output_rms = getattr(config, "latent_projector_output_rms", None)
 
     @staticmethod
     def _first_true_index(mask: torch.Tensor, default_index: int) -> torch.Tensor:
@@ -1138,6 +1151,229 @@ class LatentQwenForCausalLM(Qwen3ForCausalLM):
 
     def _forward_base_causal(self, **kwargs: Any) -> CausalLMOutputWithPast:
         return super().forward(**kwargs)
+
+    # ------------------------------------------------------------------------------------------------
+    # OUR Stage 2 (objective_mode=plan_distill_stage2). Additive only: the LaTER forward paths above are
+    # untouched. Layer ids are 1-based decoder-layer outputs (residual stream, BEFORE the final norm);
+    # the embedding output and the final norm are never part of an alignment layer.
+    # ------------------------------------------------------------------------------------------------
+    @staticmethod
+    def resolve_alignment_layers(spec: Any, num_layers: int) -> List[int]:
+        if isinstance(spec, (list, tuple)):
+            ids = [int(x) for x in spec]
+        elif str(spec) == "all":
+            ids = list(range(1, num_layers + 1))
+        elif str(spec).startswith("last"):
+            k = int(str(spec)[4:])
+            ids = list(range(num_layers - k + 1, num_layers + 1))
+        else:
+            raise ValueError(f"unknown alignment_layers spec: {spec}")
+        if not ids or min(ids) < 1 or max(ids) > num_layers:
+            raise ValueError(f"alignment layer ids out of range 1..{num_layers}: {ids}")
+        return ids
+
+    @contextmanager
+    def capture_layer_outputs_at(self, positions: torch.Tensor, layer_ids: List[int]):
+        """Record decoder-layer outputs at one position per row (first call of each layer only).
+
+        Use only around a single full-sequence forward. The hook only keeps a reference to the layer output
+        (no ops inside a gradient-checkpointed region, so recomputation saves the same tensors); the boundary
+        rows are gathered after the forward returns. Hooks are removed on exit, so recomputation during
+        backward never records again; the gathered tensors keep their autograd graph.
+        """
+        raw: Dict[int, torch.Tensor] = {}
+        store: Dict[int, torch.Tensor] = {}
+        calls: Dict[int, int] = {}
+        handles = []
+        layers = self.model.layers
+
+        def make_hook(lid: int):
+            def hook(_module, _args, output):
+                calls[lid] = calls.get(lid, 0) + 1
+                if lid not in raw:
+                    raw[lid] = output[0] if isinstance(output, (tuple, list)) else output
+            return hook
+
+        for lid in layer_ids:
+            handles.append(layers[lid - 1].register_forward_hook(make_hook(lid)))
+        try:
+            yield store, calls
+        finally:
+            for handle in handles:
+                handle.remove()
+            for lid, h in raw.items():
+                rows = torch.arange(h.size(0), device=h.device)
+                store[lid] = h[rows, positions.to(h.device)]
+            raw.clear()
+
+    def _shifted_token_nll(self, hidden: torch.Tensor, labels: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
+        """Per-token NLL for labels[:, t] predicted from hidden[:, t-1]; lm_head only on supervised positions."""
+        tgt = labels[:, 1:]
+        sel = tgt != -100
+        src_hidden = hidden[:, :-1][sel]
+        logits = self.lm_head(src_hidden).float()
+        nll = torch.nn.functional.cross_entropy(logits, tgt[sel], reduction="none")
+        return nll, sel
+
+    def forward_plan_distill_stage2(
+        self,
+        input_ids: torch.Tensor,
+        attention_mask: torch.Tensor,
+        position_ids: torch.Tensor,
+        labels: torch.Tensor,
+        boundary_positions: torch.Tensor,
+        layer_ids: List[int],
+        latent_positions: Optional[torch.Tensor] = None,
+        latent_start_positions: Optional[torch.Tensor] = None,
+        debug_latent_grad: bool = False,
+        latent_mode: str = "learned",
+    ) -> Dict[str, Any]:
+        """Teacher-forced forward for the student latent path (latent_positions given) or explicit path (None).
+
+        Latent path reuses LaTER's recursive builder: z_1 = proj(h[latent_start]), z_k = proj(h(z_{k-1})),
+        with grad iff config.latent_embed_builder_no_grad is False. The latent embeddings replace the
+        placeholder tokens, then one full forward produces the CE terms and the boundary hidden states.
+        """
+        stats: Dict[str, Any] = {}
+        projector_outputs: List[torch.Tensor] = []
+        token_embeds = self.get_input_embeddings()(input_ids)
+        if latent_positions is not None:
+            hook = None
+            if debug_latent_grad:
+                def keep(_m, _a, out):
+                    if out.requires_grad:
+                        out.retain_grad()
+                    projector_outputs.append(out)
+                hook = self.latent_projector.register_forward_hook(keep)
+            try:
+                use_no_grad = bool(getattr(self.config, "latent_embed_builder_no_grad", True))
+                overrides, emb_mask, stats = self._build_latent_recursive_embeds(
+                    input_ids=input_ids,
+                    attention_mask=attention_mask,
+                    position_ids=position_ids,
+                    cot_mask=None,
+                    latent_positions=latent_positions,
+                    latent_slot_mask=None,
+                    latent_start_positions=latent_start_positions,
+                    global_prompt_len=int(latent_start_positions.max().item()) + 1,
+                    use_no_grad=use_no_grad,
+                )
+            finally:
+                if hook is not None:
+                    hook.remove()
+            expected = int((latent_positions >= 0).sum().item())
+            if int(emb_mask.sum().item()) != expected:
+                raise RuntimeError(f"latent builder filled {int(emb_mask.sum())} slots, expected {expected}")
+            if latent_mode == "zero":  # ablation: same positions, all-zero latent embeddings
+                overrides = torch.zeros_like(overrides)
+            elif latent_mode != "learned":
+                raise ValueError(latent_mode)
+            inputs_embeds = torch.where(emb_mask.unsqueeze(-1), overrides.to(token_embeds.dtype), token_embeds)
+            stats = dict(stats)
+            lat = overrides[emb_mask].float()
+            stats["latent_embed_norm_mean"] = float(lat.norm(dim=-1).mean()) if lat.numel() else 0.0
+            stats["token_embed_norm_mean"] = float(token_embeds[~emb_mask & attention_mask.bool()].float().norm(dim=-1).mean())
+        else:
+            inputs_embeds = token_embeds
+        with self.capture_layer_outputs_at(boundary_positions, layer_ids) as (store, calls):
+            outputs = self.model(
+                inputs_embeds=inputs_embeds,
+                attention_mask=attention_mask,
+                position_ids=position_ids,
+                past_key_values=None,
+                use_cache=False,
+                return_dict=True,
+            )
+        missing = [lid for lid in layer_ids if lid not in store]
+        if missing:
+            raise RuntimeError(f"boundary hidden not captured for layers {missing}")
+        nll, sel = self._shifted_token_nll(outputs.last_hidden_state, labels)
+        return {
+            "token_nll": nll,
+            "target_mask": sel,
+            "boundary_hidden": {lid: store[lid] for lid in layer_ids},
+            "hook_calls": dict(calls),
+            "builder_stats": stats,
+            "projector_outputs": projector_outputs,
+            "inputs_embeds": inputs_embeds,
+        }
+
+    @torch.no_grad()
+    def generate_plan_latent(
+        self,
+        prompt_ids: List[List[int]],
+        latent_steps: int,
+        suffix_ids: List[int],
+        max_new_tokens: int,
+        eos_token_ids: List[int],
+        pad_token_id: int,
+        return_first_logits: bool = False,
+        latent_mode: str = "learned",
+    ) -> Dict[str, Any]:
+        """Greedy latent->explicit generation with the same recursion as training.
+
+        prompt_ids end with '<EXPLORATION>\\n'; its last token seeds z_1. After L latent steps (KV-cached,
+        z_k = proj(h_{k-1})), the forced Stage-1 separator suffix is fed, then E/A are decoded greedily.
+        Left padding; position ids count real tokens only, so they match the right-padded training forward.
+        latent_mode="zero" keeps the L latent positions but feeds all-zero embeddings (ablation).
+        latent_steps=0 with suffix_ids=[] is plain explicit greedy decoding from the prompt.
+        """
+        if latent_mode not in ("learned", "zero"):
+            raise ValueError(latent_mode)
+        device = self.get_input_embeddings().weight.device
+        embed_dtype = self.get_input_embeddings().weight.dtype
+        B = len(prompt_ids)
+        n = max(len(p) for p in prompt_ids)
+        ids = torch.full((B, n), pad_token_id, dtype=torch.long, device=device)
+        mask = torch.zeros((B, n), dtype=torch.long, device=device)
+        for i, p in enumerate(prompt_ids):
+            ids[i, n - len(p):] = torch.tensor(p, device=device)
+            mask[i, n - len(p):] = 1
+        pos = (mask.cumsum(-1) - 1).clamp(min=0)
+        out = self.model(input_ids=ids, attention_mask=mask, position_ids=pos, use_cache=True, return_dict=True)
+        cache = out.past_key_values
+        prev_hidden = out.last_hidden_state[:, -1, :]
+        next_pos = pos[:, -1] + 1
+        for _ in range(int(latent_steps)):
+            z = self.latent_projector(prev_hidden)
+            if latent_mode == "zero":
+                z = torch.zeros_like(z)
+            mask = torch.cat([mask, torch.ones((B, 1), dtype=mask.dtype, device=device)], dim=1)
+            out = self.model(inputs_embeds=z.unsqueeze(1).to(embed_dtype), attention_mask=mask,
+                             position_ids=next_pos.unsqueeze(1), past_key_values=cache, use_cache=True,
+                             return_dict=True)
+            cache = out.past_key_values
+            prev_hidden = out.last_hidden_state[:, -1, :]
+            next_pos = next_pos + 1
+        if suffix_ids:
+            sfx = torch.tensor(suffix_ids, device=device).unsqueeze(0).expand(B, -1)
+            mask = torch.cat([mask, torch.ones_like(sfx)], dim=1)
+            sfx_pos = next_pos.unsqueeze(1) + torch.arange(len(suffix_ids), device=device).unsqueeze(0)
+            out = self.model(input_ids=sfx, attention_mask=mask, position_ids=sfx_pos, past_key_values=cache,
+                             use_cache=True, return_dict=True)
+            cache = out.past_key_values
+            next_pos = sfx_pos[:, -1] + 1
+        logits = self.lm_head(out.last_hidden_state[:, -1, :]).float()
+        first_logits = logits.clone() if return_first_logits else None
+        eos = torch.tensor(eos_token_ids, device=device)
+        done = torch.zeros(B, dtype=torch.bool, device=device)
+        gen: List[List[int]] = [[] for _ in range(B)]
+        for _ in range(int(max_new_tokens)):
+            tok = logits.argmax(-1)
+            tok = torch.where(done, torch.full_like(tok, pad_token_id), tok)
+            for i in range(B):
+                if not bool(done[i]):
+                    gen[i].append(int(tok[i]))
+            done = done | torch.isin(tok, eos)
+            if bool(done.all()):
+                break
+            mask = torch.cat([mask, torch.ones((B, 1), dtype=mask.dtype, device=device)], dim=1)
+            out = self.model(input_ids=tok.unsqueeze(1), attention_mask=mask, position_ids=next_pos.unsqueeze(1),
+                             past_key_values=cache, use_cache=True, return_dict=True)
+            cache = out.past_key_values
+            next_pos = next_pos + 1
+            logits = self.lm_head(out.last_hidden_state[:, -1, :]).float()
+        return {"token_ids": gen, "stopped": [bool(x) for x in done.tolist()], "first_logits": first_logits}
 
     def forward(
         self,
