@@ -1,0 +1,107 @@
+{
+ "checkpoint": "/scratch/hz33227/e2c/stage2/runs/stage2_L8_rms_2900/checkpoint-500",
+ "step": 500,
+ "files": {
+  "chat_template.jinja": {
+   "bytes": 4168,
+   "sha256": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8"
+  },
+  "config.json": {
+   "bytes": 2435,
+   "sha256": "5f421ab8b8f82e968f90aa306e165d1a08274170c8d124917ad8b6e235e865e1"
+  },
+  "generation_config.json": {
+   "bytes": 214,
+   "sha256": "535ef5c50ad97889d648321c63a3b88349a3a2046bbf6e2fe430e7656fb13ba5"
+  },
+  "model.safetensors": {
+   "bytes": 16142367912,
+   "sha256": "c4ba758cc9974494381ad0d5f76ed6c81f86c4d0245f773191683670008149f2"
+  },
+  "stage2_meta.json": {
+   "bytes": 556,
+   "sha256": "7167eb39602f244c5698ebb6c1b723c5cc58c768c4470eb615fd34f2995987cc"
+  },
+  "tokenizer.json": {
+   "bytes": 11422650,
+   "sha256": "be75606093db2094d7cd20f3c2f385c212750648bd6ea4fb2bf507a6a4c55506"
+  },
+  "tokenizer_config.json": {
+   "bytes": 377,
+   "sha256": "1689852cc9c45010de040c8302a8acdc0d2c4c6c740dd7e9dd0a8c704e16eada"
+  },
+  "trainer_state.pt": {
+   "bytes": 32285005991,
+   "sha256": "7f9c6f3729e2202cb7cb482e1d11b14a9f73b2b62bb66ddccc306349e7e516d5"
+  }
+ },
+ "model": {
+  "class": "LatentQwenForCausalLM",
+  "dtype": "float32 master weights",
+  "latent_projector_output_rms": 0.02195320464670658,
+  "latent_embed_builder_no_grad": false
+ },
+ "optimizer": {
+  "type": "AdamW",
+  "param_groups": 2,
+  "tensors_with_state": 402,
+  "tensors_with_all_zero_exp_avg_sq": 0,
+  "adam_step_counters": [
+   500.0
+  ],
+  "lr_at_save": [
+   9.310060278522051e-06,
+   9.31006027852205e-05
+  ]
+ },
+ "scheduler": {
+  "type": "cosine with linear warmup, computed from global_step (no scheduler object)",
+  "max_steps": 2900,
+  "warmup_steps": 10,
+  "lr_next_step": [
+   9.307302654788568e-06,
+   9.307302654788568e-05
+  ]
+ },
+ "rng": {
+  "torch_cpu": true,
+  "torch_cuda": true,
+  "python": false,
+  "note": "training math uses no RNG (projector dropout 0; sampler uses its own seeded generator)"
+ },
+ "data_sampling": {
+  "sampler": "DistributedSampler(shuffle=True, drop_last=True)",
+  "seed": 1234,
+  "world_size": 2,
+  "micro_batch_size": 1,
+  "gradient_accumulation_steps": 8,
+  "steps_per_epoch": 2906,
+  "epoch": 0,
+  "micro_batches_consumed_per_rank": 4000,
+  "next_dataset_indices_per_rank": {
+   "0": [
+    4133,
+    14043,
+    6342,
+    19842,
+    16635,
+    26215,
+    30275,
+    34427
+   ],
+   "1": [
+    26056,
+    829,
+    4931,
+    26704,
+    3669,
+    17739,
+    36421,
+    35151
+   ]
+  },
+  "next_batch_disjoint_from_consumed": true,
+  "saved_sampler_state": "not in this checkpoint (derived)"
+ },
+ "resume_command": "re-run the same launcher with the same output_dir (resume: true reads latest_checkpoint.txt)"
+}

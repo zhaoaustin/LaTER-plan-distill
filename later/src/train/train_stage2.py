@@ -164,7 +164,7 @@ def init_wandb(cfg, model, train_ds, val_ds, layer_ids, world, mbs, accum, seed,
                       config=wcfg, dir=cfg["output_dir"])
 
 
-def save(cfg, model, tok, optimizer, step, rank, layer_ids, tag=None):
+def save(cfg, model, tok, optimizer, step, rank, layer_ids, tag=None, sampler_state=None):
     if rank != 0:
         return
     d = os.path.join(cfg["output_dir"], tag or f"checkpoint-{step}")
@@ -172,7 +172,14 @@ def save(cfg, model, tok, optimizer, step, rank, layer_ids, tag=None):
     model.save_pretrained(d, safe_serialization=True)
     tok.save_pretrained(d)
     torch.save({"step": step, "optimizer": optimizer.state_dict(), "rng": torch.get_rng_state(),
-                "cuda_rng": torch.cuda.get_rng_state()}, os.path.join(d, "trainer_state.pt"))
+                "cuda_rng": torch.cuda.get_rng_state(), "python_rng": random.getstate(),
+                "sampler_state": sampler_state or {},
+                "lr_schedule": {"type": "cosine_with_linear_warmup", "max_steps": int(cfg["max_train_steps"]),
+                                "warmup_steps": int(cfg.get("warmup_steps", 0)),
+                                "base_lrs": [float(cfg["learning_rate"]),
+                                             float(cfg.get("latent_projector_lr", cfg["learning_rate"]))],
+                                "lr_at_save": [g["lr"] for g in optimizer.param_groups]}},
+               os.path.join(d, "trainer_state.pt"))
     dump_json({"objective_mode": "plan_distill_stage2", "step": step, "latent_steps": cfg["latent_steps"],
                "alignment_layers": layer_ids, "lambda_a": cfg["lambda_a"], "lambda_r": cfg["lambda_r"],
                "boundary_rule_version": BOUNDARY_RULE_VERSION, "init_checkpoint": cfg["model_path"]},
@@ -252,6 +259,13 @@ def main():
         st = torch.load(os.path.join(resume, "trainer_state.pt"), map_location="cpu", weights_only=False)
         optimizer.load_state_dict(st["optimizer"])
         step = int(st["step"])
+        # restore RNG (training math uses none: dropout 0, sampler has its own seeded generator; kept for exactness)
+        torch.set_rng_state(st["rng"])
+        if "python_rng" in st:
+            random.setstate(st["python_rng"])
+        if rank == 0:
+            print(json.dumps({"resumed_from": resume, "step": step,
+                              "sampler_state": st.get("sampler_state", "derived: epoch=step//steps_per_epoch")}), flush=True)
     log_f = open(os.path.join(cfg["output_dir"], f"train_log_rank{rank}.jsonl"), "a") if rank == 0 else None
     if rank == 0:
         dump_json({"config": cfg, "layer_ids": layer_ids,
@@ -414,7 +428,10 @@ def main():
         if do_save:
             if dist.is_initialized():
                 dist.barrier()
-            save(cfg, model, tok, optimizer, step, rank, layer_ids)
+            save(cfg, model, tok, optimizer, step, rank, layer_ids,
+                 sampler_state={"sampler": "DistributedSampler", "seed": seed, "epoch": epoch, "world_size": world,
+                                "micro_batches_consumed_per_rank": step * accum, "micro_batch_size": mbs,
+                                "gradient_accumulation_steps": accum, "drop_last": True})
             if dist.is_initialized():
                 dist.barrier()
             if gen_problems:
