@@ -63,6 +63,7 @@ class Pilot:
         self.tok_rms = float(w.pow(2).mean().sqrt())
         self.eos_ids = [self.tok.convert_tokens_to_ids("<|im_end|>"), self.tok.convert_tokens_to_ids("<|endoftext|>")]
         self.cache = {}
+        self.ce_weight, self.lambda_rank = 1.0, LAMBDA_RANK
 
     # ---------------- encoder
     def encoder_ids(self, q, plan):
@@ -137,7 +138,7 @@ class Pilot:
         sAA, sBB, sAB, sBA = s[0], s[1], s[2], s[3]       # s_X(Z_Y): sAB = s_A(Z_B), sBA = s_B(Z_A)
         l_ce = -(sAA + sBB) / 2
         l_rank = F.softplus(-(sAA - sAB)) + F.softplus(-(sBB - sBA))
-        return {"loss": l_ce + LAMBDA_RANK * l_rank, "l_ce": l_ce, "l_rank": l_rank, "margin_A": sAA - sAB,
+        return {"loss": self.ce_weight * l_ce + self.lambda_rank * l_rank, "l_ce": l_ce, "l_rank": l_rank, "margin_A": sAA - sAB,
                 "margin_B": sBB - sBA, "s": s, "Z": Z, "aux": aux}
 
     # ---------------- oracle: textual plan in the prompt (explicit Stage-1 mode)
@@ -246,12 +247,18 @@ def main():
     ap.add_argument("--lr", type=float, default=1e-4)
     ap.add_argument("--eval_every", type=int, default=10)
     ap.add_argument("--ckpt", default=None)
+    ap.add_argument("--lambda_rank", type=float, default=LAMBDA_RANK)
+    ap.add_argument("--ce_weight", type=float, default=1.0)
+    ap.add_argument("--run_dir", default=None, help="logs / checkpoints / final outputs (default: --out)")
     a = ap.parse_args()
     torch.manual_seed(0)
     random.seed(0)
     train = load_pairs(os.path.join(a.out, "train_pairs.jsonl"))
     held = load_pairs(os.path.join(a.out, "heldout_pairs.jsonl"))
     P = Pilot(a.model)
+    P.ce_weight, P.lambda_rank = a.ce_weight, a.lambda_rank
+    R = a.run_dir or a.out
+    os.makedirs(R, exist_ok=True)
     d = P.model.config.hidden_size
     bridge = Bridge(d, P.tok_rms).to(P.dev)
     n_params = sum(p.numel() for p in bridge.parameters())
@@ -319,18 +326,18 @@ def main():
         print(json.dumps(res, indent=1))
         return
     if a.mode == "train":
-        log = open(os.path.join(a.out, "train_log.jsonl"), "a")
+        log = open(os.path.join(R, "train_log.jsonl"), "a")
         opt = torch.optim.AdamW(bridge.parameters(), lr=a.lr, weight_decay=0.01)
         step = 0
         rng = random.Random(1234)
         if a.resume:
             st = torch.load(a.resume)
             bridge.load_state_dict(st["bridge"]); opt.load_state_dict(st["opt"]); step = st["step"]; rng.setstate(st["rng"])
-        os.makedirs(os.path.join(a.out, "bridge_checkpoint"), exist_ok=True)
+        os.makedirs(os.path.join(R, "bridge_checkpoint"), exist_ok=True)
         save = lambda s: torch.save({"bridge": bridge.state_dict(), "opt": opt.state_dict(), "step": s, "rng": rng.getstate(),
-                                     "config": {"enc_layer": ENC_LAYER, "slots": L_SLOTS, "lambda_rank": LAMBDA_RANK, "lr": a.lr,
+                                     "config": {"enc_layer": ENC_LAYER, "slots": L_SLOTS, "lambda_rank": a.lambda_rank, "ce_weight": a.ce_weight, "lr": a.lr,
                                                 "pairs_per_step": a.pairs_per_step, "out_rms": P.tok_rms}},
-                                    os.path.join(a.out, "bridge_checkpoint", f"step{s}.pt"))
+                                    os.path.join(R, "bridge_checkpoint", f"step{s}.pt"))
         def ev(s):
             bridge.eval()
             hs, _ = evaluate(P, bridge, held)
@@ -375,7 +382,7 @@ def main():
     if a.mode == "final":
         st = torch.load(a.ckpt)
         bridge.load_state_dict(st["bridge"]); bridge.eval()
-        b0 = torch.load(os.path.join(a.out, "bridge_checkpoint", "step0.pt"))
+        b0 = torch.load(os.path.join(R, "bridge_checkpoint", "step0.pt"))
         bridge0 = Bridge(d, P.tok_rms).to(P.dev); bridge0.load_state_dict(b0["bridge"]); bridge0.eval()
         hs, hrows = evaluate(P, bridge, held)
         h0, h0rows = evaluate(P, bridge0, held)
@@ -399,7 +406,7 @@ def main():
                                   "method_terms_B_hits": method_hits(g, p["method_terms_only_B"]),
                                   "method_label_A": p["method_label_A"], "method_label_B": p["method_label_B"], "n_chars": len(g)})
                     print("GEN", p["id"], cond, preds[-1]["correct"], round(preds[-1]["overlap_with_E_A"], 3), round(preds[-1]["overlap_with_E_B"], 3), flush=True)
-        with open(os.path.join(a.out, "heldout_predictions.jsonl"), "w") as f:
+        with open(os.path.join(R, "heldout_predictions.jsonl"), "w") as f:
             for r in preds:
                 f.write(json.dumps(r) + "\n")
         m = [r["margin_A"] for r in hrows] + [r["margin_B"] for r in hrows]
@@ -409,7 +416,7 @@ def main():
                "oracle_text_plan": orc,
                "oracle_mean_margin": sum(o["oracle_margin_A"] + o["oracle_margin_B"] for o in orc) / (2 * len(orc)),
                "oracle_frac_positive": sum((o["oracle_margin_A"] > 0) + (o["oracle_margin_B"] > 0) for o in orc) / (2 * len(orc))}
-        json.dump(res, open(os.path.join(a.out, "final_metrics.json"), "w"), indent=1)
+        json.dump(res, open(os.path.join(R, "final_metrics.json"), "w"), indent=1)
         print(json.dumps({k: v for k, v in res.items() if not k.endswith("rows") and k != "oracle_text_plan"}, indent=1))
 
 
