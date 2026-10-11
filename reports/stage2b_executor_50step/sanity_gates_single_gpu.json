@@ -1,0 +1,52 @@
+{
+ "adapter_params": 6561281,
+ "lora_params": 9732096,
+ "lora_modules": [
+  "o_proj",
+  "q_proj",
+  "v_proj"
+ ],
+ "base_trainable": 0,
+ "G2_prefix_tail": "<|endoftext|><|endoftext|><|endoftext|><|endoftext|><|endoftext|></EXPLORATION><EXECUTION>\n",
+ "G2_no_plan_text_in_prefix": true,
+ "G2_no_execution_or_answer_text_in_prefix": true,
+ "G3_z_shape": [
+  8,
+  2560
+ ],
+ "G3_hidden_size": 2560,
+ "G3_slots_equal_adapter_output_max_abs": 0.0,
+ "G3_positions_contiguous": true,
+ "G3_prefix_ids_pos_mask_equal_4_seqs": true,
+ "G3_logits_finite": true,
+ "G4_first_token_ce_manual_vs_scores": [
+  0.5818338394165039,
+  0.5818338394165039
+ ],
+ "G4_info_full_execution_ce_this_sample": 0.12341679632663727,
+ "G4_first_token_ok": true,
+ "G5_swap_changes_slots_and_logits": true,
+ "G5_zero_through_adapter_finite": true,
+ "G5_no_kv_cache_reuse": "use_cache=False in every scoring forward; generation builds a fresh prefix per call",
+ "G6_adapter_grad_finite_nonzero": true,
+ "G6_lora_B_grad_finite_nonzero": true,
+ "G6_base_grads_none": true,
+ "G9_overfit_ce_by_step": [
+  0.2868740384777387,
+  0.31296693036953604,
+  0.2935461526115735,
+  0.27485501269499457,
+  0.25464389100670815
+ ],
+ "G9_pass": true,
+ "G6_optimizer_only_adapter_lora": true,
+ "G6_base_bitwise_unchanged": true,
+ "G1_stage2a_Z_verified": true,
+ "G8_reload_loss": [
+  0.3072877526283264,
+  0.30728769302368164
+ ],
+ "G8_pass": true,
+ "G5_train_vs_generate_first_argmax_equal": true,
+ "ALL_HARD_GATES_PASS": true
+}

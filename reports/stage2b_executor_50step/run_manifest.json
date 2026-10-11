@@ -1,0 +1,94 @@
+{
+ "branch": "exp/stage2b-executor-50step",
+ "base_commit": "3c87d940994e403b5969f4816ef85dbcff2b9c69",
+ "torch": "2.8.0+cu128",
+ "transformers": "5.12.1",
+ "peft": "0.18.1",
+ "stage2a_step300_sha256": "7c63e24d5dd4a95357208a4d0dc2726eb7d66d94b2b43035639b01087f38bbb6",
+ "stage2a_verify": {
+  "stage2a_step300_heldout8_paired_delta_recomputed": 0.10978858545422554,
+  "reported": 0.10978858545422554,
+  "abs_diff": 0.0
+ },
+ "executor_model_files_sha256": {
+  "model-00001-of-00002.safetensors": "781ed5879835ed7068edf93e2b1e7c47465715071223c163b3f93bbbb2ddae99",
+  "model-00002-of-00002.safetensors": "6fba51c43cac0d7e101af3241bbdee09d72cc28826e2515688b1515458ea3284",
+  "model.safetensors.index.json": "c32d2016736271264833397e76b6e06baaa57d5756bc4621123d79e84c13af54"
+ },
+ "dims": {
+  "slots": 8,
+  "latent": 2560,
+  "executor_hidden": 2560
+ },
+ "dtype": "bf16 base / fp32 trainable",
+ "lora": {
+  "r": 16,
+  "alpha": 32,
+  "targets": [
+   "q_proj",
+   "v_proj",
+   "o_proj"
+  ]
+ },
+ "data_ids": {
+  "train_singles": [
+   "s1train-00077-ad2a25f9",
+   "s1train-00079-a331b40e",
+   "s1train-00115-58526062",
+   "s1train-00124-6a8a5979",
+   "s1train-00130-b89487f3",
+   "... (2000, see data/train_singles.jsonl)"
+  ],
+  "train_pairs": [
+   "s1val-00645-de6f711a",
+   "s1val-00359-88eb7515",
+   "s1val-00499-627066cc",
+   "s1val-00689-85fb747f",
+   "s1val-00472-c5e1cac9",
+   "s1val-00422-f95ff89d",
+   "s1val-00683-4ee5b680",
+   "s1val-00626-1bba07b5",
+   "s1val-00496-03739fc1",
+   "s1val-00344-ba8a76c3",
+   "s1val-00660-ef03132b",
+   "s1val-00368-f1e220c8",
+   "s1val-00535-02813895",
+   "s1val-00491-740fb9ec",
+   "s1val-00653-bc3c49e7",
+   "s1val-00281-3cd770ea",
+   "s1val-00439-e679617d",
+   "s1val-00498-50ca6d71",
+   "s1val-00313-ab57b867",
+   "s1val-00471-2af60d16"
+  ],
+  "heldout8": [
+   "s1val-00336-befc9279",
+   "s1val-00574-2a030f37",
+   "s1val-00569-33b9f53f",
+   "s1val-00507-b7055178",
+   "s1val-00479-999dadd8",
+   "s1val-00309-9b08eaea",
+   "s1val-00305-696c8aa4",
+   "s1val-00486-d1e0b543"
+  ]
+ },
+ "two_gpu": {
+  "world": 2,
+  "params_identical_across_ranks_step1_50": [
+   true,
+   true
+  ],
+  "per_rank_local_grad_norm_step1": [
+   0.19734817743301392,
+   1.7871713638305664
+  ],
+  "peak_mem_gb_per_rank": [
+   66.2204360961914,
+   74.56997680664062
+  ]
+ },
+ "walltime": {
+  "train_s": 43.470375537872314,
+  "task_total": "15:38 -> ~16:10"
+ }
+}

@@ -1,0 +1,28 @@
+experiment: stage2b_frozen_encoder_executor_lora
+seed: 42
+stage1_executor: /scratch/hz33227/e2c/Explore-Execute-Chain/outputs/e2c_qwen3_4b_sft/best_hf   # zhaohq/Qwen3-4B-E2C-SFT-only @ a6b0e2fe (step 800)
+stage2a_encoder_checkpoint: /scratch/hz33227/e2c/stage2/outputs/stage2a_external_plan_ae/checkpoints/step300.pt   # compressor only; 0.6B decoder/adapter NOT used
+stage2a_plan_features: frozen Stage-1 4B layer 27, plan text only, train-only standardization (Stage-2A cache)
+n_latent_slots: 8
+latent_dim: 2560
+frozen: [stage2a_plan_feature_encoder, stage2a_compressor, qwen3_4b_base, lm_head, embeddings]
+trainable: [latent_to_4b_adapter (6.56M), executor_lora (9.73M)]
+adapter: LayerNorm(2560) + Linear(2560->2560, identity init) + learnable scalar scale (init 0.0219532 = 4B token-emb RMS)
+executor_lora: {r: 16, alpha: 32, dropout: 0.0, target_modules: [q_proj, v_proj, o_proj]}
+injection: chat_template(Q) + '<EXPLORATION>\n' + 8 soft slots + '</EXPLORATION><EXECUTION>\n' tail -> execution targets (+ '</EXECUTION><|im_end|>')
+precision: bf16 autocast, fp32 trainable weights
+max_optimizer_steps: 50
+checkpoints: [0, 25, 50]
+train_data_count: 2000 single (Q,P,E,A) [answer-in-plan filtered] + 20 verified pairs
+verified_pair_train_count: 20
+verified_pair_eval_count: 8
+lambda_rank: 0.1   # ranking on the first 64 execution targets, same implementation as the bridge / LoRA pilots
+loss_per_rank_step: (4 single CE + CE(E_A|Z_A) + CE(E_B|Z_B)) / 6 + 0.1 * rank(1 pair)
+lr_adapter: 1.0e-4
+lr_lora: 1.0e-4
+weight_decay: 0.01
+grad_clip: 1.0
+max_execution_tokens: 3072 (no sample exceeded; max 1993)
+num_gpus: 2 (torchrun, manual all-reduce of trainable grads = DDP mean)
+global_batch: 8 singles + 2 pairs per optimizer step
+rl_enabled: false

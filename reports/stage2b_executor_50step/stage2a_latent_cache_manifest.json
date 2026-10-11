@@ -1,0 +1,46 @@
+{
+ "verify": {
+  "stage2a_step300_heldout8_paired_delta_recomputed": 0.10978858545422554,
+  "reported": 0.10978858545422554,
+  "abs_diff": 0.0
+ },
+ "stage2a_step300_sha256": "7c63e24d5dd4a95357208a4d0dc2726eb7d66d94b2b43035639b01087f38bbb6",
+ "train_singles": {
+  "candidates": 3000,
+  "answer_in_plan": 135,
+  "exec_too_long": 0,
+  "eligible": 2865,
+  "selected": 2000,
+  "exec_tokens_p50_p95_max_eligible": [
+   795.0,
+   1763.199999999999,
+   1993
+  ]
+ },
+ "val_singles": {
+  "candidates": 300,
+  "answer_in_plan": 13,
+  "exec_too_long": 0,
+  "eligible": 287,
+  "selected": 100,
+  "exec_tokens_p50_p95_max_eligible": [
+   766.0,
+   1750.1,
+   1955
+  ]
+ },
+ "n_pairs": {
+  "train_pair": 20,
+  "heldout8": 8
+ },
+ "n_Z": 2156,
+ "z_shape": [
+  8,
+  2560
+ ],
+ "z_rms_mean": 0.021953199058771133,
+ "online_vs_cache_max_abs": 2.8431415557861328e-05,
+ "question_disjoint": true,
+ "encoder_input": "plan_norm text only (Stage-2A cache, layer 27, train-only standardization)",
+ "decoder_0.6B_adapter_used_for_Z": false
+}

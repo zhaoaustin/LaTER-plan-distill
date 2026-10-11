@@ -1,0 +1,10 @@
+{
+ "train_time_s_50_steps": 43.470375537872314,
+ "sec_per_step": 0.866134901046753,
+ "peak_mem_gb_per_rank": [
+  66.2204360961914,
+  74.56997680664062
+ ],
+ "gpu_util_at_step10": "rank0 98% / rank1 94% (nvidia-smi)",
+ "eval_step50_with_16_generations_s": "~6 min (single GPU)"
+}
