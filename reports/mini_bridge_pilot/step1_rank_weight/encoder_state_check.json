@@ -1,0 +1,46 @@
+{
+ "9": {
+  "same_q_raw": 0.984713077545166,
+  "diff_q_raw": 0.9702804088592529,
+  "same_q_layernorm": 0.9852796196937561,
+  "diff_q_layernorm": 0.9710537195205688,
+  "same_q_no_outlier_dims": 0.880101203918457,
+  "diff_q_no_outlier_dims": 0.7616173028945923,
+  "same_q_centered": 0.4917859137058258,
+  "diff_q_centered": -0.024549415335059166,
+  "top_outlier_dim_share_of_norm": 0.9372365474700928
+ },
+ "18": {
+  "same_q_raw": 0.977972149848938,
+  "diff_q_raw": 0.9419341087341309,
+  "same_q_layernorm": 0.9784970283508301,
+  "diff_q_layernorm": 0.9422692060470581,
+  "same_q_no_outlier_dims": 0.8615721464157104,
+  "diff_q_no_outlier_dims": 0.6343103647232056,
+  "same_q_centered": 0.607552707195282,
+  "diff_q_centered": -0.05746651440858841,
+  "top_outlier_dim_share_of_norm": 0.9198890328407288
+ },
+ "27": {
+  "same_q_raw": 0.9745426774024963,
+  "diff_q_raw": 0.9249753952026367,
+  "same_q_layernorm": 0.974511981010437,
+  "diff_q_layernorm": 0.924649715423584,
+  "same_q_no_outlier_dims": 0.8904290199279785,
+  "diff_q_no_outlier_dims": 0.6676344275474548,
+  "same_q_centered": 0.6419324278831482,
+  "diff_q_centered": -0.04913174360990524,
+  "top_outlier_dim_share_of_norm": 0.8869369626045227
+ },
+ "36": {
+  "same_q_raw": 0.9517025947570801,
+  "diff_q_raw": 0.8678334951400757,
+  "same_q_layernorm": 0.9462587833404541,
+  "diff_q_layernorm": 0.8602333068847656,
+  "same_q_no_outlier_dims": 0.9212523102760315,
+  "diff_q_no_outlier_dims": 0.7680132985115051,
+  "same_q_centered": 0.6253291368484497,
+  "diff_q_centered": -0.0497906468808651,
+  "top_outlier_dim_share_of_norm": 0.7218121886253357
+ }
+}
