@@ -1,0 +1,69 @@
+{
+ "input_mode": "std",
+ "bridge_params": 39367680,
+ "executor_trainable_params": 0,
+ "encoder_contains_execution": false,
+ "null_reference_text_tail": "ORATION>\n\n</EXPLORATION><EXECUTION>\n",
+ "null_reference_contains_execution_text": false,
+ "executor_prefix_has_no_plan_tokens": true,
+ "smoke": [
+  {
+   "step": 0,
+   "loss": 0.39507102966308594,
+   "grad_finite": true,
+   "grad_norm": 0.8827676177024841,
+   "input_rms": 0.9987754821777344,
+   "z_rms": 0.02195320464670658,
+   "z_cos_AB": 0.5558675527572632,
+   "cross_ce_full": {
+    "A|ZA": 0.26465803384780884,
+    "B|ZB": 0.24792151153087616,
+    "A|ZB": 0.26581010222435,
+    "B|ZA": 0.24716278910636902
+   },
+   "slots_equal_Z": true,
+   "prefix_ids_pos_mask_equal": true,
+   "executor_grads_none": true
+  },
+  {
+   "step": 1,
+   "loss": 0.39467471837997437,
+   "grad_finite": true,
+   "grad_norm": 0.13875465095043182,
+   "input_rms": 0.9987754821777344,
+   "z_rms": 0.02195320464670658,
+   "z_cos_AB": 0.7018773555755615,
+   "cross_ce_full": {
+    "A|ZA": 0.2655227482318878,
+    "B|ZB": 0.24634863436222076,
+    "A|ZB": 0.2664977014064789,
+    "B|ZA": 0.2465801239013672
+   },
+   "slots_equal_Z": true,
+   "prefix_ids_pos_mask_equal": true,
+   "executor_grads_none": true
+  },
+  {
+   "step": 2,
+   "loss": 0.3915477991104126,
+   "grad_finite": true,
+   "grad_norm": 0.05100063607096672,
+   "input_rms": 0.9987754821777344,
+   "z_rms": 0.02195320464670658,
+   "z_cos_AB": 0.7810368537902832,
+   "cross_ce_full": {
+    "A|ZA": 0.2642805576324463,
+    "B|ZB": 0.2438378632068634,
+    "A|ZB": 0.2654717266559601,
+    "B|ZA": 0.2454848736524582
+   },
+   "slots_equal_Z": true,
+   "prefix_ids_pos_mask_equal": true,
+   "executor_grads_none": true
+  }
+ ],
+ "executor_bitwise_unchanged": true,
+ "train_vs_generate_first_token_argmax_equal": true,
+ "train_vs_generate_first_logit_max_abs": 0.0,
+ "ALL_HARD_GATES_PASS": true
+}

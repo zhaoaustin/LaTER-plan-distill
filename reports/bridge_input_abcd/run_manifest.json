@@ -1,0 +1,70 @@
+{
+ "repo_branch": "exp/bridge-input-abcd",
+ "repo_head": "d407338e8daf997f9bc7cab438fc7b33392a6dba",
+ "base_commit_bridge_code": "d407338 (exp/bridge-mini-pilot-1011)",
+ "model": "/scratch/hz33227/e2c/Explore-Execute-Chain/outputs/e2c_qwen3_4b_sft/best_hf = Stage-1 step 800 = HF zhaohq/Qwen3-4B-E2C-SFT-only @ a6b0e2fe008f14b00bf7f3a29a214e96212f7251",
+ "model_files_sha256": {
+  "model-00001-of-00002.safetensors": "781ed5879835ed7068edf93e2b1e7c47465715071223c163b3f93bbbb2ddae99",
+  "model-00002-of-00002.safetensors": "6fba51c43cac0d7e101af3241bbdee09d72cc28826e2515688b1515458ea3284",
+  "model.safetensors.index.json": "c32d2016736271264833397e76b6e06baaa57d5756bc4621123d79e84c13af54",
+  "tokenizer.json": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+  "tokenizer_config.json": "443bfa629eb16387a12edbf92a76f6a6f10b2af3b53d87ba1550adfcf45f7fa0"
+ },
+ "data": {
+  "train_pairs_sha256": "7ece2605a9f501ae5519a2bdfc48ca4c3f649dcfc47ac119924caa5eadfb7adc",
+  "heldout_pairs_sha256": "4dc1a6c1b94cf1cec9f3f26531d8d2f8992529deba67e6c432562693f9c21043",
+  "train_ids": [
+   "s1val-00645-de6f711a",
+   "s1val-00359-88eb7515",
+   "s1val-00499-627066cc",
+   "s1val-00689-85fb747f",
+   "s1val-00472-c5e1cac9",
+   "s1val-00422-f95ff89d",
+   "s1val-00683-4ee5b680",
+   "s1val-00626-1bba07b5",
+   "s1val-00496-03739fc1",
+   "s1val-00344-ba8a76c3",
+   "s1val-00660-ef03132b",
+   "s1val-00368-f1e220c8",
+   "s1val-00535-02813895",
+   "s1val-00491-740fb9ec",
+   "s1val-00653-bc3c49e7",
+   "s1val-00281-3cd770ea",
+   "s1val-00439-e679617d",
+   "s1val-00498-50ca6d71",
+   "s1val-00313-ab57b867",
+   "s1val-00471-2af60d16"
+  ],
+  "heldout_ids": [
+   "s1val-00336-befc9279",
+   "s1val-00574-2a030f37",
+   "s1val-00569-33b9f53f",
+   "s1val-00507-b7055178",
+   "s1val-00479-999dadd8",
+   "s1val-00309-9b08eaea",
+   "s1val-00305-696c8aa4",
+   "s1val-00486-d1e0b543"
+  ],
+  "removed_pairs": 0
+ },
+ "shared_config": {
+  "seed_init": 0,
+  "data_order_seed": 1234,
+  "pairs_per_step": 4,
+  "lr": 0.0001,
+  "weight_decay": 0.01,
+  "grad_clip": 1.0,
+  "lambda_rank": 0.1,
+  "rank_span_tokens": 64,
+  "enc_layer": 27,
+  "slots": 8,
+  "steps": 100,
+  "eval_every": 10,
+  "std_clip": 5.0,
+  "sigma_floor_percentile": 5.0,
+  "gen_max_new_tokens": 1024
+ },
+ "gpu": "2x NVIDIA B200 (Slurm job 48907334, node e4-1); groups run 2 per GPU sequentially",
+ "torch": "2.8.0+cu128",
+ "transformers": "5.12.1"
+}
