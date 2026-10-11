@@ -1,0 +1,59 @@
+# Stage 2 two-loss Plan Reconstruction pilot: L = L_execution + lambda_p * L_planrec.
+# Consumed by later/src/train/train_stage2_planrec.py (every key below is read or validated there).
+# Run B (main) = this file. Run A (control) = stage2_planrec_A_execution_only.yaml (lambda_p = 0, all else equal).
+objective_mode: planrec_two_loss
+stage1_hf_repo: zhaohq/Qwen3-4B-E2C-SFT-only
+stage1_hf_revision: a6b0e2fe008f14b00bf7f3a29a214e96212f7251   # = step 800; local copy verified by safetensors sha256
+model_path: /scratch/hz33227/e2c/Explore-Execute-Chain/outputs/e2c_qwen3_4b_sft/best_hf
+train_data: /scratch/hz33227/e2c/stage2/data/stage2_train.parquet
+val_data: /scratch/hz33227/e2c/stage2/data/stage2_val.parquet
+output_dir: /scratch/hz33227/e2c/stage2/outputs/stage2_planrec_two_loss_pilot/run_B_execution_plus_planrec
+data_source_policy: stage1_sft_only
+allow_later69k_mixing: false
+
+latent_steps: 8
+latent_embed_builder_no_grad: false
+latent_projector_dropout: 0.0
+latent_projector_output_rms: token_embedding
+noise_std: 0.0
+rl_enabled: false
+
+execution_ce_weight: 1.0
+lambda_p: 0.5                 # PILOT ONLY, untuned
+lambda_a: 0.0                 # disabled; never computed
+lambda_r: 0.0                 # disabled; never computed
+teacher_kl_enabled: false
+execution_kl_enabled: false
+halting_loss_enabled: false
+
+master_dtype: float32         # fp32 master weights + bf16 autocast, DDP on 2x B200
+attn_implementation: sdpa
+learning_rate: 1.0e-5
+latent_projector_lr: 1.0e-4
+adam_betas: [0.9, 0.95]
+weight_decay: 0.01
+warmup_steps: 10
+max_grad_norm: 1.0
+micro_batch_size: 1
+gradient_accumulation_steps: 8   # 2 GPUs -> global batch 16
+max_length: 4096
+max_train_steps: 300
+lr_schedule_max_steps: 500    # cosine horizon fixed at 500 so a 300-step run is a prefix of a possible 500-step run
+seed: 1234
+resume: false                 # never resumes an old three-loss checkpoint (validated)
+
+probe_steps: [0, 100, 200, 300, 400, 500]
+probe_n: 128
+probe_batch_size: 8
+grad_split_batch_size: 4
+save_steps: [300, 500]        # full (model + projector + optimizer + RNG + sampler)
+save_weights_only_steps: [100]
+
+wandb: true
+wandb_project: stage2-plan-reconstruction
+wandb_entity: zhaomichaelk-university-of-georgia
+wandb_group: planrec_two_loss_pilot
+wandb_tags: [planrec, two_loss, pilot, run_B]
+wandb_run_name: B_exec_plus_0.5planrec
+wandb_loss_every: 10
+wandb_grad_every: 20

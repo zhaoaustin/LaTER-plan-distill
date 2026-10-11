@@ -57,6 +57,35 @@ def render_prompt(tokenizer: Any, question: str) -> str:
                                          tokenize=False)
 
 
+PLAN_HEADER = "I need to make a step-by-step plan."
+PLANREC_RULE_VERSION = ("e2c-planrec-v1: context = [z_1..z_L] + '<EXPLORATION>\\n' (Stage-1 ids); targets = the Stage-1 "
+                        "plan-segment tokens (resp ids between '<EXPLORATION>\\n' and the separator tail), nothing else")
+PLAN_CONTENT_RULE = ("e2c-plan-content-v1: plan tokens with at least one character outside (a) the header line "
+                     f"'{PLAN_HEADER}', (b) line-initial step numbering '^\\s*\\d+\\.\\s*', (c) whitespace; "
+                     "math = content tokens overlapping a $...$ span")
+
+
+def plan_char_masks(plan: str):
+    """Per plan character: template (header / numbering / whitespace) and math ($...$ incl. delimiters)."""
+    import re
+    tmpl = [ch.isspace() for ch in plan]
+    pos = 0
+    for i, line in enumerate(plan.split("\n")):
+        if i == 0 and line.strip() == PLAN_HEADER:
+            for c in range(pos, pos + len(line)):
+                tmpl[c] = True
+        m = re.match(r"\s*\d+\.\s*", line)
+        if m:
+            for c in range(pos, pos + m.end()):
+                tmpl[c] = True
+        pos += len(line) + 1
+    math = [False] * len(plan)
+    for m in re.finditer(r"\$\$?[^$]+\$\$?", plan):
+        for c in range(m.start(), m.end()):
+            math[c] = True
+    return tmpl, math
+
+
 class Stage2RecordError(ValueError):
     pass
 
@@ -137,9 +166,24 @@ def build_views(tokenizer: Any, row: Dict[str, Any], latent_steps: int, toks: St
     x_rep = [False] * P + rep_tok
     b_X = b_T
 
+    # PlanRec view (training-only auxiliary branch): latent slots + '<EXPLORATION>\n' + plan tokens. No Q/E/A.
+    p0 = len(PLAN_OPEN)
+    tmpl_c, math_c = plan_char_masks(plan)
+    plan_tok = resp_ids[n_open:sep_start]
+    content, mathm = [], []
+    for a, b in offs[n_open:sep_start]:
+        cs = range(max(a, p0) - p0, min(b, p0 + len(plan)) - p0)
+        content.append(any(not tmpl_c[c] for c in cs))
+        mathm.append(any(math_c[c] and not tmpl_c[c] for c in cs))
+    pr_prefix = latent_steps + n_open
+    planrec_ids = [toks.pad_id] * latent_steps + toks.plan_open_ids + plan_tok
+    planrec_labels = [-100] * pr_prefix + plan_tok
+
     if len(full) > max_length or len(student_ids) > max_length:
         raise Stage2RecordError("exceeds_max_length")
     return {
+        "planrec_ids": planrec_ids, "planrec_labels": planrec_labels,
+        "planrec_content": [False] * pr_prefix + content, "planrec_math": [False] * pr_prefix + mathm,
         "record_id": str(row["record_id"]),
         "teacher_ids": teacher_ids, "teacher_boundary": b_T,
         "student_ids": student_ids, "student_labels": s_labels, "student_seg": "".join(s_seg),
@@ -210,6 +254,15 @@ class Stage2Collator:
                 out[f"{view}_seg_{name}"] = _seg_mask(segs, n, letters)
             reps = [b[f"{view}_rep"] for b in batch]   # monitoring only: plan-restatement tokens
             out[f"{view}_seg_R"] = torch.tensor([list(r) + [False] * (n - len(r)) for r in reps], dtype=torch.bool)
+        if "planrec_ids" in batch[0]:
+            pr = [b["planrec_ids"] for b in batch]
+            n = max(len(s) for s in pr)
+            out["planrec_input_ids"] = _pad(pr, self.pad_id)
+            out["planrec_attention_mask"] = _mask(pr)
+            out["planrec_labels"] = _pad([b["planrec_labels"] for b in batch], -100)
+            for key in ("content", "math"):
+                out[f"planrec_{key}"] = torch.tensor([list(b[f"planrec_{key}"]) + [False] * (n - len(b[f"planrec_{key}"]))
+                                                      for b in batch], dtype=torch.bool)
         out["kl_offsets"] = [b["kl_offsets"] for b in batch]
         out["latent_start_positions"] = torch.tensor([b["latent_start"] for b in batch], dtype=torch.long)
         out["latent_positions"] = torch.tensor([b["latent_positions"] for b in batch], dtype=torch.long)

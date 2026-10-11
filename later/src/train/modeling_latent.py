@@ -1231,17 +1231,37 @@ class LatentQwenForCausalLM(Qwen3ForCausalLM):
         debug_latent_grad: bool = False,
         latent_mode: str = "learned",
         return_target_logits: bool = False,
+        latent_override: Optional[torch.Tensor] = None,
     ) -> Dict[str, Any]:
         """Teacher-forced forward for the student latent path (latent_positions given) or explicit path (None).
 
         Latent path reuses LaTER's recursive builder: z_1 = proj(h[latent_start]), z_k = proj(h(z_{k-1})),
         with grad iff config.latent_embed_builder_no_grad is False. The latent embeddings replace the
         placeholder tokens, then one full forward produces the CE terms and the boundary hidden states.
+
+        latent_override [B, L, d] (ablations): the builder is NOT run; these vectors are written into the latent
+        positions instead (no KV cache of the learned recursion is reused: the full forward recomputes everything).
+        Returned "latent_embeddings" [B, L, d] are the vectors actually inserted, with their autograd graph.
         """
         stats: Dict[str, Any] = {}
         projector_outputs: List[torch.Tensor] = []
         token_embeds = self.get_input_embeddings()(input_ids)
-        if latent_positions is not None:
+        latent_embeddings = None
+        if latent_positions is not None and latent_override is not None:
+            if latent_mode != "learned":
+                raise ValueError("latent_override and latent_mode are exclusive")
+            rows = torch.arange(input_ids.size(0), device=input_ids.device).unsqueeze(1)
+            if tuple(latent_override.shape[:2]) != tuple(latent_positions.shape):
+                raise ValueError(f"latent_override {tuple(latent_override.shape)} vs positions {tuple(latent_positions.shape)}")
+            inputs_embeds = token_embeds.clone()
+            inputs_embeds[rows, latent_positions] = latent_override.to(token_embeds.dtype)
+            latent_embeddings = latent_override
+            lat = latent_override.float()
+            emb_mask = torch.zeros_like(attention_mask, dtype=torch.bool)
+            emb_mask[rows, latent_positions] = True
+            stats = {"latent_override": 1, "latent_rms": float(lat.pow(2).mean().sqrt()),
+                     "token_embedding_rms": float(token_embeds[~emb_mask & attention_mask.bool()].float().pow(2).mean().sqrt())}
+        elif latent_positions is not None:
             hook = None
             if debug_latent_grad:
                 def keep(_m, _a, out):
@@ -1279,6 +1299,8 @@ class LatentQwenForCausalLM(Qwen3ForCausalLM):
                 overrides[rows, latent_positions] = torch.roll(z, shifts=-1, dims=0)
             elif latent_mode != "learned":
                 raise ValueError(latent_mode)
+            rows_l = torch.arange(input_ids.size(0), device=input_ids.device).unsqueeze(1)
+            latent_embeddings = overrides[rows_l, latent_positions]          # [B, L, d], keeps the graph
             inputs_embeds = torch.where(emb_mask.unsqueeze(-1), overrides.to(token_embeds.dtype), token_embeds)
             stats = dict(stats)
             lat = overrides[emb_mask].float()
@@ -1315,7 +1337,64 @@ class LatentQwenForCausalLM(Qwen3ForCausalLM):
             "builder_stats": stats,
             "projector_outputs": projector_outputs,
             "inputs_embeds": inputs_embeds,
+            "latent_embeddings": latent_embeddings,
         }
+
+    # ------------------------------------------------------------------------------------------------
+    # Stage 2 PlanRec (objective_mode=planrec_two_loss), training-only auxiliary branch. A NEW causal forward
+    # whose context is only [z_1..z_L] + fixed '<EXPLORATION>\n' + teacher-forced plan tokens: no question,
+    # execution or answer token, and no KV cache of the question forward. Never used at inference.
+    # ------------------------------------------------------------------------------------------------
+    def forward_plan_reconstruction(
+        self,
+        latents: torch.Tensor,
+        input_ids: torch.Tensor,
+        attention_mask: torch.Tensor,
+        labels: torch.Tensor,
+        return_logits: bool = False,
+    ) -> Dict[str, Any]:
+        """latents [B, L, d] replace input positions 0..L-1 (placeholder ids); positions L.. are the fixed prefix
+        and the plan tokens. labels follow the HF convention (-100 = ignored, shift inside): the last prefix
+        position predicts the first plan token. Position ids restart at 0 (fresh context)."""
+        B, L = latents.shape[:2]
+        token_embeds = self.get_input_embeddings()(input_ids)
+        inputs_embeds = torch.cat([latents.to(token_embeds.dtype), token_embeds[:, L:]], dim=1)
+        position_ids = torch.arange(input_ids.size(1), device=input_ids.device).unsqueeze(0).expand(B, -1)
+        outputs = self.model(inputs_embeds=inputs_embeds, attention_mask=attention_mask, position_ids=position_ids,
+                             past_key_values=None, use_cache=False, return_dict=True)
+        res = self._shifted_token_nll(outputs.last_hidden_state, labels, return_logits=return_logits)
+        return {"token_nll": res[0], "target_mask": res[1], "target_logits": res[2] if return_logits else None}
+
+    @torch.no_grad()
+    def generate_plan_reconstruction(self, latents: torch.Tensor, prefix_ids: List[int], max_new_tokens: int,
+                                     stop_token_ids: List[int]) -> List[List[int]]:
+        """Diagnostics only: greedy plan text from Z alone (same context layout as forward_plan_reconstruction)."""
+        B, L = latents.shape[:2]
+        device = latents.device
+        emb = self.get_input_embeddings()
+        pre = emb(torch.tensor(prefix_ids, device=device)).unsqueeze(0).expand(B, -1, -1)
+        x = torch.cat([latents.to(pre.dtype), pre], dim=1)
+        n = x.size(1)
+        pos = torch.arange(n, device=device).unsqueeze(0).expand(B, -1)
+        out = self.model(inputs_embeds=x, position_ids=pos, use_cache=True, return_dict=True)
+        cache, next_pos = out.past_key_values, n
+        done = torch.zeros(B, dtype=torch.bool, device=device)
+        stop = torch.tensor(stop_token_ids, device=device)
+        gen: List[List[int]] = [[] for _ in range(B)]
+        logits = self.lm_head(out.last_hidden_state[:, -1]).float()
+        for _ in range(int(max_new_tokens)):
+            tok = logits.argmax(-1)
+            for i in range(B):
+                if not bool(done[i]):
+                    gen[i].append(int(tok[i]))
+            done = done | torch.isin(tok, stop)
+            if bool(done.all()):
+                break
+            out = self.model(input_ids=tok.unsqueeze(1), position_ids=torch.full((B, 1), next_pos, device=device),
+                             past_key_values=cache, use_cache=True, return_dict=True)
+            cache, next_pos = out.past_key_values, next_pos + 1
+            logits = self.lm_head(out.last_hidden_state[:, -1]).float()
+        return gen
 
     @torch.no_grad()
     def _latents_for_prompts(self, prompt_ids: List[List[int]], latent_steps: int, pad_token_id: int) -> torch.Tensor:
@@ -1351,6 +1430,7 @@ class LatentQwenForCausalLM(Qwen3ForCausalLM):
         pad_token_id: int,
         return_first_logits: bool = False,
         latent_mode: str = "learned",
+        latent_vectors: Optional[torch.Tensor] = None,
     ) -> Dict[str, Any]:
         """Greedy latent->explicit generation with the same recursion as training.
 
@@ -1363,7 +1443,11 @@ class LatentQwenForCausalLM(Qwen3ForCausalLM):
         if latent_mode not in ("learned", "zero", "shuffled"):
             raise ValueError(latent_mode)
         z_fixed = None
-        if latent_mode == "shuffled":
+        if latent_vectors is not None:      # ablation (e.g. mean latent): feed these [B, L, d] vectors as z_1..z_L
+            if latent_mode != "learned" or tuple(latent_vectors.shape[:2]) != (len(prompt_ids), int(latent_steps)):
+                raise ValueError("latent_vectors must be [B, latent_steps, d] with latent_mode='learned'")
+            z_fixed = latent_vectors
+        elif latent_mode == "shuffled":
             if len(prompt_ids) < 2:
                 raise ValueError("latent_mode=shuffled needs batch size >= 2")
             z_fixed = torch.roll(self._latents_for_prompts(prompt_ids, latent_steps, pad_token_id), shifts=-1, dims=0)
