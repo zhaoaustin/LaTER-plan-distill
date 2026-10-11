@@ -1,0 +1,19 @@
+{
+ "n_texts": 3362,
+ "by_split": {
+  "train": 3000,
+  "val": 300,
+  "paired": 56,
+  "paraphrase": 6
+ },
+ "layer": 27,
+ "hidden": 2560,
+ "train_tokens": 471666,
+ "sigma_floor": 1.442474603652954,
+ "frac_dims_floored": 0.05000000074505806,
+ "model_param_sum_before": 212769.834672147,
+ "model_param_sum_after": 212769.834672147,
+ "model_unchanged": true,
+ "seconds": 46.6915397644043,
+ "mean_plan_tokens_encoder": 157.54015466983938
+}

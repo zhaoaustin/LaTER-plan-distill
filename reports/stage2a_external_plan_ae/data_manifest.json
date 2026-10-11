@@ -1,0 +1,64 @@
+{
+ "source": {
+  "train": "/scratch/hz33227/e2c/stage2/data/stage2_train.parquet",
+  "val": "/scratch/hz33227/e2c/stage2/data/stage2_val.parquet",
+  "n_train_records": 46510,
+  "n_val_records": 2446
+ },
+ "stats": {
+  "train": {
+   "records": 46510,
+   "dup_questions_removed": 90,
+   "benchmark_exact_matches_removed": 0,
+   "bridge_questions_removed": 0,
+   "over_max_tokens_filtered": 1821,
+   "over_max_tokens_frac": 0.03922878069797501,
+   "eligible": 44599,
+   "plan_tokens_p50_p90_p95_max_before_filter": [
+    159.0,
+    248.0,
+    278.0,
+    501
+   ]
+  },
+  "val": {
+   "records": 2446,
+   "dup_questions_removed": 2,
+   "benchmark_exact_matches_removed": 0,
+   "bridge_questions_removed": 28,
+   "over_max_tokens_filtered": 90,
+   "over_max_tokens_frac": 0.037251655629139076,
+   "eligible": 2326,
+   "plan_tokens_p50_p90_p95_max_before_filter": [
+    161.0,
+    248.5,
+    275.25,
+    501
+   ]
+  }
+ },
+ "n_train": 3000,
+ "n_val": 300,
+ "seed": 42,
+ "max_plan_tokens": 288,
+ "max_plan_tokens_note": "task default 192 would filter ~28% of plans (p90=245); raised to 288 (~p95) per task rule",
+ "benchmarks_checked": {
+  "aime24.parquet": 30,
+  "aime25.parquet": 30,
+  "amc23.parquet": 40,
+  "gsm8k.parquet": 1319,
+  "math500.parquet": 500,
+  "minerva.parquet": 272,
+  "olympiad_bench.parquet": 674
+ },
+ "benchmark_check": "exact match after lowercase+whitespace normalization; near-duplicates NOT detected",
+ "bridge_heldout8_questions_in_stage2_train": 0,
+ "bridge_pairs_source": "stage2_val rows 256-655 (Stage-1 samples, verified)",
+ "train_val_question_overlap": 0,
+ "plan_normalization": "strip leading header line only",
+ "files_sha256": {
+  "train_plans.jsonl": "502a188dcd087a5f6b9b7417b0389757160e6804a702b4c5c370bdc08ce765f9",
+  "val_plans.jsonl": "d326f6d5dd0801f3892f469d197d1bd58259f29277ba07710ee98bb8ee009d64",
+  "paired_plans.jsonl": "354c5e8b3344ac1e29963ef4191d815dd14f29c89e062d0a3da788187c82faf4"
+ }
+}

@@ -1,0 +1,1004 @@
+{
+ "paired": [
+  {
+   "id": "s1val-00645-de6f711a",
+   "role": "extended20",
+   "condition": "Z_A",
+   "generation": "1. Use the identity $\\sin A \\sin B = \\frac{1}{2}[\\cos(A-B) - \\cos(A+B)]$ to simplify $\\sin 20^\\circ \\sin 10^\\circ$.  \n2. Use the identity $\\cos A \\cos B = \\frac{1}{2}[\\cos(A-B) + \\cos(A+B)]$ to simplify $\\cos 10^\\circ \\cos 10^\\circ$.  \n3. Use the identity $\\cos A \\cos B = \\frac{1}{2}[\\cos(A-B) + \\cos(A+B)]$ to simplify $\\cos 10^\\circ \\cos 20^\\circ$.  \n4. Use the identity $\\cos A \\cos B = \\frac{1}{2}[\\cos(A-B) + \\cos(A+B)]$ to simplify $\\cos 20^\\circ \\cos 30^\\circ$.  \n5. Use the identity $\\cos A \\cos B = \\frac{1}{2}[\\cos(A-B) + \\cos(A+B)]$ to simplify $\\cos 20^\\circ \\cos 40^\\circ$.  \n6. Use the identity $\\cos A \\cos B = \\frac{1}{2}[\\cos(A-B) + \\cos(A+B)]$ to simplify $\\cos 40^\\circ \\cos 50^\\circ$.  \n7. Use the identity $\\cos A \\cos B = \\frac{1}{2}[\\cos(A-B) + \\"
+  },
+  {
+   "id": "s1val-00645-de6f711a",
+   "role": "extended20",
+   "condition": "Z_B",
+   "generation": "1. Use the identity for the product of sines of angles in arithmetic progression: $\\sin A \\sin B \\sin C = \\frac{1}{4} \\sin A \\sin B \\sin C$.  \n2. Apply the identity to the given angles: $1^\\circ, 2^\\circ, 3^\\circ, \\ldots, 100^\\circ$.  \n3. Express the product in terms of sine functions with arguments in arithmetic progression.  \n4. Use the identity for the product of sines of angles in arithmetic progression: $\\sin n^\\circ \\sin (n+1)^\\circ \\sin (n+2)^\\circ = \\frac{1}{4} \\sin 100^\\circ$.  \n5. Substitute $n = 1$ into the identity to find the value of the product."
+  },
+  {
+   "id": "s1val-00359-88eb7515",
+   "role": "extended20",
+   "condition": "Z_A",
+   "generation": "1. Use the formula for the area of a trapezoid: $ \\text{Area} = \\frac{1}{2} \\times (a + b) \\times h $, where $ a $ and $ b $ are the lengths of the two bases, and $ h $ is the height.  \n2. Calculate the sum of the bases: $ a + b = 12 + 14 = 26 $.  \n3. Determine the height using the given diagonal and the Pythagorean theorem: $ h = \\sqrt{13^2 + 14^2} = \\sqrt{13^2 + 14^2} $.  \n4. Substitute the values into the area formula and simplify to find the area."
+  },
+  {
+   "id": "s1val-00359-88eb7515",
+   "role": "extended20",
+   "condition": "Z_B",
+   "generation": "1. Identify the given side lengths and the type of trapezoid (isosceles).  \n2. Assign variables to the unknown sides based on the given information.  \n3. Use the properties of isosceles trapezoids to express the legs in terms of the bases.  \n4. Use the area formula for an isosceles trapezoid and the given area to form an equation.  \n5. Solve the equation to find the value of the unknown base.  \n6. Use the Pythagorean theorem to find the length of the other leg."
+  },
+  {
+   "id": "s1val-00499-627066cc",
+   "role": "extended20",
+   "condition": "Z_A",
+   "generation": "1. Recognize that the problem requires counting the number of 3\u00d73 submatrices with exactly one black cell.  \n2. Use the principle of inclusion-exclusion to count the number of 3\u00d73 submatrices with at least one black cell.  \n3. Calculate the total number of 3\u00d73 submatrices in the grid.  \n4. Subtract the number of 3\u00d73 submatrices with at least one black cell using inclusion-exclusion.  \n5. Use the formula for the number of 3\u00d73 submatrices with exactly one black cell: $ \\text{Total} - 2 \\times \\text{Number of 3\u00d73 submatrices with at least one black cell} + \\text{Number of 3\u00d73 submatrices with at least two black cells} $.  \n6. Simplify the expression to find the number of 3\u00d73 submatrices with exactly one black cell.  \n7. Compute the ratio of the number of such submatrices to the total number of submatrices."
+  },
+  {
+   "id": "s1val-00499-627066cc",
+   "role": "extended20",
+   "condition": "Z_B",
+   "generation": "1. Determine the number of black and white squares in the 1\u00d71 grid.  \n2. Use the inclusion-exclusion principle to find the number of squares that are both black and white.  \n3. Calculate the number of black squares that are not adjacent to any white square using the inclusion-exclusion principle.  \n4. Use the inclusion-exclusion principle again to find the number of black squares that are adjacent to at least one white square.  \n5. Subtract the result from step 4 from the total number of black squares to find the number of black squares that are adjacent to no white squares.  \n6. Use the inclusion-exclusion principle to find the number of white squares that are adjacent to at least one black square.  \n7. Subtract the result from step 6 from the total number of white squares to find the number of white squares that are adjacent to no black squares.  \n8. Calculate the number of black squares that are adjacent to no white squares by subtracting the number of black squares adjacent to at least one white square from the total number of black squares.  \n9. Calculate the number of white squares that are adjacent to no black squares by subtracting the number of white squares adjacent to at least one black square from the total number of white squares.  \n10. Use the results from steps 8 and 9 to determine the number of black squares that are adjacent to no white squares."
+  },
+  {
+   "id": "s1val-00689-85fb747f",
+   "role": "extended20",
+   "condition": "Z_A",
+   "generation": "1. Recognize the equation $ x^3 + y^3 = z^3 $ as a cubic Diophantine equation.  \n2. Test small integer values for $ x $ and $ y $ to find potential solutions.  \n3. For each candidate, compute $ z $ using the equation $ z = \\sqrt[3]{x^3 + y^3} $.  \n4. Check if $ z $ is an integer.  \n5. Verify that the found integer solution satisfies the original equation."
+  },
+  {
+   "id": "s1val-00689-85fb747f",
+   "role": "extended20",
+   "condition": "Z_B",
+   "generation": "1. Divide both sides of the equation by $ x $ to simplify the equation.  \n2. Recognize that the equation involves two logarithmic terms with the same base, so equate their arguments.  \n3. Simplify the resulting equation by combining like terms and factoring.  \n4. Analyze the equation to determine the conditions under which the logarithmic terms can be equal.  \n5. Conclude that the only solution is when the arguments of both logarithms are equal, leading to a specific value of $ x $."
+  },
+  {
+   "id": "s1val-00472-c5e1cac9",
+   "role": "extended20",
+   "condition": "Z_A",
+   "generation": "1. Recognize that the quadrilateral is a kite, so it has two pairs of adjacent sides equal.  \n2. Use the given distances from the center of the circle to the vertices to form two equations based on the circle's radius.  \n3. Set up the equations using the distance formula and solve for the side lengths.  \n4. Use the Pythagorean theorem to find the length of the diagonal.  \n5. Solve the resulting quadratic equation to find the value of $ x $."
+  },
+  {
+   "id": "s1val-00472-c5e1cac9",
+   "role": "extended20",
+   "condition": "Z_B",
+   "generation": "1. Place the rhombus in the coordinate plane with $ A = (0, 0) $, $ B = (a, 0) $, $ D = (0, b) $, and $ C = (a, b) $.  \n2. Use the given point $ P = (1, 2) $ to form equations based on the rhombus properties.  \n3. Solve the equations to find the values of $ a $ and $ b $.  \n4. Use the coordinates of $ P $ and the known values of $ a $ and $ b $ to determine the angle $ \\angle APD $.  \n5. Calculate $ \\cos \\angle APD $ using the coordinates of $ P $, $ A $, and $ D $.  \n6. Identify the angle whose cosine is $ \\frac{1}{2} $, which corresponds to $ \\frac{\\pi}{3} $ or $ 60^\\circ $."
+  },
+  {
+   "id": "s1val-00422-f95ff89d",
+   "role": "extended20",
+   "condition": "Z_A",
+   "generation": "1. Identify the arithmetic sequence starting at 1 with a common difference of 2, which is $1, 3, 5, 7, \\ldots$.  \n2. Express the condition $n \\equiv 1 \\pmod{2}$ as $n = 2k$ for some integer $k$.  \n3. Set up the congruence $2k \\equiv 1 \\pmod{2}$ and solve for $k$.  \n4. Determine the range of $k$ such that $2k$ is an integer and satisfies the congruence.  \n5. Count the number of valid integer values of $k$ within the range."
+  },
+  {
+   "id": "s1val-00422-f95ff89d",
+   "role": "extended20",
+   "condition": "Z_B",
+   "generation": "1. Identify the arithmetic sequence of numbers divisible by 3: $3, 6, 9, \\ldots, 3k$.  \n2. Identify the arithmetic sequence of numbers divisible by 4: $4, 8, 12, \\ldots, 4k$.  \n3. Find the least common multiple (LCM) of 3 and 4, which is 12.  \n4. Determine the range of numbers from 1 to 2016 divisible by 12.  \n5. Use the formula for the number of terms in the arithmetic sequence to find how many numbers are divisible by both 3 and 4.  \n6. Subtract the number of terms divisible by 3 from the total number of terms divisible by 12 to find the count of numbers divisible by neither 3 nor 4."
+  },
+  {
+   "id": "s1val-00683-4ee5b680",
+   "role": "extended20",
+   "condition": "Z_A",
+   "generation": "1. Identify the triangle type (isosceles, scalene, right) and determine the angles.  \n2. Use the Law of Cosines to find one angle in terms of the given side $ a $.  \n3. Apply the Law of Cosines again to find the other angles.  \n4. Use the formula for the area of a triangle with given side lengths and two angles: $ \\text{Area} = \\frac{1}{2}ab\\sin C $.  \n5. Calculate the area using the known side lengths and the calculated angles.  \n6. Use the area to find the inradius using the formula $ r = \\frac{A}{s} $, where $ s $ is the semi-perimeter.  \n7. Use the inradius formula $ r = \\frac{a + b + c}{2} $ to find the inradius."
+  },
+  {
+   "id": "s1val-00683-4ee5b680",
+   "role": "extended20",
+   "condition": "Z_B",
+   "generation": "1. Recognize that the triangle is isosceles with the given angle $ \\angle BAC = 120^\\circ $ and base angles $ \\angle ABC = \\angle ACB = 30^\\circ $.  \n2. Use the Law of Cosines to find the length of the base $ BC $ in terms of the equal sides $ AB = AC = x $.  \n3. Apply the Law of Sines to relate the sides and angles, specifically using $ \\sin 30^\\circ $ to find the base $ BC $.  \n4. Use the area formula for a triangle with given angles and sides to calculate the area of triangle $ ABC $.  \n5. Apply the Law of Cosines again to find the height $ h $ from vertex $ A $ to side $ BC $."
+  },
+  {
+   "id": "s1val-00626-1bba07b5",
+   "role": "extended20",
+   "condition": "Z_A",
+   "generation": "1. Use the formula for the sum of the first $ n $ positive integers: $ S = \\frac{n(n+1)}{2} $.  \n2. Substitute $ n = 2016 $ into the formula to find the sum of all positive integers less than or equal to 2016.  \n3. Subtract 1 from the result to get the sum of all positive integers strictly less than 2016."
+  },
+  {
+   "id": "s1val-00626-1bba07b5",
+   "role": "extended20",
+   "condition": "Z_B",
+   "generation": "1. Calculate the total number of positive integers less than or equal to 2008 by subtracting 1 from 2008 and adding 1.  \n2. Use the formula for the sum of the first $ n $ positive integers to find the sum of all divisors of 2008.  \n3. Subtract the sum of divisors of 2007 from the total sum of divisors of 2008 to get the sum of divisors of 2008.  \n4. Use the formula for the sum of divisors of a prime number to find the sum of divisors of 2009.  \n5. Subtract the sum of divisors of 2009 from the sum of divisors of 2008 to get the final result."
+  },
+  {
+   "id": "s1val-00496-03739fc1",
+   "role": "extended20",
+   "condition": "Z_A",
+   "generation": "1. Recognize the expression as a sum of products of variables, each squared.  \n2. Use the identity $(a + b + c)^2 = a^2 + b^2 + c^2 + 2ab + 2ac + 2bc$ to rewrite the expression.  \n3. Identify the terms to be maximized: $x^2 + y^2 + z^2$ and $2xy + 2xz + 2yz$.  \n4. Assume symmetry by setting $x = y = z = 1$ to maximize the symmetric terms.  \n5. Calculate the value of the expression with $x = y = z = 1$.  \n6. Compare the result with the given options to determine the correct answer."
+  },
+  {
+   "id": "s1val-00496-03739fc1",
+   "role": "extended20",
+   "condition": "Z_B",
+   "generation": "1. Use the Cauchy-Schwarz Inequality to relate $ x + y $ and $ xy $.  \n2. Express $ x + y $ and $ xy $ in terms of $ a $ and $ b $ using the given equations.  \n3. Substitute these expressions into the inequality $ (x + y)^2 \\leq a^2 + b^2 $.  \n4. Simplify the resulting inequality to find the maximum value of $ a^2 + b^2 $."
+  },
+  {
+   "id": "s1val-00344-ba8a76c3",
+   "role": "extended20",
+   "condition": "Z_A",
+   "generation": "1. Substitute $ x = 0 $ into the equation to check for potential solutions.  \n2. Substitute $ x = 1 $ into the equation to check for potential solutions.  \n3. Substitute $ x = -1 $ into the equation to check for potential solutions.  \n4. Analyze the behavior of the function $ f(x) = x^3 - 2x + 1 $ to determine if it ever equals 0.  \n5. Use numerical methods or graphing to approximate the real root."
+  },
+  {
+   "id": "s1val-00344-ba8a76c3",
+   "role": "extended20",
+   "condition": "Z_B",
+   "generation": "1. Set the two equations equal to each other to find the points of intersection.  \n2. Solve the resulting equation for $ x $, then substitute back to find the corresponding $ y $-value.  \n3. Identify the coordinates of the intersection points."
+  },
+  {
+   "id": "s1val-00660-ef03132b",
+   "role": "extended20",
+   "condition": "Z_A",
+   "generation": "1. Factor the left-hand side of the equation to simplify the expression.  \n2. Recognize that the equation can be rewritten as a perfect square.  \n3. Set the factored form equal to zero and solve for $ x $, considering both positive and negative roots.  \n4. Substitute each value of $ x $ into the original equation to check for solutions.  \n5. Solve the resulting equations to find valid solutions.  \n6. Check for extraneous solutions by substituting back into the original equation."
+  },
+  {
+   "id": "s1val-00660-ef03132b",
+   "role": "extended20",
+   "condition": "Z_B",
+   "generation": "1. Factor the numerator $ n^2 + 1 $ as $ (n + i)(n - i) $, where $ i $ is the imaginary unit.  \n2. Express the denominator $ n^2 + 1 $ as $ (n + i)(n - i) $, and rewrite the fraction with the factored form.  \n3. Multiply both sides of the equation by the denominator to eliminate the fraction.  \n4. Simplify the resulting equation to obtain a polynomial in $ n $.  \n5. Test small integer values of $ n $ to find solutions that satisfy the equation.  \n6. Identify all integer solutions and check if they are perfect cubes."
+  },
+  {
+   "id": "s1val-00368-f1e220c8",
+   "role": "extended20",
+   "condition": "Z_A",
+   "generation": "1. Identify the foci of the hyperbola and the directrices, then determine the condition for the line $ y = kx + c $ to be tangent to the hyperbola.  \n2. Use the condition for tangency to set up an equation involving $ k $ and $ c $.  \n3. Substitute $ c = 1 $ (since the directrix is $ x = 1 $) into the equation and simplify to find the value of $ k $.  \n4. Determine the range of $ k $ for which the line is tangent to the hyperbola.  \n5. Check which of the given options correspond to the valid range of $ k $."
+  },
+  {
+   "id": "s1val-00368-f1e220c8",
+   "role": "extended20",
+   "condition": "Z_B",
+   "generation": "1. Identify the foci of the hyperbola and the directrices, noting that $ c = 1 $ and $ a = 1 $.  \n2. Use the given condition $ |PF_1| + |PF_2| = 2 $ to set up an equation involving the coordinates of point $ P $ on the hyperbola.  \n3. Express the coordinates of point $ P $ in terms of $ x $ using the hyperbola equation $ x^2 - y^2 = 1 $.  \n4. Substitute the coordinates of $ P $ into the equation $ |PF_1| + |PF_2| = 2 $ and simplify.  \n5. Solve the resulting equation to find the value of $ x $.  \n6. Use the value of $ x $ to determine the coordinates of point $ P $, then compute $ |PF_1| $ and $ |PF_2| $."
+  },
+  {
+   "id": "s1val-00535-02813895",
+   "role": "extended20",
+   "condition": "Z_A",
+   "generation": "1. Use the formula for the area of a triangle with given sides and included angle: $ \\text{Area} = \\frac{1}{2}ab\\sin C $.  \n2. Identify the sides and included angle from the given information.  \n3. Substitute the values into the formula and solve for the area."
+  },
+  {
+   "id": "s1val-00535-02813895",
+   "role": "extended20",
+   "condition": "Z_B",
+   "generation": "1. Place the triangle in a coordinate system with the base $ BC $ on the x-axis and the vertex $ A $ at the top.  \n2. Assign coordinates to points $ B $, $ C $, and $ A $ based on the given side lengths.  \n3. Use the area formula for a triangle with base and height to find the height from $ A $ to the base $ BC $.  \n4. Apply the Law of Cosines to find the angle $ \\angle BAC $ using the known side lengths."
+  },
+  {
+   "id": "s1val-00491-740fb9ec",
+   "role": "extended20",
+   "condition": "Z_A",
+   "generation": "1. Assign coordinates to points $ A, B, C, D $ based on the given distances and angles.  \n2. Express vectors $ \\vec{AB}, \\vec{AC}, \\vec{AD} $ in terms of coordinates.  \n3. Use the dot product formula to find the cosine of the angle $ \\angle ACB $.  \n4. Calculate the magnitudes of the vectors $ \\vec{AB} $ and $ \\vec{AC} $.  \n5. Substitute the cosine value into the dot product formula to find the cosine of the angle $ \\angle ACB $."
+  },
+  {
+   "id": "s1val-00491-740fb9ec",
+   "role": "extended20",
+   "condition": "Z_B",
+   "generation": "1. Recognize that $ \\vec{OA} + \\vec{OB} + \\vec{OC} = \\vec{O} $, where $ O $ is the origin.  \n2. Express $ \\vec{OA} $, $ \\vec{OB} $, and $ \\vec{OC} $ in terms of position vectors of points $ A $, $ B $, and $ C $ relative to the origin.  \n3. Use the given condition $ \\vec{OA} \\cdot \\vec{OB} = \\vec{OC} \\cdot \\vec{OA} $ to relate the dot products of the position vectors.  \n4. Simplify the dot product expressions using vector identities and properties of dot products.  \n5. Substitute the simplified expressions into the given equation and solve for $ \\vec{OC} \\cdot \\vec{OA} $.  \n6. Use the result to find $ \\vec{OC} \\cdot \\vec{OA} $, then compute $ \\vec{OC} \\cdot \\vec{OA} + \\vec{OA} \\cdot \\vec{OC} $."
+  },
+  {
+   "id": "s1val-00653-bc3c49e7",
+   "role": "extended20",
+   "condition": "Z_A",
+   "generation": "1. Use the Pythagorean Theorem to express $ b $ in terms of $ a $ and $ c $, then substitute into the given equation.  \n2. Simplify the resulting equation to form a quadratic in $ a $.  \n3. Solve the quadratic equation to find possible integer values for $ a $.  \n4. For each valid $ a $, calculate $ b $ and $ c $ using the Pythagorean Theorem.  \n5. Check which of the given options match the calculated values of $ b $ and $ c $.  \n6. Identify the correct option based on the matches."
+  },
+  {
+   "id": "s1val-00653-bc3c49e7",
+   "role": "extended20",
+   "condition": "Z_B",
+   "generation": "1. Identify the three integers as the legs of a right triangle and the hypotenuse.  \n2. List all possible triplets of three consecutive natural numbers that sum to 20.  \n3. For each triplet, calculate the sum of the squares of the two smaller numbers and check if the result is a perfect square.  \n4. If a valid triplet is found, calculate the hypotenuse using the Pythagorean theorem.  \n5. Compare the hypotenuse with the given options to find the correct one.  \n6. Select the triplet that matches the given options."
+  },
+  {
+   "id": "s1val-00281-3cd770ea",
+   "role": "extended20",
+   "condition": "Z_A",
+   "generation": "1. Use the given condition $ a + b + c = 1 $ to express $ c $ in terms of $ a $ and $ b $, then substitute into the equation $ a^3 + b^3 + c^3 = 1 $.  \n2. Simplify the equation by substituting $ c = 1 - a - b $ and using the identity $ a^3 + b^3 = (a + b)^3 - 3ab(a + b) $.  \n3. Express the equation in terms of $ a + b $ and $ ab $, then use the constraint $ a + b = 1 - c $ to find the range of possible values for $ ab $.  \n4. Determine the range of possible values for $ c $ by analyzing the resulting expressions."
+  },
+  {
+   "id": "s1val-00281-3cd770ea",
+   "role": "extended20",
+   "condition": "Z_B",
+   "generation": "1. Use the given equation $ x^2 + y^2 = 1 $ to express $ y^2 $ in terms of $ x $.  \n2. Substitute $ y^2 = 1 - x^2 $ into the equation $ x^2 + y^2 = 1 $ to eliminate $ y^2 $.  \n3. Simplify the resulting equation to find $ x^2 $.  \n4. Determine the range of $ x $ by analyzing the simplified equation.  \n5. Substitute the range of $ x $ back into the expression for $ y^2 $ to find the corresponding range of $ y^2 $."
+  },
+  {
+   "id": "s1val-00439-e679617d",
+   "role": "extended20",
+   "condition": "Z_A",
+   "generation": "1. Assign coordinates to points $ A, B, C, D $ based on the given ratios.  \n2. Determine the coordinates of point $ P $ on $ AD $ such that $ \\frac{AP}{PD} = \\frac{1}{2} $.  \n3. Use the determinant formula for the area of a triangle with vertices $ (x_1, y_1), (x_2, y_2), (x_3, y_3) $ to compute the area of $ \\triangle PBC $.  \n4. Simplify the determinant expression to find the area of $ \\triangle PBC $."
+  },
+  {
+   "id": "s1val-00439-e679617d",
+   "role": "extended20",
+   "condition": "Z_B",
+   "generation": "1. Assign coordinates to points $ A, B, C, D $ based on the given proportions and place $ A $ at the origin.  \n2. Determine the coordinates of point $ E $, the intersection of $ AD $ and $ BC $.  \n3. Use the coordinates of points $ A, B, C, D, E $ to calculate the area of triangle $ ABC $ using the determinant method.  \n4. Use the coordinates of points $ A, B, C, E $ to calculate the area of triangle $ ABE $ using the determinant method."
+  },
+  {
+   "id": "s1val-00498-50ca6d71",
+   "role": "extended20",
+   "condition": "Z_A",
+   "generation": "1. Recognize the sequence as a geometric progression with first term 1 and common ratio 2.  \n2. Use the formula for the sum of the first $ n $ terms of a geometric series: $ S_n = \\frac{1 - 2^n}{1 - 2} = 2^n - 1 $.  \n3. Set $ S_n = 2013 $ and solve for $ n $, then check if $ n $ is an integer.  \n4. Identify all valid integer values of $ n $ that satisfy the equation.  \n5. For each valid $ n $, compute $ a_n $ using the formula $ a_n = \\frac{1}{2^n} $.  \n6. Collect all valid values of $ a_n $ and sum them."
+  },
+  {
+   "id": "s1val-00498-50ca6d71",
+   "role": "extended20",
+   "condition": "Z_B",
+   "generation": "1. Express the sequence $ a_n $ in terms of $ a_1 $ and $ a_2 $ using the recurrence relation.  \n2. Use the given $ a_1 = 1 $ and $ a_2 = 2 $ to compute the first few terms of the sequence.  \n3. For each term, compute the sum of the squares of the previous two terms.  \n4. Set up the equation $ a_n = \\frac{1}{2} \\left( a_{n-1}^2 + a_{n-2}^2 \\right) $ and solve for $ a_n $ in terms of $ a_1 $ and $ a_2 $.  \n5. Identify all integer values of $ a_n $ that satisfy the equation for some integer $ n \\geq 3 $.  \n6. List all such integer values of $ a_n $."
+  },
+  {
+   "id": "s1val-00313-ab57b867",
+   "role": "extended20",
+   "condition": "Z_A",
+   "generation": "1. Recognize the constraint $ x^3 + y^3 + z^3 = 1 $ and the target function $ f(x, y, z) = \\frac{1}{x} + \\frac{1}{y} + \\frac{1}{z} $.  \n2. Use the method of Lagrange multipliers to find critical points by setting up the system of equations $ \\nabla f = \\lambda \\nabla g $, where $ g(x, y, z) = x^3 + y^3 + z^3 - 1 $.  \n3. Simplify the Lagrange equations to find that the critical point occurs when $ x = y = z = 1 $.  \n4. Evaluate the function $ f(x, y, z) $ at the critical point $ (1, 1, 1) $.  \n5. Consider the behavior of the function when one variable approaches 0 and the other two adjust to maintain the constraint, and evaluate the limit as one variable approaches 0.  \n6. Conclude that the maximum value of $ f(x, y, z) $ is achieved at $ (1, 1, 1) $ and equals 3."
+  },
+  {
+   "id": "s1val-00313-ab57b867",
+   "role": "extended20",
+   "condition": "Z_B",
+   "generation": "1. Recognize that the function $ f(x, y) = \\frac{x^3 + y^3}{x^2 + y^2} $ is symmetric in $ x $ and $ y $, so assume $ x = y $ without loss of generality.  \n2. Substitute $ x = y $ into the function to simplify it to $ \\frac{2x^3}{2x^2} = x $, and find the minimum value of $ x $ under the constraint $ x^2 + y^2 \\leq 1 $.  \n3. Use Lagrange multipliers to find the critical point of the function $ f(x, y) $ under the constraint $ x^2 + y^2 = 1 $.  \n4. Evaluate the function at the critical point to determine the minimum value."
+  },
+  {
+   "id": "s1val-00471-2af60d16",
+   "role": "extended20",
+   "condition": "Z_A",
+   "generation": "1. Recognize that the circle is tangent to the x-axis at (0, 0) and has center (h, k).  \n2. Use the condition for tangency to the x-axis: the y-coordinate of the center must be equal to the radius.  \n3. Set up the equation $ k = r $ and substitute $ r = h^2 + k^2 $ to form a quadratic equation in $ h $.  \n4. Solve the quadratic equation to find the value of $ h $."
+  },
+  {
+   "id": "s1val-00471-2af60d16",
+   "role": "extended20",
+   "condition": "Z_B",
+   "generation": "1. Recognize that the circle is tangent to the x-axis and the line $ y = x $, so its center lies on the line $ y = x $ and its radius is equal to the y-coordinate of the center.  \n2. Use the distance from the center to the line $ y = x $ to set up an equation and solve for the radius.  \n3. Substitute the radius into the equation of the circle and solve the resulting quadratic equation.  \n4. Solve the quadratic equation to find the possible values of $ x $, then determine the corresponding $ y $ values."
+  },
+  {
+   "id": "s1val-00336-befc9279",
+   "role": "heldout8",
+   "condition": "Z_A",
+   "generation": "1. Use Lagrange multipliers to set up the system of equations from the constraint and the function to minimize.  \n2. Express the constraint in terms of $ x $, $ y $, and $ z $, and substitute $ z $ from the constraint into the function.  \n3. Simplify the function to $ f(x, y, z) = \\frac{x}{y} + \\frac{y}{z} + \\frac{z}{x} $ under the constraint $ x + y + z = 1 $.  \n4. Compute the partial derivatives of $ f $ with respect to $ x $, $ y $, and $ z $, and set them equal to zero.  \n5. Solve the system of equations obtained from the partial derivatives to find critical points.  \n6. Verify that the critical point satisfies the constraint and compute the value of the function at that point.  \n7. Conclude that the minimum value occurs at the critical point found in step 5."
+  },
+  {
+   "id": "s1val-00336-befc9279",
+   "role": "heldout8",
+   "condition": "Z_B",
+   "generation": "1. Express the given condition $ a^2 + b^2 + c^2 = 1 $ in terms of $ x, y, z $ where $ x = \\frac{1}{a}, y = \\frac{1}{b}, z = \\frac{1}{c} $.  \n2. Rewrite the target expression $ \\frac{1}{x^2} + \\frac{1}{y^2} + \\frac{1}{z^2} $ in terms of $ x, y, z $ using the reciprocal identities.  \n3. Use the AM-GM inequality to relate the sum of squares to the product of the reciprocals.  \n4. Assume symmetry by setting $ x = y = z $ to maximize the sum of reciprocals.  \n5. Verify that the symmetric case satisfies the given condition and compute the value of the target expression."
+  },
+  {
+   "id": "s1val-00574-2a030f37",
+   "role": "heldout8",
+   "condition": "Z_A",
+   "generation": "1. Express the equation as $ x^y + y^x = 2016 $ and factor it as $ (x^y - 1)(y^x - 1) = 2016 $.  \n2. List all factor pairs of 2016, both positive and negative, and consider only those where $ x^y - 1 $ and $ y^x - 1 $ are positive integers.  \n3. For each factor pair, solve for $ x $ and $ y $ such that $ x^y = a $ and $ y^x = b $, where $ ab = 2016 $.  \n4. Check if the resulting values of $ x $ and $ y $ are positive integers.  \n5. Discard any negative or non-integer solutions.  \n6. Collect all valid positive integer solutions $ (x, y) $ that satisfy the original equation.  \n7. Verify each solution by substituting back into the original equation to ensure it holds true."
+  },
+  {
+   "id": "s1val-00574-2a030f37",
+   "role": "heldout8",
+   "condition": "Z_B",
+   "generation": "1. Check small values of $ n $ to find possible solutions.  \n2. For each $ n $, compute $ 2^n + 1 $ and check if it is a prime number.  \n3. For each prime $ p $ found, check if $ p - 1 $ can be expressed as $ n \\cdot k $ for some integer $ k $.  \n4. Verify that $ p - 1 = n \\cdot k $ for some integer $ k $, and check if $ p - 1 $ is a prime number.  \n5. Conclude that the only solutions are when $ p - 1 $ is a prime number and $ p $ is a prime number."
+  },
+  {
+   "id": "s1val-00569-33b9f53f",
+   "role": "heldout8",
+   "condition": "Z_A",
+   "generation": "1. Substitute $ y = x - 1 $ to simplify the equation.  \n2. Rewrite the equation in terms of $ y $ and simplify the expression.  \n3. Solve the resulting equation for $ y $, then substitute back to find $ x $.  \n4. Determine the range of $ x $ by analyzing the expression for $ y $."
+  },
+  {
+   "id": "s1val-00569-33b9f53f",
+   "role": "heldout8",
+   "condition": "Z_B",
+   "generation": "1. Recognize the function as a rational function and identify the critical points by setting the derivative to zero.  \n2. Compute the first derivative of the function.  \n3. Set the first derivative equal to zero and solve for $ x $.  \n4. Evaluate the function at the critical points to determine the maximum value.  \n5. Confirm that the critical point found is indeed a maximum by checking the second derivative or analyzing the behavior of the function."
+  },
+  {
+   "id": "s1val-00507-b7055178",
+   "role": "heldout8",
+   "condition": "Z_A",
+   "generation": "1. Identify the region of integration by analyzing the inequality $ x^2 + y^2 \\leq 1 $, which represents the unit disk centered at the origin.  \n2. Determine the bounds for $ x $ and $ y $ by solving the inequality $ x^2 + y^2 \\leq 1 $ for $ x $ and $ y $.  \n3. Set up the double integral over the unit disk with the appropriate limits for $ x $ and $ y $.  \n4. Use polar coordinates to simplify the integral, converting the Cartesian limits to polar coordinates.  \n5. Express the integral in polar coordinates and compute the resulting integral."
+  },
+  {
+   "id": "s1val-00507-b7055178",
+   "role": "heldout8",
+   "condition": "Z_B",
+   "generation": "1. Recognize the joint probability density function (PDF) $ f_{X,Y}(x, y) $ as a product of two independent uniform PDFs on $[0,1]$.  \n2. Identify the region of integration where $ x < y $, which corresponds to the triangle in the unit square.  \n3. Set up the double integral over the region $ x < y $ with the given PDF.  \n4. Use the symmetry of the PDF to simplify the integral by considering the region $ y \\geq x $ and double the result.  \n5. Evaluate the integral by integrating with respect to $ y $, then with respect to $ x $.  \n6. Substitute the known values of the integrals to compute the final result."
+  },
+  {
+   "id": "s1val-00479-999dadd8",
+   "role": "heldout8",
+   "condition": "Z_A",
+   "generation": "1. Factor the cubic polynomial by testing rational roots using the Rational Root Theorem.  \n2. Identify the real root and factor the cubic polynomial using that root.  \n3. Recognize that the polynomial is a sum of three linear terms with the same real root.  \n4. Conclude that the sum of these three terms is zero, implying the polynomial is divisible by $(x - r)^3$.  \n5. Determine the sum of the roots using Vieta's formulas."
+  },
+  {
+   "id": "s1val-00479-999dadd8",
+   "role": "heldout8",
+   "condition": "Z_B",
+   "generation": "1. Use the sum of coefficients formula for a cubic polynomial to find the sum of the coefficients.  \n2. Use the sum of products of coefficients taken two at a time to find the sum of products of coefficients taken two at a time.  \n3. Use the sum of products of coefficients taken three at a time to find the product of the coefficients."
+  },
+  {
+   "id": "s1val-00309-9b08eaea",
+   "role": "heldout8",
+   "condition": "Z_A",
+   "generation": "1. Recognize that the problem requires finding the last three digits of $ n! $, where $ n $ is a power of 10.  \n2. Use the property that $ n! $ modulo 10 is determined by its last few non-zero digits.  \n3. Identify that $ n! $ will end in zeros for $ n \\geq 10 $, and the last three digits are determined by the remaining non-zero digits.  \n4. Note that for $ n \\geq 10 $, the product of the remaining non-zero digits will be congruent to 1 modulo 10.  \n5. Conclude that the last three digits of $ n! $ are 1, 0, and 0.  \n6. Verify that this matches the given answer choices."
+  },
+  {
+   "id": "s1val-00309-9b08eaea",
+   "role": "heldout8",
+   "condition": "Z_B",
+   "generation": "1. Recognize that the problem requires finding $ 2013^{2013} \\mod 1000 $, which is equivalent to finding the last three digits of $ 2013^{2013} $.  \n2. Use modular exponentiation to compute $ 2013^{2013} \\mod 1000 $.  \n3. Simplify $ 2013 \\mod 1000 $ to $ 13 $.  \n4. Apply the Chinese Remainder Theorem by computing $ 13^{2013} \\mod 8 $ and $ 13^{2013} \\mod 125 $.  \n5. Use Euler's theorem to find $ 13^{\\phi(8)} \\mod 8 $ and $ 13^{\\phi(125)} \\mod 125 $.  \n6. Combine the results using the Chinese Remainder Theorem to find the final value."
+  },
+  {
+   "id": "s1val-00305-696c8aa4",
+   "role": "heldout8",
+   "condition": "Z_A",
+   "generation": "1. Use the first equation to express $ x $ in terms of $ y $: $ x = \\frac{y}{2} $.  \n2. Substitute $ x = \\frac{y}{2} $ into the second equation to form a single equation in terms of $ y $.  \n3. Solve the resulting equation for $ y $, then substitute back to find $ x $.  \n4. Calculate the product $ x \\cdot y $ using the values of $ x $ and $ y $."
+  },
+  {
+   "id": "s1val-00305-696c8aa4",
+   "role": "heldout8",
+   "condition": "Z_B",
+   "generation": "1. Use the first equation to express $ x $ in terms of $ y $: $ x = \\frac{y}{2} $.  \n2. Substitute $ x = \\frac{y}{2} $ into the second equation to solve for $ y $.  \n3. Use the value of $ y $ to find $ x $, then compute $ x + y $."
+  },
+  {
+   "id": "s1val-00486-d1e0b543",
+   "role": "heldout8",
+   "condition": "Z_A",
+   "generation": "1. Use the identity for the sum of sines with angles in arithmetic progression.  \n2. Simplify the expression using the identity and compute the sum of the sines.  \n3. Apply the identity for the sum of cosines with angles in arithmetic progression.  \n4. Simplify the expression using the identity and compute the sum of the cosines.  \n5. Combine the results of the sums to find the value of the original expression."
+  },
+  {
+   "id": "s1val-00486-d1e0b543",
+   "role": "heldout8",
+   "condition": "Z_B",
+   "generation": "1. Recognize that the problem involves summing the real and imaginary parts of the complex numbers $ z_k = e^{i\\theta_k} $ for $ k = 1, 2, \\ldots, 2016 $.  \n2. Note that $ z_k $ are complex numbers on the unit circle with angles $ \\theta_k = \\frac{k\\pi}{2016} $.  \n3. Identify that the sum of these complex numbers forms a regular 2016-sided polygon inscribed in the unit circle.  \n4. Determine that the sum of all such complex numbers is zero due to symmetry.  \n5. Conclude that the sum of the real parts and imaginary parts of these complex numbers will each be zero."
+  }
+ ],
+ "val": [
+  {
+   "val_index": 0,
+   "condition": "correct",
+   "generation": "1. Identify the centers of the two circles and the distance between them.  \n2. Recognize that the common external tangent forms a right angle with the line connecting the centers.  \n3. Calculate the length of the common external tangent using the distance between centers and the radii.  \n4. Use the tangent length to determine the angle between the tangent and the line connecting the centers.",
+   "gold": "1. Identify the given values: radii of the circles $ r_1 = 1 $, $ r_2 = 2 $, $ r = 3 $, and the arc length $ A_1A_2 = 4 $.\n\n2. Calculate the central angle $ \\theta $ corresponding to the arc length $ A_1A_2 $ using the formula $ \\theta = \\frac{\\text{arc length}}{r} = \\frac{4}{3} $ radians.\n\n3. Use the Law of Cosines in triangle $ \\triangle O_1OO_2 $ to find the distance $ O_1O_2 $, where $ O_1O = r + r_1 = 4 $ and $ O_2O = r + r_2 = 5 $, with angle $ \\angle A_1OA_2 = \\theta $.\n\n4. Apply the formula for the length of the external common tangent between two circles: $ \\sqrt{O_1O_2^2 - (r_1 + r_2)^2} $."
+  },
+  {
+   "val_index": 0,
+   "condition": "shuffled",
+   "generation": "1. Identify the total number of possible outcomes when 3 players play a game: $3! = 6$.  \n2. Recognize that each outcome corresponds to a unique assignment of points to each player.  \n3. Determine that the number of different point assignments is equal to the number of permutations of the points.  \n4. Conclude that the number of different point assignments is always 6, regardless of the points given.  \n5. Note that the problem asks for the number of different point assignments, which is 6.",
+   "gold": "1. Identify the given values: radii of the circles $ r_1 = 1 $, $ r_2 = 2 $, $ r = 3 $, and the arc length $ A_1A_2 = 4 $.\n\n2. Calculate the central angle $ \\theta $ corresponding to the arc length $ A_1A_2 $ using the formula $ \\theta = \\frac{\\text{arc length}}{r} = \\frac{4}{3} $ radians.\n\n3. Use the Law of Cosines in triangle $ \\triangle O_1OO_2 $ to find the distance $ O_1O_2 $, where $ O_1O = r + r_1 = 4 $ and $ O_2O = r + r_2 = 5 $, with angle $ \\angle A_1OA_2 = \\theta $.\n\n4. Apply the formula for the length of the external common tangent between two circles: $ \\sqrt{O_1O_2^2 - (r_1 + r_2)^2} $."
+  },
+  {
+   "val_index": 0,
+   "condition": "mean",
+   "generation": "1. Define variables for the number of red, blue, and green balls: $ R $, $ B $, and $ G $.  \n2. Use the given condition $ R + B + G = 10 $ to express $ G $ in terms of $ R $ and $ B $.  \n3. Express the sum of the squares of the numbers on the red and blue balls as $ R^2 + B^2 $.  \n4. Express the sum of the squares of the numbers on the green and red balls as $ G^2 + R^2 $.  \n5. Express the sum of the squares of the numbers on the green and blue balls as $ G^2 + B^2 $.  \n6. Use the given condition $ R^2 + B^2 = 10 $ to find $ G^2 $.  \n7. Calculate the sum $ G^2 + R^2 $ using the result from step 6.",
+   "gold": "1. Identify the given values: radii of the circles $ r_1 = 1 $, $ r_2 = 2 $, $ r = 3 $, and the arc length $ A_1A_2 = 4 $.\n\n2. Calculate the central angle $ \\theta $ corresponding to the arc length $ A_1A_2 $ using the formula $ \\theta = \\frac{\\text{arc length}}{r} = \\frac{4}{3} $ radians.\n\n3. Use the Law of Cosines in triangle $ \\triangle O_1OO_2 $ to find the distance $ O_1O_2 $, where $ O_1O = r + r_1 = 4 $ and $ O_2O = r + r_2 = 5 $, with angle $ \\angle A_1OA_2 = \\theta $.\n\n4. Apply the formula for the length of the external common tangent between two circles: $ \\sqrt{O_1O_2^2 - (r_1 + r_2)^2} $."
+  },
+  {
+   "val_index": 0,
+   "condition": "zero",
+   "generation": "1. Identify the positions of the red, white, and blue balls on the board.  \n2. Calculate the total number of balls by summing the positions.  \n3. Determine the total number of possible arrangements using the multinomial coefficient.  \n4. Count the number of arrangements where the red ball is in the middle position.  \n5. Divide the count by the total number of arrangements to find the probability.",
+   "gold": "1. Identify the given values: radii of the circles $ r_1 = 1 $, $ r_2 = 2 $, $ r = 3 $, and the arc length $ A_1A_2 = 4 $.\n\n2. Calculate the central angle $ \\theta $ corresponding to the arc length $ A_1A_2 $ using the formula $ \\theta = \\frac{\\text{arc length}}{r} = \\frac{4}{3} $ radians.\n\n3. Use the Law of Cosines in triangle $ \\triangle O_1OO_2 $ to find the distance $ O_1O_2 $, where $ O_1O = r + r_1 = 4 $ and $ O_2O = r + r_2 = 5 $, with angle $ \\angle A_1OA_2 = \\theta $.\n\n4. Apply the formula for the length of the external common tangent between two circles: $ \\sqrt{O_1O_2^2 - (r_1 + r_2)^2} $."
+  },
+  {
+   "val_index": 1,
+   "condition": "correct",
+   "generation": "1. Identify the two rectangles: one is a 1\u00d72 rectangle, the other is a 2\u00d73 rectangle.  \n2. Recognize that the overlapping area is a rectangle formed by the intersection of the two rectangles.  \n3. Determine the dimensions of the overlapping rectangle by finding the minimum of the left and right sides and the maximum of the bottom and top sides.  \n4. Calculate the area of the overlapping rectangle using the formula for the area of a rectangle.  \n5. Use the given answer choices to match the calculated area with the options.",
+   "gold": "1. Identify the union of the two rectangles PQUV and WSTV, which forms the hexagon PQRTSV.  \n2. Use the formula for the area of the union of two overlapping rectangles: Area = Area of PQUV + Area of WSTV \u2013 Area of overlap.  \n3. Estimate or infer the dimensions of the rectangles and the overlapping region based on answer choices and typical problem structures.  \n4. Calculate the total area using the inferred dimensions and subtract the overlapping area to match the most plausible answer."
+  },
+  {
+   "val_index": 1,
+   "condition": "shuffled",
+   "generation": "1. Express the general term of the sum as $ a_n = \\frac{1}{n(n+1)} $  \n2. Decompose the general term using partial fractions: $ \\frac{1}{n(n+1)} = \\frac{1}{n} - \\frac{1}{n+1} $  \n3. Rewrite the sum as a telescoping series: $ \\sum_{n=1}^{2016} \\left( \\frac{1}{n} - \\frac{1}{n+1} \\right) $  \n4. Simplify the telescoping sum by canceling intermediate terms  \n5. Evaluate the resulting telescoping sum to find the final value  \n6. Recognize the result as a known telescoping series identity  \n7. Conclude the sum is $ 1 - \\frac{1}{2017} $",
+   "gold": "1. Identify the union of the two rectangles PQUV and WSTV, which forms the hexagon PQRTSV.  \n2. Use the formula for the area of the union of two overlapping rectangles: Area = Area of PQUV + Area of WSTV \u2013 Area of overlap.  \n3. Estimate or infer the dimensions of the rectangles and the overlapping region based on answer choices and typical problem structures.  \n4. Calculate the total area using the inferred dimensions and subtract the overlapping area to match the most plausible answer."
+  },
+  {
+   "val_index": 1,
+   "condition": "mean",
+   "generation": "1. Define variables for the number of red, blue, and green balls: $ R $, $ B $, and $ G $.  \n2. Use the given condition $ R + B + G = 10 $ to express $ G $ in terms of $ R $ and $ B $.  \n3. Express the sum of the squares of the numbers on the red and blue balls as $ R^2 + B^2 $.  \n4. Express the sum of the squares of the numbers on the green and red balls as $ G^2 + R^2 $.  \n5. Express the sum of the squares of the numbers on the green and blue balls as $ G^2 + B^2 $.  \n6. Use the given condition $ R^2 + B^2 = 10 $ to find $ G^2 $.  \n7. Calculate the sum $ G^2 + R^2 $ using the result from step 6.",
+   "gold": "1. Identify the union of the two rectangles PQUV and WSTV, which forms the hexagon PQRTSV.  \n2. Use the formula for the area of the union of two overlapping rectangles: Area = Area of PQUV + Area of WSTV \u2013 Area of overlap.  \n3. Estimate or infer the dimensions of the rectangles and the overlapping region based on answer choices and typical problem structures.  \n4. Calculate the total area using the inferred dimensions and subtract the overlapping area to match the most plausible answer."
+  },
+  {
+   "val_index": 1,
+   "condition": "zero",
+   "generation": "1. Identify the positions of the red, white, and blue balls on the board.  \n2. Calculate the total number of balls by summing the positions.  \n3. Determine the total number of possible arrangements using the multinomial coefficient.  \n4. Count the number of arrangements where the red ball is in the middle position.  \n5. Divide the count by the total number of arrangements to find the probability.",
+   "gold": "1. Identify the union of the two rectangles PQUV and WSTV, which forms the hexagon PQRTSV.  \n2. Use the formula for the area of the union of two overlapping rectangles: Area = Area of PQUV + Area of WSTV \u2013 Area of overlap.  \n3. Estimate or infer the dimensions of the rectangles and the overlapping region based on answer choices and typical problem structures.  \n4. Calculate the total area using the inferred dimensions and subtract the overlapping area to match the most plausible answer."
+  },
+  {
+   "val_index": 2,
+   "condition": "correct",
+   "generation": "1. Recognize that the function $ f(x) = \\sin x + \\cos x $ is periodic and bounded between -2 and 2.  \n2. Determine the range of $ x $ for which $ \\sin x + \\cos x > 0 $ by analyzing the inequality $ \\sin x + \\cos x > 0 $.  \n3. Solve the inequality $ \\sin x + \\cos x > 0 $ by rewriting it as $ \\sqrt{2} \\sin(x + \\frac{\\pi}{4}) > 0 $, leading to $ x + \\frac{\\pi}{4} \\in (0, \\pi) $.  \n4. Identify the corresponding interval for $ x $ that satisfies the inequality.  \n5. Check which of the given intervals (A, B, C, D) lie entirely within the solution set found in step 4.",
+   "gold": "1. Recognize the range of the cosine function and apply it to the left-hand side of the inequality.  \n2. Analyze the right-hand side to determine its minimum value and compare it with the maximum value of the left-hand side.  \n3. Set up the equality condition since the inequality can only hold if both sides are equal.  \n4. Substitute $ x = 0 $ into the original inequality and simplify using the even property of cosine.  \n5. Solve the resulting inequality to find the values of $ y $ that satisfy the condition."
+  },
+  {
+   "val_index": 2,
+   "condition": "shuffled",
+   "generation": "1. Check divisibility by 2: For $ n $ to be divisible by 2, $ n \\equiv 0 \\pmod{2} $.  \n2. Check divisibility by 3: For $ n $ to be divisible by 3, $ n \\equiv 0 \\pmod{3} $.  \n3. Check divisibility by 4: For $ n $ to be divisible by 4, $ n \\equiv 0 \\pmod{4} $.  \n4. Check divisibility by 5: For $ n $ to be divisible by 5, $ n \\equiv 0 \\pmod{5} $.  \n5. Combine the congruences: Find the least common multiple (LCM) of 2, 3, 4, and 5, which is 60.  \n6. Determine the general form of $ n $: Express $ n $ as $ 60k $ for some integer $ k $.  \n7. Test small values of $ k $: For $ k = 1, 2, 3, 4, 5 $, compute $ n $ and check divisibility by 2, 3, 4, and 5.  \n8. Identify the pattern: Observe that only $ k = 1 $ satisfies all divisibility conditions.",
+   "gold": "1. Recognize the range of the cosine function and apply it to the left-hand side of the inequality.  \n2. Analyze the right-hand side to determine its minimum value and compare it with the maximum value of the left-hand side.  \n3. Set up the equality condition since the inequality can only hold if both sides are equal.  \n4. Substitute $ x = 0 $ into the original inequality and simplify using the even property of cosine.  \n5. Solve the resulting inequality to find the values of $ y $ that satisfy the condition."
+  },
+  {
+   "val_index": 2,
+   "condition": "mean",
+   "generation": "1. Define variables for the number of red, blue, and green balls: $ R $, $ B $, and $ G $.  \n2. Use the given condition $ R + B + G = 10 $ to express $ G $ in terms of $ R $ and $ B $.  \n3. Express the sum of the squares of the numbers on the red and blue balls as $ R^2 + B^2 $.  \n4. Express the sum of the squares of the numbers on the green and red balls as $ G^2 + R^2 $.  \n5. Express the sum of the squares of the numbers on the green and blue balls as $ G^2 + B^2 $.  \n6. Use the given condition $ R^2 + B^2 = 10 $ to find $ G^2 $.  \n7. Calculate the sum $ G^2 + R^2 $ using the result from step 6.",
+   "gold": "1. Recognize the range of the cosine function and apply it to the left-hand side of the inequality.  \n2. Analyze the right-hand side to determine its minimum value and compare it with the maximum value of the left-hand side.  \n3. Set up the equality condition since the inequality can only hold if both sides are equal.  \n4. Substitute $ x = 0 $ into the original inequality and simplify using the even property of cosine.  \n5. Solve the resulting inequality to find the values of $ y $ that satisfy the condition."
+  },
+  {
+   "val_index": 2,
+   "condition": "zero",
+   "generation": "1. Identify the positions of the red, white, and blue balls on the board.  \n2. Calculate the total number of balls by summing the positions.  \n3. Determine the total number of possible arrangements using the multinomial coefficient.  \n4. Count the number of arrangements where the red ball is in the middle position.  \n5. Divide the count by the total number of arrangements to find the probability.",
+   "gold": "1. Recognize the range of the cosine function and apply it to the left-hand side of the inequality.  \n2. Analyze the right-hand side to determine its minimum value and compare it with the maximum value of the left-hand side.  \n3. Set up the equality condition since the inequality can only hold if both sides are equal.  \n4. Substitute $ x = 0 $ into the original inequality and simplify using the even property of cosine.  \n5. Solve the resulting inequality to find the values of $ y $ that satisfy the condition."
+  },
+  {
+   "val_index": 3,
+   "condition": "correct",
+   "generation": "1. Recognize that the polynomial $ P(x) $ is a monic polynomial of degree 2011 with roots $ a_i $, so $ P(x) = x^{2011} + c_1 x^{2010} + \\cdots + c_{2011} $.  \n2. Use the given condition $ P(1) = 1 $ to find $ c_{2011} = 0 $.  \n3. Note that $ P(x) $ is a palindromic polynomial, meaning $ P(x) = x^{2011} P(1/x) $.  \n4. Use the fact that $ P(1/x) = 1 - x^{2011} $ to express $ P(x) $ as $ x^{2011}(1 - x^{2011}) $.  \n5. Compute $ P(2) $ using the expression $ P(x) = x^{2011}(1 - x^{2011}) $.  \n6. Simplify $ P(2) $ to find the value of the sum $ \\sum_{i=1}^{2011} a_i^2 $.",
+   "gold": "1. Recognize that all roots lie on the unit circle, so for each root $ r $, $ \\frac{1}{r} = \\overline{r} $.  \n2. Use the given condition $ -a_n = a_0 $ to relate the leading and constant coefficients.  \n3. Express the polynomial $ f(x) $ in terms of its roots: $ f(x) = a_0 (x - r_1)(x - r_2)\\cdots(x - r_n) $.  \n4. Evaluate $ f(1) = a_0 + a_1 + \\cdots + a_n $, which is the sum of the coefficients.  \n5. Use the property of roots on the unit circle to show $ f(1) $ is real and analyze the product $ \\prod_{k=1}^{n} (1 - r_k) $.  \n6. Consider specific examples with small $ n $ to test and confirm that the sum $ a_0 + a_1 + \\cdots + a_n = 0 $.  \n7. Conclude that the sum $ a_0 + a_1 + \\cdots + a_n $ is zero based on the properties of the polynomial and its roots."
+  },
+  {
+   "val_index": 3,
+   "condition": "shuffled",
+   "generation": "1. Identify the roots of the polynomial $ x^3 + 2x^2 - 5x + 6 $ by testing small integers.  \n2. Determine the roots as $ x = 1 $, $ x = 2 $, and $ x = 3 $.  \n3. Use the fact that the polynomial is divisible by $ (x - 1)(x - 2)(x - 3) $ to express it as $ (x - 1)(x - 2)(x - 3)(x - a) $.  \n4. Expand the expression $ (x - 1)(x - 2)(x - 3) $ to get a quadratic in $ x $.  \n5. Multiply the resulting quadratic by $ (x - a) $ to form the full polynomial.  \n6. Match the given polynomial $ x^3 + 2x^2 - 5x + 6 $ with the expanded form.  \n7. Solve for $ a $ by equating coefficients.  \n8. Write the polynomial in the form $ x^3 + 2x^2 - 5x + 6 = (x - 1)(x - 2)(x - 3)(x - a) $.",
+   "gold": "1. Recognize that all roots lie on the unit circle, so for each root $ r $, $ \\frac{1}{r} = \\overline{r} $.  \n2. Use the given condition $ -a_n = a_0 $ to relate the leading and constant coefficients.  \n3. Express the polynomial $ f(x) $ in terms of its roots: $ f(x) = a_0 (x - r_1)(x - r_2)\\cdots(x - r_n) $.  \n4. Evaluate $ f(1) = a_0 + a_1 + \\cdots + a_n $, which is the sum of the coefficients.  \n5. Use the property of roots on the unit circle to show $ f(1) $ is real and analyze the product $ \\prod_{k=1}^{n} (1 - r_k) $.  \n6. Consider specific examples with small $ n $ to test and confirm that the sum $ a_0 + a_1 + \\cdots + a_n = 0 $.  \n7. Conclude that the sum $ a_0 + a_1 + \\cdots + a_n $ is zero based on the properties of the polynomial and its roots."
+  },
+  {
+   "val_index": 3,
+   "condition": "mean",
+   "generation": "1. Define variables for the number of red, blue, and green balls: $ R $, $ B $, and $ G $.  \n2. Use the given condition $ R + B + G = 10 $ to express $ G $ in terms of $ R $ and $ B $.  \n3. Express the sum of the squares of the numbers on the red and blue balls as $ R^2 + B^2 $.  \n4. Express the sum of the squares of the numbers on the green and red balls as $ G^2 + R^2 $.  \n5. Express the sum of the squares of the numbers on the green and blue balls as $ G^2 + B^2 $.  \n6. Use the given condition $ R^2 + B^2 = 10 $ to find $ G^2 $.  \n7. Calculate the sum $ G^2 + R^2 $ using the result from step 6.",
+   "gold": "1. Recognize that all roots lie on the unit circle, so for each root $ r $, $ \\frac{1}{r} = \\overline{r} $.  \n2. Use the given condition $ -a_n = a_0 $ to relate the leading and constant coefficients.  \n3. Express the polynomial $ f(x) $ in terms of its roots: $ f(x) = a_0 (x - r_1)(x - r_2)\\cdots(x - r_n) $.  \n4. Evaluate $ f(1) = a_0 + a_1 + \\cdots + a_n $, which is the sum of the coefficients.  \n5. Use the property of roots on the unit circle to show $ f(1) $ is real and analyze the product $ \\prod_{k=1}^{n} (1 - r_k) $.  \n6. Consider specific examples with small $ n $ to test and confirm that the sum $ a_0 + a_1 + \\cdots + a_n = 0 $.  \n7. Conclude that the sum $ a_0 + a_1 + \\cdots + a_n $ is zero based on the properties of the polynomial and its roots."
+  },
+  {
+   "val_index": 3,
+   "condition": "zero",
+   "generation": "1. Identify the positions of the red, white, and blue balls on the board.  \n2. Calculate the total number of balls by summing the positions.  \n3. Determine the total number of possible arrangements using the multinomial coefficient.  \n4. Count the number of arrangements where the red ball is in the middle position.  \n5. Divide the count by the total number of arrangements to find the probability.",
+   "gold": "1. Recognize that all roots lie on the unit circle, so for each root $ r $, $ \\frac{1}{r} = \\overline{r} $.  \n2. Use the given condition $ -a_n = a_0 $ to relate the leading and constant coefficients.  \n3. Express the polynomial $ f(x) $ in terms of its roots: $ f(x) = a_0 (x - r_1)(x - r_2)\\cdots(x - r_n) $.  \n4. Evaluate $ f(1) = a_0 + a_1 + \\cdots + a_n $, which is the sum of the coefficients.  \n5. Use the property of roots on the unit circle to show $ f(1) $ is real and analyze the product $ \\prod_{k=1}^{n} (1 - r_k) $.  \n6. Consider specific examples with small $ n $ to test and confirm that the sum $ a_0 + a_1 + \\cdots + a_n = 0 $.  \n7. Conclude that the sum $ a_0 + a_1 + \\cdots + a_n $ is zero based on the properties of the polynomial and its roots."
+  },
+  {
+   "val_index": 4,
+   "condition": "correct",
+   "generation": "1. Express the general term of the sequence in terms of $ n $ and $ k $, then compute the ratio $ \\frac{a_n}{a_{n-1}} $.  \n2. Simplify the ratio to find the expression for $ \\frac{a_n}{a_{n-1}} $ in terms of $ k $.  \n3. Analyze the behavior of the ratio as $ n $ increases by considering two cases: when $ k < 1 $ and when $ k \\geq 1 $.  \n4. Determine the value of $ k $ for which the sequence is strictly decreasing, which occurs when $ k < 1 $.  \n5. Conclude that the maximum value of $ k $ for which the sequence is strictly decreasing is $ k = 1 $.",
+   "gold": "1. Compute the ratio of consecutive terms $\\frac{a_{n+1}}{a_n}$ using the formula for $a_n = \\frac{100^n}{n!}$.  \n2. Simplify the ratio to $\\frac{100}{n+1}$ and determine when it is greater than, equal to, or less than 1.  \n3. Identify the transition point where the sequence changes from increasing to decreasing based on the ratio.  \n4. Conclude that the sequence increases up to a certain point and then becomes decreasing, confirming the existence of a term after which the sequence is decreasing."
+  },
+  {
+   "val_index": 4,
+   "condition": "shuffled",
+   "generation": "1. Recognize that the sum of the cubes of the roots of the cyclotomic polynomial $ \\Phi_3(x) $ is zero.  \n2. Use the identity for the sum of cubes of roots of a polynomial to find the value of $ S $.  \n3. Express the sum $ S $ in terms of the roots of $ \\Phi_3(x) $, which are the primitive 3rd roots of unity.  \n4. Use the known result that the sum of the cubes of the primitive 3rd roots of unity is zero.  \n5. Conclude that the sum $ S $ is zero.",
+   "gold": "1. Compute the ratio of consecutive terms $\\frac{a_{n+1}}{a_n}$ using the formula for $a_n = \\frac{100^n}{n!}$.  \n2. Simplify the ratio to $\\frac{100}{n+1}$ and determine when it is greater than, equal to, or less than 1.  \n3. Identify the transition point where the sequence changes from increasing to decreasing based on the ratio.  \n4. Conclude that the sequence increases up to a certain point and then becomes decreasing, confirming the existence of a term after which the sequence is decreasing."
+  },
+  {
+   "val_index": 4,
+   "condition": "mean",
+   "generation": "1. Define variables for the number of red, blue, and green balls: $ R $, $ B $, and $ G $.  \n2. Use the given condition $ R + B + G = 10 $ to express $ G $ in terms of $ R $ and $ B $.  \n3. Express the sum of the squares of the numbers on the red and blue balls as $ R^2 + B^2 $.  \n4. Express the sum of the squares of the numbers on the green and red balls as $ G^2 + R^2 $.  \n5. Express the sum of the squares of the numbers on the green and blue balls as $ G^2 + B^2 $.  \n6. Use the given condition $ R^2 + B^2 = 10 $ to find $ G^2 $.  \n7. Calculate the sum $ G^2 + R^2 $ using the result from step 6.",
+   "gold": "1. Compute the ratio of consecutive terms $\\frac{a_{n+1}}{a_n}$ using the formula for $a_n = \\frac{100^n}{n!}$.  \n2. Simplify the ratio to $\\frac{100}{n+1}$ and determine when it is greater than, equal to, or less than 1.  \n3. Identify the transition point where the sequence changes from increasing to decreasing based on the ratio.  \n4. Conclude that the sequence increases up to a certain point and then becomes decreasing, confirming the existence of a term after which the sequence is decreasing."
+  },
+  {
+   "val_index": 4,
+   "condition": "zero",
+   "generation": "1. Identify the positions of the red, white, and blue balls on the board.  \n2. Calculate the total number of balls by summing the positions.  \n3. Determine the total number of possible arrangements using the multinomial coefficient.  \n4. Count the number of arrangements where the red ball is in the middle position.  \n5. Divide the count by the total number of arrangements to find the probability.",
+   "gold": "1. Compute the ratio of consecutive terms $\\frac{a_{n+1}}{a_n}$ using the formula for $a_n = \\frac{100^n}{n!}$.  \n2. Simplify the ratio to $\\frac{100}{n+1}$ and determine when it is greater than, equal to, or less than 1.  \n3. Identify the transition point where the sequence changes from increasing to decreasing based on the ratio.  \n4. Conclude that the sequence increases up to a certain point and then becomes decreasing, confirming the existence of a term after which the sequence is decreasing."
+  },
+  {
+   "val_index": 5,
+   "condition": "correct",
+   "generation": "1. Recognize that the problem involves three triangles sharing a common vertex and their areas are given as $ S_1 = 1 $, $ S_2 = 2 $, and $ S_3 = 3 $.  \n2. Use the formula for the area of a triangle in terms of its inradius and semiperimeter: $ S = r \\cdot s $, where $ r $ is the inradius and $ s $ is the semiperimeter.  \n3. Express the inradii $ r_1 $, $ r_2 $, and $ r_3 $ in terms of the semiperimeters $ s_1 $, $ s_2 $, and $ s_3 $: $ r_1 = \\frac{S_1}{s_1} $, $ r_2 = \\frac{S_2}{s_2} $, $ r_3 = \\frac{S_3}{s_3} $.  \n4. Use the given semiperimeters $ s_1 = 1 $, $ s_2 = 2 $, and $ s_3 = 3 $ to compute the inradii.  \n5. Compare the inradii to determine the order of the triangles based on their inradii.",
+   "gold": "1. Recognize that the problem involves comparing the products of side lengths $ OA \\cdot OB $, $ OB \\cdot OC $, and $ OC \\cdot OA $, where $ O $ is the circumcenter of $ \\triangle ABC $, and the side lengths satisfy $ BC > CA > AB $.  \n2. Use the Law of Sines to relate the side lengths to the angles, noting that $ BC > CA > AB $ implies $ \\sin A > \\sin B > \\sin C $.  \n3. Use the fact that the side lengths can be expressed in terms of the circumradius $ R $ as $ a = 2R \\sin A $, $ b = 2R \\sin B $, and $ c = 2R \\sin C $.  \n4. Express the required products $ OA \\cdot OB $, $ OB \\cdot OC $, and $ OC \\cdot OA $ in terms of the side lengths $ a, b, c $.  \n5. Compare the products $ ab $, $ bc $, and $ ac $ based on the given ordering $ a > b > c $, and determine the correct inequality."
+  },
+  {
+   "val_index": 5,
+   "condition": "shuffled",
+   "generation": "1. Express the sum of the first $ n $ terms of the arithmetic sequence in terms of $ n $ and the first term $ a $.  \n2. Use the given condition $ S_{2016} = 2017 $ to form an equation relating $ a $ and $ n $.  \n3. Express the sum of the first $ n $ terms of the geometric sequence in terms of $ n $ and the first term $ a $.  \n4. Use the given condition $ S_{2016} = 2017 $ to form an equation relating $ a $ and $ n $.  \n5. Solve the system of equations to find the value of $ n $ and $ a $.  \n6. Use the value of $ n $ to determine the value of $ S_{2017} $ by substituting into the sum formula of the arithmetic sequence.  \n7. Identify the maximum value of $ S_{2017} $ by considering the behavior of the sequence for large $ n $.",
+   "gold": "1. Recognize that the problem involves comparing the products of side lengths $ OA \\cdot OB $, $ OB \\cdot OC $, and $ OC \\cdot OA $, where $ O $ is the circumcenter of $ \\triangle ABC $, and the side lengths satisfy $ BC > CA > AB $.  \n2. Use the Law of Sines to relate the side lengths to the angles, noting that $ BC > CA > AB $ implies $ \\sin A > \\sin B > \\sin C $.  \n3. Use the fact that the side lengths can be expressed in terms of the circumradius $ R $ as $ a = 2R \\sin A $, $ b = 2R \\sin B $, and $ c = 2R \\sin C $.  \n4. Express the required products $ OA \\cdot OB $, $ OB \\cdot OC $, and $ OC \\cdot OA $ in terms of the side lengths $ a, b, c $.  \n5. Compare the products $ ab $, $ bc $, and $ ac $ based on the given ordering $ a > b > c $, and determine the correct inequality."
+  },
+  {
+   "val_index": 5,
+   "condition": "mean",
+   "generation": "1. Define variables for the number of red, blue, and green balls: $ R $, $ B $, and $ G $.  \n2. Use the given condition $ R + B + G = 10 $ to express $ G $ in terms of $ R $ and $ B $.  \n3. Express the sum of the squares of the numbers on the red and blue balls as $ R^2 + B^2 $.  \n4. Express the sum of the squares of the numbers on the green and red balls as $ G^2 + R^2 $.  \n5. Express the sum of the squares of the numbers on the green and blue balls as $ G^2 + B^2 $.  \n6. Use the given condition $ R^2 + B^2 = 10 $ to find $ G^2 $.  \n7. Calculate the sum $ G^2 + R^2 $ using the result from step 6.",
+   "gold": "1. Recognize that the problem involves comparing the products of side lengths $ OA \\cdot OB $, $ OB \\cdot OC $, and $ OC \\cdot OA $, where $ O $ is the circumcenter of $ \\triangle ABC $, and the side lengths satisfy $ BC > CA > AB $.  \n2. Use the Law of Sines to relate the side lengths to the angles, noting that $ BC > CA > AB $ implies $ \\sin A > \\sin B > \\sin C $.  \n3. Use the fact that the side lengths can be expressed in terms of the circumradius $ R $ as $ a = 2R \\sin A $, $ b = 2R \\sin B $, and $ c = 2R \\sin C $.  \n4. Express the required products $ OA \\cdot OB $, $ OB \\cdot OC $, and $ OC \\cdot OA $ in terms of the side lengths $ a, b, c $.  \n5. Compare the products $ ab $, $ bc $, and $ ac $ based on the given ordering $ a > b > c $, and determine the correct inequality."
+  },
+  {
+   "val_index": 5,
+   "condition": "zero",
+   "generation": "1. Identify the positions of the red, white, and blue balls on the board.  \n2. Calculate the total number of balls by summing the positions.  \n3. Determine the total number of possible arrangements using the multinomial coefficient.  \n4. Count the number of arrangements where the red ball is in the middle position.  \n5. Divide the count by the total number of arrangements to find the probability.",
+   "gold": "1. Recognize that the problem involves comparing the products of side lengths $ OA \\cdot OB $, $ OB \\cdot OC $, and $ OC \\cdot OA $, where $ O $ is the circumcenter of $ \\triangle ABC $, and the side lengths satisfy $ BC > CA > AB $.  \n2. Use the Law of Sines to relate the side lengths to the angles, noting that $ BC > CA > AB $ implies $ \\sin A > \\sin B > \\sin C $.  \n3. Use the fact that the side lengths can be expressed in terms of the circumradius $ R $ as $ a = 2R \\sin A $, $ b = 2R \\sin B $, and $ c = 2R \\sin C $.  \n4. Express the required products $ OA \\cdot OB $, $ OB \\cdot OC $, and $ OC \\cdot OA $ in terms of the side lengths $ a, b, c $.  \n5. Compare the products $ ab $, $ bc $, and $ ac $ based on the given ordering $ a > b > c $, and determine the correct inequality."
+  },
+  {
+   "val_index": 6,
+   "condition": "correct",
+   "generation": "1. Define variables: Let $ x $ be the number of children in the family, and let $ y $ be the number of women in the family.  \n2. Express the total number of children as $ x + y $.  \n3. Use the given information that 10% of the children are women, so $ 0.1(x + y) = y $.  \n4. Solve the equation to find $ x $ in terms of $ y $.  \n5. Use the fact that 10% of the women are children to set up an equation for the number of children in the family.  \n6. Solve the equation to find the number of children in the family.",
+   "gold": "1. Define variables: Let F be the total number of family members, and C be the number of children. Since there are 2 adults (father and mother), F = 2 + C.  \n2. Use the average age of the entire family to express the total age T = 18F.  \n3. Use the average age without the father to express the total age of the remaining family members as T' = 14(F - 1).  \n4. Relate T' to T by subtracting the father\u2019s age: T' = T - 38.  \n5. Set up the equation 18F - 38 = 14(F - 1) and solve for F.  \n6. Substitute F into F = 2 + C to find the number of children C."
+  },
+  {
+   "val_index": 6,
+   "condition": "shuffled",
+   "generation": "1. Recognize that the problem involves three triangles sharing a common vertex and their areas are given as $ S_1 = 1 $, $ S_2 = 2 $, and $ S_3 = 3 $.  \n2. Use the formula for the area of a triangle in terms of its inradius and semiperimeter: $ S = r \\cdot s $, where $ r $ is the inradius and $ s $ is the semiperimeter.  \n3. Express the inradii $ r_1 $, $ r_2 $, and $ r_3 $ in terms of the semiperimeters $ s_1 $, $ s_2 $, and $ s_3 $: $ r_1 = \\frac{S_1}{s_1} $, $ r_2 = \\frac{S_2}{s_2} $, $ r_3 = \\frac{S_3}{s_3} $.  \n4. Use the given semiperimeters $ s_1 = 1 $, $ s_2 = 2 $, and $ s_3 = 3 $ to compute the inradii.  \n5. Compare the inradii to determine the order of the triangles based on their inradii.",
+   "gold": "1. Define variables: Let F be the total number of family members, and C be the number of children. Since there are 2 adults (father and mother), F = 2 + C.  \n2. Use the average age of the entire family to express the total age T = 18F.  \n3. Use the average age without the father to express the total age of the remaining family members as T' = 14(F - 1).  \n4. Relate T' to T by subtracting the father\u2019s age: T' = T - 38.  \n5. Set up the equation 18F - 38 = 14(F - 1) and solve for F.  \n6. Substitute F into F = 2 + C to find the number of children C."
+  },
+  {
+   "val_index": 6,
+   "condition": "mean",
+   "generation": "1. Define variables for the number of red, blue, and green balls: $ R $, $ B $, and $ G $.  \n2. Use the given condition $ R + B + G = 10 $ to express $ G $ in terms of $ R $ and $ B $.  \n3. Express the sum of the squares of the numbers on the red and blue balls as $ R^2 + B^2 $.  \n4. Express the sum of the squares of the numbers on the green and red balls as $ G^2 + R^2 $.  \n5. Express the sum of the squares of the numbers on the green and blue balls as $ G^2 + B^2 $.  \n6. Use the given condition $ R^2 + B^2 = 10 $ to find $ G^2 $.  \n7. Calculate the sum $ G^2 + R^2 $ using the result from step 6.",
+   "gold": "1. Define variables: Let F be the total number of family members, and C be the number of children. Since there are 2 adults (father and mother), F = 2 + C.  \n2. Use the average age of the entire family to express the total age T = 18F.  \n3. Use the average age without the father to express the total age of the remaining family members as T' = 14(F - 1).  \n4. Relate T' to T by subtracting the father\u2019s age: T' = T - 38.  \n5. Set up the equation 18F - 38 = 14(F - 1) and solve for F.  \n6. Substitute F into F = 2 + C to find the number of children C."
+  },
+  {
+   "val_index": 6,
+   "condition": "zero",
+   "generation": "1. Identify the positions of the red, white, and blue balls on the board.  \n2. Calculate the total number of balls by summing the positions.  \n3. Determine the total number of possible arrangements using the multinomial coefficient.  \n4. Count the number of arrangements where the red ball is in the middle position.  \n5. Divide the count by the total number of arrangements to find the probability.",
+   "gold": "1. Define variables: Let F be the total number of family members, and C be the number of children. Since there are 2 adults (father and mother), F = 2 + C.  \n2. Use the average age of the entire family to express the total age T = 18F.  \n3. Use the average age without the father to express the total age of the remaining family members as T' = 14(F - 1).  \n4. Relate T' to T by subtracting the father\u2019s age: T' = T - 38.  \n5. Set up the equation 18F - 38 = 14(F - 1) and solve for F.  \n6. Substitute F into F = 2 + C to find the number of children C."
+  },
+  {
+   "val_index": 7,
+   "condition": "correct",
+   "generation": "1. Identify the number of hours for each trip: 1, 2, 3, 4, 5, 6, 7, 8, 9.  \n2. Find the least common multiple (LCM) of these numbers by breaking them down into their prime factors.  \n3. Determine the LCM by taking the highest power of each prime factor present.  \n4. The LCM is the number of hours required for all trips to return to the starting point at the same time.",
+   "gold": "1. Identify the intervals for each maintenance task: 7500 km, 15000 km, 25000 km, and 30000 km.  \n2. Find the least common multiple (LCM) of these intervals.  \n3. Perform prime factorization on each interval.  \n4. Take the highest power of each prime factor from the factorizations.  \n5. Multiply these highest powers together to calculate the LCM."
+  },
+  {
+   "val_index": 7,
+   "condition": "shuffled",
+   "generation": "1. Place the square $ABCD$ on the coordinate plane with $A = (0, 0)$, $B = (1, 0)$, $C = (1, 1)$, and $D = (0, 1)$.  \n2. Let $P = (x, y)$ be a point on the square, and define $Q = (x + 1, y)$, $R = (x, y + 1)$, and $S = (x - 1, y)$.  \n3. Calculate the vectors $\\vec{AP}$, $\\vec{AR}$, $\\vec{AS}$, and $\\vec{AS} + \\vec{AP} + \\vec{AR} + \\vec{AS}$.  \n4. Use the dot product to find the angle $\\angle APQ$ by comparing the cosine of the angle between $\\vec{AP}$ and $\\vec{AQ}$.  \n5. Use the dot product to find the angle $\\angle APD$ by comparing the cosine of the angle between $\\vec{AP}$ and $\\vec{AD}$.  \n6. Use the dot product to find the angle $\\angle APQ$ by comparing the cosine of the angle between $\\vec{AP}$ and $\\vec{AR}$.  \n7. Use the dot product to find the angle $\\angle APD$ by comparing the cosine of the angle between $\\vec{AP}$ and $\\vec{AS}$.",
+   "gold": "1. Identify the intervals for each maintenance task: 7500 km, 15000 km, 25000 km, and 30000 km.  \n2. Find the least common multiple (LCM) of these intervals.  \n3. Perform prime factorization on each interval.  \n4. Take the highest power of each prime factor from the factorizations.  \n5. Multiply these highest powers together to calculate the LCM."
+  },
+  {
+   "val_index": 7,
+   "condition": "mean",
+   "generation": "1. Define variables for the number of red, blue, and green balls: $ R $, $ B $, and $ G $.  \n2. Use the given condition $ R + B + G = 10 $ to express $ G $ in terms of $ R $ and $ B $.  \n3. Express the sum of the squares of the numbers on the red and blue balls as $ R^2 + B^2 $.  \n4. Express the sum of the squares of the numbers on the green and red balls as $ G^2 + R^2 $.  \n5. Express the sum of the squares of the numbers on the green and blue balls as $ G^2 + B^2 $.  \n6. Use the given condition $ R^2 + B^2 = 10 $ to find $ G^2 $.  \n7. Calculate the sum $ G^2 + R^2 $ using the result from step 6.",
+   "gold": "1. Identify the intervals for each maintenance task: 7500 km, 15000 km, 25000 km, and 30000 km.  \n2. Find the least common multiple (LCM) of these intervals.  \n3. Perform prime factorization on each interval.  \n4. Take the highest power of each prime factor from the factorizations.  \n5. Multiply these highest powers together to calculate the LCM."
+  },
+  {
+   "val_index": 7,
+   "condition": "zero",
+   "generation": "1. Identify the positions of the red, white, and blue balls on the board.  \n2. Calculate the total number of balls by summing the positions.  \n3. Determine the total number of possible arrangements using the multinomial coefficient.  \n4. Count the number of arrangements where the red ball is in the middle position.  \n5. Divide the count by the total number of arrangements to find the probability.",
+   "gold": "1. Identify the intervals for each maintenance task: 7500 km, 15000 km, 25000 km, and 30000 km.  \n2. Find the least common multiple (LCM) of these intervals.  \n3. Perform prime factorization on each interval.  \n4. Take the highest power of each prime factor from the factorizations.  \n5. Multiply these highest powers together to calculate the LCM."
+  },
+  {
+   "val_index": 8,
+   "condition": "correct",
+   "generation": "1. Recognize that the problem requires determining the values of three numbers (A, B, C) based on the sum of their pairwise differences.  \n2. Note that the sum of pairwise differences is invariant under permutation of the numbers.  \n3. Use the given sums: 12, 13, and 14 to deduce the possible values of A, B, and C.  \n4. Determine that the smallest number must be 1, as it appears in all three sums.  \n5. Use the remaining sums to find the values of the other two numbers.",
+   "gold": "1. Recognize that the hidden triple $(x, y, z)$ can be uniquely determined by knowing the pairwise sums $S_1 = x + y$, $S_2 = y + z$, and $S_3 = z + x$.  \n2. Understand that each move provides the sum of absolute differences between the actual pairwise sums and the pairwise sums of the guessed triple.  \n3. Realize that determining $S_1, S_2, S_3$ is sufficient to find $x, y, z$ using the formulas:  \n   $$\n   x = \\frac{S_1 + S_3 - S_2}{2}, \\quad y = \\frac{S_1 + S_2 - S_3}{2}, \\quad z = \\frac{S_2 + S_3 - S_1}{2}\n   $$  \n4. Determine that one move is not sufficient to uniquely identify $S_1, S_2, S_3$ because the absolute differences do not uniquely determine the individual sums.  \n5. Conclude that three well-chosen moves are necessary to uniquely determine $S_1, S_2, S_3$, and thus the hidden triple $(x, y, z)$."
+  },
+  {
+   "val_index": 8,
+   "condition": "shuffled",
+   "generation": "1. Recognize that the polynomial $ P(x) $ is a monic polynomial of degree 2011 with roots $ a_i $, so $ P(x) = x^{2011} + c_1 x^{2010} + \\cdots + c_{2011} $.  \n2. Use the given condition $ P(1) = 1 $ to find $ c_{2011} = 0 $.  \n3. Note that $ P(x) $ is a palindromic polynomial, meaning $ P(x) = x^{2011} P(1/x) $.  \n4. Use the fact that $ P(1/x) = 1 - x^{2011} $ to express $ P(x) $ as $ x^{2011}(1 - x^{2011}) $.  \n5. Compute $ P(2) $ using the expression $ P(x) = x^{2011}(1 - x^{2011}) $.  \n6. Simplify $ P(2) $ to find the value of the sum $ \\sum_{i=1}^{2011} a_i^2 $.",
+   "gold": "1. Recognize that the hidden triple $(x, y, z)$ can be uniquely determined by knowing the pairwise sums $S_1 = x + y$, $S_2 = y + z$, and $S_3 = z + x$.  \n2. Understand that each move provides the sum of absolute differences between the actual pairwise sums and the pairwise sums of the guessed triple.  \n3. Realize that determining $S_1, S_2, S_3$ is sufficient to find $x, y, z$ using the formulas:  \n   $$\n   x = \\frac{S_1 + S_3 - S_2}{2}, \\quad y = \\frac{S_1 + S_2 - S_3}{2}, \\quad z = \\frac{S_2 + S_3 - S_1}{2}\n   $$  \n4. Determine that one move is not sufficient to uniquely identify $S_1, S_2, S_3$ because the absolute differences do not uniquely determine the individual sums.  \n5. Conclude that three well-chosen moves are necessary to uniquely determine $S_1, S_2, S_3$, and thus the hidden triple $(x, y, z)$."
+  },
+  {
+   "val_index": 8,
+   "condition": "mean",
+   "generation": "1. Define variables for the number of red, blue, and green balls: $ R $, $ B $, and $ G $.  \n2. Use the given condition $ R + B + G = 10 $ to express $ G $ in terms of $ R $ and $ B $.  \n3. Express the sum of the squares of the numbers on the red and blue balls as $ R^2 + B^2 $.  \n4. Express the sum of the squares of the numbers on the green and red balls as $ G^2 + R^2 $.  \n5. Express the sum of the squares of the numbers on the green and blue balls as $ G^2 + B^2 $.  \n6. Use the given condition $ R^2 + B^2 = 10 $ to find $ G^2 $.  \n7. Calculate the sum $ G^2 + R^2 $ using the result from step 6.",
+   "gold": "1. Recognize that the hidden triple $(x, y, z)$ can be uniquely determined by knowing the pairwise sums $S_1 = x + y$, $S_2 = y + z$, and $S_3 = z + x$.  \n2. Understand that each move provides the sum of absolute differences between the actual pairwise sums and the pairwise sums of the guessed triple.  \n3. Realize that determining $S_1, S_2, S_3$ is sufficient to find $x, y, z$ using the formulas:  \n   $$\n   x = \\frac{S_1 + S_3 - S_2}{2}, \\quad y = \\frac{S_1 + S_2 - S_3}{2}, \\quad z = \\frac{S_2 + S_3 - S_1}{2}\n   $$  \n4. Determine that one move is not sufficient to uniquely identify $S_1, S_2, S_3$ because the absolute differences do not uniquely determine the individual sums.  \n5. Conclude that three well-chosen moves are necessary to uniquely determine $S_1, S_2, S_3$, and thus the hidden triple $(x, y, z)$."
+  },
+  {
+   "val_index": 8,
+   "condition": "zero",
+   "generation": "1. Identify the positions of the red, white, and blue balls on the board.  \n2. Calculate the total number of balls by summing the positions.  \n3. Determine the total number of possible arrangements using the multinomial coefficient.  \n4. Count the number of arrangements where the red ball is in the middle position.  \n5. Divide the count by the total number of arrangements to find the probability.",
+   "gold": "1. Recognize that the hidden triple $(x, y, z)$ can be uniquely determined by knowing the pairwise sums $S_1 = x + y$, $S_2 = y + z$, and $S_3 = z + x$.  \n2. Understand that each move provides the sum of absolute differences between the actual pairwise sums and the pairwise sums of the guessed triple.  \n3. Realize that determining $S_1, S_2, S_3$ is sufficient to find $x, y, z$ using the formulas:  \n   $$\n   x = \\frac{S_1 + S_3 - S_2}{2}, \\quad y = \\frac{S_1 + S_2 - S_3}{2}, \\quad z = \\frac{S_2 + S_3 - S_1}{2}\n   $$  \n4. Determine that one move is not sufficient to uniquely identify $S_1, S_2, S_3$ because the absolute differences do not uniquely determine the individual sums.  \n5. Conclude that three well-chosen moves are necessary to uniquely determine $S_1, S_2, S_3$, and thus the hidden triple $(x, y, z)$."
+  },
+  {
+   "val_index": 9,
+   "condition": "correct",
+   "generation": "1. Identify the structure of the cube and determine the number of unit cubes in each position (corner, edge, face center, interior).  \n2. Calculate the total number of unit cubes in the cube.  \n3. Use the given total sum of the numbers on the unit cubes to set up an equation.  \n4. Recognize that the sum of all numbers on the unit cubes is equal to the sum of all numbers on the faces of the cube plus the sum of the numbers on the edges and corners.  \n5. Express the sum of the numbers on the edges and corners in terms of the sum of the numbers on the faces.  \n6. Solve the equation to find the sum of the numbers on the faces.  \n7. Use the sum of the numbers on the faces to determine the sum of the numbers on the edges and corners.",
+   "gold": "1. Identify the number of neighbors for each type of cell (corner, edge, inner).  \n2. Calculate the total contribution of all cells to the neighbor sums by multiplying the number of neighbors by the value in each cell.  \n3. Express the total neighbor sum as the sum of all individual neighbor sums (each is 1, so total is 16).  \n4. Set up an equation relating the total neighbor sum to the sum of all cell values multiplied by their respective neighbor counts.  \n5. Solve the equation to find the value of each cell, assuming uniformity.  \n6. Multiply the cell value by the total number of cells to find the sum of all numbers in the table."
+  },
+  {
+   "val_index": 9,
+   "condition": "shuffled",
+   "generation": "1. Define variables: Let $ x $ be the number of children in the family, and let $ y $ be the number of women in the family.  \n2. Express the total number of children as $ x + y $.  \n3. Use the given information that 10% of the children are women, so $ 0.1(x + y) = y $.  \n4. Solve the equation to find $ x $ in terms of $ y $.  \n5. Use the fact that 10% of the women are children to set up an equation for the number of children in the family.  \n6. Solve the equation to find the number of children in the family.",
+   "gold": "1. Identify the number of neighbors for each type of cell (corner, edge, inner).  \n2. Calculate the total contribution of all cells to the neighbor sums by multiplying the number of neighbors by the value in each cell.  \n3. Express the total neighbor sum as the sum of all individual neighbor sums (each is 1, so total is 16).  \n4. Set up an equation relating the total neighbor sum to the sum of all cell values multiplied by their respective neighbor counts.  \n5. Solve the equation to find the value of each cell, assuming uniformity.  \n6. Multiply the cell value by the total number of cells to find the sum of all numbers in the table."
+  },
+  {
+   "val_index": 9,
+   "condition": "mean",
+   "generation": "1. Define variables for the number of red, blue, and green balls: $ R $, $ B $, and $ G $.  \n2. Use the given condition $ R + B + G = 10 $ to express $ G $ in terms of $ R $ and $ B $.  \n3. Express the sum of the squares of the numbers on the red and blue balls as $ R^2 + B^2 $.  \n4. Express the sum of the squares of the numbers on the green and red balls as $ G^2 + R^2 $.  \n5. Express the sum of the squares of the numbers on the green and blue balls as $ G^2 + B^2 $.  \n6. Use the given condition $ R^2 + B^2 = 10 $ to find $ G^2 $.  \n7. Calculate the sum $ G^2 + R^2 $ using the result from step 6.",
+   "gold": "1. Identify the number of neighbors for each type of cell (corner, edge, inner).  \n2. Calculate the total contribution of all cells to the neighbor sums by multiplying the number of neighbors by the value in each cell.  \n3. Express the total neighbor sum as the sum of all individual neighbor sums (each is 1, so total is 16).  \n4. Set up an equation relating the total neighbor sum to the sum of all cell values multiplied by their respective neighbor counts.  \n5. Solve the equation to find the value of each cell, assuming uniformity.  \n6. Multiply the cell value by the total number of cells to find the sum of all numbers in the table."
+  },
+  {
+   "val_index": 9,
+   "condition": "zero",
+   "generation": "1. Identify the positions of the red, white, and blue balls on the board.  \n2. Calculate the total number of balls by summing the positions.  \n3. Determine the total number of possible arrangements using the multinomial coefficient.  \n4. Count the number of arrangements where the red ball is in the middle position.  \n5. Divide the count by the total number of arrangements to find the probability.",
+   "gold": "1. Identify the number of neighbors for each type of cell (corner, edge, inner).  \n2. Calculate the total contribution of all cells to the neighbor sums by multiplying the number of neighbors by the value in each cell.  \n3. Express the total neighbor sum as the sum of all individual neighbor sums (each is 1, so total is 16).  \n4. Set up an equation relating the total neighbor sum to the sum of all cell values multiplied by their respective neighbor counts.  \n5. Solve the equation to find the value of each cell, assuming uniformity.  \n6. Multiply the cell value by the total number of cells to find the sum of all numbers in the table."
+  },
+  {
+   "val_index": 10,
+   "condition": "correct",
+   "generation": "1. Recognize the sum as a finite arithmetic series with first term $ a = 1 $, last term $ l = 2018 $, and number of terms $ n = 2018 $.  \n2. Use the formula for the sum of an arithmetic series: $ S_n = \\frac{n}{2}(a + l) $.  \n3. Substitute the known values into the formula and simplify the expression.  \n4. Simplify the resulting expression by canceling common factors and reducing the fraction.",
+   "gold": "1. Recognize that the sequence is not arithmetic due to the non-constant difference $ a_n - a_{n-1} = 2n + 5 $.  \n2. Express $ a_n $ in terms of $ a_1 $ by summing the differences from $ a_1 $ to $ a_n $.  \n3. Simplify the summation $ \\sum_{k=2}^{n} (2k + 5) $ by splitting it into two separate sums: $ \\sum 2k $ and $ \\sum 5 $.  \n4. Compute each sum using standard summation formulas and combine the results.  \n5. Substitute $ n = 100 $ into the simplified expression to find $ a_{100} $."
+  },
+  {
+   "val_index": 10,
+   "condition": "shuffled",
+   "generation": "1. Factor 2017 into its prime factors: $2017 = 23 \\times 89$.  \n2. Compute $2017^n \\mod 23$ and $2017^n \\mod 89$ using Euler's theorem since 23 and 89 are primes greater than 2.  \n3. Use the fact that $2017 \\equiv 1 \\mod 23$ and $2017 \\equiv 1 \\mod 89$ to simplify the exponents.  \n4. Conclude that $2017^n \\equiv 1 \\mod 23$ and $2017^n \\equiv 1 \\mod 89$ for all positive integers $n$.  \n5. Therefore, $2017^n - 1$ is divisible by both 23 and 89, so it is divisible by $23 \\times 89 = 2017$.  \n6. Check the divisibility by 4: Since $2017 \\equiv 3 \\mod 4$, $2017^n \\equiv 3^n \\mod 4$. For $3^n \\mod 4$ to be 0, $n$ must be even.  \n7. Combine the results: $2017^n - 1$ is divisible by 2017 if and only if $n$ is even.",
+   "gold": "1. Recognize that the sequence is not arithmetic due to the non-constant difference $ a_n - a_{n-1} = 2n + 5 $.  \n2. Express $ a_n $ in terms of $ a_1 $ by summing the differences from $ a_1 $ to $ a_n $.  \n3. Simplify the summation $ \\sum_{k=2}^{n} (2k + 5) $ by splitting it into two separate sums: $ \\sum 2k $ and $ \\sum 5 $.  \n4. Compute each sum using standard summation formulas and combine the results.  \n5. Substitute $ n = 100 $ into the simplified expression to find $ a_{100} $."
+  },
+  {
+   "val_index": 11,
+   "condition": "correct",
+   "generation": "1. Place the square $ABCD$ on the coordinate plane with $A = (0, 0)$, $B = (1, 0)$, $C = (1, 1)$, and $D = (0, 1)$.  \n2. Let $P = (x, y)$ be a point on the square, and define $Q = (x + 1, y)$, $R = (x, y + 1)$, and $S = (x - 1, y)$.  \n3. Calculate the vectors $\\vec{AP}$, $\\vec{AR}$, $\\vec{AS}$, and $\\vec{AS} + \\vec{AP} + \\vec{AR} + \\vec{AS}$.  \n4. Use the dot product to find the angle $\\angle APQ$ by comparing the cosine of the angle between $\\vec{AP}$ and $\\vec{AQ}$.  \n5. Use the dot product to find the angle $\\angle APD$ by comparing the cosine of the angle between $\\vec{AP}$ and $\\vec{AD}$.  \n6. Use the dot product to find the angle $\\angle APQ$ by comparing the cosine of the angle between $\\vec{AP}$ and $\\vec{AR}$.  \n7. Use the dot product to find the angle $\\angle APD$ by comparing the cosine of the angle between $\\vec{AP}$ and $\\vec{AS}$.",
+   "gold": "1. Place square $ABCD$ on the coordinate plane with $A = (0, 0)$, $B = (a, 0)$, $C = (a, a)$, $D = (0, a)$, and center $O = \\left(\\frac{a}{2}, \\frac{a}{2}\\right)$.  \n2. Express the coordinates of points $P, Q, R, S$ as scaled versions of vectors from $O$ to the vertices of $ABCD$ using a scale factor $k$.  \n3. Use the area ratio condition to find $k$ by equating the area of $ABCD$ to twice the area of $PQRS$.  \n4. Determine the coordinates of point $P$ using the value of $k$.  \n5. Find the coordinates of point $M$, the midpoint of $AB$.  \n6. Compute vectors $\\vec{AM}$ and $\\vec{AP}$.  \n7. Use the dot product formula to find the angle between vectors $\\vec{AM}$ and $\\vec{AP}$."
+  },
+  {
+   "val_index": 11,
+   "condition": "shuffled",
+   "generation": "1. Identify the grid dimensions: the number of rows is 10, and the number of columns is 10.  \n2. Recognize that the problem is equivalent to counting the number of non-attacking rooks on a 10\u00d710 chessboard.  \n3. Use the formula for non-attacking rook arrangements: $ \\left( \\frac{10!}{(10 - k)!} \\right) $, where $ k $ is the number of rooks placed on the board.  \n4. For the minimum number of rooks, use $ k = 10 $, which is the maximum number of non-attacking rooks on a 10\u00d710 board.  \n5. Apply the formula $ \\frac{10!}{(10 - 10)!} $ to find the minimum number of rooks.",
+   "gold": "1. Place square $ABCD$ on the coordinate plane with $A = (0, 0)$, $B = (a, 0)$, $C = (a, a)$, $D = (0, a)$, and center $O = \\left(\\frac{a}{2}, \\frac{a}{2}\\right)$.  \n2. Express the coordinates of points $P, Q, R, S$ as scaled versions of vectors from $O$ to the vertices of $ABCD$ using a scale factor $k$.  \n3. Use the area ratio condition to find $k$ by equating the area of $ABCD$ to twice the area of $PQRS$.  \n4. Determine the coordinates of point $P$ using the value of $k$.  \n5. Find the coordinates of point $M$, the midpoint of $AB$.  \n6. Compute vectors $\\vec{AM}$ and $\\vec{AP}$.  \n7. Use the dot product formula to find the angle between vectors $\\vec{AM}$ and $\\vec{AP}$."
+  },
+  {
+   "val_index": 12,
+   "condition": "correct",
+   "generation": "1. Express the general term of the sum as $ a_n = \\frac{1}{n(n+1)} $  \n2. Decompose the general term using partial fractions: $ \\frac{1}{n(n+1)} = \\frac{1}{n} - \\frac{1}{n+1} $  \n3. Rewrite the sum as a telescoping series: $ \\sum_{n=1}^{2016} \\left( \\frac{1}{n} - \\frac{1}{n+1} \\right) $  \n4. Simplify the telescoping sum by canceling intermediate terms  \n5. Evaluate the resulting telescoping sum to find the final value  \n6. Recognize the result as a known telescoping series identity  \n7. Conclude the sum is $ 1 - \\frac{1}{2017} $",
+   "gold": "1. Express the general term $ \\frac{1}{n^3 + 3n^2 + 2n} $ as a partial fraction.  \n2. Factor the denominator: $ n^3 + 3n^2 + 2n = n(n+1)(n+2) $.  \n3. Decompose the fraction into partial fractions: $ \\frac{1}{n(n+1)(n+2)} = \\frac{A}{n} + \\frac{B}{n+1} + \\frac{C}{n+2} $.  \n4. Solve for constants $ A $, $ B $, and $ C $.  \n5. Write the sum as a telescoping series by expanding the partial fractions.  \n6. Observe that most terms cancel out in the telescoping sum.  \n7. Identify the remaining terms after cancellation.  \n8. Sum the remaining terms and show that the total is less than $ \\frac{1}{4} $."
+  },
+  {
+   "val_index": 12,
+   "condition": "shuffled",
+   "generation": "1. Calculate the time it takes for the first car to reach the second car by subtracting the distance from the first car's starting point from the second car's starting point.  \n2. Use the time to find the distance between the two cars at the moment the first car starts.  \n3. Use the distance between the two cars at that moment to determine the relative speed between the two cars.  \n4. Use the relative speed and the distance between the cars to find the time it takes for the second car to reach the first car.",
+   "gold": "1. Express the general term $ \\frac{1}{n^3 + 3n^2 + 2n} $ as a partial fraction.  \n2. Factor the denominator: $ n^3 + 3n^2 + 2n = n(n+1)(n+2) $.  \n3. Decompose the fraction into partial fractions: $ \\frac{1}{n(n+1)(n+2)} = \\frac{A}{n} + \\frac{B}{n+1} + \\frac{C}{n+2} $.  \n4. Solve for constants $ A $, $ B $, and $ C $.  \n5. Write the sum as a telescoping series by expanding the partial fractions.  \n6. Observe that most terms cancel out in the telescoping sum.  \n7. Identify the remaining terms after cancellation.  \n8. Sum the remaining terms and show that the total is less than $ \\frac{1}{4} $."
+  },
+  {
+   "val_index": 13,
+   "condition": "correct",
+   "generation": "1. Express the sum of the first $ n $ terms of the arithmetic sequence in terms of $ n $ and the first term $ a $.  \n2. Use the given condition $ S_{2016} = 2017 $ to form an equation relating $ a $ and $ n $.  \n3. Express the sum of the first $ n $ terms of the geometric sequence in terms of $ n $ and the first term $ a $.  \n4. Use the given condition $ S_{2016} = 2017 $ to form an equation relating $ a $ and $ n $.  \n5. Solve the system of equations to find the value of $ n $ and $ a $.  \n6. Use the value of $ n $ to determine the value of $ S_{2017} $ by substituting into the sum formula of the arithmetic sequence.  \n7. Identify the maximum value of $ S_{2017} $ by considering the behavior of the sequence for large $ n $.",
+   "gold": "1. Express the general term $a_n = a + (n - 1)d$ and write expressions for $a_{10}$ and $a_{11}$.  \n2. Substitute into the inequality $\\frac{a_{11}}{a_{10}} < -1$ and simplify to find a relationship between $a$ and $d$.  \n3. Determine the sign of the common difference $d$ using the condition that the sum $S_n$ has a maximum value.  \n4. Express the sum $S_n$ in terms of $n$, $a$, and $d$ as a quadratic function.  \n5. Find the vertex of the quadratic sum function to locate the $n$ where $S_n$ achieves its maximum.  \n6. Determine the value of $n$ where the sum $S_n$ changes from positive to negative, indicating the point where the minimum positive value occurs.  \n7. Use the inequality from Step 2 to find the bounds on $a$ in terms of $d$, then calculate the corresponding value of $n$ for the minimum positive sum.  \n8. Identify the integer value of $n$ just before the sum becomes negative, which gives the minimum positive value of $S_n$."
+  },
+  {
+   "val_index": 13,
+   "condition": "shuffled",
+   "generation": "1. Recognize the function $ f(x, y) = x^2 + y^2 - 2x - 4y + 1 $ and rewrite it in vertex form to identify its minimum value.  \n2. Identify the minimum value of $ f(x, y) $, which occurs at $ x = 1 $, $ y = 1 $, and is equal to 1.  \n3. Determine the range of values for $ x $ and $ y $ that satisfy $ x + y \\leq 1 $.  \n4. For each valid $ x $ and $ y $, compute $ f(x, y) $ and identify the maximum value.  \n5. Compare all computed values to find the maximum value of $ f(x, y) $ under the given constraint.",
+   "gold": "1. Express the general term $a_n = a + (n - 1)d$ and write expressions for $a_{10}$ and $a_{11}$.  \n2. Substitute into the inequality $\\frac{a_{11}}{a_{10}} < -1$ and simplify to find a relationship between $a$ and $d$.  \n3. Determine the sign of the common difference $d$ using the condition that the sum $S_n$ has a maximum value.  \n4. Express the sum $S_n$ in terms of $n$, $a$, and $d$ as a quadratic function.  \n5. Find the vertex of the quadratic sum function to locate the $n$ where $S_n$ achieves its maximum.  \n6. Determine the value of $n$ where the sum $S_n$ changes from positive to negative, indicating the point where the minimum positive value occurs.  \n7. Use the inequality from Step 2 to find the bounds on $a$ in terms of $d$, then calculate the corresponding value of $n$ for the minimum positive sum.  \n8. Identify the integer value of $n$ just before the sum becomes negative, which gives the minimum positive value of $S_n$."
+  },
+  {
+   "val_index": 14,
+   "condition": "correct",
+   "generation": "1. Identify the grid dimensions: the number of rows is 10, and the number of columns is 10.  \n2. Recognize that the problem is equivalent to counting the number of non-attacking rooks on a 10\u00d710 chessboard.  \n3. Use the formula for non-attacking rook arrangements: $ \\left( \\frac{10!}{(10 - k)!} \\right) $, where $ k $ is the number of rooks placed on the board.  \n4. For the minimum number of rooks, use $ k = 10 $, which is the maximum number of non-attacking rooks on a 10\u00d710 board.  \n5. Apply the formula $ \\frac{10!}{(10 - 10)!} $ to find the minimum number of rooks.",
+   "gold": "1. Identify the dimensions of the grid, $ m = 199 $ and $ n = 991 $.  \n2. Recall the formula for the number of cells a diagonal crosses: $ m + n - \\gcd(m, n) $.  \n3. Calculate the greatest common divisor (gcd) of $ m $ and $ n $ using the Euclidean Algorithm.  \n4. Substitute the values of $ m $, $ n $, and $ \\gcd(m, n) $ into the formula to find the number of cells crossed."
+  },
+  {
+   "val_index": 14,
+   "condition": "shuffled",
+   "generation": "1. Recognize that the problem requires determining the values of three numbers (A, B, C) based on the sum of their pairwise differences.  \n2. Note that the sum of pairwise differences is invariant under permutation of the numbers.  \n3. Use the given sums: 12, 13, and 14 to deduce the possible values of A, B, and C.  \n4. Determine that the smallest number must be 1, as it appears in all three sums.  \n5. Use the remaining sums to find the values of the other two numbers.",
+   "gold": "1. Identify the dimensions of the grid, $ m = 199 $ and $ n = 991 $.  \n2. Recall the formula for the number of cells a diagonal crosses: $ m + n - \\gcd(m, n) $.  \n3. Calculate the greatest common divisor (gcd) of $ m $ and $ n $ using the Euclidean Algorithm.  \n4. Substitute the values of $ m $, $ n $, and $ \\gcd(m, n) $ into the formula to find the number of cells crossed."
+  },
+  {
+   "val_index": 15,
+   "condition": "correct",
+   "generation": "1. Express the coordinates of point $ P $ on the unit circle as $ (x, y) = (r \\cos \\theta, r \\sin \\theta) $, where $ r = 1 $.  \n2. Substitute $ x $ and $ y $ into the function $ f(x, y) = \\frac{x^2 + y^2}{x + y} $ and simplify to $ f(\\theta) = \\frac{1}{1 + \\tan \\theta} $.  \n3. Determine the range of $ f(\\theta) $ by analyzing the behavior of $ \\tan \\theta $ for $ \\theta \\in [0, 2\\pi) $.  \n4. Identify the maximum value of $ f(\\theta) $, which occurs when $ \\tan \\theta $ is minimized.  \n5. Use the identity $ \\tan \\theta = \\frac{\\sin \\theta}{\\cos \\theta} $ and the range of sine and cosine to find the minimum value of $ \\tan \\theta $.  \n6. Compute the maximum value of $ f(\\theta) $ using the minimum value of $ \\tan \\theta $.",
+   "gold": "1. Substitute $ y = 2x $ into the given curve equation to find the points of intersection.  \n2. Simplify the resulting equation to express $ x $ in terms of $ \\theta $, identifying the two intersection points.  \n3. Calculate the chord length using the distance formula between the origin and the second intersection point, expressing it in terms of $ \\theta $.  \n4. Define a function $ f(\\theta) $ representing the ratio of the numerator and denominator of the $ x $-coordinate.  \n5. Maximize the absolute value of $ f(\\theta) $ using optimization techniques such as amplitude analysis or calculus.  \n6. Multiply the maximum value of $ |f(\\theta)| $ by $ \\sqrt{5} $ to obtain the maximum chord length."
+  },
+  {
+   "val_index": 15,
+   "condition": "shuffled",
+   "generation": "1. Factor the numerator and denominator using the Euclidean algorithm to simplify the expression.  \n2. Use the Euclidean algorithm to reduce the fraction to its lowest terms.  \n3. Analyze the sign of the simplified fraction based on the parity of the numerator and denominator.  \n4. Determine the sign of the expression by considering the parity of the numerator and denominator.  \n5. Use the sign to determine the value of the expression.",
+   "gold": "1. Substitute $ y = 2x $ into the given curve equation to find the points of intersection.  \n2. Simplify the resulting equation to express $ x $ in terms of $ \\theta $, identifying the two intersection points.  \n3. Calculate the chord length using the distance formula between the origin and the second intersection point, expressing it in terms of $ \\theta $.  \n4. Define a function $ f(\\theta) $ representing the ratio of the numerator and denominator of the $ x $-coordinate.  \n5. Maximize the absolute value of $ f(\\theta) $ using optimization techniques such as amplitude analysis or calculus.  \n6. Multiply the maximum value of $ |f(\\theta)| $ by $ \\sqrt{5} $ to obtain the maximum chord length."
+  },
+  {
+   "val_index": 16,
+   "condition": "correct",
+   "generation": "1. Calculate the time it takes for the first car to reach the second car by subtracting the distance from the first car's starting point from the second car's starting point.  \n2. Use the time to find the distance between the two cars at the moment the first car starts.  \n3. Use the distance between the two cars at that moment to determine the relative speed between the two cars.  \n4. Use the relative speed and the distance between the cars to find the time it takes for the second car to reach the first car.",
+   "gold": "1. Write down the equations of motion for both stones, considering their respective initial conditions.  \n2. Set the vertical positions of both stones equal to each other to find the time of collision.  \n3. Use the time of collision to find the horizontal position of the second stone.  \n4. Calculate the initial horizontal distance between the two stones using the time of collision and the horizontal velocity."
+  },
+  {
+   "val_index": 16,
+   "condition": "shuffled",
+   "generation": "1. Understand the problem: Count the number of distinct permutations of $ n $ elements where exactly one pair of adjacent elements is swapped.  \n2. Fix the position of the transposed pair: Choose two distinct elements $ i $ and $ j $ to be swapped, and determine the number of valid permutations where the elements at positions $ i $ and $ j $ are swapped.  \n3. Calculate the number of valid permutations: For each pair $ (i, j) $, there are $ n - 2! $ valid permutations where the elements at positions $ i $ and $ j $ are swapped.  \n4. Multiply by the number of pairs: Since there are $ \\binom{n}{2} $ pairs, multiply the result by $ \\binom{n}{2} $.  \n5. Simplify the expression: Use the identity $ \\binom{n}{2} = \\frac{n(n-1)}{2} $ to simplify the final result.",
+   "gold": "1. Write down the equations of motion for both stones, considering their respective initial conditions.  \n2. Set the vertical positions of both stones equal to each other to find the time of collision.  \n3. Use the time of collision to find the horizontal position of the second stone.  \n4. Calculate the initial horizontal distance between the two stones using the time of collision and the horizontal velocity."
+  },
+  {
+   "val_index": 17,
+   "condition": "correct",
+   "generation": "1. Identify the pattern in the sequence and determine the number of terms in each row.  \n2. Calculate the sum of the first row using the formula for the sum of the first $n$ natural numbers.  \n3. Recognize that the sum of the first $n$ odd numbers is $n^2$.  \n4. Use the formula for the sum of the first $n$ odd numbers to find the sum of the second to the $n$-th row.  \n5. Sum the numbers in the second to the $n$-th row using the formula for the sum of the first $n$ odd numbers.  \n6. Add the sums of all the rows to find the total sum of the first $n$ odd numbers.",
+   "gold": "1. Identify the size of the matrix by calculating the number of elements in the first row.  \n2. Confirm the matrix is square and determine the number of rows and columns.  \n3. Identify the last number in the matrix by checking the last row.  \n4. Calculate the total number of elements in the matrix using the size.  \n5. Recognize the matrix elements form an arithmetic sequence from the first to the last number.  \n6. Apply the arithmetic sequence sum formula to find the total sum."
+  },
+  {
+   "val_index": 17,
+   "condition": "shuffled",
+   "generation": "1. Express the general term of the sequence in terms of $ n $ and $ k $, then compute the ratio $ \\frac{a_n}{a_{n-1}} $.  \n2. Simplify the ratio to find the expression for $ \\frac{a_n}{a_{n-1}} $ in terms of $ k $.  \n3. Analyze the behavior of the ratio as $ n $ increases by considering two cases: when $ k < 1 $ and when $ k \\geq 1 $.  \n4. Determine the value of $ k $ for which the sequence is strictly decreasing, which occurs when $ k < 1 $.  \n5. Conclude that the maximum value of $ k $ for which the sequence is strictly decreasing is $ k = 1 $.",
+   "gold": "1. Identify the size of the matrix by calculating the number of elements in the first row.  \n2. Confirm the matrix is square and determine the number of rows and columns.  \n3. Identify the last number in the matrix by checking the last row.  \n4. Calculate the total number of elements in the matrix using the size.  \n5. Recognize the matrix elements form an arithmetic sequence from the first to the last number.  \n6. Apply the arithmetic sequence sum formula to find the total sum."
+  },
+  {
+   "val_index": 18,
+   "condition": "correct",
+   "generation": "1. Let $ f(x) = x^3 + 1 $ and $ g(x) = x^3 - 1 $.  \n2. Compute $ f(f(x)) $ and $ g(f(x)) $ by substituting $ f(x) $ into $ f $ and $ g $, respectively.  \n3. Simplify $ f(f(x)) $ to $ (x^3 + 1)^3 + 1 $ and $ g(f(x)) $ to $ (x^3 + 1)^3 - 1 $.  \n4. Express $ f(f(f(x))) $ as $ (f(f(x))^3 + 1) $ and $ g(f(f(x))) $ as $ (f(f(x))^3 - 1) $.  \n5. Use the given condition $ f(f(f(x))) = g(f(f(x))) $ to derive a relationship between $ x^3 $ and 1.  \n6. Solve the resulting equation to find $ x^3 = 1 $.",
+   "gold": "1. Let $ a = \\frac{\\sqrt{111} - 1}{2} $ and denote $ \\alpha = \\sqrt{111} $, so that $ a = \\frac{\\alpha - 1}{2} $.  \n2. Use the identity $ \\alpha = 2a + 1 $ and square both sides to derive $ a^2 + a = \\frac{110}{4} $.  \n3. Use this relation recursively to express $ a^3, a^4, $ and $ a^5 $ in terms of $ a $ and constants.  \n4. Substitute these expressions into the polynomial $ P(x) = 2x^5 + 2x^4 - 53x^3 - 57x + 54 $ to simplify $ P(a) $.  \n5. Observe that the polynomial evaluates to $ \\pm1 $, and raise it to the power 2006 (even exponent), resulting in $ 1 $."
+  },
+  {
+   "val_index": 18,
+   "condition": "shuffled",
+   "generation": "1. Identify the pattern in the sequence and determine the number of terms in each row.  \n2. Calculate the sum of the first row using the formula for the sum of the first $n$ natural numbers.  \n3. Recognize that the sum of the first $n$ odd numbers is $n^2$.  \n4. Use the formula for the sum of the first $n$ odd numbers to find the sum of the second to the $n$-th row.  \n5. Sum the numbers in the second to the $n$-th row using the formula for the sum of the first $n$ odd numbers.  \n6. Add the sums of all the rows to find the total sum of the first $n$ odd numbers.",
+   "gold": "1. Let $ a = \\frac{\\sqrt{111} - 1}{2} $ and denote $ \\alpha = \\sqrt{111} $, so that $ a = \\frac{\\alpha - 1}{2} $.  \n2. Use the identity $ \\alpha = 2a + 1 $ and square both sides to derive $ a^2 + a = \\frac{110}{4} $.  \n3. Use this relation recursively to express $ a^3, a^4, $ and $ a^5 $ in terms of $ a $ and constants.  \n4. Substitute these expressions into the polynomial $ P(x) = 2x^5 + 2x^4 - 53x^3 - 57x + 54 $ to simplify $ P(a) $.  \n5. Observe that the polynomial evaluates to $ \\pm1 $, and raise it to the power 2006 (even exponent), resulting in $ 1 $."
+  },
+  {
+   "val_index": 19,
+   "condition": "correct",
+   "generation": "1. Recognize the function $ f(x, y) = x^2 + y^2 - 2x - 4y + 1 $ and rewrite it in vertex form to identify its minimum value.  \n2. Identify the minimum value of $ f(x, y) $, which occurs at $ x = 1 $, $ y = 1 $, and is equal to 1.  \n3. Determine the range of values for $ x $ and $ y $ that satisfy $ x + y \\leq 1 $.  \n4. For each valid $ x $ and $ y $, compute $ f(x, y) $ and identify the maximum value.  \n5. Compare all computed values to find the maximum value of $ f(x, y) $ under the given constraint.",
+   "gold": "1. Recognize that the given equation $ |x + y| + |x - y| = 2 $ defines a square in the coordinate plane with vertices at $ (1,1), (1,-1), (-1,-1), (-1,1) $.  \n2. Rewrite the expression to be maximized as $ x^2 - 6x + y^2 $, which can be evaluated directly at the vertices of the square.  \n3. Evaluate the expression $ x^2 - 6x + y^2 $ at each of the four vertices of the square.  \n4. Identify the maximum value among the computed values."
+  },
+  {
+   "val_index": 19,
+   "condition": "shuffled",
+   "generation": "1. Let the unknown number be $ x $.  \n2. Write the equation based on the given relationship: $ x - 10 = 15 $.  \n3. Solve the equation by adding 10 to both sides.",
+   "gold": "1. Recognize that the given equation $ |x + y| + |x - y| = 2 $ defines a square in the coordinate plane with vertices at $ (1,1), (1,-1), (-1,-1), (-1,1) $.  \n2. Rewrite the expression to be maximized as $ x^2 - 6x + y^2 $, which can be evaluated directly at the vertices of the square.  \n3. Evaluate the expression $ x^2 - 6x + y^2 $ at each of the four vertices of the square.  \n4. Identify the maximum value among the computed values."
+  },
+  {
+   "val_index": 20,
+   "condition": "correct",
+   "generation": "1. Use the given angles $ \\angle BAC = 120^\\circ $ and $ \\angle ABC = 60^\\circ $ to determine the third angle $ \\angle ACB $ in triangle $ ABC $.  \n2. Apply the Law of Sines to find the ratio of the sides $ AB $ and $ AC $ in triangle $ ABC $.  \n3. Use the given $ \\angle BCA = 120^\\circ $ and the Law of Sines to find the ratio of the sides $ BC $ and $ AB $.  \n4. Use the given $ \\angle BCA = 120^\\circ $ and the Law of Sines to find the ratio of the sides $ BC $ and $ AC $.  \n5. Use the given $ \\angle BCA = 120^\\circ $ and the Law of Sines to find the ratio of the sides $ BC $ and $ AB $.  \n6. Use the given $ \\angle BCA = 120^\\circ $ and the Law of Sines to find the ratio of the sides $ BC $ and $ AC $.  \n7. Use the given $ \\angle BCA = 120^\\circ $ and the Law of Sines to find the ratio of the sides $ BC $ and $ AB $.  \n8. Use the given $ \\angle BCA = 120^\\circ $ and the Law of Sines to find the ratio of the sides $ BC $ and $ AC $.",
+   "gold": "1. Determine the base angles of triangle $ \\triangle ABC $ using the fact that it is isosceles with $ AB = AC $ and $ \\angle BAC = 100^\\circ $.  \n2. Use the angle bisector of $ \\angle ACB $ to find $ \\angle PCB $, and use the given $ \\angle PBC = 10^\\circ $ to locate point $ P $.  \n3. Calculate $ \\angle ABP $ by subtracting $ \\angle PBC $ from $ \\angle ABC $.  \n4. Use triangle angle sum in $ \\triangle APB $ to express $ \\angle APB $ in terms of $ \\angle BAP $.  \n5. Find $ \\angle BAP $ by considering triangle $ \\triangle BPC $ and using known angles to determine the remaining angle in $ \\triangle APB $.  \n6. Use the known geometric relationships and angle chasing to determine the exact measure of $ \\angle APB $."
+  },
+  {
+   "val_index": 20,
+   "condition": "shuffled",
+   "generation": "1. Express the coordinates of point $ P $ on the unit circle as $ (x, y) = (r \\cos \\theta, r \\sin \\theta) $, where $ r = 1 $.  \n2. Substitute $ x $ and $ y $ into the function $ f(x, y) = \\frac{x^2 + y^2}{x + y} $ and simplify to $ f(\\theta) = \\frac{1}{1 + \\tan \\theta} $.  \n3. Determine the range of $ f(\\theta) $ by analyzing the behavior of $ \\tan \\theta $ for $ \\theta \\in [0, 2\\pi) $.  \n4. Identify the maximum value of $ f(\\theta) $, which occurs when $ \\tan \\theta $ is minimized.  \n5. Use the identity $ \\tan \\theta = \\frac{\\sin \\theta}{\\cos \\theta} $ and the range of sine and cosine to find the minimum value of $ \\tan \\theta $.  \n6. Compute the maximum value of $ f(\\theta) $ using the minimum value of $ \\tan \\theta $.",
+   "gold": "1. Determine the base angles of triangle $ \\triangle ABC $ using the fact that it is isosceles with $ AB = AC $ and $ \\angle BAC = 100^\\circ $.  \n2. Use the angle bisector of $ \\angle ACB $ to find $ \\angle PCB $, and use the given $ \\angle PBC = 10^\\circ $ to locate point $ P $.  \n3. Calculate $ \\angle ABP $ by subtracting $ \\angle PBC $ from $ \\angle ABC $.  \n4. Use triangle angle sum in $ \\triangle APB $ to express $ \\angle APB $ in terms of $ \\angle BAP $.  \n5. Find $ \\angle BAP $ by considering triangle $ \\triangle BPC $ and using known angles to determine the remaining angle in $ \\triangle APB $.  \n6. Use the known geometric relationships and angle chasing to determine the exact measure of $ \\angle APB $."
+  },
+  {
+   "val_index": 21,
+   "condition": "correct",
+   "generation": "1. Let the unknown number be $ x $.  \n2. Write the equation based on the given relationship: $ x - 10 = 15 $.  \n3. Solve the equation by adding 10 to both sides.",
+   "gold": "1. Let the number be $ x $.  \n2. Write the equation based on the problem statement: $ 2x - \\frac{1}{2}x = 2013 $.  \n3. Combine like terms to simplify the equation.  \n4. Solve for $ x $ by isolating it on one side of the equation."
+  },
+  {
+   "val_index": 21,
+   "condition": "shuffled",
+   "generation": "1. Identify the general term of the sequence and express it in terms of $ n $, $ x $, and $ y $.  \n2. Compute the first few terms of the sequence to observe a pattern.  \n3. Use the first term to express the general term in terms of $ x $ and $ y $.  \n4. Simplify the general term by factoring out $ x^2 y^2 $.  \n5. Recognize the simplified form as a power of a binomial expression.  \n6. Apply the limit of a binomial expression to evaluate the limit.",
+   "gold": "1. Let the number be $ x $.  \n2. Write the equation based on the problem statement: $ 2x - \\frac{1}{2}x = 2013 $.  \n3. Combine like terms to simplify the equation.  \n4. Solve for $ x $ by isolating it on one side of the equation."
+  },
+  {
+   "val_index": 22,
+   "condition": "correct",
+   "generation": "1. Identify the general term of the sequence and express it in terms of $ n $, $ x $, and $ y $.  \n2. Compute the first few terms of the sequence to observe a pattern.  \n3. Use the first term to express the general term in terms of $ x $ and $ y $.  \n4. Simplify the general term by factoring out $ x^2 y^2 $.  \n5. Recognize the simplified form as a power of a binomial expression.  \n6. Apply the limit of a binomial expression to evaluate the limit.",
+   "gold": "1. Identifica\u021bi forma fiec\u0103rui termen din expresie ca fiind de tipul $ k \\sqrt{x + \\text{constant}} $.  \n2. Approxima\u021bi fiecare radical pentru $ x \\to \\infty $, neglij\u00e2nd termenul constant fa\u021b\u0103 de $ x $.  \n3. Simplifica\u021bi fiecare termen prin extragerea radicalului \u0219i exprima\u021bi \u00een func\u021bie de $ \\sqrt{x} $.  \n4. Factoriza\u021bi $ \\sqrt{x} $ din to\u021bi termenii, ob\u021bin\u00e2nd o expresie de forma $ (a + 2b + 3c)\\sqrt{x} $.  \n5. Analiza\u021bi limita \u00een func\u021bie de valoarea coeficientului $ a + 2b + 3c $: dac\u0103 este diferit de zero, limita este $ \\pm \\infty $; dac\u0103 este zero, limita este 0."
+  },
+  {
+   "val_index": 22,
+   "condition": "shuffled",
+   "generation": "1. Recognize that the function $ f(x) = \\sin x + \\cos x $ is periodic and bounded between -2 and 2.  \n2. Determine the range of $ x $ for which $ \\sin x + \\cos x > 0 $ by analyzing the inequality $ \\sin x + \\cos x > 0 $.  \n3. Solve the inequality $ \\sin x + \\cos x > 0 $ by rewriting it as $ \\sqrt{2} \\sin(x + \\frac{\\pi}{4}) > 0 $, leading to $ x + \\frac{\\pi}{4} \\in (0, \\pi) $.  \n4. Identify the corresponding interval for $ x $ that satisfies the inequality.  \n5. Check which of the given intervals (A, B, C, D) lie entirely within the solution set found in step 4.",
+   "gold": "1. Identifica\u021bi forma fiec\u0103rui termen din expresie ca fiind de tipul $ k \\sqrt{x + \\text{constant}} $.  \n2. Approxima\u021bi fiecare radical pentru $ x \\to \\infty $, neglij\u00e2nd termenul constant fa\u021b\u0103 de $ x $.  \n3. Simplifica\u021bi fiecare termen prin extragerea radicalului \u0219i exprima\u021bi \u00een func\u021bie de $ \\sqrt{x} $.  \n4. Factoriza\u021bi $ \\sqrt{x} $ din to\u021bi termenii, ob\u021bin\u00e2nd o expresie de forma $ (a + 2b + 3c)\\sqrt{x} $.  \n5. Analiza\u021bi limita \u00een func\u021bie de valoarea coeficientului $ a + 2b + 3c $: dac\u0103 este diferit de zero, limita este $ \\pm \\infty $; dac\u0103 este zero, limita este 0."
+  },
+  {
+   "val_index": 23,
+   "condition": "correct",
+   "generation": "1. Identify the two binomials as $ x^2 + px + q $ and $ x^2 + rx + s $, where $ p, q, r, s $ are integers.  \n2. Recognize that the sum of the roots of each quadratic must be an integer, implying $ p + r $ and $ q + s $ must be integers.  \n3. Determine that for the sum of the roots to be even, $ p + r $ must be even, and for the sum of the coefficients to be even, $ q + s $ must be even.  \n4. Consider all possible even values of $ p + r $ and $ q + s $, and analyze the resulting equations.  \n5. Test small integer values for $ p, r, q, s $ to find pairs that satisfy the equations and result in even sums of roots.  \n6. Conclude that the only possible values for $ p, r, q, s $ that satisfy the conditions are $ p = 0, r = 0, q = 0, s = 0 $.",
+   "gold": "1. Identify the general form of the factored quadratic with integer coefficients: $(px + q)(rx + s)$.  \n2. Expand the factored form and equate coefficients with the given quadratic $21x^2 + ax + 21$ to get $pr = 21$, $ps + qr = a$, and $qs = 21$.  \n3. List all integer factor pairs of 21 for both $pr$ and $qs$.  \n4. Test different combinations of factor pairs to calculate possible values of $a = ps + qr$.  \n5. Observe whether the resulting values of $a$ are even or odd.  \n6. Conclude that only some even values of $a$ allow the quadratic to be factored into two linear prime binomial factors with integer coefficients."
+  },
+  {
+   "val_index": 23,
+   "condition": "shuffled",
+   "generation": "1. Let $ f(x) = x^3 + 1 $ and $ g(x) = x^3 - 1 $.  \n2. Compute $ f(f(x)) $ and $ g(f(x)) $ by substituting $ f(x) $ into $ f $ and $ g $, respectively.  \n3. Simplify $ f(f(x)) $ to $ (x^3 + 1)^3 + 1 $ and $ g(f(x)) $ to $ (x^3 + 1)^3 - 1 $.  \n4. Express $ f(f(f(x))) $ as $ (f(f(x))^3 + 1) $ and $ g(f(f(x))) $ as $ (f(f(x))^3 - 1) $.  \n5. Use the given condition $ f(f(f(x))) = g(f(f(x))) $ to derive a relationship between $ x^3 $ and 1.  \n6. Solve the resulting equation to find $ x^3 = 1 $.",
+   "gold": "1. Identify the general form of the factored quadratic with integer coefficients: $(px + q)(rx + s)$.  \n2. Expand the factored form and equate coefficients with the given quadratic $21x^2 + ax + 21$ to get $pr = 21$, $ps + qr = a$, and $qs = 21$.  \n3. List all integer factor pairs of 21 for both $pr$ and $qs$.  \n4. Test different combinations of factor pairs to calculate possible values of $a = ps + qr$.  \n5. Observe whether the resulting values of $a$ are even or odd.  \n6. Conclude that only some even values of $a$ allow the quadratic to be factored into two linear prime binomial factors with integer coefficients."
+  },
+  {
+   "val_index": 24,
+   "condition": "correct",
+   "generation": "1. Recognize that the sum of the cubes of the roots of the cyclotomic polynomial $ \\Phi_3(x) $ is zero.  \n2. Use the identity for the sum of cubes of roots of a polynomial to find the value of $ S $.  \n3. Express the sum $ S $ in terms of the roots of $ \\Phi_3(x) $, which are the primitive 3rd roots of unity.  \n4. Use the known result that the sum of the cubes of the primitive 3rd roots of unity is zero.  \n5. Conclude that the sum $ S $ is zero.",
+   "gold": "1. Recognize the angles $\\frac{\\pi}{9}$, $\\frac{5\\pi}{9}$, and $\\frac{7\\pi}{9}$ as related to the 9th roots of unity.  \n2. Use the fact that these cosines are related to the real parts of the primitive 9th roots of unity.  \n3. Express the given sum as $c_1^5 + c_2^5 + c_3^5$ where $c_1 = \\cos \\frac{\\pi}{9}$, $c_2 = \\cos \\frac{5\\pi}{9}$, $c_3 = \\cos \\frac{7\\pi}{9}$.  \n4. Apply known trigonometric identities or symmetric polynomial relationships for the fifth powers of these cosines.  \n5. Conclude the value of the sum using a known result or derivation."
+  },
+  {
+   "val_index": 24,
+   "condition": "shuffled",
+   "generation": "1. Recognize that the equation $ x^2 + 2x + 1 = 0 $ has a double root at $ x = -1 $.  \n2. Assume $ x = -1 $ is a solution and verify it satisfies the equation.  \n3. Consider the function $ f(t) = t^2 + 2t + 1 $ and analyze its behavior to determine if $ x = -1 $ is the only solution.  \n4. Use the discriminant of the quadratic equation to confirm that the equation has exactly one real solution.  \n5. Conclude that the only real solution is $ x = -1 $.",
+   "gold": "1. Recognize the angles $\\frac{\\pi}{9}$, $\\frac{5\\pi}{9}$, and $\\frac{7\\pi}{9}$ as related to the 9th roots of unity.  \n2. Use the fact that these cosines are related to the real parts of the primitive 9th roots of unity.  \n3. Express the given sum as $c_1^5 + c_2^5 + c_3^5$ where $c_1 = \\cos \\frac{\\pi}{9}$, $c_2 = \\cos \\frac{5\\pi}{9}$, $c_3 = \\cos \\frac{7\\pi}{9}$.  \n4. Apply known trigonometric identities or symmetric polynomial relationships for the fifth powers of these cosines.  \n5. Conclude the value of the sum using a known result or derivation."
+  },
+  {
+   "val_index": 25,
+   "condition": "correct",
+   "generation": "1. Introduce substitution variables to simplify the system: $ x = a + b $, $ y = a - b $, $ z = c + d $, $ w = c - d $.  \n2. Rewrite the original equations in terms of $ x, y, z, w $: $ 2x + 3y + 4z = 1 $, $ 5x + 6y + 7z = 2 $, $ 8x + 9y + 10z = 3 $.  \n3. Subtract the first equation from the second to eliminate $ x $ and solve for $ y $ in terms of $ z $.  \n4. Substitute the expression for $ y $ into the third equation to solve for $ z $.  \n5. Use the value of $ z $ to find $ y $, then use the expressions for $ x $ and $ y $ to solve for $ a $ and $ b $.  \n6. Use the values of $ c $ and $ d $ to find $ c + d $ and $ c - d $.",
+   "gold": "1. Introduce substitution variables: let $ a = x + y - 1 $ and $ b = 2x - y + 3 $, transforming the system into equations in terms of $ a $ and $ b $.  \n2. Multiply both equations by appropriate constants to eliminate fractions, resulting in new equations without denominators.  \n3. Let $ u = \\frac{1}{a} $ and $ v = \\frac{1}{b} $, converting the system into a linear system in $ u $ and $ v $.  \n4. Solve the linear system for $ u $ and $ v $ using elimination or substitution.  \n5. Back-substitute $ u $ and $ v $ to find $ a $ and $ b $, then use these to form a system of linear equations in $ x $ and $ y $.  \n6. Solve the resulting system of equations to find the values of $ x $ and $ y $."
+  },
+  {
+   "val_index": 25,
+   "condition": "shuffled",
+   "generation": "1. Determine the last two digits of the number $ n $ by analyzing the given condition $ n \\equiv 1 \\pmod{10} $ and $ n \\equiv 1 \\pmod{100} $.  \n2. Identify the last two digits of $ n $ as 01.  \n3. Use the given condition $ n \\equiv 1 \\pmod{100} $ to conclude that $ n $ ends in 01.  \n4. Analyze the last two digits of $ n^2 $ by squaring the last two digits 01.  \n5. Compare the resulting last two digits with the given options to determine the correct answer.",
+   "gold": "1. Introduce substitution variables: let $ a = x + y - 1 $ and $ b = 2x - y + 3 $, transforming the system into equations in terms of $ a $ and $ b $.  \n2. Multiply both equations by appropriate constants to eliminate fractions, resulting in new equations without denominators.  \n3. Let $ u = \\frac{1}{a} $ and $ v = \\frac{1}{b} $, converting the system into a linear system in $ u $ and $ v $.  \n4. Solve the linear system for $ u $ and $ v $ using elimination or substitution.  \n5. Back-substitute $ u $ and $ v $ to find $ a $ and $ b $, then use these to form a system of linear equations in $ x $ and $ y $.  \n6. Solve the resulting system of equations to find the values of $ x $ and $ y $."
+  },
+  {
+   "val_index": 26,
+   "condition": "correct",
+   "generation": "1. Recognize that the problem requires finding the $ n $-th smallest number in the sequence of sums of three distinct triangular numbers from the set $ \\{1, 2, \\ldots, 2000\\} $.  \n2. Express the sum of three distinct triangular numbers $ T_i + T_j + T_k $ in terms of $ i, j, k $, where $ T_n = \\frac{n(n+1)}{2} $.  \n3. Determine that the sum of three triangular numbers is always an integer and lies between 6 and $ 3 \\times 2000 = 6000 $.  \n4. Use the known result that the $ n $-th smallest sum of three distinct triangular numbers is $ 2n^3 - 3n^2 + 3n - 1 $.  \n5. Substitute $ n = 2000 $ into the formula to compute the required value.",
+   "gold": "1. Recognize that no three numbers can form a triangle, so for all $ i < j < k $, $ a_i + a_j \\leq a_k $.  \n2. Construct the sequence using the Fibonacci recurrence $ a_{n+1} = a_n + a_{n-1} $ to ensure the triangle inequality fails for any three terms.  \n3. Start the sequence with the smallest positive integers $ a_1 = 1 $, $ a_2 = 1 $, and generate the next terms using the Fibonacci rule up to $ a_{10} $.  \n4. Calculate the ratio $ \\frac{a_{10}}{a_1} $ using the constructed sequence."
+  },
+  {
+   "val_index": 26,
+   "condition": "shuffled",
+   "generation": "1. Determine the range of perfect cubes between 1 and 2008 by finding the integer cube roots.  \n2. Identify the perfect cubes in the range and note their prime factorizations.  \n3. Use the given condition that the sum of the digits of one perfect cube is divisible by 3 to determine which cubes satisfy this condition.  \n4. Calculate the sum of the digits for each perfect cube in the range and check which ones are divisible by 3.  \n5. Use the fact that one of the perfect cubes is divisible by 3 and the other is not, and the sum of the digits of the non-divisible cube is 2007.  \n6. Use the sum of digits property of perfect cubes to find the cube root of 2007.  \n7. Check which cube root of 2007 is an integer and corresponds to a perfect cube in the range.",
+   "gold": "1. Recognize that no three numbers can form a triangle, so for all $ i < j < k $, $ a_i + a_j \\leq a_k $.  \n2. Construct the sequence using the Fibonacci recurrence $ a_{n+1} = a_n + a_{n-1} $ to ensure the triangle inequality fails for any three terms.  \n3. Start the sequence with the smallest positive integers $ a_1 = 1 $, $ a_2 = 1 $, and generate the next terms using the Fibonacci rule up to $ a_{10} $.  \n4. Calculate the ratio $ \\frac{a_{10}}{a_1} $ using the constructed sequence."
+  },
+  {
+   "val_index": 27,
+   "condition": "correct",
+   "generation": "1. Factor 2017 into its prime factors: $2017 = 23 \\times 89$.  \n2. Compute $2017^n \\mod 23$ and $2017^n \\mod 89$ using Euler's theorem since 23 and 89 are primes greater than 2.  \n3. Use the fact that $2017 \\equiv 1 \\mod 23$ and $2017 \\equiv 1 \\mod 89$ to simplify the exponents.  \n4. Conclude that $2017^n \\equiv 1 \\mod 23$ and $2017^n \\equiv 1 \\mod 89$ for all positive integers $n$.  \n5. Therefore, $2017^n - 1$ is divisible by both 23 and 89, so it is divisible by $23 \\times 89 = 2017$.  \n6. Check the divisibility by 4: Since $2017 \\equiv 3 \\mod 4$, $2017^n \\equiv 3^n \\mod 4$. For $3^n \\mod 4$ to be 0, $n$ must be even.  \n7. Combine the results: $2017^n - 1$ is divisible by 2017 if and only if $n$ is even.",
+   "gold": "1. Factor $ p^4 - 1 $ into $ (p - 1)(p + 1)(p^2 + 1) $.  \n2. Recognize that 15 factors into 3 and 5, so check when $ p^4 - 1 $ is not divisible by 3 or 5.  \n3. Test small prime numbers $ p $ and compute $ p^4 - 1 \\mod 15 $ to identify those not divisible by 15.  \n4. Observe the pattern of $ p^4 \\mod 15 $ for primes and determine when $ p^4 \\not\\equiv 1 \\pmod{15} $.  \n5. Conclude that primes $ p $ for which $ p^4 - 1 $ is not divisible by 15 are those where $ p^4 \\not\\equiv 1 \\pmod{15} $."
+  },
+  {
+   "val_index": 27,
+   "condition": "shuffled",
+   "generation": "1. Identify the structure of the cube and determine the number of unit cubes in each position (corner, edge, face center, interior).  \n2. Calculate the total number of unit cubes in the cube.  \n3. Use the given total sum of the numbers on the unit cubes to set up an equation.  \n4. Recognize that the sum of all numbers on the unit cubes is equal to the sum of all numbers on the faces of the cube plus the sum of the numbers on the edges and corners.  \n5. Express the sum of the numbers on the edges and corners in terms of the sum of the numbers on the faces.  \n6. Solve the equation to find the sum of the numbers on the faces.  \n7. Use the sum of the numbers on the faces to determine the sum of the numbers on the edges and corners.",
+   "gold": "1. Factor $ p^4 - 1 $ into $ (p - 1)(p + 1)(p^2 + 1) $.  \n2. Recognize that 15 factors into 3 and 5, so check when $ p^4 - 1 $ is not divisible by 3 or 5.  \n3. Test small prime numbers $ p $ and compute $ p^4 - 1 \\mod 15 $ to identify those not divisible by 15.  \n4. Observe the pattern of $ p^4 \\mod 15 $ for primes and determine when $ p^4 \\not\\equiv 1 \\pmod{15} $.  \n5. Conclude that primes $ p $ for which $ p^4 - 1 $ is not divisible by 15 are those where $ p^4 \\not\\equiv 1 \\pmod{15} $."
+  },
+  {
+   "val_index": 28,
+   "condition": "correct",
+   "generation": "1. Identify the two types of neighbors: adjacent (up/down/left/right) and diagonal (on the other diagonal).  \n2. Determine the number of ways to place the two people on the grid such that they are not adjacent.  \n3. For each valid placement, calculate the number of ways to assign the two people to the two adjacent neighbors and the two people to the two diagonal neighbors.  \n4. Multiply the number of valid placements by the number of ways to assign the neighbors for each case.",
+   "gold": "1. Identify all adjacent room pairs: (1,2), (2,3), (3,4).  \n2. For each adjacent pair, determine the valid placements of B and C such that B is not in room 2.  \n3. For each valid B and C placement, calculate the number of ways to assign A and D to the remaining rooms.  \n4. Sum the number of valid arrangements from all cases."
+  },
+  {
+   "val_index": 28,
+   "condition": "shuffled",
+   "generation": "1. Introduce substitution variables to simplify the system: $ x = a + b $, $ y = a - b $, $ z = c + d $, $ w = c - d $.  \n2. Rewrite the original equations in terms of $ x, y, z, w $: $ 2x + 3y + 4z = 1 $, $ 5x + 6y + 7z = 2 $, $ 8x + 9y + 10z = 3 $.  \n3. Subtract the first equation from the second to eliminate $ x $ and solve for $ y $ in terms of $ z $.  \n4. Substitute the expression for $ y $ into the third equation to solve for $ z $.  \n5. Use the value of $ z $ to find $ y $, then use the expressions for $ x $ and $ y $ to solve for $ a $ and $ b $.  \n6. Use the values of $ c $ and $ d $ to find $ c + d $ and $ c - d $.",
+   "gold": "1. Identify all adjacent room pairs: (1,2), (2,3), (3,4).  \n2. For each adjacent pair, determine the valid placements of B and C such that B is not in room 2.  \n3. For each valid B and C placement, calculate the number of ways to assign A and D to the remaining rooms.  \n4. Sum the number of valid arrangements from all cases."
+  },
+  {
+   "val_index": 29,
+   "condition": "correct",
+   "generation": "1. Recognize that the equation $ x^2 + 2x + 1 = 0 $ has a double root at $ x = -1 $.  \n2. Assume $ x = -1 $ is a solution and verify it satisfies the equation.  \n3. Consider the function $ f(t) = t^2 + 2t + 1 $ and analyze its behavior to determine if $ x = -1 $ is the only solution.  \n4. Use the discriminant of the quadratic equation to confirm that the equation has exactly one real solution.  \n5. Conclude that the only real solution is $ x = -1 $.",
+   "gold": "1. Recognize the equation as a quadratic in $ a $: $ a^2 - 2a \\sin(\\cos x) + x^2 = 0 $  \n2. Set the discriminant of this quadratic to zero to ensure only one solution for $ a $: $ \\Delta = 4 \\sin^2(\\cos x) - 4x^2 = 0 $  \n3. Simplify the discriminant condition to $ \\sin^2(\\cos x) = x^2 $  \n4. Note that $ x^2 \\leq 1 $ since $ \\sin^2(\\cos x) \\leq 1 $, so $ x \\in [-1, 1] $  \n5. Test specific values of $ a $ to find one that results in the equation having only one solution in $ x $  \n6. Verify that $ a = 0 $ leads to $ x^2 = 0 $, which has only one solution $ x = 0 $, satisfying the condition"
+  },
+  {
+   "val_index": 29,
+   "condition": "shuffled",
+   "generation": "1. Recognize that the problem requires finding the $ n $-th smallest number in the sequence of sums of three distinct triangular numbers from the set $ \\{1, 2, \\ldots, 2000\\} $.  \n2. Express the sum of three distinct triangular numbers $ T_i + T_j + T_k $ in terms of $ i, j, k $, where $ T_n = \\frac{n(n+1)}{2} $.  \n3. Determine that the sum of three triangular numbers is always an integer and lies between 6 and $ 3 \\times 2000 = 6000 $.  \n4. Use the known result that the $ n $-th smallest sum of three distinct triangular numbers is $ 2n^3 - 3n^2 + 3n - 1 $.  \n5. Substitute $ n = 2000 $ into the formula to compute the required value.",
+   "gold": "1. Recognize the equation as a quadratic in $ a $: $ a^2 - 2a \\sin(\\cos x) + x^2 = 0 $  \n2. Set the discriminant of this quadratic to zero to ensure only one solution for $ a $: $ \\Delta = 4 \\sin^2(\\cos x) - 4x^2 = 0 $  \n3. Simplify the discriminant condition to $ \\sin^2(\\cos x) = x^2 $  \n4. Note that $ x^2 \\leq 1 $ since $ \\sin^2(\\cos x) \\leq 1 $, so $ x \\in [-1, 1] $  \n5. Test specific values of $ a $ to find one that results in the equation having only one solution in $ x $  \n6. Verify that $ a = 0 $ leads to $ x^2 = 0 $, which has only one solution $ x = 0 $, satisfying the condition"
+  },
+  {
+   "val_index": 30,
+   "condition": "correct",
+   "generation": "1. Check divisibility by 2: For $ n $ to be divisible by 2, $ n \\equiv 0 \\pmod{2} $.  \n2. Check divisibility by 3: For $ n $ to be divisible by 3, $ n \\equiv 0 \\pmod{3} $.  \n3. Check divisibility by 4: For $ n $ to be divisible by 4, $ n \\equiv 0 \\pmod{4} $.  \n4. Check divisibility by 5: For $ n $ to be divisible by 5, $ n \\equiv 0 \\pmod{5} $.  \n5. Combine the congruences: Find the least common multiple (LCM) of 2, 3, 4, and 5, which is 60.  \n6. Determine the general form of $ n $: Express $ n $ as $ 60k $ for some integer $ k $.  \n7. Test small values of $ k $: For $ k = 1, 2, 3, 4, 5 $, compute $ n $ and check divisibility by 2, 3, 4, and 5.  \n8. Identify the pattern: Observe that only $ k = 1 $ satisfies all divisibility conditions.",
+   "gold": "1. Check divisibility by 3 and 7 separately since $ 21 = 3 \\times 7 $.  \n2. For modulo 3: Use the periodicity of $ 2^k \\mod 3 $, which alternates between 2 and 1. Show that $ 2^{2^n} \\equiv 1 \\mod 3 $ and deduce that $ 2^n \\equiv 1 \\mod 3 $, so $ n $ must be even.  \n3. For modulo 7: Use the periodicity of $ 2^k \\mod 7 $, which has period 3. Express $ 2^{2^n} \\mod 7 $ in terms of $ 2^n \\mod 3 $.  \n4. Test small even values of $ n $ to find values where the expression is divisible by both 3 and 7.  \n5. Verify that only $ n = 2 $ satisfies the condition for divisibility by 21."
+  },
+  {
+   "val_index": 30,
+   "condition": "shuffled",
+   "generation": "1. Identify the two types of neighbors: adjacent (up/down/left/right) and diagonal (on the other diagonal).  \n2. Determine the number of ways to place the two people on the grid such that they are not adjacent.  \n3. For each valid placement, calculate the number of ways to assign the two people to the two adjacent neighbors and the two people to the two diagonal neighbors.  \n4. Multiply the number of valid placements by the number of ways to assign the neighbors for each case.",
+   "gold": "1. Check divisibility by 3 and 7 separately since $ 21 = 3 \\times 7 $.  \n2. For modulo 3: Use the periodicity of $ 2^k \\mod 3 $, which alternates between 2 and 1. Show that $ 2^{2^n} \\equiv 1 \\mod 3 $ and deduce that $ 2^n \\equiv 1 \\mod 3 $, so $ n $ must be even.  \n3. For modulo 7: Use the periodicity of $ 2^k \\mod 7 $, which has period 3. Express $ 2^{2^n} \\mod 7 $ in terms of $ 2^n \\mod 3 $.  \n4. Test small even values of $ n $ to find values where the expression is divisible by both 3 and 7.  \n5. Verify that only $ n = 2 $ satisfies the condition for divisibility by 21."
+  },
+  {
+   "val_index": 31,
+   "condition": "correct",
+   "generation": "1. Factor the numerator and denominator to simplify the expression.  \n2. Use the standard limit form $\\lim_{x \\to 0} \\frac{\\sin x}{x} = 1$ to evaluate the limit.  \n3. Apply L\u2019H\u00f4pital\u2019s Rule by differentiating the numerator and denominator.  \n4. Simplify the resulting expression and evaluate the new limit.  \n5. Recognize that the simplified expression is a standard limit form and apply it directly.  \n6. Substitute the known limit values to compute the final result.",
+   "gold": "1. Check if direct substitution results in an indeterminate form by evaluating the numerator and denominator as $ x \\to 1 $.  \n2. Substitute $ x = 1 + t $ and rewrite the expression in terms of $ t $ as $ t \\to 0 $.  \n3. Simplify the numerator using the trigonometric identity $ \\cos\\left( \\frac{\\pi}{2} + \\theta \\right) = -\\sin(\\theta) $.  \n4. Rationalize and simplify the denominator by multiplying numerator and denominator by the conjugate.  \n5. Rewrite the expression as a product of two limits and evaluate each part separately.  \n6. Use the standard limit $ \\lim_{t \\to 0} \\frac{\\sin(\\alpha t)}{t} = \\alpha $ to evaluate the first part.  \n7. Evaluate the second part by direct substitution as $ t \\to 0 $.  \n8. Multiply the results of the two parts to obtain the final limit."
+  },
+  {
+   "val_index": 31,
+   "condition": "shuffled",
+   "generation": "1. Identify the two binomials as $ x^2 + px + q $ and $ x^2 + rx + s $, where $ p, q, r, s $ are integers.  \n2. Recognize that the sum of the roots of each quadratic must be an integer, implying $ p + r $ and $ q + s $ must be integers.  \n3. Determine that for the sum of the roots to be even, $ p + r $ must be even, and for the sum of the coefficients to be even, $ q + s $ must be even.  \n4. Consider all possible even values of $ p + r $ and $ q + s $, and analyze the resulting equations.  \n5. Test small integer values for $ p, r, q, s $ to find pairs that satisfy the equations and result in even sums of roots.  \n6. Conclude that the only possible values for $ p, r, q, s $ that satisfy the conditions are $ p = 0, r = 0, q = 0, s = 0 $.",
+   "gold": "1. Check if direct substitution results in an indeterminate form by evaluating the numerator and denominator as $ x \\to 1 $.  \n2. Substitute $ x = 1 + t $ and rewrite the expression in terms of $ t $ as $ t \\to 0 $.  \n3. Simplify the numerator using the trigonometric identity $ \\cos\\left( \\frac{\\pi}{2} + \\theta \\right) = -\\sin(\\theta) $.  \n4. Rationalize and simplify the denominator by multiplying numerator and denominator by the conjugate.  \n5. Rewrite the expression as a product of two limits and evaluate each part separately.  \n6. Use the standard limit $ \\lim_{t \\to 0} \\frac{\\sin(\\alpha t)}{t} = \\alpha $ to evaluate the first part.  \n7. Evaluate the second part by direct substitution as $ t \\to 0 $.  \n8. Multiply the results of the two parts to obtain the final limit."
+  },
+  {
+   "val_index": 32,
+   "condition": "correct",
+   "generation": "1. Determine the range of perfect cubes between 1 and 2008 by finding the integer cube roots.  \n2. Identify the perfect cubes in the range and note their prime factorizations.  \n3. Use the given condition that the sum of the digits of one perfect cube is divisible by 3 to determine which cubes satisfy this condition.  \n4. Calculate the sum of the digits for each perfect cube in the range and check which ones are divisible by 3.  \n5. Use the fact that one of the perfect cubes is divisible by 3 and the other is not, and the sum of the digits of the non-divisible cube is 2007.  \n6. Use the sum of digits property of perfect cubes to find the cube root of 2007.  \n7. Check which cube root of 2007 is an integer and corresponds to a perfect cube in the range.",
+   "gold": "1. Determine the range of Xiao Gang's age by finding values where $x^3$ is a 4-digit number and $x^4$ is a 6-digit number.  \n2. Identify the intersection of these ranges to narrow down possible ages for Xiao Gang.  \n3. For each candidate age in the narrowed range, compute $x^3$ and $x^4$, then check if their combined digits use all digits from 0 to 9 exactly once.  \n4. Once the correct age for Xiao Gang is found, calculate Xiao Ming's age using the condition that the sum of their ages is divisible by 30.  \n5. Solve for Xiao Ming's age using the equation $x + y = 30k$, ensuring the result is a reasonable age."
+  },
+  {
+   "val_index": 32,
+   "condition": "shuffled",
+   "generation": "1. Identify the number of hours for each trip: 1, 2, 3, 4, 5, 6, 7, 8, 9.  \n2. Find the least common multiple (LCM) of these numbers by breaking them down into their prime factors.  \n3. Determine the LCM by taking the highest power of each prime factor present.  \n4. The LCM is the number of hours required for all trips to return to the starting point at the same time.",
+   "gold": "1. Determine the range of Xiao Gang's age by finding values where $x^3$ is a 4-digit number and $x^4$ is a 6-digit number.  \n2. Identify the intersection of these ranges to narrow down possible ages for Xiao Gang.  \n3. For each candidate age in the narrowed range, compute $x^3$ and $x^4$, then check if their combined digits use all digits from 0 to 9 exactly once.  \n4. Once the correct age for Xiao Gang is found, calculate Xiao Ming's age using the condition that the sum of their ages is divisible by 30.  \n5. Solve for Xiao Ming's age using the equation $x + y = 30k$, ensuring the result is a reasonable age."
+  },
+  {
+   "val_index": 33,
+   "condition": "correct",
+   "generation": "1. Factor the numerator $ x^3 - 1 $ using the sum of cubes formula.  \n2. Factor the denominator $ x^3 + 1 $ using the sum of cubes formula.  \n3. Set the simplified expression equal to 1 and solve for $ x $.  \n4. Test integer values of $ x $ to find the one that satisfies the equation.  \n5. Use the value of $ x $ to compute $ x^2 + x + 1 $.",
+   "gold": "1. Expand $ (a + bi)^3 $ using the binomial theorem and separate real and imaginary parts.  \n2. Subtract $ 107i $ from the expanded expression and group real and imaginary components.  \n3. Set the imaginary part equal to zero to form an equation involving $ a $ and $ b $.  \n4. Factor the equation and use the fact that 107 is a prime number to identify possible integer values for $ b $.  \n5. Solve for $ a $ in each case and check if it results in a positive integer.  \n6. For the valid pair of $ a $ and $ b $, compute the real part to determine the value of $ c $."
+  },
+  {
+   "val_index": 33,
+   "condition": "shuffled",
+   "generation": "1. Identify the two rectangles: one is a 1\u00d72 rectangle, the other is a 2\u00d73 rectangle.  \n2. Recognize that the overlapping area is a rectangle formed by the intersection of the two rectangles.  \n3. Determine the dimensions of the overlapping rectangle by finding the minimum of the left and right sides and the maximum of the bottom and top sides.  \n4. Calculate the area of the overlapping rectangle using the formula for the area of a rectangle.  \n5. Use the given answer choices to match the calculated area with the options.",
+   "gold": "1. Expand $ (a + bi)^3 $ using the binomial theorem and separate real and imaginary parts.  \n2. Subtract $ 107i $ from the expanded expression and group real and imaginary components.  \n3. Set the imaginary part equal to zero to form an equation involving $ a $ and $ b $.  \n4. Factor the equation and use the fact that 107 is a prime number to identify possible integer values for $ b $.  \n5. Solve for $ a $ in each case and check if it results in a positive integer.  \n6. For the valid pair of $ a $ and $ b $, compute the real part to determine the value of $ c $."
+  },
+  {
+   "val_index": 34,
+   "condition": "correct",
+   "generation": "1. Recognize that each row forms a straight line of 10 unit squares.  \n2. Note that the first row has 10 unit squares, the second row has 19, and the third row has 28 unit squares.  \n3. Identify the pattern: the number of unit squares in the nth row is $10 + 9(n-1)$.  \n4. Use the formula for the sum of the first $n$ natural numbers to find the total number of unit squares in 10 rows.",
+   "gold": "1. Recognize that the number of toothpicks increases linearly with the number of steps.  \n2. Use the given information that a 3-step staircase uses 18 toothpicks to determine the pattern.  \n3. Identify that the pattern is 6 toothpicks per step (since 3 steps = 18 toothpicks).  \n4. Set up the equation $ 6n = 180 $ and solve for $ n $."
+  },
+  {
+   "val_index": 34,
+   "condition": "shuffled",
+   "generation": "1. Factor the numerator and denominator to simplify the expression.  \n2. Use the standard limit form $\\lim_{x \\to 0} \\frac{\\sin x}{x} = 1$ to evaluate the limit.  \n3. Apply L\u2019H\u00f4pital\u2019s Rule by differentiating the numerator and denominator.  \n4. Simplify the resulting expression and evaluate the new limit.  \n5. Recognize that the simplified expression is a standard limit form and apply it directly.  \n6. Substitute the known limit values to compute the final result.",
+   "gold": "1. Recognize that the number of toothpicks increases linearly with the number of steps.  \n2. Use the given information that a 3-step staircase uses 18 toothpicks to determine the pattern.  \n3. Identify that the pattern is 6 toothpicks per step (since 3 steps = 18 toothpicks).  \n4. Set up the equation $ 6n = 180 $ and solve for $ n $."
+  },
+  {
+   "val_index": 35,
+   "condition": "correct",
+   "generation": "1. Factor the numerator and denominator using the Euclidean algorithm to simplify the expression.  \n2. Use the Euclidean algorithm to reduce the fraction to its lowest terms.  \n3. Analyze the sign of the simplified fraction based on the parity of the numerator and denominator.  \n4. Determine the sign of the expression by considering the parity of the numerator and denominator.  \n5. Use the sign to determine the value of the expression.",
+   "gold": "1. For each pair, apply the Euclidean algorithm by subtracting or reducing one term using the other.  \n2. Simplify the resulting expression and analyze the GCD based on divisibility properties or modular arithmetic.  \n3. For polynomial GCDs, use polynomial division or substitution to evaluate remainders.  \n4. For integer-based GCDs, consider parity (even/odd), divisibility, or modular conditions to determine the result.  \n5. Express the final answer in terms of cases if necessary, based on the conditions derived."
+  },
+  {
+   "val_index": 35,
+   "condition": "shuffled",
+   "generation": "1. Use the given angles $ \\angle BAC = 120^\\circ $ and $ \\angle ABC = 60^\\circ $ to determine the third angle $ \\angle ACB $ in triangle $ ABC $.  \n2. Apply the Law of Sines to find the ratio of the sides $ AB $ and $ AC $ in triangle $ ABC $.  \n3. Use the given $ \\angle BCA = 120^\\circ $ and the Law of Sines to find the ratio of the sides $ BC $ and $ AB $.  \n4. Use the given $ \\angle BCA = 120^\\circ $ and the Law of Sines to find the ratio of the sides $ BC $ and $ AC $.  \n5. Use the given $ \\angle BCA = 120^\\circ $ and the Law of Sines to find the ratio of the sides $ BC $ and $ AB $.  \n6. Use the given $ \\angle BCA = 120^\\circ $ and the Law of Sines to find the ratio of the sides $ BC $ and $ AC $.  \n7. Use the given $ \\angle BCA = 120^\\circ $ and the Law of Sines to find the ratio of the sides $ BC $ and $ AB $.  \n8. Use the given $ \\angle BCA = 120^\\circ $ and the Law of Sines to find the ratio of the sides $ BC $ and $ AC $.",
+   "gold": "1. For each pair, apply the Euclidean algorithm by subtracting or reducing one term using the other.  \n2. Simplify the resulting expression and analyze the GCD based on divisibility properties or modular arithmetic.  \n3. For polynomial GCDs, use polynomial division or substitution to evaluate remainders.  \n4. For integer-based GCDs, consider parity (even/odd), divisibility, or modular conditions to determine the result.  \n5. Express the final answer in terms of cases if necessary, based on the conditions derived."
+  },
+  {
+   "val_index": 36,
+   "condition": "correct",
+   "generation": "1. Identify the total number of possible outcomes when 3 players play a game: $3! = 6$.  \n2. Recognize that each outcome corresponds to a unique assignment of points to each player.  \n3. Determine that the number of different point assignments is equal to the number of permutations of the points.  \n4. Conclude that the number of different point assignments is always 6, regardless of the points given.  \n5. Note that the problem asks for the number of different point assignments, which is 6.",
+   "gold": "1. Identify the number of matches in the tournament structure (4 matches in total).  \n2. Recognize that each match has 2 possible outcomes (either player can win).  \n3. Calculate the total number of possible outcome sequences by multiplying the number of outcomes for each match (2^4).  \n4. Confirm that each unique outcome sequence corresponds to a unique prize-winning sequence.  \n5. Conclude that the total number of different prize-winning sequences is 16."
+  },
+  {
+   "val_index": 36,
+   "condition": "shuffled",
+   "generation": "1. Identify the centers of the two circles and the distance between them.  \n2. Recognize that the common external tangent forms a right angle with the line connecting the centers.  \n3. Calculate the length of the common external tangent using the distance between centers and the radii.  \n4. Use the tangent length to determine the angle between the tangent and the line connecting the centers.",
+   "gold": "1. Identify the number of matches in the tournament structure (4 matches in total).  \n2. Recognize that each match has 2 possible outcomes (either player can win).  \n3. Calculate the total number of possible outcome sequences by multiplying the number of outcomes for each match (2^4).  \n4. Confirm that each unique outcome sequence corresponds to a unique prize-winning sequence.  \n5. Conclude that the total number of different prize-winning sequences is 16."
+  },
+  {
+   "val_index": 37,
+   "condition": "correct",
+   "generation": "1. Determine the last two digits of the number $ n $ by analyzing the given condition $ n \\equiv 1 \\pmod{10} $ and $ n \\equiv 1 \\pmod{100} $.  \n2. Identify the last two digits of $ n $ as 01.  \n3. Use the given condition $ n \\equiv 1 \\pmod{100} $ to conclude that $ n $ ends in 01.  \n4. Analyze the last two digits of $ n^2 $ by squaring the last two digits 01.  \n5. Compare the resulting last two digits with the given options to determine the correct answer.",
+   "gold": "1. Identify the unit digits of perfect squares and confirm that 1 and 6 are valid unit digits for perfect squares.  \n2. Analyze the possible tens digits of perfect squares ending in 1 and determine their parity.  \n3. Analyze the possible tens digits of perfect squares ending in 6 and determine their parity.  \n4. Compare the parity of the tens digits $ x $ and $ y $ with the given answer choices to select the correct one."
+  },
+  {
+   "val_index": 37,
+   "condition": "shuffled",
+   "generation": "1. Factor the numerator $ x^3 - 1 $ using the sum of cubes formula.  \n2. Factor the denominator $ x^3 + 1 $ using the sum of cubes formula.  \n3. Set the simplified expression equal to 1 and solve for $ x $.  \n4. Test integer values of $ x $ to find the one that satisfies the equation.  \n5. Use the value of $ x $ to compute $ x^2 + x + 1 $.",
+   "gold": "1. Identify the unit digits of perfect squares and confirm that 1 and 6 are valid unit digits for perfect squares.  \n2. Analyze the possible tens digits of perfect squares ending in 1 and determine their parity.  \n3. Analyze the possible tens digits of perfect squares ending in 6 and determine their parity.  \n4. Compare the parity of the tens digits $ x $ and $ y $ with the given answer choices to select the correct one."
+  },
+  {
+   "val_index": 38,
+   "condition": "correct",
+   "generation": "1. Understand the problem: Count the number of distinct permutations of $ n $ elements where exactly one pair of adjacent elements is swapped.  \n2. Fix the position of the transposed pair: Choose two distinct elements $ i $ and $ j $ to be swapped, and determine the number of valid permutations where the elements at positions $ i $ and $ j $ are swapped.  \n3. Calculate the number of valid permutations: For each pair $ (i, j) $, there are $ n - 2! $ valid permutations where the elements at positions $ i $ and $ j $ are swapped.  \n4. Multiply by the number of pairs: Since there are $ \\binom{n}{2} $ pairs, multiply the result by $ \\binom{n}{2} $.  \n5. Simplify the expression: Use the identity $ \\binom{n}{2} = \\frac{n(n-1)}{2} $ to simplify the final result.",
+   "gold": "1. Understand that an inversion is a pair $ (a_i, a_j) $ with $ i < j $ and $ a_i > a_j $.  \n2. Recognize that permutations with exactly two inversions can be formed in two distinct ways: either by reversing one pair in the identity permutation or by swapping two non-overlapping pairs.  \n3. Count the number of ways to choose two non-overlapping pairs from $ n $ elements, which is $ \\binom{n}{4} $.  \n4. For each such combination of 4 elements, there are exactly 3 ways to form two non-overlapping inversion pairs.  \n5. Multiply the number of combinations $ \\binom{n}{4} $ by 3 to get the total number of permutations with exactly two inversions."
+  },
+  {
+   "val_index": 38,
+   "condition": "shuffled",
+   "generation": "1. Recognize that each row forms a straight line of 10 unit squares.  \n2. Note that the first row has 10 unit squares, the second row has 19, and the third row has 28 unit squares.  \n3. Identify the pattern: the number of unit squares in the nth row is $10 + 9(n-1)$.  \n4. Use the formula for the sum of the first $n$ natural numbers to find the total number of unit squares in 10 rows.",
+   "gold": "1. Understand that an inversion is a pair $ (a_i, a_j) $ with $ i < j $ and $ a_i > a_j $.  \n2. Recognize that permutations with exactly two inversions can be formed in two distinct ways: either by reversing one pair in the identity permutation or by swapping two non-overlapping pairs.  \n3. Count the number of ways to choose two non-overlapping pairs from $ n $ elements, which is $ \\binom{n}{4} $.  \n4. For each such combination of 4 elements, there are exactly 3 ways to form two non-overlapping inversion pairs.  \n5. Multiply the number of combinations $ \\binom{n}{4} $ by 3 to get the total number of permutations with exactly two inversions."
+  },
+  {
+   "val_index": 39,
+   "condition": "correct",
+   "generation": "1. Identify the roots of the polynomial $ x^3 + 2x^2 - 5x + 6 $ by testing small integers.  \n2. Determine the roots as $ x = 1 $, $ x = 2 $, and $ x = 3 $.  \n3. Use the fact that the polynomial is divisible by $ (x - 1)(x - 2)(x - 3) $ to express it as $ (x - 1)(x - 2)(x - 3)(x - a) $.  \n4. Expand the expression $ (x - 1)(x - 2)(x - 3) $ to get a quadratic in $ x $.  \n5. Multiply the resulting quadratic by $ (x - a) $ to form the full polynomial.  \n6. Match the given polynomial $ x^3 + 2x^2 - 5x + 6 $ with the expanded form.  \n7. Solve for $ a $ by equating coefficients.  \n8. Write the polynomial in the form $ x^3 + 2x^2 - 5x + 6 = (x - 1)(x - 2)(x - 3)(x - a) $.",
+   "gold": "1. Identify the conjugate root of $\\sqrt{2} - 1$ to ensure rational coefficients, which is $\\sqrt{2} + 1$.  \n2. Write the quadratic function in factored form using both roots: $f(x) = a(x - (\\sqrt{2} - 1))(x - (\\sqrt{2} + 1))$.  \n3. Simplify the factored form using the difference of squares to eliminate radicals: $f(x) = a[(x - \\sqrt{2})^2 - 1]$.  \n4. Expand the expression to standard form: $f(x) = a(x^2 - 2\\sqrt{2}x + 1)$.  \n5. Recognize that irrational coefficients exist and find the minimal polynomial with rational coefficients that has $\\sqrt{2} - 1$ as a root, which is $x^2 + 2x - 1$.  \n6. Scale the polynomial to ensure the minimum value is -4 by solving $a(-2) = -4$ to find $a = 2$.  \n7. Multiply the minimal polynomial by the found scaling factor to obtain the final quadratic function."
+  },
+  {
+   "val_index": 39,
+   "condition": "shuffled",
+   "generation": "1. Recognize the sum as a finite arithmetic series with first term $ a = 1 $, last term $ l = 2018 $, and number of terms $ n = 2018 $.  \n2. Use the formula for the sum of an arithmetic series: $ S_n = \\frac{n}{2}(a + l) $.  \n3. Substitute the known values into the formula and simplify the expression.  \n4. Simplify the resulting expression by canceling common factors and reducing the fraction.",
+   "gold": "1. Identify the conjugate root of $\\sqrt{2} - 1$ to ensure rational coefficients, which is $\\sqrt{2} + 1$.  \n2. Write the quadratic function in factored form using both roots: $f(x) = a(x - (\\sqrt{2} - 1))(x - (\\sqrt{2} + 1))$.  \n3. Simplify the factored form using the difference of squares to eliminate radicals: $f(x) = a[(x - \\sqrt{2})^2 - 1]$.  \n4. Expand the expression to standard form: $f(x) = a(x^2 - 2\\sqrt{2}x + 1)$.  \n5. Recognize that irrational coefficients exist and find the minimal polynomial with rational coefficients that has $\\sqrt{2} - 1$ as a root, which is $x^2 + 2x - 1$.  \n6. Scale the polynomial to ensure the minimum value is -4 by solving $a(-2) = -4$ to find $a = 2$.  \n7. Multiply the minimal polynomial by the found scaling factor to obtain the final quadratic function."
+  }
+ ],
+ "paraphrase": [
+  {
+   "id": "s1val-00336-befc9279",
+   "method": "Lagrange multipliers",
+   "generation_from_paraphrase_Z": "1. Express the constraint $ x + y + z = 1 $ in terms of $ x, y, z $, and substitute into the function $ f(x, y, z) = \\frac{1}{x} + \\frac{1}{y} + \\frac{1}{z} $.  \n2. Use Lagrange multipliers to set up the system of equations $ \\nabla f = \\lambda \\nabla g $, where $ g(x, y, z) = x + y + z - 1 $.  \n3. Solve the system of equations to find the critical points by assuming symmetry $ x = y = z $, which satisfies the constraint $ x + y + z = 1 $.  \n4. Substitute $ x = y = z = \\frac{1}{3} $ into the function $ f(x, y, z) $ to compute the value.  \n5. Verify that the critical point found is indeed a minimum by checking the second derivative or analyzing the behavior of the function.",
+   "l_orig_given_Z_orig": -0.3593219518661499,
+   "l_orig_given_Z_paraphrase": -0.36047396063804626,
+   "l_orig_given_Z_otherplan": -0.46554285287857056,
+   "cos_Z_orig_Z_para": 0.8631938695907593,
+   "cos_Z_orig_Z_other": 0.6642507314682007
+  },
+  {
+   "id": "s1val-00574-2a030f37",
+   "method": "difference-of-squares factoring of 65",
+   "generation_from_paraphrase_Z": "1. Factor the left-hand side (LHS) of the equation $ x^2 + y^2 = 2017 $ into two prime factors.  \n2. Express the right-hand side (RHS) of the equation $ x^2 + y^2 = 2017 $ as a product of two integers.  \n3. Set up the equation $ x^2 + y^2 = 2017 $ and factor it into two primes.  \n4. List all pairs of prime factors of 2017.  \n5. For each pair of primes $ p $ and $ q $, solve the Diophantine equation $ x^2 + y^2 = pq $ by testing small integer values for $ x $ and $ y $.  \n6. Identify all integer solutions $ (x, y) $ that satisfy the equation.  \n7. Count the number of distinct positive integer solutions.",
+   "l_orig_given_Z_orig": -0.672298014163971,
+   "l_orig_given_Z_paraphrase": -0.7073813080787659,
+   "l_orig_given_Z_otherplan": -0.7375496625900269,
+   "cos_Z_orig_Z_para": 0.8545363545417786,
+   "cos_Z_orig_Z_other": 0.6555248498916626
+  },
+  {
+   "id": "s1val-00569-33b9f53f",
+   "method": "discriminant of a quadratic in x",
+   "generation_from_paraphrase_Z": "1. Substitute $ y = x + 1 $ to simplify the equation.  \n2. Rewrite the equation in terms of $ y $ and solve for $ y $.  \n3. Determine the range of $ y $ values that satisfy the equation.  \n4. Express $ x $ in terms of $ y $ using the substitution.  \n5. Identify the maximum value of $ x $ from the valid range.",
+   "l_orig_given_Z_orig": -0.6873763203620911,
+   "l_orig_given_Z_paraphrase": -0.7148387432098389,
+   "l_orig_given_Z_otherplan": -1.0227892398834229,
+   "cos_Z_orig_Z_para": 0.7636095285415649,
+   "cos_Z_orig_Z_other": 0.6282992362976074
+  },
+  {
+   "id": "s1val-00309-9b08eaea",
+   "method": "Euler's theorem (phi(9)=6)",
+   "generation_from_paraphrase_Z": "1. Compute $ 3^k \\mod 1000 $ using the pattern of powers of 3 modulo 1000.  \n2. Use the Chinese Remainder Theorem by computing $ 3^k \\mod 8 $ and $ 3^k \\mod 125 $ separately.  \n3. Find a number $ x $ such that $ x \\equiv 3^k \\mod 8 $ and $ x \\equiv 3^k \\mod 125 $.  \n4. Use the Chinese Remainder Theorem to find the value of $ x \\mod 1000 $.",
+   "l_orig_given_Z_orig": -0.4711710214614868,
+   "l_orig_given_Z_paraphrase": -0.4772404134273529,
+   "l_orig_given_Z_otherplan": -0.4755652844905853,
+   "cos_Z_orig_Z_para": 0.8394520282745361,
+   "cos_Z_orig_Z_other": 0.8433817625045776
+  },
+  {
+   "id": "s1val-00305-696c8aa4",
+   "method": "substitute y=6/x + quadratic formula",
+   "generation_from_paraphrase_Z": "1. Solve the first equation for $ y $ in terms of $ x $: $ y = \\frac{1}{2}x $.  \n2. Substitute $ y = \\frac{1}{2}x $ into the second equation to form a single equation in $ x $.  \n3. Solve the resulting equation for $ x $, then substitute back to find $ y $.  \n4. Use the values of $ x $ and $ y $ to compute $ x + y $.",
+   "l_orig_given_Z_orig": -0.39681723713874817,
+   "l_orig_given_Z_paraphrase": -0.4075051546096802,
+   "l_orig_given_Z_otherplan": -0.4633124768733978,
+   "cos_Z_orig_Z_para": 0.8142140507698059,
+   "cos_Z_orig_Z_other": 0.7848849296569824
+  },
+  {
+   "id": "s1val-00479-999dadd8",
+   "method": "factor into linear x quadratic",
+   "generation_from_paraphrase_Z": "1. Factor the cubic polynomial by testing rational roots using the Rational Root Theorem.  \n2. Identify the three distinct real roots from the factored form.  \n3. Use the fact that the sum of the roots is 1 to determine the relationship between the roots.  \n4. Conclude that the polynomial has three distinct real roots, which means it has three real solutions.  \n5. Identify the number of real roots based on the factored form.",
+   "l_orig_given_Z_orig": -0.9729595184326172,
+   "l_orig_given_Z_paraphrase": -1.1159083843231201,
+   "l_orig_given_Z_otherplan": -1.1084225177764893,
+   "cos_Z_orig_Z_para": 0.7919933795928955,
+   "cos_Z_orig_Z_other": 0.6530706882476807
+  }
+ ]
+}

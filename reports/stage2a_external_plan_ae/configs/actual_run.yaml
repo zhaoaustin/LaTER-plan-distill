@@ -1,0 +1,26 @@
+experiment: stage2a_external_plan_autoencoder
+stage1_checkpoint: /scratch/hz33227/e2c/Explore-Execute-Chain/outputs/e2c_qwen3_4b_sft/best_hf   # = zhaohq/Qwen3-4B-E2C-SFT-only @ a6b0e2fe008f14b00bf7f3a29a214e96212f7251 (step 800)
+plan_decoder_checkpoint: Qwen/Qwen3-0.6B @ c1899de289a04d12100db370d81485cdf75e47ca
+seed: 42
+n_latent_tokens: 8
+encoder: frozen Qwen3-4B Stage-1, plan text only, layer 27 per-token hidden states (cached, bf16)
+encoder_input_standardization: train-only per-dim mu/sigma, sigma floor = 5th pct, clip +-5
+compressor: 8 learned queries, 2 x [pre-LN masked cross-attn (8 heads) + MLP 2x], d=2560; output per-vector RMS = 4B token-emb RMS 0.0219532
+latent_dim: 2560
+latent_to_decoder: Linear(2560->1024) on z/0.0219532, per-vector RMS = decoder emb RMS
+decoder: Qwen3-0.6B frozen + LoRA r=16 alpha=32 dropout=0 on q,k,v,o,gate,up,down
+decoder_prompt: "Reconstruct the high-level mathematical plan.\n" + 8 soft tokens + plan targets (+ <|im_end|>)
+trainable: [compressor 104.9M, latent_to_decoder 2.6M, decoder_lora 10.1M]
+train_plan_count: 3000
+val_plan_count: 300
+max_plan_tokens: 288   # task default 192 would filter ~28%; raised to ~p95 (filters 3.9%)
+batch_size_global: 32   # single GPU: micro 8 x accumulation 4 (task example used 2 GPUs x 4 x 4)
+max_optimizer_steps: 300
+learning_rate (compressor / adapter / lora): 1.0e-4, linear warmup 10 steps then constant
+weight_decay: 0.01
+grad_clip: 1.0
+precision: bf16 autocast, fp32 trainable weights
+loss: plan-token CE only (token mean within micro-batch)
+save_steps: [0, 100, 200, 300]
+validate_steps: [0, 100, 200, 300]
+rl_enabled: false

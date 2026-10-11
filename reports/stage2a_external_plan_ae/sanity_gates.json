@@ -1,0 +1,54 @@
+{
+ "trainable_params": {
+  "compressor": 104944640,
+  "adapter": 2622464,
+  "decoder_lora": 10092544
+ },
+ "decoder_nonlora_trainable": 0,
+ "train_val_no_question_field": true,
+ "G1_prefix_is_fixed_prompt_for_all": true,
+ "G1_prompt_text": "Reconstruct the high-level mathematical plan.\n",
+ "G1_soft_slots_written": true,
+ "G2_first_half_logits_max_abs_diff": 0.0,
+ "G2_second_half_logits_differ": true,
+ "G3_swap_Z_changes_logits": true,
+ "G3_generate_first_step_vs_teacher_forced_max_abs": 0.0,
+ "G3_generate_first_step_argmax_equal": true,
+ "G6_first_token_ce_manual_vs_score": [
+  8.202350616455078,
+  8.202350616455078
+ ],
+ "G6_first_token_shift_ok": true,
+ "G6_n_targets_equals_len_plus_eos": [
+  true,
+  true
+ ],
+ "G6_last_target_is_eos": true,
+ "G6_pad_positions_ignored": true,
+ "G5_grad_Z_norm": 2.8957700729370117,
+ "G5_comp_adapter_grads_finite_nonzero": true,
+ "G5_lora_B_grads_finite_nonzero": true,
+ "G5_decoder_base_grads_none": true,
+ "G7_tiny": {
+  "loss_first_last": [
+   1.6696113348007202,
+   0.0007526334375143051
+  ],
+  "ce_correct_before_after": [
+   1.7187322080135345,
+   0.0007181634882726939
+  ],
+  "ce_shuffled_after": 0.20075768884271383,
+  "gap_shuffled_minus_correct_mean": 0.20003952535444114,
+  "gap_positive": "16/16"
+ },
+ "G7_pass_rule": "loss decreases AND mean gap > 0.1 nats AND >= 14/16 positive (pre-registered)",
+ "G7_pass": true,
+ "G4_decoder_base_bitwise_unchanged": true,
+ "G4_optimizer_only_comp_adapter_lora": true,
+ "G4_4B_never_loaded_in_training_process": true,
+ "G4_4B_unchanged_during_caching": true,
+ "G8_reload_loss_equal": true,
+ "G8_next_update_max_abs_diff": 0.0,
+ "ALL_GATES_PASS": true
+}

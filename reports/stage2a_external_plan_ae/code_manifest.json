@@ -1,0 +1,15 @@
+{
+ "branch": "exp/stage2a-external-plan-ae",
+ "base_commit": "2cf7c13d7cd33f5cce61dad9cd6ca99aa33edde2",
+ "torch": "2.8.0+cu128",
+ "transformers": "5.12.1",
+ "peft": "0.18.1",
+ "scripts": {
+  "prepare_data.py": "5a11216d27432a8110bac9489375b8dc5e7dad67571eca3d52d1e3eeb4536f05",
+  "cache_plan_states.py": "374b63f02341c4bd520d7113c5acd97d37c1d535ce82ab7c4777665ba6efeb14",
+  "plan_ae.py": "16c226ff0b35127509863534e64aa1420728226fcea8923c9c9e938757c3acf9"
+ },
+ "encoder_layer": 27,
+ "span_rules": "/scratch/hz33227/e2c/stage2/outputs/stage2_fast_plan_specific_diagnostics/span_rules_frozen.json (frozen earlier, reused for specific-token metrics)",
+ "gpu": "1x NVIDIA B200 (Slurm 48907334)"
+}

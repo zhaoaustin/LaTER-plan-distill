@@ -1,0 +1,66 @@
+{
+ "correct": {
+  "n": 40,
+  "token_f1_own_gold": 0.5,
+  "retrieves_own_gold": "25/40",
+  "retrieves_donor_gold": null,
+  "method_term_recall": 0.387,
+  "distinct_generations": 40,
+  "top_first_lines": [
+   [
+    "1. Identify the centers of the two circles and the distance ",
+    1
+   ],
+   [
+    "1. Identify the two rectangles: one is a 1\u00d72 rectangle, the ",
+    1
+   ]
+  ]
+ },
+ "shuffled": {
+  "n": 40,
+  "token_f1_own_gold": 0.33,
+  "retrieves_own_gold": "0/40",
+  "retrieves_donor_gold": 25,
+  "method_term_recall": 0.023,
+  "distinct_generations": 40,
+  "top_first_lines": [
+   [
+    "1. Identify the total number of possible outcomes when 3 pla",
+    1
+   ],
+   [
+    "1. Express the general term of the sum as $ a_n = \\frac{1}{n",
+    1
+   ]
+  ]
+ },
+ "mean": {
+  "n": 10,
+  "token_f1_own_gold": 0.36,
+  "retrieves_own_gold": "0/10",
+  "retrieves_donor_gold": null,
+  "method_term_recall": 0.0,
+  "distinct_generations": 1,
+  "top_first_lines": [
+   [
+    "1. Define variables for the number of red, blue, and green b",
+    10
+   ]
+  ]
+ },
+ "zero": {
+  "n": 10,
+  "token_f1_own_gold": 0.336,
+  "retrieves_own_gold": "0/10",
+  "retrieves_donor_gold": null,
+  "method_term_recall": 0.0,
+  "distinct_generations": 1,
+  "top_first_lines": [
+   [
+    "1. Identify the positions of the red, white, and blue balls ",
+    10
+   ]
+  ]
+ }
+}
