@@ -1,0 +1,61 @@
+{
+ "n": {
+  "train": 200,
+  "val": 128
+ },
+ "train_sample_seed": 42,
+ "val_records": "first 128 of stage2_val (pilot / Test-2 probe set)",
+ "n_generic_ngrams_from_full_train": 364,
+ "by_split": {
+  "train": {
+   "plan_tokens_total": 35447,
+   "plan_tokens_median": 167.5,
+   "token_share": {
+    "generic_template": 0.29903800039495587,
+    "method_specific": 0.022315005501170763,
+    "subgoal_specific": 0.2771179507433633,
+    "unknown": 0.40152904336051004
+   },
+   "char_share_mean": {
+    "generic_template": 0.3032848693407788,
+    "method_specific": 0.051852404159506676,
+    "subgoal_specific": 0.1237005272438964,
+    "unknown": 0.5211621992558182
+   },
+   "coverage_records_with_method_span": 0.775,
+   "coverage_records_with_subgoal_span": 0.86,
+   "coverage_records_with_any_specific": 0.955,
+   "records_with_specific_share_ge_10pct": 0.735,
+   "plan_exact_duplicate_rate": 0.01,
+   "answer_string_in_plan_candidate_rate": 0.045,
+   "computation_in_plan_candidate_rate": 0.165,
+   "plan_4gram_overlap_with_execution_mean": 0.7495495804767125,
+   "plan_lines_restated_fraction": 0.6881233000906618
+  },
+  "val": {
+   "plan_tokens_total": 23086,
+   "plan_tokens_median": 175.0,
+   "token_share": {
+    "generic_template": 0.30412371134020616,
+    "method_specific": 0.02391059516590141,
+    "subgoal_specific": 0.2699471541193797,
+    "unknown": 0.4020185393745127
+   },
+   "char_share_mean": {
+    "generic_template": 0.30102994100902614,
+    "method_specific": 0.0577700900552368,
+    "subgoal_specific": 0.12260102835066886,
+    "unknown": 0.5185989405850682
+   },
+   "coverage_records_with_method_span": 0.8125,
+   "coverage_records_with_subgoal_span": 0.84375,
+   "coverage_records_with_any_specific": 0.9453125,
+   "records_with_specific_share_ge_10pct": 0.71875,
+   "plan_exact_duplicate_rate": 0.0,
+   "answer_string_in_plan_candidate_rate": 0.046875,
+   "computation_in_plan_candidate_rate": 0.109375,
+   "plan_4gram_overlap_with_execution_mean": 0.7652029740315642,
+   "plan_lines_restated_fraction": 0.672627235213205
+  }
+ }
+}
