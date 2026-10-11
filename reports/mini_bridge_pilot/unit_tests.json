@@ -1,0 +1,21 @@
+{
+ "bridge_params": 39367680,
+ "executor_trainable_params": 0,
+ "token_embedding_rms": 0.02195320464670658,
+ "encoder_contains_execution_text": false,
+ "encoder_contains_answer_field_separately": false,
+ "plans_containing_answer_string": 3,
+ "executor_prefix_identical_for_A_B_and_plan_free": true,
+ "executor_prefix_decoded_tail": "ORATION>\n<|endoftext|><|endoftext|><|endoftext|><|endoftext|><|endoftext|><|endoftext|><|endoftext|><|endoftext|></EXPLORATION><EXECUTION>\n",
+ "bridge_grad_all_finite": true,
+ "bridge_grad_norm": 0.19917070865631104,
+ "executor_grads_none": true,
+ "z_written_into_slots_max_abs": 0.0,
+ "prefix_ids_equal_all_4_seqs": true,
+ "prefix_pos_mask_equal_all_4_seqs": true,
+ "s_A_differs_ZA_vs_ZB": 0.00018596649169921875,
+ "executor_bitwise_unchanged_after_step": true,
+ "ckpt_roundtrip_z_max_abs": 0.0,
+ "ckpt_roundtrip_score_diff": -1.4901161193847656e-07,
+ "ALL_HARD_GATES_PASS": true
+}
