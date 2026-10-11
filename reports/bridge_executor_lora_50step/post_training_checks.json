@@ -1,0 +1,7 @@
+{
+ "backbone_bitwise_unchanged_after_training": true,
+ "bridge_bitwise_unchanged_after_training": true,
+ "train_time_s": 80.79021644592285,
+ "peak_mem_gb": 74.4567289352417,
+ "total_wall_s": 375.1743104457855
+}

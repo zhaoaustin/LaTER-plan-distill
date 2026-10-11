@@ -1,0 +1,69 @@
+{
+ "repo_branch": "exp/bridge-input-abcd",
+ "repo_head_before_commit": "eb5e5c8a7808ae3f57cb400efa632c23307f59c3",
+ "stage1": "/scratch/hz33227/e2c/Explore-Execute-Chain/outputs/e2c_qwen3_4b_sft/best_hf = step 800 = HF zhaohq/Qwen3-4B-E2C-SFT-only @ a6b0e2fe008f14b00bf7f3a29a214e96212f7251",
+ "bridge_ckpt": "/scratch/hz33227/e2c/stage2/outputs/bridge_input_abcd/group_std/bridge_checkpoint/step50.pt",
+ "bridge_ckpt_sha256": "eea54e2934f50cb3ac14df168afaf38d48e601315b51498e17dc800c00b18cc9",
+ "train_stats": "/scratch/hz33227/e2c/stage2/outputs/bridge_input_abcd/group_std/train_stats.npz (train-only; re-fit reproduces it)",
+ "lora": {
+  "r": 16,
+  "lora_alpha": 32,
+  "lora_dropout": 0.0,
+  "target_modules": [
+   "q_proj",
+   "v_proj",
+   "o_proj"
+  ],
+  "bias": "none",
+  "trainable_params": 9732096,
+  "total_params": 4032200192
+ },
+ "lora_config_source": "task-sheet default (the repo's only LoRA config is a 14B SFT config r=64 all-linear; not reused)",
+ "data": {
+  "train_ids": [
+   "s1val-00645-de6f711a",
+   "s1val-00359-88eb7515",
+   "s1val-00499-627066cc",
+   "s1val-00689-85fb747f",
+   "s1val-00472-c5e1cac9",
+   "s1val-00422-f95ff89d",
+   "s1val-00683-4ee5b680",
+   "s1val-00626-1bba07b5",
+   "s1val-00496-03739fc1",
+   "s1val-00344-ba8a76c3",
+   "s1val-00660-ef03132b",
+   "s1val-00368-f1e220c8",
+   "s1val-00535-02813895",
+   "s1val-00491-740fb9ec",
+   "s1val-00653-bc3c49e7",
+   "s1val-00281-3cd770ea",
+   "s1val-00439-e679617d",
+   "s1val-00498-50ca6d71",
+   "s1val-00313-ab57b867",
+   "s1val-00471-2af60d16"
+  ],
+  "heldout_ids": [
+   "s1val-00336-befc9279",
+   "s1val-00574-2a030f37",
+   "s1val-00569-33b9f53f",
+   "s1val-00507-b7055178",
+   "s1val-00479-999dadd8",
+   "s1val-00309-9b08eaea",
+   "s1val-00305-696c8aa4",
+   "s1val-00486-d1e0b543"
+  ]
+ },
+ "seed_init": 0,
+ "data_order_seed": 1234,
+ "optimizer": "AdamW lr 1e-4 wd 0.01, LoRA params only",
+ "pairs_per_step": 4,
+ "grad_clip": 1.0,
+ "steps": 50,
+ "loss": "identical to A/B/C/D group B: 0.5*(CE_full(E_A|Z_A)+CE_full(E_B|Z_B)) + 0.1*[softplus(-D_A)+softplus(-D_B)], D on first 64 execution targets",
+ "Z": "cached once from frozen LoRA-free Stage-1 + frozen B-50 bridge; online recompute with adapter disabled == cache (max abs 0)",
+ "controls": "swapped = same-q other plan; shuffled = held-out question i+1 (same label), fixed; mean = mean of train Z (per slot, RMS-renormalized); zero",
+ "gpu": "1x NVIDIA B200 (Slurm 48907334)",
+ "train_time_s": 80.79021644592285,
+ "peak_mem_gb": 74.4567289352417,
+ "total_wall_s_run": 375.1743104457855
+}
