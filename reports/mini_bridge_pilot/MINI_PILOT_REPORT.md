@@ -94,7 +94,7 @@
 ```bash
 cd /scratch/hz33227/e2c/stage2/LaTER; M=/scratch/hz33227/e2c/Explore-Execute-Chain/outputs/e2c_qwen3_4b_sft/best_hf; D=/scratch/hz33227/e2c/stage2/outputs/mini_bridge_pilot
 srun --jobid=48907334 --overlap --gres=gpu:1 bash -c "export PATH=$HOME/.conda/envs/trl-b200/bin:\$PATH VLLM_ATTENTION_BACKEND=FLASH_ATTN; python later/scripts/bridge/sample_dual_plans.py --model $M --val /scratch/hz33227/e2c/stage2/data/stage2_val.parquet --out $D/data/samples_stage1_n8.jsonl"
-# candidates_auto.json: screening snippet in code_patch.diff notes; accepted list is fixed in build_pairs.py
+# candidates_auto.json 由一次性内联筛选脚本生成（方法词 lexicon 对称差 + 词 Jaccard 打分，见 build_pairs.py 文档字符串），文件已保存；人工接受名单固定在 build_pairs.py 中
 ~/.conda/envs/later-b200/bin/python later/scripts/bridge/build_pairs.py $D/data/samples_stage1_n8.jsonl $D/data/candidates_auto.json $D
 for m in test train; do srun --jobid=48907334 --overlap --gres=gpu:1 ~/.conda/envs/later-b200/bin/python -m later.scripts.bridge.mini_bridge --mode $m --steps 50 --model $M --out $D; done
 srun --jobid=48907334 --overlap --gres=gpu:1 ~/.conda/envs/later-b200/bin/python -m later.scripts.bridge.mini_bridge --mode final --ckpt $D/bridge_checkpoint/step50.pt --model $M --out $D
