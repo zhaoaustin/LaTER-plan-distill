@@ -1,0 +1,51 @@
+{
+ "learned": {
+  "distinct_plans": 2,
+  "method_consistent_rate": 0.11764705882352941,
+  "n_with_gold_method": 17,
+  "mean_method_recall": 0.04901960784313725,
+  "mean_token_f1_vs_gold": 0.3497403117843077,
+  "identifies_own_plan_among_20": 1,
+  "natural_stop": 20
+ },
+ "shuffled_s0": {
+  "distinct_plans": 2,
+  "method_consistent_rate": 0.11764705882352941,
+  "n_with_gold_method": 17,
+  "mean_method_recall": 0.04901960784313725,
+  "mean_token_f1_vs_gold": 0.34915275942938495,
+  "identifies_own_plan_among_20": 1,
+  "natural_stop": 20
+ },
+ "mean": {
+  "distinct_plans": 1,
+  "method_consistent_rate": 0.11764705882352941,
+  "n_with_gold_method": 17,
+  "mean_method_recall": 0.04901960784313725,
+  "mean_token_f1_vs_gold": 0.3526547869434751,
+  "identifies_own_plan_among_20": 1,
+  "natural_stop": 20
+ },
+ "zero": {
+  "distinct_plans": 1,
+  "method_consistent_rate": 0.11764705882352941,
+  "n_with_gold_method": 17,
+  "mean_method_recall": 0.04901960784313725,
+  "mean_token_f1_vs_gold": 0.3473447456416168,
+  "identifies_own_plan_among_20": 1,
+  "natural_stop": 20
+ },
+ "learned_vs_shuffled": {
+  "learned_better": 5,
+  "shuffled_better": 4,
+  "ties": 11,
+  "sign_test_p": 1,
+  "identical_text_pairs": 11
+ },
+ "most_common_learned_output_head": [
+  [
+   "I need to make a step-by-step plan.\n1. Identify the total number of students and the number of students who received eac",
+   20
+  ]
+ ]
+}

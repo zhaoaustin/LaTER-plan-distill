@@ -1,0 +1,25 @@
+== within-question cos(t, t+k), mean over questions (raw / centred per step)
+h_in k=1 raw [0.03, 0.079, 0.103, 0.105, 0.097, 0.101, 0.102] centred [0.14, 0.122, 0.147, 0.172, 0.163, 0.181, 0.18]
+h_in k=2 raw [0.403, 0.979, 0.934, 0.996, 0.969, 0.998] centred [0.137, 0.833, 0.647, 0.919, 0.72, 0.928]
+z_out k=1 raw [0.334, 0.282, 0.282, 0.281, 0.28, 0.284, 0.284] centred [0.053, 0.033, 0.041, 0.053, 0.05, 0.057, 0.058]
+z_out k=2 raw [0.916, 0.999, 0.996, 1.0, 0.998, 1.0] centred [0.085, 0.808, 0.611, 0.903, 0.698, 0.913]
+== cross-step mean vectors: cos(mu_t, mu_s) for z_out
+[[1.0, 0.334, 0.918, 0.335, 0.921, 0.334, 0.921, 0.334], [0.334, 1.0, 0.282, 0.999, 0.281, 0.999, 0.285, 0.999], [0.918, 0.282, 1.0, 0.282, 0.997, 0.281, 0.993, 0.281], [0.335, 0.999, 0.282, 1.0, 0.281, 1.0, 0.285, 1.0], [0.921, 0.281, 0.997, 0.281, 1.0, 0.28, 0.998, 0.28], [0.334, 0.999, 0.281, 1.0, 0.28, 1.0, 0.284, 1.0], [0.921, 0.285, 0.993, 0.285, 0.998, 0.284, 1.0, 0.284], [0.334, 0.999, 0.281, 1.0, 0.28, 1.0, 0.284, 1.0]]
+== absolute per-dim cross-question spread vs typical token-embedding spread
+['latent_projector.net.0.bias', 'latent_projector.net.0.weight', 'latent_projector.net.3.bias', 'latent_projector.net.3.weight']
+t=1 z_out spread/dim 0.001002  token-embed spread/dim 0.021057  ratio 21.0x ; h_in spread/dim 0.4902 h_in rms 3.4570
+t=2 z_out spread/dim 0.000542  token-embed spread/dim 0.021057  ratio 38.8x ; h_in spread/dim 0.3657 h_in rms 2.7387
+t=3 z_out spread/dim 0.000934  token-embed spread/dim 0.021057  ratio 22.5x ; h_in spread/dim 0.4933 h_in rms 2.8469
+t=4 z_out spread/dim 0.000569  token-embed spread/dim 0.021057  ratio 37.0x ; h_in spread/dim 0.3826 h_in rms 2.7538
+t=5 z_out spread/dim 0.000601  token-embed spread/dim 0.021057  ratio 35.0x ; h_in spread/dim 0.3372 h_in rms 2.8606
+t=6 z_out spread/dim 0.000527  token-embed spread/dim 0.021057  ratio 40.0x ; h_in spread/dim 0.3593 h_in rms 2.7502
+t=7 z_out spread/dim 0.000625  token-embed spread/dim 0.021057  ratio 33.7x ; h_in spread/dim 0.3393 h_in rms 2.7521
+t=8 z_out spread/dim 0.000524  token-embed spread/dim 0.021057  ratio 40.2x ; h_in spread/dim 0.3563 h_in rms 2.7384
+t=1 |mean z_raw|=404.99 |bias|=0.08 cos(mean z_raw, bias)=0.644 |z_raw - mean| rms-norm=19.630
+t=2 |mean z_raw|=426.31 |bias|=0.08 cos(mean z_raw, bias)=0.720 |z_raw - mean| rms-norm=11.120
+t=3 |mean z_raw|=403.28 |bias|=0.08 cos(mean z_raw, bias)=0.609 |z_raw - mean| rms-norm=18.435
+t=4 |mean z_raw|=430.96 |bias|=0.08 cos(mean z_raw, bias)=0.719 |z_raw - mean| rms-norm=11.209
+t=5 |mean z_raw|=416.73 |bias|=0.08 cos(mean z_raw, bias)=0.610 |z_raw - mean| rms-norm=12.091
+t=6 |mean z_raw|=430.90 |bias|=0.08 cos(mean z_raw, bias)=0.719 |z_raw - mean| rms-norm=10.521
+t=7 |mean z_raw|=393.24 |bias|=0.08 cos(mean z_raw, bias)=0.615 |z_raw - mean| rms-norm=15.138
+t=8 |mean z_raw|=429.49 |bias|=0.08 cos(mean z_raw, bias)=0.719 |z_raw - mean| rms-norm=10.508
