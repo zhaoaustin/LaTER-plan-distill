@@ -1,0 +1,155 @@
+{
+ "stage1_checkpoint": {
+  "path": "/scratch/hz33227/e2c/Explore-Execute-Chain/outputs/e2c_qwen3_4b_sft/best_hf",
+  "hf_repo": "zhaohq/Qwen3-4B-E2C-SFT-only",
+  "hf_revision": "a6b0e2fe008f14b00bf7f3a29a214e96212f7251",
+  "safetensors_sha256": {
+   "model-00001-of-00002.safetensors": "5437b2034da26ab74685af7bd570c315a9e22c3bd5967d5a83facded57ca8916",
+   "model-00002-of-00002.safetensors": "1035e45e6c8b8c8248a990945b921c7f18522f28f1a0698e838b85bbff6d553f"
+  },
+  "matches_hf_revision_lfs_sha256": true,
+  "checkpoint_hash": "d6fcd102fce9db368188f6871f8d517894c18c902735b2f1a0d8fb229eae350f"
+ },
+ "tokenizer_hash": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+ "chat_template_hash": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8",
+ "boundary_rule_version": "e2c-v1: boundary = last token ('>\\n', id 397) of '</EXPLORATION><EXECUTION>\\n'",
+ "planrec_rule_version": "e2c-planrec-v1: context = [z_1..z_L] + '<EXPLORATION>\\n' (Stage-1 ids); targets = the Stage-1 plan-segment tokens (resp ids between '<EXPLORATION>\\n' and the separator tail), nothing else",
+ "plan_content_rule": "e2c-plan-content-v1: plan tokens with at least one character outside (a) the header line 'I need to make a step-by-step plan.', (b) line-initial step numbering '^\\s*\\d+\\.\\s*', (c) whitespace; math = content tokens overlapping a $...$ span",
+ "stage1_source": {
+  "paths": {
+   "train": "/scratch/hz33227/e2c/Explore-Execute-Chain/data/processed/sft/e2c-sft-train-fullfit.parquet",
+   "val": "/scratch/hz33227/e2c/Explore-Execute-Chain/data/processed/sft/e2c-sft-val-fullfit.parquet"
+  },
+  "sha256": {
+   "train": "1f02662a2172d13ca32706d84f002ab0b25f03115dfa078defe2f9662b81e88a",
+   "val": "14a403f81757545cc2dbfa93e2ba9c61ea452d8ec027ad94c2c8201231f5517c"
+  },
+  "n_source": {
+   "train": 49684,
+   "val": 2611
+  },
+  "n_parsed": {
+   "train": 49321,
+   "val": 2597
+  },
+  "n_accepted": {
+   "train": 46510,
+   "val": 2446
+  },
+  "rejected_by_reason": {
+   "train": {
+    "plan_restates_final_answer": 2542,
+    "no_parsable_answer": 363,
+    "eval_overlap": 301,
+    "plan_contains_boxed_answer": 21
+   },
+   "val": {
+    "eval_overlap": 19,
+    "plan_restates_final_answer": 127,
+    "no_parsable_answer": 14,
+    "plan_contains_boxed_answer": 2,
+    "question_also_in_train": 7
+   }
+  }
+ },
+ "data_source_policy": "stage1_sft_only",
+ "later69k_samples_used": 0,
+ "new_teacher_data": 0,
+ "splits": {
+  "train": {
+   "path": "/scratch/hz33227/e2c/stage2/data/stage2_train.parquet",
+   "sha256": "95ab3086d190d5a9308597c6718a5cbee249ff26bb97b40d8a27c7498ad57e8c",
+   "n_records": 46510,
+   "record_ids_unique": true,
+   "stage1_solution_lossless": 46510,
+   "build_views_errors": {},
+   "planrec_target_tokens": {
+    "min": 31,
+    "p50": 168,
+    "p95": 287,
+    "max": 511,
+    "mean": 174.8244893571275
+   },
+   "planrec_content_tokens": {
+    "min": 15,
+    "p50": 138,
+    "p95": 249,
+    "max": 459,
+    "mean": 144.9064502257579
+   },
+   "planrec_math_tokens": {
+    "min": 0,
+    "p50": 46,
+    "p95": 150,
+    "max": 392,
+    "mean": 55.20825628897011
+   },
+   "execution_target_tokens": {
+    "min": 65,
+    "p50": 814,
+    "p95": 1752,
+    "max": 1995,
+    "mean": 887.3725865405289
+   },
+   "student_sequence_tokens": {
+    "min": 114,
+    "p50": 937,
+    "p95": 1888,
+    "max": 2612,
+    "mean": 1009.7976779187271
+   },
+   "content_fraction_of_plan_tokens": 0.8288681451815729
+  },
+  "val": {
+   "path": "/scratch/hz33227/e2c/stage2/data/stage2_val.parquet",
+   "sha256": "6b63ba49298bc0a2328aec36a47d4fe04fb0699aba671109486f2af879e7561f",
+   "n_records": 2446,
+   "record_ids_unique": true,
+   "stage1_solution_lossless": 2446,
+   "build_views_errors": {},
+   "planrec_target_tokens": {
+    "min": 41,
+    "p50": 170,
+    "p95": 285,
+    "max": 511,
+    "mean": 175.98201144726085
+   },
+   "planrec_content_tokens": {
+    "min": 21,
+    "p50": 140,
+    "p95": 247,
+    "max": 451,
+    "mean": 146.0204415372036
+   },
+   "planrec_math_tokens": {
+    "min": 0,
+    "p50": 45,
+    "p95": 150,
+    "max": 365,
+    "mean": 55.13777596075225
+   },
+   "execution_target_tokens": {
+    "min": 96,
+    "p50": 812,
+    "p95": 1775,
+    "max": 1995,
+    "mean": 890.8029435813573
+   },
+   "student_sequence_tokens": {
+    "min": 163,
+    "p50": 943,
+    "p95": 1909,
+    "max": 2302,
+    "mean": 1014.6811120196239
+   },
+   "content_fraction_of_plan_tokens": 0.8297464061033518
+  }
+ },
+ "contamination": {
+  "stage2_data": "train/val records overlapping AIME24/25, MATH-500, OlympiadBench, AMC23 (exact or 13-gram) were removed by the Stage-1->Stage-2 conversion (eval_overlap: train 301, val 19); val rows whose question also appears in train removed (7).",
+  "stage1_checkpoint": "the Stage-1 SFT checkpoint itself was trained on 320 benchmark-overlapping records.",
+  "gen_eval_set": "data/clean_math_eval.parquet: 50 MATH-500 problems, 13-gram clean against the full E2C SFT source; paraphrases are not detected.",
+  "probe_set": "first 128 (training probes) / 200 (final eval) records of stage2_val, fixed."
+ },
+ "closing_token_note": "stage1_solution ends with '</EXECUTION>'; the Stage-1 training target appends '<|im_end|>' (build_views checks response == stage1_solution + '<|im_end|>'). The separator '\\n</EXPLORATION><EXECUTION>\\n' contains the merged token '><' (id 1784); its leading '\\n' is part of the Stage-1 plan segment, so PlanRec targets decode to plan + '\\n'."
+}
