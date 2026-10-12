@@ -1,0 +1,10 @@
+{
+ "s1val-00626": {
+  "A": "1. Recall that the integers below $n$ that are relatively prime to $n$ add up to $\\frac{n\\,\\phi(n)}{2}$.  \n2. Find Euler's totient $\\phi(200)$ from the prime factorization of 200 together with the totient product formula.  \n3. This gives $\\phi(200) = 80$.  \n4. Plug this value into the sum formula and evaluate $\\frac{200 \\cdot 80}{2}$.",
+  "B": "1. Write 200 as a product of primes: $200 = 2^3 \\cdot 5^2$.  \n2. Count how many integers below 200 share a common factor with 200, using the inclusion-exclusion principle.  \n3. Remove that count from 199 to get how many integers below 200 are relatively prime to 200.  \n4. Then apply the sum formula for integers below $n$ that are coprime to $n$: $\\sum_{k=1}^{n-1} \\gcd(k, n) = \\frac{n \\cdot \\phi(n)}{2}$.  \n5. Evaluate Euler's totient $\\phi(200)$.  \n6. Insert $\\phi(200)$ into this formula to obtain the requested sum."
+ },
+ "s1val-00496": {
+  "A": "1. View $mx + ny$ as the inner product of the vectors $\\vec{u} = (m, n)$ and $\\vec{v} = (x, y)$.  \n2. An inner product $\\vec{u} \\cdot \\vec{v}$ is largest, equal to $\\|\\vec{u}\\| \\|\\vec{v}\\|$, when the two vectors point in the same direction.  \n3. Since $\\|\\vec{u}\\| = \\sqrt{a}$ and $\\|\\vec{v}\\| = \\sqrt{b}$, this largest value is $\\sqrt{ab}$.  \n4. Match this value against the answer choices and pick the right option.",
+  "B": "1. Apply the Cauchy-Schwarz inequality $(mx + ny)^2 \\leq (m^2 + n^2)(x^2 + y^2)$.  \n2. Replace $m^2 + n^2$ by $a$ and $x^2 + y^2$ by $b$ in this inequality.  \n3. Simplify to obtain an upper bound on $mx + ny$.  \n4. Note that Cauchy-Schwarz becomes an equality when $(m, n)$ and $(x, y)$ are proportional, so the bound is actually reached."
+ }
+}
