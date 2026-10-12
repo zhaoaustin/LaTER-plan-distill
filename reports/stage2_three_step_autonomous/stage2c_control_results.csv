@@ -1,0 +1,2 @@
+status,reason
+NOT_RUN,"Stage 2B gate = KD_COLLAPSE (val KD correct 1.168 ~= shuffled 1.169; student cross-question cos 0.987 vs teacher 0.465; variance ratio 0.024). Task rule 7.2: stop 2C."

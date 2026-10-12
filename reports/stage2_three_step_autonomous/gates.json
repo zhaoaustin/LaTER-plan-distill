@@ -1,0 +1,127 @@
+{
+ "G1_trainable": {
+  "projector": 13112320,
+  "lora": 9732096,
+  "lora_modules": [
+   "o_proj",
+   "q_proj",
+   "v_proj"
+  ],
+  "n_adapters": 1,
+  "adapter_names": [
+   "default"
+  ]
+ },
+ "G1_single_adapter": true,
+ "G2_no_plan_exec_label_in_student_prompt": true,
+ "G2_teacher_no_grad": true,
+ "G2_prompt_tail": "\n<|im_start|>assistant\n<EXPLORATION>\n [8 slots] </EXPLORATION><EXECUTION>\n",
+ "G3_zs_independent_of_teacher_cache": true,
+ "G3_zs_deterministic": true,
+ "G4_slot_effect_on_first_logits": [
+  5.625,
+  4.0,
+  3.0390625,
+  2.59375,
+  1.9921875,
+  3.544921875,
+  1.40625,
+  1.83984375
+ ],
+ "G4_all_slots_visible": true,
+ "G4_train_vs_generate_first_argmax_equal": true,
+ "G5_grads": {
+  "kd": {
+   "projector": 7.116263389587402,
+   "projector_first_layer": 4.960290908813477,
+   "lora": 0.9216216802597046,
+   "dZ_S": 0.9020811319351196,
+   "dz1": 0.3173651695251465,
+   "finite": true
+  },
+  "exec": {
+   "projector": 34.36624526977539,
+   "projector_first_layer": 24.323232650756836,
+   "lora": 4.627268314361572,
+   "dZ_S": 2.1273486614227295,
+   "dz1": 0.25256118178367615,
+   "finite": true
+  },
+  "choice_self": {
+   "projector": 36.43962478637695,
+   "projector_first_layer": 25.640718460083008,
+   "lora": 5.094377040863037,
+   "dZ_S": 2.5293829441070557,
+   "dz1": 0.8331141471862793,
+   "finite": true
+  },
+  "choice_ext": {
+   "projector": 0.0,
+   "projector_first_layer": 0.0,
+   "lora": 0.16802574694156647,
+   "dZ_S": 0.0,
+   "dz1": 0.0,
+   "finite": true
+  }
+ },
+ "G5_ok": true,
+ "G6_target_ends": " $$</EXECUTION><|im_end|>",
+ "G6_target_ends_with_eos": true,
+ "G6_span_short_vs_long": [
+  -0.5508396625518799,
+  -0.5508396625518799
+ ],
+ "G6_span_consistent": true,
+ "G6_C_text": "1. Use the",
+ "G6_D_text": [
+  " product-to-sum identities on $\\sin 10^\\circ \\sin 30^\\circ$ and $\\sin ",
+  " identity for product of sines with angles in arithmetic progression:  \n   $$\n   \\sin A \\sin(A +"
+ ],
+ "G7_grid_same_Z": {
+  "m_TA": -0.1260104775428772,
+  "m_TB": -0.12601041793823242,
+  "m_S": -0.11624276638031006
+ },
+ "G7_grid_real": {
+  "m_TA": -0.1260104775428772,
+  "m_TB": -0.1432151198387146,
+  "m_S": -0.11624276638031006
+ },
+ "G7_same_Z_not_both_correct": true,
+ "G8_span_scores": {
+  "self": -0.5508396625518799,
+  "zero": -0.5790347456932068,
+  "mean": -0.5362479090690613,
+  "crossq": -0.5432305932044983,
+  "teacher_B": -0.5747055411338806,
+  "nolatent": -0.5934271216392517
+ },
+ "G8_finite": true,
+ "G10_reload": [
+  2.0260064601898193,
+  2.0260064601898193
+ ],
+ "G10_reload_ok": true,
+ "G10_base_unchanged": true,
+ "G0_teacher_rms": 0.02195320464670658,
+ "G0_tok_rms": 0.02195320464670658,
+ "G0_student_rms_init": 0.02195301279425621,
+ "G0_kd_init_self": 2.0079691410064697,
+ "hard_gate_vector": [
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true
+ ],
+ "ALL_HARD_GATES_PASS": true
+}

@@ -1,0 +1,35 @@
+stage: stage2_three_step_autonomous
+run_dir: /scratch/hz33227/e2c/stage2/outputs/stage2_three_step_autonomous_20261012
+code: later/scripts/stage2t/three_step.py (base commit cec1b0c; new branch exp/stage2-three-step, local commit only)
+model: /scratch/hz33227/e2c/Explore-Execute-Chain/outputs/e2c_qwen3_4b_sft/best_hf   # zhaohq/Qwen3-4B-E2C-SFT-only @ a6b0e2fe (step 800)
+n_latent_tokens: 8
+latent_generation: recurrent_deterministic   # LaTER LatentProjector, KV-cached recurrence with autograd
+noise_sigma: 0.0
+train_mode: shared_single_lora_plus_recurrent_projector
+lora: {r: 16, alpha: 32, dropout: 0.0, target_modules: [q_proj, v_proj, o_proj]}   # 9.73M
+projector: fresh init (seed 0; not in the Stage-1 ckpt), output per-vector RMS = 4B token-emb RMS 0.0219532   # 13.11M
+backbone: frozen
+external_plan_encoder: frozen_stage2a_step300 (compressor only; Z cached in stage2b_executor_50step/data/z_cache.pt)
+latent_target: raw 2A compressor output (already RMS = token-emb RMS; same 8 input-embedding slots as Z_S); NO 2B adapter
+kd_loss: mean((Z_S - sg(Z_T))^2) / tok_rms^2
+exec_loss: mean token NLL over E + '</EXECUTION><|im_end|>' given (Q, Z_S)
+choice_loss: softplus(d - m(Z_TA)) + softplus(d + m(Z_TB)) + eta * softplus(d - sgn * m(Z_S)) on the audited 24-token decision spans
+method_choice_pairs: 8 verified choice-valid train pairs (span audit reused from stochastic pilot); 00471 excluded
+method_choice_margin: 0.0
+eta: 1.0
+lambda_kd: 1.0
+lambda_exec: 1.0   # 2B: 0
+lambda_choice: 0.1758   # rule-derived at the 2B ckpt (0.5 * median||g_main|| / median||g_choice||); NOT USED (2C not run)
+optimizer: AdamW lr 1e-4, wd 0, grad clip 1.0, constant lr, fresh optimizer per phase
+precision: bf16 autocast, fp32 trainable weights
+seed: 42 (data order), 0 (projector init)
+tiny_overfit: {steps: 10, items: 4 singles + 2 choice pairs, lambda_choice_provisional: 1.0}
+stage2b: {steps: 40, batch: 16 train singles/step, loss: KD only, data order seed 7}
+stage2c_control: {planned_steps: 55, batch: 8 singles + 2 choice pairs, loss: KD+Exec, status: NOT_RUN (KD_COLLAPSE gate)}
+stage2c_choice: {planned_steps: 55, same batches, loss: KD+Exec+Choice, status: NOT_RUN (KD_COLLAPSE gate)}
+num_gpus: 2   # each process single-GPU (CUDA_VISIBLE_DEVICES), no DDP; 2C branches were planned one per GPU concurrently
+optimizer_steps_used: 50   # 10 tiny + 40 2B ; budget 160
+max_wall_clock_hours: 3
+use_explicit_plan_in_student_prompt: false
+allow_stage3_rl: false
+eval: {val_singles: first 48 of 100, pairs: 8 heldout + 19 train, free_run: not run (2C not reached)}

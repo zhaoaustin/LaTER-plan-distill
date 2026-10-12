@@ -1,0 +1,618 @@
+[
+ {
+  "id": "s1val-00645-de6f711a",
+  "role": "train_pair",
+  "method_A": null,
+  "method_B": null,
+  "gen": {
+   "A": {
+    "text": "1. Use the identity $\\sin A \\sin B = \\frac{1}{2}[\\cos(A-B) - \\cos(A+B)]$ to simplify $\\sin 20^\\circ \\sin 10^\\circ$.  \n2. Use the identity $\\cos A \\cos B = \\frac{1}{2}[\\cos(A-B) + \\cos(A+B)]$ to simplify $\\cos 10^\\circ \\cos 10^\\circ$.  \n3. Use the identity $\\cos A \\cos B = \\frac{1}{2}[\\cos(A-B) + \\cos(A+B)]$ to simplify $\\cos 10^\\circ \\cos 20^\\circ$.  \n4. Use the identity $\\cos A \\cos B = \\frac{1}{2}[\\cos(A-B) + \\cos(A+B)]$ to simplify $\\cos 20^\\circ \\cos 30^\\circ$.  \n5. Use the identity $\\cos A \\cos B = \\frac{1}{2}[\\cos(A-B) + \\cos(A+B)]$ to simplify $\\cos 20^\\circ \\cos 40^\\circ$.  \n6. Use the identity $\\cos A \\cos B = \\frac{1}{2}[\\cos(A-B) + \\cos(A+B)]$ to simplify $\\cos 40^\\circ \\cos 50^\\circ$.  \n7. Use the identity $\\cos A \\cos B = \\frac{1}{2}[\\cos(A-B) + \\",
+    "ov_A": 0.10909090909090909,
+    "ov_B": 0.12727272727272726,
+    "terms_A": 0,
+    "terms_B": 0
+   },
+   "B": {
+    "text": "1. Use the identity for the product of sines of angles in arithmetic progression: $\\sin A \\sin B \\sin C = \\frac{1}{4} \\sin A \\sin B \\sin C$.  \n2. Apply the identity to the given angles: $1^\\circ, 2^\\circ, 3^\\circ, \\ldots, 100^\\circ$.  \n3. Express the product in terms of sine functions with arguments in arithmetic progression.  \n4. Use the identity for the product of sines of angles in arithmetic progression: $\\sin n^\\circ \\sin (n+1)^\\circ \\sin (n+2)^\\circ = \\frac{1}{4} \\sin 100^\\circ$.  \n5. Substitute $n = 1$ into the identity to find the value of the product.",
+    "ov_A": 0.05263157894736842,
+    "ov_B": 0.18796992481203006,
+    "terms_A": 0,
+    "terms_B": 4
+   }
+  }
+ },
+ {
+  "id": "s1val-00359-88eb7515",
+  "role": "train_pair",
+  "method_A": null,
+  "method_B": null,
+  "gen": {
+   "A": {
+    "text": "1. Use the formula for the area of a trapezoid: $ \\text{Area} = \\frac{1}{2} \\times (a + b) \\times h $, where $ a $ and $ b $ are the lengths of the two bases, and $ h $ is the height.  \n2. Calculate the sum of the bases: $ a + b = 12 + 14 = 26 $.  \n3. Determine the height using the given diagonal and the Pythagorean theorem: $ h = \\sqrt{13^2 + 14^2} = \\sqrt{13^2 + 14^2} $.  \n4. Substitute the values into the area formula and simplify to find the area.",
+    "ov_A": 0.2923076923076923,
+    "ov_B": 0.07692307692307693,
+    "terms_A": 3,
+    "terms_B": 0
+   },
+   "B": {
+    "text": "1. Identify the given side lengths and the type of trapezoid (isosceles).  \n2. Assign variables to the unknown sides based on the given information.  \n3. Use the properties of isosceles trapezoids to express the legs in terms of the bases.  \n4. Use the area formula for an isosceles trapezoid and the given area to form an equation.  \n5. Solve the equation to find the value of the unknown base.  \n6. Use the Pythagorean theorem to find the length of the other leg.",
+    "ov_A": 0.010752688172043012,
+    "ov_B": 0.07526881720430108,
+    "terms_A": 2,
+    "terms_B": 0
+   }
+  }
+ },
+ {
+  "id": "s1val-00499-627066cc",
+  "role": "train_pair",
+  "method_A": null,
+  "method_B": null,
+  "gen": {
+   "A": {
+    "text": "1. Recognize that the problem requires counting the number of 3\u00d73 submatrices with exactly one black cell.  \n2. Use the principle of inclusion-exclusion to count the number of 3\u00d73 submatrices with at least one black cell.  \n3. Calculate the total number of 3\u00d73 submatrices in the grid.  \n4. Subtract the number of 3\u00d73 submatrices with at least one black cell using inclusion-exclusion.  \n5. Use the formula for the number of 3\u00d73 submatrices with exactly one black cell: $ \\text{Total} - 2 \\times \\text{Number of 3\u00d73 submatrices with at least one black cell} + \\text{Number of 3\u00d73 submatrices with at least two black cells} $.  \n6. Simplify the expression to find the number of 3\u00d73 submatrices with exactly one black cell.  \n7. Compute the ratio of the number of such submatrices to the total number of submatrices.",
+    "ov_A": 0.03225806451612903,
+    "ov_B": 0.024193548387096774,
+    "terms_A": 0,
+    "terms_B": 1
+   },
+   "B": {
+    "text": "1. Determine the number of black and white squares in the 1\u00d71 grid.  \n2. Use the inclusion-exclusion principle to find the number of squares that are both black and white.  \n3. Calculate the number of black squares that are not adjacent to any white square using the inclusion-exclusion principle.  \n4. Use the inclusion-exclusion principle again to find the number of black squares that are adjacent to at least one white square.  \n5. Subtract the result from step 4 from the total number of black squares to find the number of black squares that are adjacent to no white squares.  \n6. Use the inclusion-exclusion principle to find the number of white squares that are adjacent to at least one black square.  \n7. Subtract the result from step 6 from the total number of white squares to find the number of white squares that are adjacent to no black squares.  \n8. Calculate the number of black squares that are adjacent to no white squares by subtracting the number of black squares adjacent to at least one white square from the total number of black squares.  \n9. Calculate the number of white squares that are adjacent to no black squares by subtracting the number of white squares adjacent to at least one black square from the total number of white squares.  \n10. Use the results from steps 8 and 9 to determine the number of black squares that are adjacent to no white squares.",
+    "ov_A": 0.0189873417721519,
+    "ov_B": 0.03164556962025317,
+    "terms_A": 0,
+    "terms_B": 0
+   }
+  }
+ },
+ {
+  "id": "s1val-00689-85fb747f",
+  "role": "train_pair",
+  "method_A": null,
+  "method_B": null,
+  "gen": {
+   "A": {
+    "text": "1. Recognize the equation $ x^3 + y^3 = z^3 $ as a cubic Diophantine equation.  \n2. Test small integer values for $ x $ and $ y $ to find potential solutions.  \n3. For each candidate, compute $ z $ using the equation $ z = \\sqrt[3]{x^3 + y^3} $.  \n4. Check if $ z $ is an integer.  \n5. Verify that the found integer solution satisfies the original equation.",
+    "ov_A": 0.043478260869565216,
+    "ov_B": 0.0,
+    "terms_A": 0,
+    "terms_B": 0
+   },
+   "B": {
+    "text": "1. Divide both sides of the equation by $ x $ to simplify the equation.  \n2. Recognize that the equation involves two logarithmic terms with the same base, so equate their arguments.  \n3. Simplify the resulting equation by combining like terms and factoring.  \n4. Analyze the equation to determine the conditions under which the logarithmic terms can be equal.  \n5. Conclude that the only solution is when the arguments of both logarithms are equal, leading to a specific value of $ x $.",
+    "ov_A": 0.0,
+    "ov_B": 0.07608695652173914,
+    "terms_A": 0,
+    "terms_B": 3
+   }
+  }
+ },
+ {
+  "id": "s1val-00472-c5e1cac9",
+  "role": "train_pair",
+  "method_A": null,
+  "method_B": null,
+  "gen": {
+   "A": {
+    "text": "1. Recognize that the quadrilateral is a kite, so it has two pairs of adjacent sides equal.  \n2. Use the given distances from the center of the circle to the vertices to form two equations based on the circle's radius.  \n3. Set up the equations using the distance formula and solve for the side lengths.  \n4. Use the Pythagorean theorem to find the length of the diagonal.  \n5. Solve the resulting quadratic equation to find the value of $ x $.",
+    "ov_A": 0.10989010989010989,
+    "ov_B": 0.07692307692307693,
+    "terms_A": 1,
+    "terms_B": 0
+   },
+   "B": {
+    "text": "1. Place the rhombus in the coordinate plane with $ A = (0, 0) $, $ B = (a, 0) $, $ D = (0, b) $, and $ C = (a, b) $.  \n2. Use the given point $ P = (1, 2) $ to form equations based on the rhombus properties.  \n3. Solve the equations to find the values of $ a $ and $ b $.  \n4. Use the coordinates of $ P $ and the known values of $ a $ and $ b $ to determine the angle $ \\angle APD $.  \n5. Calculate $ \\cos \\angle APD $ using the coordinates of $ P $, $ A $, and $ D $.  \n6. Identify the angle whose cosine is $ \\frac{1}{2} $, which corresponds to $ \\frac{\\pi}{3} $ or $ 60^\\circ $.",
+    "ov_A": 0.04678362573099415,
+    "ov_B": 0.11695906432748537,
+    "terms_A": 0,
+    "terms_B": 3
+   }
+  }
+ },
+ {
+  "id": "s1val-00422-f95ff89d",
+  "role": "train_pair",
+  "method_A": null,
+  "method_B": null,
+  "gen": {
+   "A": {
+    "text": "1. Identify the arithmetic sequence starting at 1 with a common difference of 2, which is $1, 3, 5, 7, \\ldots$.  \n2. Express the condition $n \\equiv 1 \\pmod{2}$ as $n = 2k$ for some integer $k$.  \n3. Set up the congruence $2k \\equiv 1 \\pmod{2}$ and solve for $k$.  \n4. Determine the range of $k$ such that $2k$ is an integer and satisfies the congruence.  \n5. Count the number of valid integer values of $k$ within the range.",
+    "ov_A": 0.08928571428571429,
+    "ov_B": 0.07142857142857142,
+    "terms_A": 0,
+    "terms_B": 2
+   },
+   "B": {
+    "text": "1. Identify the arithmetic sequence of numbers divisible by 3: $3, 6, 9, \\ldots, 3k$.  \n2. Identify the arithmetic sequence of numbers divisible by 4: $4, 8, 12, \\ldots, 4k$.  \n3. Find the least common multiple (LCM) of 3 and 4, which is 12.  \n4. Determine the range of numbers from 1 to 2016 divisible by 12.  \n5. Use the formula for the number of terms in the arithmetic sequence to find how many numbers are divisible by both 3 and 4.  \n6. Subtract the number of terms divisible by 3 from the total number of terms divisible by 12 to find the count of numbers divisible by neither 3 nor 4.",
+    "ov_A": 0.031007751937984496,
+    "ov_B": 0.031007751937984496,
+    "terms_A": 7,
+    "terms_B": 0
+   }
+  }
+ },
+ {
+  "id": "s1val-00683-4ee5b680",
+  "role": "train_pair",
+  "method_A": null,
+  "method_B": null,
+  "gen": {
+   "A": {
+    "text": "1. Identify the triangle type (isosceles, scalene, right) and determine the angles.  \n2. Use the Law of Cosines to find one angle in terms of the given side $ a $.  \n3. Apply the Law of Cosines again to find the other angles.  \n4. Use the formula for the area of a triangle with given side lengths and two angles: $ \\text{Area} = \\frac{1}{2}ab\\sin C $.  \n5. Calculate the area using the known side lengths and the calculated angles.  \n6. Use the area to find the inradius using the formula $ r = \\frac{A}{s} $, where $ s $ is the semi-perimeter.  \n7. Use the inradius formula $ r = \\frac{a + b + c}{2} $ to find the inradius.",
+    "ov_A": 0.2721518987341772,
+    "ov_B": 0.14556962025316456,
+    "terms_A": 0,
+    "terms_B": 0
+   },
+   "B": {
+    "text": "1. Recognize that the triangle is isosceles with the given angle $ \\angle BAC = 120^\\circ $ and base angles $ \\angle ABC = \\angle ACB = 30^\\circ $.  \n2. Use the Law of Cosines to find the length of the base $ BC $ in terms of the equal sides $ AB = AC = x $.  \n3. Apply the Law of Sines to relate the sides and angles, specifically using $ \\sin 30^\\circ $ to find the base $ BC $.  \n4. Use the area formula for a triangle with given angles and sides to calculate the area of triangle $ ABC $.  \n5. Apply the Law of Cosines again to find the height $ h $ from vertex $ A $ to side $ BC $.",
+    "ov_A": 0.10638297872340426,
+    "ov_B": 0.03546099290780142,
+    "terms_A": 1,
+    "terms_B": 0
+   }
+  }
+ },
+ {
+  "id": "s1val-00626-1bba07b5",
+  "role": "train_pair",
+  "method_A": null,
+  "method_B": null,
+  "gen": {
+   "A": {
+    "text": "1. Use the formula for the sum of the first $ n $ positive integers: $ S = \\frac{n(n+1)}{2} $.  \n2. Substitute $ n = 2016 $ into the formula to find the sum of all positive integers less than or equal to 2016.  \n3. Subtract 1 from the result to get the sum of all positive integers strictly less than 2016.",
+    "ov_A": 0.24,
+    "ov_B": 0.2,
+    "terms_A": 0,
+    "terms_B": 0
+   },
+   "B": {
+    "text": "1. Calculate the total number of positive integers less than or equal to 2008 by subtracting 1 from 2008 and adding 1.  \n2. Use the formula for the sum of the first $ n $ positive integers to find the sum of all divisors of 2008.  \n3. Subtract the sum of divisors of 2007 from the total sum of divisors of 2008 to get the sum of divisors of 2008.  \n4. Use the formula for the sum of divisors of a prime number to find the sum of divisors of 2009.  \n5. Subtract the sum of divisors of 2009 from the sum of divisors of 2008 to get the final result.",
+    "ov_A": 0.06593406593406594,
+    "ov_B": 0.0989010989010989,
+    "terms_A": 0,
+    "terms_B": 0
+   }
+  }
+ },
+ {
+  "id": "s1val-00496-03739fc1",
+  "role": "train_pair",
+  "method_A": null,
+  "method_B": null,
+  "gen": {
+   "A": {
+    "text": "1. Recognize the expression as a sum of products of variables, each squared.  \n2. Use the identity $(a + b + c)^2 = a^2 + b^2 + c^2 + 2ab + 2ac + 2bc$ to rewrite the expression.  \n3. Identify the terms to be maximized: $x^2 + y^2 + z^2$ and $2xy + 2xz + 2yz$.  \n4. Assume symmetry by setting $x = y = z = 1$ to maximize the symmetric terms.  \n5. Calculate the value of the expression with $x = y = z = 1$.  \n6. Compare the result with the given options to determine the correct answer.",
+    "ov_A": 0.08333333333333333,
+    "ov_B": 0.05303030303030303,
+    "terms_A": 0,
+    "terms_B": 0
+   },
+   "B": {
+    "text": "1. Use the Cauchy-Schwarz Inequality to relate $ x + y $ and $ xy $.  \n2. Express $ x + y $ and $ xy $ in terms of $ a $ and $ b $ using the given equations.  \n3. Substitute these expressions into the inequality $ (x + y)^2 \\leq a^2 + b^2 $.  \n4. Simplify the resulting inequality to find the maximum value of $ a^2 + b^2 $.",
+    "ov_A": 0.07407407407407407,
+    "ov_B": 0.13580246913580246,
+    "terms_A": 0,
+    "terms_B": 4
+   }
+  }
+ },
+ {
+  "id": "s1val-00344-ba8a76c3",
+  "role": "train_pair",
+  "method_A": null,
+  "method_B": null,
+  "gen": {
+   "A": {
+    "text": "1. Substitute $ x = 0 $ into the equation to check for potential solutions.  \n2. Substitute $ x = 1 $ into the equation to check for potential solutions.  \n3. Substitute $ x = -1 $ into the equation to check for potential solutions.  \n4. Analyze the behavior of the function $ f(x) = x^3 - 2x + 1 $ to determine if it ever equals 0.  \n5. Use numerical methods or graphing to approximate the real root.",
+    "ov_A": 0.0547945205479452,
+    "ov_B": 0.0410958904109589,
+    "terms_A": 0,
+    "terms_B": 1
+   },
+   "B": {
+    "text": "1. Set the two equations equal to each other to find the points of intersection.  \n2. Solve the resulting equation for $ x $, then substitute back to find the corresponding $ y $-value.  \n3. Identify the coordinates of the intersection points.",
+    "ov_A": 0.041666666666666664,
+    "ov_B": 0.041666666666666664,
+    "terms_A": 0,
+    "terms_B": 1
+   }
+  }
+ },
+ {
+  "id": "s1val-00660-ef03132b",
+  "role": "train_pair",
+  "method_A": null,
+  "method_B": null,
+  "gen": {
+   "A": {
+    "text": "1. Factor the left-hand side of the equation to simplify the expression.  \n2. Recognize that the equation can be rewritten as a perfect square.  \n3. Set the factored form equal to zero and solve for $ x $, considering both positive and negative roots.  \n4. Substitute each value of $ x $ into the original equation to check for solutions.  \n5. Solve the resulting equations to find valid solutions.  \n6. Check for extraneous solutions by substituting back into the original equation.",
+    "ov_A": 0.11956521739130435,
+    "ov_B": 0.05434782608695652,
+    "terms_A": 0,
+    "terms_B": 2
+   },
+   "B": {
+    "text": "1. Factor the numerator $ n^2 + 1 $ as $ (n + i)(n - i) $, where $ i $ is the imaginary unit.  \n2. Express the denominator $ n^2 + 1 $ as $ (n + i)(n - i) $, and rewrite the fraction with the factored form.  \n3. Multiply both sides of the equation by the denominator to eliminate the fraction.  \n4. Simplify the resulting equation to obtain a polynomial in $ n $.  \n5. Test small integer values of $ n $ to find solutions that satisfy the equation.  \n6. Identify all integer solutions and check if they are perfect cubes.",
+    "ov_A": 0.017857142857142856,
+    "ov_B": 0.017857142857142856,
+    "terms_A": 0,
+    "terms_B": 0
+   }
+  }
+ },
+ {
+  "id": "s1val-00368-f1e220c8",
+  "role": "train_pair",
+  "method_A": null,
+  "method_B": null,
+  "gen": {
+   "A": {
+    "text": "1. Identify the foci of the hyperbola and the directrices, then determine the condition for the line $ y = kx + c $ to be tangent to the hyperbola.  \n2. Use the condition for tangency to set up an equation involving $ k $ and $ c $.  \n3. Substitute $ c = 1 $ (since the directrix is $ x = 1 $) into the equation and simplify to find the value of $ k $.  \n4. Determine the range of $ k $ for which the line is tangent to the hyperbola.  \n5. Check which of the given options correspond to the valid range of $ k $.",
+    "ov_A": 0.06086956521739131,
+    "ov_B": 0.08695652173913043,
+    "terms_A": 0,
+    "terms_B": 0
+   },
+   "B": {
+    "text": "1. Identify the foci of the hyperbola and the directrices, noting that $ c = 1 $ and $ a = 1 $.  \n2. Use the given condition $ |PF_1| + |PF_2| = 2 $ to set up an equation involving the coordinates of point $ P $ on the hyperbola.  \n3. Express the coordinates of point $ P $ in terms of $ x $ using the hyperbola equation $ x^2 - y^2 = 1 $.  \n4. Substitute the coordinates of $ P $ into the equation $ |PF_1| + |PF_2| = 2 $ and simplify.  \n5. Solve the resulting equation to find the value of $ x $.  \n6. Use the value of $ x $ to determine the coordinates of point $ P $, then compute $ |PF_1| $ and $ |PF_2| $.",
+    "ov_A": 0.041666666666666664,
+    "ov_B": 0.13194444444444445,
+    "terms_A": 0,
+    "terms_B": 0
+   }
+  }
+ },
+ {
+  "id": "s1val-00535-02813895",
+  "role": "train_pair",
+  "method_A": null,
+  "method_B": null,
+  "gen": {
+   "A": {
+    "text": "1. Use the formula for the area of a triangle with given sides and included angle: $ \\text{Area} = \\frac{1}{2}ab\\sin C $.  \n2. Identify the sides and included angle from the given information.  \n3. Substitute the values into the formula and solve for the area.",
+    "ov_A": 0.4032258064516129,
+    "ov_B": 0.016129032258064516,
+    "terms_A": 1,
+    "terms_B": 0
+   },
+   "B": {
+    "text": "1. Place the triangle in a coordinate system with the base $ BC $ on the x-axis and the vertex $ A $ at the top.  \n2. Assign coordinates to points $ B $, $ C $, and $ A $ based on the given side lengths.  \n3. Use the area formula for a triangle with base and height to find the height from $ A $ to the base $ BC $.  \n4. Apply the Law of Cosines to find the angle $ \\angle BAC $ using the known side lengths.",
+    "ov_A": 0.0,
+    "ov_B": 0.06,
+    "terms_A": 0,
+    "terms_B": 3
+   }
+  }
+ },
+ {
+  "id": "s1val-00491-740fb9ec",
+  "role": "train_pair",
+  "method_A": null,
+  "method_B": null,
+  "gen": {
+   "A": {
+    "text": "1. Assign coordinates to points $ A, B, C, D $ based on the given distances and angles.  \n2. Express vectors $ \\vec{AB}, \\vec{AC}, \\vec{AD} $ in terms of coordinates.  \n3. Use the dot product formula to find the cosine of the angle $ \\angle ACB $.  \n4. Calculate the magnitudes of the vectors $ \\vec{AB} $ and $ \\vec{AC} $.  \n5. Substitute the cosine value into the dot product formula to find the cosine of the angle $ \\angle ACB $.",
+    "ov_A": 0.3548387096774194,
+    "ov_B": 0.1827956989247312,
+    "terms_A": 2,
+    "terms_B": 1
+   },
+   "B": {
+    "text": "1. Recognize that $ \\vec{OA} + \\vec{OB} + \\vec{OC} = \\vec{O} $, where $ O $ is the origin.  \n2. Express $ \\vec{OA} $, $ \\vec{OB} $, and $ \\vec{OC} $ in terms of position vectors of points $ A $, $ B $, and $ C $ relative to the origin.  \n3. Use the given condition $ \\vec{OA} \\cdot \\vec{OB} = \\vec{OC} \\cdot \\vec{OA} $ to relate the dot products of the position vectors.  \n4. Simplify the dot product expressions using vector identities and properties of dot products.  \n5. Substitute the simplified expressions into the given equation and solve for $ \\vec{OC} \\cdot \\vec{OA} $.  \n6. Use the result to find $ \\vec{OC} \\cdot \\vec{OA} $, then compute $ \\vec{OC} \\cdot \\vec{OA} + \\vec{OA} \\cdot \\vec{OC} $.",
+    "ov_A": 0.1456953642384106,
+    "ov_B": 0.09271523178807947,
+    "terms_A": 0,
+    "terms_B": 1
+   }
+  }
+ },
+ {
+  "id": "s1val-00653-bc3c49e7",
+  "role": "train_pair",
+  "method_A": null,
+  "method_B": null,
+  "gen": {
+   "A": {
+    "text": "1. Use the Pythagorean Theorem to express $ b $ in terms of $ a $ and $ c $, then substitute into the given equation.  \n2. Simplify the resulting equation to form a quadratic in $ a $.  \n3. Solve the quadratic equation to find possible integer values for $ a $.  \n4. For each valid $ a $, calculate $ b $ and $ c $ using the Pythagorean Theorem.  \n5. Check which of the given options match the calculated values of $ b $ and $ c $.  \n6. Identify the correct option based on the matches.",
+    "ov_A": 0.125,
+    "ov_B": 0.0673076923076923,
+    "terms_A": 0,
+    "terms_B": 0
+   },
+   "B": {
+    "text": "1. Identify the three integers as the legs of a right triangle and the hypotenuse.  \n2. List all possible triplets of three consecutive natural numbers that sum to 20.  \n3. For each triplet, calculate the sum of the squares of the two smaller numbers and check if the result is a perfect square.  \n4. If a valid triplet is found, calculate the hypotenuse using the Pythagorean theorem.  \n5. Compare the hypotenuse with the given options to find the correct one.  \n6. Select the triplet that matches the given options.",
+    "ov_A": 0.02,
+    "ov_B": 0.05,
+    "terms_A": 0,
+    "terms_B": 0
+   }
+  }
+ },
+ {
+  "id": "s1val-00281-3cd770ea",
+  "role": "train_pair",
+  "method_A": null,
+  "method_B": null,
+  "gen": {
+   "A": {
+    "text": "1. Use the given condition $ a + b + c = 1 $ to express $ c $ in terms of $ a $ and $ b $, then substitute into the equation $ a^3 + b^3 + c^3 = 1 $.  \n2. Simplify the equation by substituting $ c = 1 - a - b $ and using the identity $ a^3 + b^3 = (a + b)^3 - 3ab(a + b) $.  \n3. Express the equation in terms of $ a + b $ and $ ab $, then use the constraint $ a + b = 1 - c $ to find the range of possible values for $ ab $.  \n4. Determine the range of possible values for $ c $ by analyzing the resulting expressions.",
+    "ov_A": 0.09285714285714286,
+    "ov_B": 0.12142857142857143,
+    "terms_A": 0,
+    "terms_B": 0
+   },
+   "B": {
+    "text": "1. Use the given equation $ x^2 + y^2 = 1 $ to express $ y^2 $ in terms of $ x $.  \n2. Substitute $ y^2 = 1 - x^2 $ into the equation $ x^2 + y^2 = 1 $ to eliminate $ y^2 $.  \n3. Simplify the resulting equation to find $ x^2 $.  \n4. Determine the range of $ x $ by analyzing the simplified equation.  \n5. Substitute the range of $ x $ back into the expression for $ y^2 $ to find the corresponding range of $ y^2 $.",
+    "ov_A": 0.17525773195876287,
+    "ov_B": 0.31958762886597936,
+    "terms_A": 0,
+    "terms_B": 0
+   }
+  }
+ },
+ {
+  "id": "s1val-00439-e679617d",
+  "role": "train_pair",
+  "method_A": null,
+  "method_B": null,
+  "gen": {
+   "A": {
+    "text": "1. Assign coordinates to points $ A, B, C, D $ based on the given ratios.  \n2. Determine the coordinates of point $ P $ on $ AD $ such that $ \\frac{AP}{PD} = \\frac{1}{2} $.  \n3. Use the determinant formula for the area of a triangle with vertices $ (x_1, y_1), (x_2, y_2), (x_3, y_3) $ to compute the area of $ \\triangle PBC $.  \n4. Simplify the determinant expression to find the area of $ \\triangle PBC $.",
+    "ov_A": 0.08403361344537816,
+    "ov_B": 0.07563025210084033,
+    "terms_A": 0,
+    "terms_B": 0
+   },
+   "B": {
+    "text": "1. Assign coordinates to points $ A, B, C, D $ based on the given proportions and place $ A $ at the origin.  \n2. Determine the coordinates of point $ E $, the intersection of $ AD $ and $ BC $.  \n3. Use the coordinates of points $ A, B, C, D, E $ to calculate the area of triangle $ ABC $ using the determinant method.  \n4. Use the coordinates of points $ A, B, C, E $ to calculate the area of triangle $ ABE $ using the determinant method.",
+    "ov_A": 0.10714285714285714,
+    "ov_B": 0.13095238095238096,
+    "terms_A": 0,
+    "terms_B": 0
+   }
+  }
+ },
+ {
+  "id": "s1val-00498-50ca6d71",
+  "role": "train_pair",
+  "method_A": null,
+  "method_B": null,
+  "gen": {
+   "A": {
+    "text": "1. Recognize the sequence as a geometric progression with first term 1 and common ratio 2.  \n2. Use the formula for the sum of the first $ n $ terms of a geometric series: $ S_n = \\frac{1 - 2^n}{1 - 2} = 2^n - 1 $.  \n3. Set $ S_n = 2013 $ and solve for $ n $, then check if $ n $ is an integer.  \n4. Identify all valid integer values of $ n $ that satisfy the equation.  \n5. For each valid $ n $, compute $ a_n $ using the formula $ a_n = \\frac{1}{2^n} $.  \n6. Collect all valid values of $ a_n $ and sum them.",
+    "ov_A": 0.013888888888888888,
+    "ov_B": 0.05555555555555555,
+    "terms_A": 0,
+    "terms_B": 1
+   },
+   "B": {
+    "text": "1. Express the sequence $ a_n $ in terms of $ a_1 $ and $ a_2 $ using the recurrence relation.  \n2. Use the given $ a_1 = 1 $ and $ a_2 = 2 $ to compute the first few terms of the sequence.  \n3. For each term, compute the sum of the squares of the previous two terms.  \n4. Set up the equation $ a_n = \\frac{1}{2} \\left( a_{n-1}^2 + a_{n-2}^2 \\right) $ and solve for $ a_n $ in terms of $ a_1 $ and $ a_2 $.  \n5. Identify all integer values of $ a_n $ that satisfy the equation for some integer $ n \\geq 3 $.  \n6. List all such integer values of $ a_n $.",
+    "ov_A": 0.1,
+    "ov_B": 0.22,
+    "terms_A": 1,
+    "terms_B": 0
+   }
+  }
+ },
+ {
+  "id": "s1val-00313-ab57b867",
+  "role": "train_pair",
+  "method_A": null,
+  "method_B": null,
+  "gen": {
+   "A": {
+    "text": "1. Recognize the constraint $ x^3 + y^3 + z^3 = 1 $ and the target function $ f(x, y, z) = \\frac{1}{x} + \\frac{1}{y} + \\frac{1}{z} $.  \n2. Use the method of Lagrange multipliers to find critical points by setting up the system of equations $ \\nabla f = \\lambda \\nabla g $, where $ g(x, y, z) = x^3 + y^3 + z^3 - 1 $.  \n3. Simplify the Lagrange equations to find that the critical point occurs when $ x = y = z = 1 $.  \n4. Evaluate the function $ f(x, y, z) $ at the critical point $ (1, 1, 1) $.  \n5. Consider the behavior of the function when one variable approaches 0 and the other two adjust to maintain the constraint, and evaluate the limit as one variable approaches 0.  \n6. Conclude that the maximum value of $ f(x, y, z) $ is achieved at $ (1, 1, 1) $ and equals 3.",
+    "ov_A": 0.13402061855670103,
+    "ov_B": 0.07731958762886598,
+    "terms_A": 0,
+    "terms_B": 0
+   },
+   "B": {
+    "text": "1. Recognize that the function $ f(x, y) = \\frac{x^3 + y^3}{x^2 + y^2} $ is symmetric in $ x $ and $ y $, so assume $ x = y $ without loss of generality.  \n2. Substitute $ x = y $ into the function to simplify it to $ \\frac{2x^3}{2x^2} = x $, and find the minimum value of $ x $ under the constraint $ x^2 + y^2 \\leq 1 $.  \n3. Use Lagrange multipliers to find the critical point of the function $ f(x, y) $ under the constraint $ x^2 + y^2 = 1 $.  \n4. Evaluate the function at the critical point to determine the minimum value.",
+    "ov_A": 0.1276595744680851,
+    "ov_B": 0.10638297872340426,
+    "terms_A": 1,
+    "terms_B": 1
+   }
+  }
+ },
+ {
+  "id": "s1val-00471-2af60d16",
+  "role": "train_pair",
+  "method_A": null,
+  "method_B": null,
+  "gen": {
+   "A": {
+    "text": "1. Recognize that the circle is tangent to the x-axis at (0, 0) and has center (h, k).  \n2. Use the condition for tangency to the x-axis: the y-coordinate of the center must be equal to the radius.  \n3. Set up the equation $ k = r $ and substitute $ r = h^2 + k^2 $ to form a quadratic equation in $ h $.  \n4. Solve the quadratic equation to find the value of $ h $.",
+    "ov_A": 0.20408163265306123,
+    "ov_B": 0.19387755102040816,
+    "terms_A": 1,
+    "terms_B": 1
+   },
+   "B": {
+    "text": "1. Recognize that the circle is tangent to the x-axis and the line $ y = x $, so its center lies on the line $ y = x $ and its radius is equal to the y-coordinate of the center.  \n2. Use the distance from the center to the line $ y = x $ to set up an equation and solve for the radius.  \n3. Substitute the radius into the equation of the circle and solve the resulting quadratic equation.  \n4. Solve the quadratic equation to find the possible values of $ x $, then determine the corresponding $ y $ values.",
+    "ov_A": 0.1308411214953271,
+    "ov_B": 0.16822429906542055,
+    "terms_A": 1,
+    "terms_B": 1
+   }
+  }
+ },
+ {
+  "id": "s1val-00336-befc9279",
+  "role": "heldout8",
+  "method_A": "Lagrange multipliers",
+  "method_B": "Cauchy-Schwarz inequality",
+  "gen": {
+   "A": {
+    "text": "1. Use Lagrange multipliers to set up the system of equations from the constraint and the function to minimize.  \n2. Express the constraint in terms of $ x $, $ y $, and $ z $, and substitute $ z $ from the constraint into the function.  \n3. Simplify the function to $ f(x, y, z) = \\frac{x}{y} + \\frac{y}{z} + \\frac{z}{x} $ under the constraint $ x + y + z = 1 $.  \n4. Compute the partial derivatives of $ f $ with respect to $ x $, $ y $, and $ z $, and set them equal to zero.  \n5. Solve the system of equations obtained from the partial derivatives to find critical points.  \n6. Verify that the critical point satisfies the constraint and compute the value of the function at that point.  \n7. Conclude that the minimum value occurs at the critical point found in step 5.",
+    "ov_A": 0.23756906077348067,
+    "ov_B": 0.1712707182320442,
+    "terms_A": 7,
+    "terms_B": 0
+   },
+   "B": {
+    "text": "1. Express the given condition $ a^2 + b^2 + c^2 = 1 $ in terms of $ x, y, z $ where $ x = \\frac{1}{a}, y = \\frac{1}{b}, z = \\frac{1}{c} $.  \n2. Rewrite the target expression $ \\frac{1}{x^2} + \\frac{1}{y^2} + \\frac{1}{z^2} $ in terms of $ x, y, z $ using the reciprocal identities.  \n3. Use the AM-GM inequality to relate the sum of squares to the product of the reciprocals.  \n4. Assume symmetry by setting $ x = y = z $ to maximize the sum of reciprocals.  \n5. Verify that the symmetric case satisfies the given condition and compute the value of the target expression.",
+    "ov_A": 0.09933774834437085,
+    "ov_B": 0.16556291390728478,
+    "terms_A": 0,
+    "terms_B": 2
+   }
+  }
+ },
+ {
+  "id": "s1val-00574-2a030f37",
+  "role": "heldout8",
+  "method_A": "difference-of-squares factoring of 65",
+  "method_B": "testing small n + modular arithmetic",
+  "gen": {
+   "A": {
+    "text": "1. Express the equation as $ x^y + y^x = 2016 $ and factor it as $ (x^y - 1)(y^x - 1) = 2016 $.  \n2. List all factor pairs of 2016, both positive and negative, and consider only those where $ x^y - 1 $ and $ y^x - 1 $ are positive integers.  \n3. For each factor pair, solve for $ x $ and $ y $ such that $ x^y = a $ and $ y^x = b $, where $ ab = 2016 $.  \n4. Check if the resulting values of $ x $ and $ y $ are positive integers.  \n5. Discard any negative or non-integer solutions.  \n6. Collect all valid positive integer solutions $ (x, y) $ that satisfy the original equation.  \n7. Verify each solution by substituting back into the original equation to ensure it holds true.",
+    "ov_A": 0.04790419161676647,
+    "ov_B": 0.017964071856287425,
+    "terms_A": 3,
+    "terms_B": 0
+   },
+   "B": {
+    "text": "1. Check small values of $ n $ to find possible solutions.  \n2. For each $ n $, compute $ 2^n + 1 $ and check if it is a prime number.  \n3. For each prime $ p $ found, check if $ p - 1 $ can be expressed as $ n \\cdot k $ for some integer $ k $.  \n4. Verify that $ p - 1 = n \\cdot k $ for some integer $ k $, and check if $ p - 1 $ is a prime number.  \n5. Conclude that the only solutions are when $ p - 1 $ is a prime number and $ p $ is a prime number.",
+    "ov_A": 0.009345794392523364,
+    "ov_B": 0.07476635514018691,
+    "terms_A": 0,
+    "terms_B": 0
+   }
+  }
+ },
+ {
+  "id": "s1val-00569-33b9f53f",
+  "role": "heldout8",
+  "method_A": "discriminant of a quadratic in x",
+  "method_B": "derivative / critical points",
+  "gen": {
+   "A": {
+    "text": "1. Substitute $ y = x - 1 $ to simplify the equation.  \n2. Rewrite the equation in terms of $ y $ and simplify the expression.  \n3. Solve the resulting equation for $ y $, then substitute back to find $ x $.  \n4. Determine the range of $ x $ by analyzing the expression for $ y $.",
+    "ov_A": 0.09230769230769231,
+    "ov_B": 0.0,
+    "terms_A": 2,
+    "terms_B": 0
+   },
+   "B": {
+    "text": "1. Recognize the function as a rational function and identify the critical points by setting the derivative to zero.  \n2. Compute the first derivative of the function.  \n3. Set the first derivative equal to zero and solve for $ x $.  \n4. Evaluate the function at the critical points to determine the maximum value.  \n5. Confirm that the critical point found is indeed a maximum by checking the second derivative or analyzing the behavior of the function.",
+    "ov_A": 0.012048192771084338,
+    "ov_B": 0.21686746987951808,
+    "terms_A": 0,
+    "terms_B": 5
+   }
+  }
+ },
+ {
+  "id": "s1val-00507-b7055178",
+  "role": "heldout8",
+  "method_A": "differentiate F to a density + double integral",
+  "method_B": "inclusion-exclusion on the CDF",
+  "gen": {
+   "A": {
+    "text": "1. Identify the region of integration by analyzing the inequality $ x^2 + y^2 \\leq 1 $, which represents the unit disk centered at the origin.  \n2. Determine the bounds for $ x $ and $ y $ by solving the inequality $ x^2 + y^2 \\leq 1 $ for $ x $ and $ y $.  \n3. Set up the double integral over the unit disk with the appropriate limits for $ x $ and $ y $.  \n4. Use polar coordinates to simplify the integral, converting the Cartesian limits to polar coordinates.  \n5. Express the integral in polar coordinates and compute the resulting integral.",
+    "ov_A": 0.1262135922330097,
+    "ov_B": 0.019417475728155338,
+    "terms_A": 1,
+    "terms_B": 0
+   },
+   "B": {
+    "text": "1. Recognize the joint probability density function (PDF) $ f_{X,Y}(x, y) $ as a product of two independent uniform PDFs on $[0,1]$.  \n2. Identify the region of integration where $ x < y $, which corresponds to the triangle in the unit square.  \n3. Set up the double integral over the region $ x < y $ with the given PDF.  \n4. Use the symmetry of the PDF to simplify the integral by considering the region $ y \\geq x $ and double the result.  \n5. Evaluate the integral by integrating with respect to $ y $, then with respect to $ x $.  \n6. Substitute the known values of the integrals to compute the final result.",
+    "ov_A": 0.14583333333333334,
+    "ov_B": 0.034722222222222224,
+    "terms_A": 2,
+    "terms_B": 1
+   }
+  }
+ },
+ {
+  "id": "s1val-00479-999dadd8",
+  "role": "heldout8",
+  "method_A": "factor into linear x quadratic",
+  "method_B": "Vieta's formula on the expanded cubic",
+  "gen": {
+   "A": {
+    "text": "1. Factor the cubic polynomial by testing rational roots using the Rational Root Theorem.  \n2. Identify the real root and factor the cubic polynomial using that root.  \n3. Recognize that the polynomial is a sum of three linear terms with the same real root.  \n4. Conclude that the sum of these three terms is zero, implying the polynomial is divisible by $(x - r)^3$.  \n5. Determine the sum of the roots using Vieta's formulas.",
+    "ov_A": 0.0898876404494382,
+    "ov_B": 0.056179775280898875,
+    "terms_A": 2,
+    "terms_B": 1
+   },
+   "B": {
+    "text": "1. Use the sum of coefficients formula for a cubic polynomial to find the sum of the coefficients.  \n2. Use the sum of products of coefficients taken two at a time to find the sum of products of coefficients taken two at a time.  \n3. Use the sum of products of coefficients taken three at a time to find the product of the coefficients.",
+    "ov_A": 0.022222222222222223,
+    "ov_B": 0.08888888888888889,
+    "terms_A": 0,
+    "terms_B": 0
+   }
+  }
+ },
+ {
+  "id": "s1val-00309-9b08eaea",
+  "role": "heldout8",
+  "method_A": "Euler's theorem (phi(9)=6)",
+  "method_B": "order of 4 mod 9 is 3",
+  "gen": {
+   "A": {
+    "text": "1. Recognize that the problem requires finding the last three digits of $ n! $, where $ n $ is a power of 10.  \n2. Use the property that $ n! $ modulo 10 is determined by its last few non-zero digits.  \n3. Identify that $ n! $ will end in zeros for $ n \\geq 10 $, and the last three digits are determined by the remaining non-zero digits.  \n4. Note that for $ n \\geq 10 $, the product of the remaining non-zero digits will be congruent to 1 modulo 10.  \n5. Conclude that the last three digits of $ n! $ are 1, 0, and 0.  \n6. Verify that this matches the given answer choices.",
+    "ov_A": 0.03225806451612903,
+    "ov_B": 0.008064516129032258,
+    "terms_A": 0,
+    "terms_B": 0
+   },
+   "B": {
+    "text": "1. Recognize that the problem requires finding $ 2013^{2013} \\mod 1000 $, which is equivalent to finding the last three digits of $ 2013^{2013} $.  \n2. Use modular exponentiation to compute $ 2013^{2013} \\mod 1000 $.  \n3. Simplify $ 2013 \\mod 1000 $ to $ 13 $.  \n4. Apply the Chinese Remainder Theorem by computing $ 13^{2013} \\mod 8 $ and $ 13^{2013} \\mod 125 $.  \n5. Use Euler's theorem to find $ 13^{\\phi(8)} \\mod 8 $ and $ 13^{\\phi(125)} \\mod 125 $.  \n6. Combine the results using the Chinese Remainder Theorem to find the final value.",
+    "ov_A": 0.08547008547008547,
+    "ov_B": 0.10256410256410256,
+    "terms_A": 1,
+    "terms_B": 1
+   }
+  }
+ },
+ {
+  "id": "s1val-00305-696c8aa4",
+  "role": "heldout8",
+  "method_A": "substitute y=6/x + quadratic formula",
+  "method_B": "factor xy(x+y)+(x+y), then x^2+y^2 identity",
+  "gen": {
+   "A": {
+    "text": "1. Use the first equation to express $ x $ in terms of $ y $: $ x = \\frac{y}{2} $.  \n2. Substitute $ x = \\frac{y}{2} $ into the second equation to form a single equation in terms of $ y $.  \n3. Solve the resulting equation for $ y $, then substitute back to find $ x $.  \n4. Calculate the product $ x \\cdot y $ using the values of $ x $ and $ y $.",
+    "ov_A": 0.20224719101123595,
+    "ov_B": 0.0898876404494382,
+    "terms_A": 0,
+    "terms_B": 0
+   },
+   "B": {
+    "text": "1. Use the first equation to express $ x $ in terms of $ y $: $ x = \\frac{y}{2} $.  \n2. Substitute $ x = \\frac{y}{2} $ into the second equation to solve for $ y $.  \n3. Use the value of $ y $ to find $ x $, then compute $ x + y $.",
+    "ov_A": 0.19402985074626866,
+    "ov_B": 0.19402985074626866,
+    "terms_A": 0,
+    "terms_B": 0
+   }
+  }
+ },
+ {
+  "id": "s1val-00486-d1e0b543",
+  "role": "heldout8",
+  "method_A": "sum-of-cosines-in-AP identity",
+  "method_B": "7th roots of unity",
+  "gen": {
+   "A": {
+    "text": "1. Use the identity for the sum of sines with angles in arithmetic progression.  \n2. Simplify the expression using the identity and compute the sum of the sines.  \n3. Apply the identity for the sum of cosines with angles in arithmetic progression.  \n4. Simplify the expression using the identity and compute the sum of the cosines.  \n5. Combine the results of the sums to find the value of the original expression.",
+    "ov_A": 0.0967741935483871,
+    "ov_B": 0.06451612903225806,
+    "terms_A": 0,
+    "terms_B": 0
+   },
+   "B": {
+    "text": "1. Recognize that the problem involves summing the real and imaginary parts of the complex numbers $ z_k = e^{i\\theta_k} $ for $ k = 1, 2, \\ldots, 2016 $.  \n2. Note that $ z_k $ are complex numbers on the unit circle with angles $ \\theta_k = \\frac{k\\pi}{2016} $.  \n3. Identify that the sum of these complex numbers forms a regular 2016-sided polygon inscribed in the unit circle.  \n4. Determine that the sum of all such complex numbers is zero due to symmetry.  \n5. Conclude that the sum of the real parts and imaginary parts of these complex numbers will each be zero.",
+    "ov_A": 0.0,
+    "ov_B": 0.05185185185185185,
+    "terms_A": 1,
+    "terms_B": 0
+   }
+  }
+ }
+]
