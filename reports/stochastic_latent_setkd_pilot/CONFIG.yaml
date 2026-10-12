@@ -1,0 +1,29 @@
+# 实际生效配置（与 stochastic_pilot.py 默认值 + 命令行一致）
+experiment: stochastic_latent_setmatching_methodchoice_pilot
+base_model: /scratch/hz33227/e2c/Explore-Execute-Chain/outputs/e2c_qwen3_4b_sft/best_hf  # zhaohq/Qwen3-4B-E2C-SFT-only @ a6b0e2fe (step 800)
+teacher: stage2a_step300_compressor (cached Z) -> frozen stage2b_step50 adapter  # same 8 input-embedding slots
+student: shared Qwen3-4B + one LoRA (r16, alpha32, q/v/o, dropout 0) + LaTER LatentProjector (fresh init seed 0, output RMS = token-emb RMS 0.0219532)
+trainable: [lora (9.73M), latent_projector (13.11M)]
+frozen: [qwen3_4b_base, embeddings, lm_head, stage2a, stage2b_adapter]
+num_latent_tokens: 8
+n_noise_samples_per_question: 2
+noise_injection: first_latent_only   # z1 = proj(h_seed) + sigma * s_train * eps, noisy z1 fed into the recurrence
+noise_sigma_relative_to_train_z1_rms: 0.10
+s_train: 0.0219532   # = projector output RMS (fixed by the RMS normalization), measured per slot on train Qs
+student_input: question_only
+teacher_input: explicit_plan_only
+set_matching: min over 2 assignments, per question; distance = mean(((Z-T)/rms_T)^2), rms_T per dim from 2000 train-single teacher targets
+loss_weights: {set_kd: 1.0, method_choice: 0.1, execution_ce: 1.0}
+method_choice: only on 8 choice-valid train pairs; span = 24 tokens after token-LCP prefix C
+method_span: token LCP neutral prefix + first 24 divergent tokens (manual audit, METHOD_SPAN_AUDIT.md)
+optimizer: AdamW lr 1e-4 (projector and LoRA), wd 0, grad clip 1.0
+batch: 2 GPUs x 2 questions/rank = 4 distinct questions per optimizer step, K=2 eps each (manual grad all-reduce mean)
+precision: bf16 autocast, fp32 trainable weights
+dropout: 0 everywhere (model.eval()); randomness only from eps; eps from sha1(seed tuple) generator, ids logged
+seed: 42 (data order), 0 (projector init)
+tiny_overfit: 12 train pairs (8 choice-valid + 00359, 00660, 00313, 00653), 25 steps
+max_optimizer_steps_total: 120   # used: 3 (gate smoke) + 25 (tiny overfit) = 28
+max_wall_clock_hours: 3
+rl_enabled: false
+no_automatic_hparam_sweep: true
+eval: K=8 fixed eval eps per question; conditions self_eps0..7, self_sigma0, zero, train-mean (sigma0 student latents of train Qs, RMS-renormalized), crossq (sigma0 latent of the next question), teacher_A/B (diagnostic, reported separately); greedy decoding, max 2048 new tokens
