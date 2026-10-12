@@ -1,0 +1,37 @@
+diff --git a/later/scripts/stage2t/anchorsim_2c.py b/later/scripts/stage2t/anchorsim_2c.py
+index b893fd2..94e64a1 100644
+--- a/later/scripts/stage2t/anchorsim_2c.py
++++ b/later/scripts/stage2t/anchorsim_2c.py
+@@ -111,9 +111,12 @@ def main():
+     ap.add_argument("--model", required=True); ap.add_argument("--s2b", required=True); ap.add_argument("--out", required=True); ap.add_argument("--ckpt", required=True)
+     ap.add_argument("--steps", type=int, default=10); ap.add_argument("--lr", type=float, default=1e-4); ap.add_argument("--n_train", type=int, default=16)
+     ap.add_argument("--gen_tokens", type=int, default=2048)
++    ap.add_argument("--lam_anchor", type=float, default=1.0); ap.add_argument("--stop_if_correct_le", type=int, default=-1)
+     a = ap.parse_args(); os.makedirs(a.out, exist_ok=True)
++    global LAM_ANCHOR
++    LAM_ANCHOR = a.lam_anchor
+     ck = torch.load(a.ckpt, weights_only=False)
+-    print("CHECKPOINT", a.ckpt, "step", ck.get("step"), "phase", ck.get("phase"), flush=True)
++    print("CHECKPOINT", a.ckpt, "step", ck.get("step"), "phase", ck.get("phase"), "| lam_distill", LAM_DISTILL, "lam_anchor", LAM_ANCHOR, "| lr", a.lr, "steps", a.steps, "n_train", a.n_train, flush=True)
+     S = TStudent(a.model, a.s2b, seed=0); S.load(ck["state"])
+     Tm = TStudent(a.model, a.s2b, seed=0); Tm.load(ck["state"])
+     for p in Tm.peft.parameters():
+@@ -185,6 +188,7 @@ def main():
+             for r in rows:
+                 f.write(json.dumps(r) + "\n")
+         print("EVAL", json.dumps(res), flush=True)
++        return res
+     do_eval(0)
+     for step in range(1, a.steps + 1):
+         opt.zero_grad(set_to_none=True); rec = []
+@@ -202,7 +206,9 @@ def main():
+             print("EARLY STOP: non-finite"); break
+         if step in (5, a.steps):
+             save_ck(S, opt, f"{a.out}/checkpoints/stage2c_step{step}.pt", step, {"init": a.ckpt, "lam_distill": LAM_DISTILL, "lam_anchor": LAM_ANCHOR})
+-            do_eval(step)
++            res = do_eval(step)
++            if step < a.steps and res["eval_correct"] <= a.stop_if_correct_le:
++                print(f"EARLY STOP: eval_correct {res['eval_correct']} <= {a.stop_if_correct_le} at step {step}"); break
+ 
+ 
+ if __name__ == "__main__":
