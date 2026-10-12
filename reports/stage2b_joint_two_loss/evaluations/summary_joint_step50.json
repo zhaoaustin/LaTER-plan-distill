@@ -1,0 +1,561 @@
+{
+ "ckpt": "/scratch/hz33227/e2c/stage2/outputs/stage2b_joint_two_loss_20261012/checkpoints/joint_step50.pt",
+ "step": 50,
+ "phase": "joint",
+ "val_singles": {
+  "n": 48,
+  "kd_correct": 0.9183779197434584,
+  "kd_shuffled": 0.9201308799286684,
+  "kd_teacher_mean_baseline": 0.5358509489645561,
+  "kd_student_mean": 0.9186138299604257,
+  "kd_shuffled_minus_correct": {
+   "mean": 0.0017529601852099101,
+   "ci95": [
+    -0.02363085374236107,
+    0.025401286780834198
+   ],
+   "frac_pos": 0.4791666666666667
+  },
+  "geometry": {
+   "student_crossq_cos": 0.9962153434753418,
+   "teacher_crossq_cos": 0.46500617265701294,
+   "student_var_over_teacher_var": 0.007074333261698484,
+   "student_var_per_slot": [
+    0.006263945251703262,
+    0.009963174350559711,
+    0.005295918323099613,
+    0.004490735474973917,
+    0.0033064144663512707,
+    0.012897930108010769,
+    0.009703443385660648,
+    0.00747130298987031
+   ],
+   "student_rms": 0.02195332944393158,
+   "cos_student_teacher_matched": 0.5408135652542114
+  },
+  "exec_ce_crossq_minus_self": {
+   "mean": -4.4220748047033943e-05,
+   "ci95": [
+    -0.00030993173519770306,
+    0.00022981688380241394
+   ],
+   "frac_pos": 0.4375
+  },
+  "exec_ce_mean_minus_self": {
+   "mean": -8.644629269838333e-05,
+   "ci95": [
+    -0.0003070353219906489,
+    0.00014155171811580658
+   ],
+   "frac_pos": 0.5208333333333334
+  },
+  "exec_ce_zero_minus_self": {
+   "mean": 3.7735948959986367e-05,
+   "ci95": [
+    -0.00044498670225342113,
+    0.0005150957343478998
+   ],
+   "frac_pos": 0.4791666666666667
+  },
+  "exec_ce_teacher_minus_self": {
+   "mean": 0.0017520049586892128,
+   "ci95": [
+    7.420188436905543e-05,
+    0.00447430523733298
+   ],
+   "frac_pos": 0.5208333333333334
+  },
+  "exec_ce_nolatent_minus_self": {
+   "mean": -0.00010204237575332324,
+   "ci95": [
+    -0.0005718137448032697,
+    0.000467293585340182
+   ],
+   "frac_pos": 0.4375
+  },
+  "exec_ce_self": 0.23186511841292182,
+  "reader_ce_crossq_minus_self": {
+   "mean": 0.0012149040897687275,
+   "ci95": [
+    8.421391248703003e-05,
+    0.002362911899884542
+   ],
+   "frac_pos": 0.6041666666666666
+  },
+  "reader_ce_teacher_minus_self": {
+   "mean": -0.20926839609940848,
+   "ci95": [
+    -0.24632843087116876,
+    -0.17646550759673119
+   ],
+   "frac_pos": 0.0
+  },
+  "reader_ce_mean_minus_self": {
+   "mean": 0.0012212581932544708,
+   "ci95": [
+    -0.00024289141098658243,
+    0.002567907174428304
+   ],
+   "frac_pos": 0.5208333333333334
+  },
+  "reader_ce_teacher_crossq_minus_self": {
+   "mean": 0.12346135700742404,
+   "ci95": [
+    0.09317171697815259,
+    0.15309139216939607
+   ],
+   "frac_pos": 0.9166666666666666
+  },
+  "reader_ce_self": 1.1184927622477214
+ },
+ "pairs": {
+  "heldout8/all": {
+   "n": 8,
+   "external_4grid_both_correct": 0,
+   "external_TA_minus_TB_pref": {
+    "mean": -0.0032193418592214584,
+    "ci95": [
+     -0.008660733699798584,
+     0.001485086977481842
+    ],
+    "n_pos": 3
+   },
+   "self_pref_toward_default_n": 5,
+   "self_minus_otherplanZ_toward_default": {
+    "mean": 0.0012085046619176865,
+    "ci95": [
+     -0.009056737646460533,
+     0.01147756353020668
+    ],
+    "n_pos": 5
+   },
+   "self_minus_crossq_toward_default": {
+    "mean": 0.0002524871379137039,
+    "ci95": [
+     -0.004162991419434547,
+     0.004358526319265366
+    ],
+    "n_pos": 5
+   },
+   "abs_pref_self_vs_crossq": 0.005016503855586052,
+   "self_minus_mean_toward_default": {
+    "mean": 0.0033121760934591293,
+    "ci95": [
+     -0.00022327154874801636,
+     0.0069242436438798904
+    ],
+    "n_pos": 5
+   },
+   "abs_pref_self_vs_mean": 0.004708649590611458,
+   "self_minus_zero_toward_default": {
+    "mean": -0.00044343434274196625,
+    "ci95": [
+     -0.015538815408945084,
+     0.015076836571097374
+    ],
+    "n_pos": 4
+   },
+   "abs_pref_self_vs_zero": 0.02035759948194027,
+   "self_minus_nolatent_toward_default": {
+    "mean": -0.004749588668346405,
+    "ci95": [
+     -0.019418928772211075,
+     0.011209964752197266
+    ],
+    "n_pos": 3
+   },
+   "abs_pref_self_vs_nolatent": 0.020277783274650574,
+   "exec_ce_crossq_minus_self": {
+    "mean": -0.00019266828894615173,
+    "ci95": [
+     -0.00040400587022304535,
+     4.693865776062012e-06
+    ]
+   },
+   "exec_ce_mean_minus_self": {
+    "mean": 0.00013348739594221115,
+    "ci95": [
+     -0.00036517344415187836,
+     0.0005505029112100601
+    ]
+   },
+   "exec_ce_zero_minus_self": {
+    "mean": -0.00017574522644281387,
+    "ci95": [
+     -0.0006306618452072144,
+     0.00023329630494117737
+    ]
+   },
+   "external_exec_ce_matched_gain": {
+    "mean": -0.00011469842866063118,
+    "ci95": [
+     -0.004536750260740519,
+     0.0037522148340940475
+    ],
+    "n_pos": 4
+   },
+   "kd_self_default_minus_other": 0.016581498086452484,
+   "gen_n": 8,
+   "gen_correct_self": 7,
+   "gen_ended_self": 8,
+   "gen_auto_method_self": "BBBABBAA",
+   "gen_correct_crossq": 6,
+   "gen_ended_crossq": 8,
+   "gen_auto_method_crossq": "BBBABBAA",
+   "gen_correct_mean": 7,
+   "gen_ended_mean": 8,
+   "gen_auto_method_mean": "BBBABBAA",
+   "gen_correct_zero": 6,
+   "gen_ended_zero": 8,
+   "gen_auto_method_zero": "ABBABBAA",
+   "gen_correct_teacher_A": 5,
+   "gen_ended_teacher_A": 7,
+   "gen_auto_method_teacher_A": "BBBABBAB",
+   "gen_correct_teacher_B": 7,
+   "gen_ended_teacher_B": 8,
+   "gen_auto_method_teacher_B": "BBBABBAB",
+   "gen_self_auto_follows_default": 2,
+   "gen_teacher_auto_switch": 0,
+   "gen_self_identical_crossq": 3,
+   "gen_self_identical_mean": 2,
+   "gen_self_identical_otherplan": 1,
+   "gen_TA_identical_TB": 2
+  },
+  "heldout8/choice_valid": {
+   "n": 5,
+   "external_4grid_both_correct": 0,
+   "external_TA_minus_TB_pref": {
+    "mean": -0.005904960632324219,
+    "ci95": [
+     -0.012689054012298584,
+     -0.0006464242935180664
+    ],
+    "n_pos": 1
+   },
+   "self_pref_toward_default_n": 4,
+   "self_minus_otherplanZ_toward_default": {
+    "mean": 0.004776358604431152,
+    "ci95": [
+     -0.007854652404785157,
+     0.017169630527496337
+    ],
+    "n_pos": 4
+   },
+   "self_minus_crossq_toward_default": {
+    "mean": 0.0019335448741912842,
+    "ci95": [
+     -0.0020571112632751464,
+     0.005924201011657715
+    ],
+    "n_pos": 3
+   },
+   "abs_pref_self_vs_crossq": 0.004358762502670288,
+   "self_minus_mean_toward_default": {
+    "mean": 0.004797893762588501,
+    "ci95": [
+     -0.00044462084770202637,
+     0.009291899204254151
+    ],
+    "n_pos": 4
+   },
+   "abs_pref_self_vs_mean": 0.006963115930557251,
+   "self_minus_zero_toward_default": {
+    "mean": -0.008885031938552857,
+    "ci95": [
+     -0.025578492879867555,
+     0.00910230278968811
+    ],
+    "n_pos": 2
+   },
+   "abs_pref_self_vs_zero": 0.02093070149421692,
+   "self_minus_nolatent_toward_default": {
+    "mean": 0.003677302598953247,
+    "ci95": [
+     -0.01839956045150757,
+     0.021888482570648193
+    ],
+    "n_pos": 3
+   },
+   "abs_pref_self_vs_nolatent": 0.021167808771133424,
+   "exec_ce_crossq_minus_self": {
+    "mean": -0.00010946989059448242,
+    "ci95": [
+     -0.00023214519023895264,
+     6.971657276153565e-05
+    ]
+   },
+   "exec_ce_mean_minus_self": {
+    "mean": 2.433210611343384e-05,
+    "ci95": [
+     -0.0004325255751609802,
+     0.0003843069076538086
+    ]
+   },
+   "exec_ce_zero_minus_self": {
+    "mean": -0.0001945778727531433,
+    "ci95": [
+     -0.000803270936012268,
+     0.00041411519050598143
+    ]
+   },
+   "external_exec_ce_matched_gain": {
+    "mean": 0.0009881459176540376,
+    "ci95": [
+     -0.005239031463861466,
+     0.006881013512611389
+    ],
+    "n_pos": 3
+   },
+   "kd_self_default_minus_other": 0.00842287540435791,
+   "gen_n": 5,
+   "gen_correct_self": 5,
+   "gen_ended_self": 5,
+   "gen_auto_method_self": "BBBAA",
+   "gen_correct_crossq": 5,
+   "gen_ended_crossq": 5,
+   "gen_auto_method_crossq": "BBBAA",
+   "gen_correct_mean": 5,
+   "gen_ended_mean": 5,
+   "gen_auto_method_mean": "BBBAA",
+   "gen_correct_zero": 5,
+   "gen_ended_zero": 5,
+   "gen_auto_method_zero": "ABBAA",
+   "gen_correct_teacher_A": 4,
+   "gen_ended_teacher_A": 4,
+   "gen_auto_method_teacher_A": "BBBAB",
+   "gen_correct_teacher_B": 5,
+   "gen_ended_teacher_B": 5,
+   "gen_auto_method_teacher_B": "BBBAB",
+   "gen_self_auto_follows_default": 1,
+   "gen_teacher_auto_switch": 0,
+   "gen_self_identical_crossq": 2,
+   "gen_self_identical_mean": 0,
+   "gen_self_identical_otherplan": 1,
+   "gen_TA_identical_TB": 2
+  },
+  "train_pair/all": {
+   "n": 19,
+   "external_4grid_both_correct": 1,
+   "external_TA_minus_TB_pref": {
+    "mean": -0.002198841226728339,
+    "ci95": [
+     -0.008238778302544042,
+     0.004074595476451673
+    ],
+    "n_pos": 7
+   },
+   "self_pref_toward_default_n": 11,
+   "self_minus_otherplanZ_toward_default": {
+    "mean": -0.0007000981192839774,
+    "ci95": [
+     -0.007767522021343834,
+     0.0054422013069453995
+    ],
+    "n_pos": 9
+   },
+   "self_minus_crossq_toward_default": {
+    "mean": -0.000926246768549869,
+    "ci95": [
+     -0.004606477524104871,
+     0.0027566567847603246
+    ],
+    "n_pos": 9
+   },
+   "abs_pref_self_vs_crossq": 0.006458749896601627,
+   "self_minus_mean_toward_default": {
+    "mean": -0.0010923304055866442,
+    "ci95": [
+     -0.004451532112924676,
+     0.0023248493671417236
+    ],
+    "n_pos": 8
+   },
+   "abs_pref_self_vs_mean": 0.005960626037497269,
+   "self_minus_zero_toward_default": {
+    "mean": 0.0010188261145039608,
+    "ci95": [
+     -0.00437043215099134,
+     0.00650083861852947
+    ],
+    "n_pos": 9
+   },
+   "abs_pref_self_vs_zero": 0.0097545220663673,
+   "self_minus_nolatent_toward_default": {
+    "mean": 0.006000619185598273,
+    "ci95": [
+     -0.0063370027040180405,
+     0.017267968309553045
+    ],
+    "n_pos": 11
+   },
+   "abs_pref_self_vs_nolatent": 0.019736614666487042,
+   "exec_ce_crossq_minus_self": {
+    "mean": -0.00021573469827049658,
+    "ci95": [
+     -0.0005274399330741481,
+     8.849642778697766e-05
+    ]
+   },
+   "exec_ce_mean_minus_self": {
+    "mean": -3.61592361801549e-05,
+    "ci95": [
+     -0.0003280341625213623,
+     0.00022705409087632832
+    ]
+   },
+   "exec_ce_zero_minus_self": {
+    "mean": -0.00016545661185917102,
+    "ci95": [
+     -0.0007780237417472037,
+     0.0004205080239396346
+    ]
+   },
+   "external_exec_ce_matched_gain": {
+    "mean": 0.0011988950795248936,
+    "ci95": [
+     -0.00045704900434142664,
+     0.0033801064679497166
+    ],
+    "n_pos": 9
+   },
+   "kd_self_default_minus_other": 0.013487323334342554,
+   "gen_n": 8,
+   "gen_correct_self": 5,
+   "gen_ended_self": 7,
+   "gen_auto_method_self": "AAA=ABAB",
+   "gen_correct_crossq": 6,
+   "gen_ended_crossq": 7,
+   "gen_auto_method_crossq": "AAABABAB",
+   "gen_correct_mean": 4,
+   "gen_ended_mean": 5,
+   "gen_auto_method_mean": "AAA=ABAA",
+   "gen_correct_zero": 4,
+   "gen_ended_zero": 8,
+   "gen_auto_method_zero": "AAABABAB",
+   "gen_correct_teacher_A": 5,
+   "gen_ended_teacher_A": 6,
+   "gen_auto_method_teacher_A": "AAABABAB",
+   "gen_correct_teacher_B": 5,
+   "gen_ended_teacher_B": 5,
+   "gen_auto_method_teacher_B": "AAA=ABAB",
+   "gen_self_auto_follows_default": 2,
+   "gen_teacher_auto_switch": 0,
+   "gen_self_identical_crossq": 1,
+   "gen_self_identical_mean": 3,
+   "gen_self_identical_otherplan": 1,
+   "gen_TA_identical_TB": 1
+  },
+  "train_pair/choice_valid": {
+   "n": 8,
+   "external_4grid_both_correct": 0,
+   "external_TA_minus_TB_pref": {
+    "mean": -0.0060418713837862015,
+    "ci95": [
+     -0.014990143477916718,
+     0.0021140947937965393
+    ],
+    "n_pos": 2
+   },
+   "self_pref_toward_default_n": 3,
+   "self_minus_otherplanZ_toward_default": {
+    "mean": -0.00021930783987045288,
+    "ci95": [
+     -0.008361510932445526,
+     0.008403077721595764
+    ],
+    "n_pos": 3
+   },
+   "self_minus_crossq_toward_default": {
+    "mean": 0.0014845505356788635,
+    "ci95": [
+     -0.004847347736358643,
+     0.007028620690107346
+    ],
+    "n_pos": 6
+   },
+   "abs_pref_self_vs_crossq": 0.006827972829341888,
+   "self_minus_mean_toward_default": {
+    "mean": -0.0006971899420022964,
+    "ci95": [
+     -0.005791289731860161,
+     0.004395613446831703
+    ],
+    "n_pos": 3
+   },
+   "abs_pref_self_vs_mean": 0.005949927493929863,
+   "self_minus_zero_toward_default": {
+    "mean": 0.0035976748913526535,
+    "ci95": [
+     -0.003964800387620926,
+     0.011497775092720985
+    ],
+    "n_pos": 4
+   },
+   "abs_pref_self_vs_zero": 0.009094102308154106,
+   "self_minus_nolatent_toward_default": {
+    "mean": 0.008432343602180481,
+    "ci95": [
+     -0.0006307587027549744,
+     0.019641868770122528
+    ],
+    "n_pos": 6
+   },
+   "abs_pref_self_vs_nolatent": 0.012981712818145752,
+   "exec_ce_crossq_minus_self": {
+    "mean": -0.0003446657210588455,
+    "ci95": [
+     -0.0009779445827007294,
+     0.0003601144999265671
+    ]
+   },
+   "exec_ce_mean_minus_self": {
+    "mean": -0.00019957497715950012,
+    "ci95": [
+     -0.0006138328462839127,
+     0.00015429407358169556
+    ]
+   },
+   "exec_ce_zero_minus_self": {
+    "mean": 0.0004926864057779312,
+    "ci95": [
+     -0.0005607027560472488,
+     0.0014802496880292892
+    ]
+   },
+   "external_exec_ce_matched_gain": {
+    "mean": 0.0013209087774157524,
+    "ci95": [
+     -0.0014795688912272453,
+     0.005841631442308426
+    ],
+    "n_pos": 3
+   },
+   "kd_self_default_minus_other": 0.011062026023864746,
+   "gen_n": 8,
+   "gen_correct_self": 5,
+   "gen_ended_self": 7,
+   "gen_auto_method_self": "AAA=ABAB",
+   "gen_correct_crossq": 6,
+   "gen_ended_crossq": 7,
+   "gen_auto_method_crossq": "AAABABAB",
+   "gen_correct_mean": 4,
+   "gen_ended_mean": 5,
+   "gen_auto_method_mean": "AAA=ABAA",
+   "gen_correct_zero": 4,
+   "gen_ended_zero": 8,
+   "gen_auto_method_zero": "AAABABAB",
+   "gen_correct_teacher_A": 5,
+   "gen_ended_teacher_A": 6,
+   "gen_auto_method_teacher_A": "AAABABAB",
+   "gen_correct_teacher_B": 5,
+   "gen_ended_teacher_B": 5,
+   "gen_auto_method_teacher_B": "AAA=ABAB",
+   "gen_self_auto_follows_default": 2,
+   "gen_teacher_auto_switch": 0,
+   "gen_self_identical_crossq": 1,
+   "gen_self_identical_mean": 3,
+   "gen_self_identical_otherplan": 1,
+   "gen_TA_identical_TB": 1
+  }
+ }
+}
