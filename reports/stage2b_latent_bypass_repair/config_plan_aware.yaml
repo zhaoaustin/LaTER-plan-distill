@@ -1,0 +1,18 @@
+init: /scratch/hz33227/e2c/stage2/outputs/stage2b_joint_two_loss_20261012/checkpoints/joint_step50.pt   # sha256[:16] 9baecb0ebc6e7d56
+init_contents: projector + LoRA + AdamW state (global step 50 of the joint 2-loss run)
+code: later/scripts/stage2t/contrastive_2b.py (branch exp/stage2b-latent-bypass-repair; base commit 15ed0ce)
+backbone: Stage-1 Qwen3-4B E2C SFT best_hf (frozen)
+trainable: {projector: 13112320, lora_r16_qvo: 9732096}
+frozen: [backbone, Stage-2A encoder step300 (z_cache.pt)]
+seed: 0 (model/projector), single order batches(train_singles, 16/step, seed=7) global steps 51..100
+optimizer: AdamW lr 1e-4 wd 0, clip 1.0 (state restored from init)
+additional_steps: 50 (10-step diagnostic first)
+loss_weights: {tf_cosine: 1.0, fr_exec_ce: 0.1}
+data: stage2b_executor_50step/data (train_singles e1d69cd6978ebee0, val_singles 152f79b315c22899, pairs d4f503512e6c18d7)
+lambda_anchor: 0.0
+lambda_plan_grid: [0.02, 0.05]   # all tested, 10-step diagnostic each
+tau: 1.0
+eta: 1.0
+pairs_per_step: 2 (19 verified train pairs, order seed 11; s1val-00471 excluded)
+strategy_span: execution tokens after the token-LCP of E_A/E_B, up to before </EXECUTION><|im_end|>
+matched_ce: full target

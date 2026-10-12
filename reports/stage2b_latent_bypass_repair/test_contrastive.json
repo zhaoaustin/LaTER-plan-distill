@@ -1,0 +1,116 @@
+{
+ "jsd_pp": 0.0,
+ "jsd_monotone": [
+  0.001000233693048358,
+  0.502694308757782
+ ],
+ "jsd_nonneg": true,
+ "jsd_le_ln2": true,
+ "blind_gets_no_grad": true,
+ "aware_gets_grad": true,
+ "descent_on_neg_jsd_increases_jsd": [
+  0.0955849215388298,
+  0.12309690564870834
+ ],
+ "rank_grad_pushes_gaps_up": true,
+ "blind_logits_requires_grad": false,
+ "anchor_grad": {
+  "projector": 0.002066811779513955,
+  "lora": 0.010854913853108883,
+  "dZ_per_slot": [
+   0.0020474311895668507,
+   0.0004703701415564865,
+   0.0005867030122317374,
+   0.0005769449635408819,
+   0.0005301269702613354,
+   0.00038674945244565606,
+   0.0002830574521794915,
+   0.00036776589695364237
+  ]
+ },
+ "anchor_grad_ok": true,
+ "A_single_parts": {
+  "cos": 0.46237391233444214,
+  "exec": 0.3173080086708069,
+  "anchor": -0.0001941067457664758
+ },
+ "A_grads_finite": true,
+ "plan_parts": {
+  "matched": 0.21612010896205902,
+  "rank": 0.6944551467895508,
+  "dA": -0.009017810225486755,
+  "dB": 0.003809884190559387
+ },
+ "plan_grad": {
+  "projector": 0.0,
+  "lora": 0.20373773574829102
+ },
+ "plan_grad_ok": true,
+ "swap": {
+  "orig_dA_dB": [
+   -0.009017810225486755,
+   0.003809884190559387
+  ],
+  "swapped_dA_dB": [
+   0.003809884190559387,
+   -0.009017810225486755
+  ],
+  "same_Z_dA_dB": [
+   0.0,
+   0.0
+  ]
+ },
+ "swap_ok": true,
+ "strategy_span_example": {
+  "id": "s1val-00645-de6f711a",
+  "span_A": [
+   4,
+   1469
+  ],
+  "len_A": 1474,
+  "span_A_head": " product-to-sum identities on $\\sin 10^\\circ \\sin 30^\\circ$",
+  "span_A_tail": "{\\frac{1}{16}}\n   $$"
+ },
+ "no_plan_exec_in_prompt": true,
+ "one_step": {
+  "D0": {
+   "finite": true,
+   "grad_norm": 0.15862712264060974,
+   "sec_4singles(+2pairs)": 2.4289963245391846,
+   "peak_mem_gb": 28.198060035705566
+  },
+  "A": {
+   "finite": true,
+   "grad_norm": 0.15862682461738586,
+   "sec_4singles(+2pairs)": 2.4071364402770996,
+   "peak_mem_gb": 28.96825122833252
+  },
+  "B": {
+   "finite": true,
+   "grad_norm": 0.1586872935295105,
+   "sec_4singles(+2pairs)": 3.3649163246154785,
+   "peak_mem_gb": 63.85397720336914
+  }
+ },
+ "base_unchanged": true,
+ "teacher_cache_unchanged": true,
+ "hard": {
+  "jsd_pp_zero": true,
+  "jsd_monotone": true,
+  "jsd_nonneg": true,
+  "jsd_le_ln2": true,
+  "blind_no_grad": true,
+  "aware_grad": true,
+  "neg_jsd_sign": true,
+  "rank_sign": true,
+  "anchor_routing": true,
+  "A_finite": true,
+  "plan_routing_lora_only": true,
+  "ab_swap": true,
+  "no_leak": true,
+  "one_step_finite": true,
+  "base_frozen": true,
+  "encoder_cache_frozen": true
+ },
+ "ALL_PASS": true
+}

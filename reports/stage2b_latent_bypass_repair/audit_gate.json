@@ -1,0 +1,1054 @@
+{
+ "ckpt": "/scratch/hz33227/e2c/stage2/outputs/stage2b_joint_two_loss_20261012/checkpoints/joint_step50.pt",
+ "ckpt_step": 50,
+ "ckpt_has_opt": true,
+ "ckpt_meta": {
+  "phase": "joint",
+  "lam_cos": 1.0,
+  "lam_exec": 0.1,
+  "lr": 0.0001
+ },
+ "trainable": {
+  "projector": 13112320,
+  "lora": 9732096
+ },
+ "G0_shapes": [
+  [
+   48,
+   8,
+   2560
+  ],
+  [
+   48,
+   8,
+   2560
+  ]
+ ],
+ "G0_teacher_slot_norm": [
+  1.1107540130615234,
+  1.1107540130615234,
+  1.1107540130615234,
+  1.1107540130615234,
+  1.1107540130615234,
+  1.1107540130615234,
+  1.1107540130615234,
+  1.1107540130615234
+ ],
+ "G0_teacher_slot_rms": [
+  0.02195320650935173,
+  0.02195320650935173,
+  0.02195320650935173,
+  0.02195320650935173,
+  0.02195320650935173,
+  0.02195320650935173,
+  0.021953202784061432,
+  0.02195320650935173
+ ],
+ "G0_teacher_slot_mean_abs": [
+  0.012617859058082104,
+  0.015514093451201916,
+  0.010229061357676983,
+  0.011476165615022182,
+  0.01002849917858839,
+  0.011414619162678719,
+  0.012029382400214672,
+  0.01188651379197836
+ ],
+ "G0_teacher_slot_var": [
+  0.00022707475000061095,
+  0.00010258494148729369,
+  0.00032227550400421023,
+  0.0002772840380202979,
+  0.00032837895560078323,
+  0.00028090793057344854,
+  0.00025559309870004654,
+  0.0002685939834918827
+ ],
+ "G0_student_slot_norm": [
+  1.110756754875183,
+  1.1107351779937744,
+  1.1107759475708008,
+  1.1107783317565918,
+  1.110736608505249,
+  1.110771656036377,
+  1.1107757091522217,
+  1.1107527017593384
+ ],
+ "G0_student_slot_rms": [
+  0.02195325866341591,
+  0.021952830255031586,
+  0.021953638643026352,
+  0.021953683346509933,
+  0.021952858194708824,
+  0.021953552961349487,
+  0.021953633055090904,
+  0.021953176707029343
+ ],
+ "G0_student_slot_mean_abs": [
+  0.01746908389031887,
+  0.017476508393883705,
+  0.01738639362156391,
+  0.01737561821937561,
+  0.017321467399597168,
+  0.017124269157648087,
+  0.017352323979139328,
+  0.017469899728894234
+ ],
+ "G0_student_slot_var": [
+  1.4223837752069812e-06,
+  1.0220716148978681e-06,
+  1.7067446833607391e-06,
+  1.245209205080755e-06,
+  1.0857569350264384e-06,
+  3.623130851337919e-06,
+  2.4801331619528355e-06,
+  2.006747081395588e-06
+ ],
+ "G0_tok_rms": 0.02195320464670658,
+ "G0_same_ids_pos_att": true,
+ "G0_nonslot_embeddings_identical": true,
+ "G0_aware_slots_hold_ZS": true,
+ "G0_blind_slots_zero": true,
+ "G0_exec_forward_equals_Student_score": [
+  -0.3173080086708069,
+  -0.31730759143829346
+ ],
+ "G0_anchor_T": 128,
+ "G0_n_tail": 5,
+ "G0_T_tokens_decoded_tail": " diverges to infinity as",
+ "G0_target_tail_excluded": "</EXECUTION><|im_end|>",
+ "G0_jsd_aware_blind_mean": 0.0001941067457664758,
+ "G0_ce_aware_blind": [
+  0.3173080086708069,
+  0.31766220927238464
+ ],
+ "G1_pairs": [
+  {
+   "id": "s1val-00645",
+   "role": "train_pair",
+   "excluded": null,
+   "choice_valid": true,
+   "same_question": true,
+   "cos_TA_TB": 0.7514039278030396,
+   "slot_cos_TA_TB": [
+    0.70616614818573,
+    0.8950225114822388,
+    0.6343215703964233,
+    0.735113799571991,
+    0.7783776521682739,
+    0.7378697395324707,
+    0.7064166069030762,
+    0.81794273853302
+   ],
+   "plan_hash_differs": true,
+   "lcp_tokens": 4,
+   "len_A": 1474,
+   "len_B": 994,
+   "strategy_span_A": [
+    4,
+    1469
+   ],
+   "strategy_span_B": [
+    4,
+    989
+   ],
+   "method_label_A": null,
+   "method_label_B": null
+  },
+  {
+   "id": "s1val-00359",
+   "role": "train_pair",
+   "excluded": null,
+   "choice_valid": false,
+   "same_question": true,
+   "cos_TA_TB": 0.6601297855377197,
+   "slot_cos_TA_TB": [
+    0.735747218132019,
+    0.8961842060089111,
+    0.6655210256576538,
+    0.5900522470474243,
+    0.7798424363136292,
+    0.5937647819519043,
+    0.5933520793914795,
+    0.42657411098480225
+   ],
+   "plan_hash_differs": true,
+   "lcp_tokens": 2,
+   "len_A": 1871,
+   "len_B": 1020,
+   "strategy_span_A": [
+    2,
+    1866
+   ],
+   "strategy_span_B": [
+    2,
+    1015
+   ],
+   "method_label_A": null,
+   "method_label_B": null
+  },
+  {
+   "id": "s1val-00499",
+   "role": "train_pair",
+   "excluded": null,
+   "choice_valid": false,
+   "same_question": true,
+   "cos_TA_TB": 0.6859733462333679,
+   "slot_cos_TA_TB": [
+    0.7046531438827515,
+    0.7606300115585327,
+    0.797267496585846,
+    0.7379237413406372,
+    0.8160311579704285,
+    0.7207679748535156,
+    0.6089484691619873,
+    0.3415645360946655
+   ],
+   "plan_hash_differs": true,
+   "lcp_tokens": 2,
+   "len_A": 528,
+   "len_B": 879,
+   "strategy_span_A": [
+    2,
+    523
+   ],
+   "strategy_span_B": [
+    2,
+    874
+   ],
+   "method_label_A": null,
+   "method_label_B": null
+  },
+  {
+   "id": "s1val-00689",
+   "role": "train_pair",
+   "excluded": null,
+   "choice_valid": true,
+   "same_question": true,
+   "cos_TA_TB": 0.5409185290336609,
+   "slot_cos_TA_TB": [
+    0.5338908433914185,
+    0.8453944325447083,
+    0.5060838460922241,
+    0.5167919397354126,
+    0.42428192496299744,
+    0.554633617401123,
+    0.46200355887413025,
+    0.48426786065101624
+   ],
+   "plan_hash_differs": true,
+   "lcp_tokens": 2,
+   "len_A": 1771,
+   "len_B": 348,
+   "strategy_span_A": [
+    2,
+    1766
+   ],
+   "strategy_span_B": [
+    2,
+    343
+   ],
+   "method_label_A": null,
+   "method_label_B": null
+  },
+  {
+   "id": "s1val-00472",
+   "role": "train_pair",
+   "excluded": null,
+   "choice_valid": true,
+   "same_question": true,
+   "cos_TA_TB": 0.6066725254058838,
+   "slot_cos_TA_TB": [
+    0.5165635943412781,
+    0.811651885509491,
+    0.5236415863037109,
+    0.5833908319473267,
+    0.7308804988861084,
+    0.68533855676651,
+    0.560694694519043,
+    0.4412180185317993
+   ],
+   "plan_hash_differs": true,
+   "lcp_tokens": 2,
+   "len_A": 1813,
+   "len_B": 1510,
+   "strategy_span_A": [
+    2,
+    1808
+   ],
+   "strategy_span_B": [
+    2,
+    1505
+   ],
+   "method_label_A": null,
+   "method_label_B": null
+  },
+  {
+   "id": "s1val-00422",
+   "role": "train_pair",
+   "excluded": null,
+   "choice_valid": false,
+   "same_question": true,
+   "cos_TA_TB": 0.7598528861999512,
+   "slot_cos_TA_TB": [
+    0.7339422702789307,
+    0.9164448380470276,
+    0.6502183079719543,
+    0.772278904914856,
+    0.7931762337684631,
+    0.6355968713760376,
+    0.751865029335022,
+    0.8253007531166077
+   ],
+   "plan_hash_differs": true,
+   "lcp_tokens": 5,
+   "len_A": 750,
+   "len_B": 908,
+   "strategy_span_A": [
+    5,
+    745
+   ],
+   "strategy_span_B": [
+    5,
+    903
+   ],
+   "method_label_A": null,
+   "method_label_B": null
+  },
+  {
+   "id": "s1val-00683",
+   "role": "train_pair",
+   "excluded": null,
+   "choice_valid": false,
+   "same_question": true,
+   "cos_TA_TB": 0.7671875953674316,
+   "slot_cos_TA_TB": [
+    0.7577697038650513,
+    0.9021028280258179,
+    0.7415540814399719,
+    0.7976974248886108,
+    0.8114950060844421,
+    0.8666951656341553,
+    0.6909931898117065,
+    0.5691928267478943
+   ],
+   "plan_hash_differs": true,
+   "lcp_tokens": 2,
+   "len_A": 1347,
+   "len_B": 1053,
+   "strategy_span_A": [
+    2,
+    1342
+   ],
+   "strategy_span_B": [
+    2,
+    1048
+   ],
+   "method_label_A": null,
+   "method_label_B": null
+  },
+  {
+   "id": "s1val-00626",
+   "role": "train_pair",
+   "excluded": null,
+   "choice_valid": true,
+   "same_question": true,
+   "cos_TA_TB": 0.7794982194900513,
+   "slot_cos_TA_TB": [
+    0.7214356064796448,
+    0.8542612195014954,
+    0.7649562954902649,
+    0.8411482572555542,
+    0.7381532192230225,
+    0.870060920715332,
+    0.7807416915893555,
+    0.6652284860610962
+   ],
+   "plan_hash_differs": true,
+   "lcp_tokens": 2,
+   "len_A": 440,
+   "len_B": 540,
+   "strategy_span_A": [
+    2,
+    435
+   ],
+   "strategy_span_B": [
+    2,
+    535
+   ],
+   "method_label_A": null,
+   "method_label_B": null
+  },
+  {
+   "id": "s1val-00496",
+   "role": "train_pair",
+   "excluded": null,
+   "choice_valid": true,
+   "same_question": true,
+   "cos_TA_TB": 0.6713622808456421,
+   "slot_cos_TA_TB": [
+    0.597322940826416,
+    0.8895372152328491,
+    0.4975816607475281,
+    0.7019133567810059,
+    0.7197424173355103,
+    0.6613271236419678,
+    0.7275921106338501,
+    0.5758816003799438
+   ],
+   "plan_hash_differs": true,
+   "lcp_tokens": 2,
+   "len_A": 440,
+   "len_B": 333,
+   "strategy_span_A": [
+    2,
+    435
+   ],
+   "strategy_span_B": [
+    2,
+    328
+   ],
+   "method_label_A": null,
+   "method_label_B": null
+  },
+  {
+   "id": "s1val-00344",
+   "role": "train_pair",
+   "excluded": null,
+   "choice_valid": true,
+   "same_question": true,
+   "cos_TA_TB": 0.6761364936828613,
+   "slot_cos_TA_TB": [
+    0.5848057866096497,
+    0.8794610500335693,
+    0.4761676490306854,
+    0.6771158576011658,
+    0.6100246906280518,
+    0.6515835523605347,
+    0.6885931491851807,
+    0.8413397669792175
+   ],
+   "plan_hash_differs": true,
+   "lcp_tokens": 6,
+   "len_A": 605,
+   "len_B": 302,
+   "strategy_span_A": [
+    6,
+    600
+   ],
+   "strategy_span_B": [
+    6,
+    297
+   ],
+   "method_label_A": null,
+   "method_label_B": null
+  },
+  {
+   "id": "s1val-00660",
+   "role": "train_pair",
+   "excluded": null,
+   "choice_valid": false,
+   "same_question": true,
+   "cos_TA_TB": 0.6974947452545166,
+   "slot_cos_TA_TB": [
+    0.6621332168579102,
+    0.8671765327453613,
+    0.5563019514083862,
+    0.6585540771484375,
+    0.6610884666442871,
+    0.7989162802696228,
+    0.6362723112106323,
+    0.7395145893096924
+   ],
+   "plan_hash_differs": true,
+   "lcp_tokens": 4,
+   "len_A": 1521,
+   "len_B": 1038,
+   "strategy_span_A": [
+    4,
+    1516
+   ],
+   "strategy_span_B": [
+    4,
+    1033
+   ],
+   "method_label_A": null,
+   "method_label_B": null
+  },
+  {
+   "id": "s1val-00368",
+   "role": "train_pair",
+   "excluded": null,
+   "choice_valid": false,
+   "same_question": true,
+   "cos_TA_TB": 0.7887493968009949,
+   "slot_cos_TA_TB": [
+    0.7695665955543518,
+    0.9432873725891113,
+    0.6207937598228455,
+    0.6857999563217163,
+    0.8578617572784424,
+    0.728132963180542,
+    0.823928952217102,
+    0.8806237578392029
+   ],
+   "plan_hash_differs": true,
+   "lcp_tokens": 7,
+   "len_A": 1888,
+   "len_B": 1603,
+   "strategy_span_A": [
+    7,
+    1883
+   ],
+   "strategy_span_B": [
+    7,
+    1598
+   ],
+   "method_label_A": null,
+   "method_label_B": null
+  },
+  {
+   "id": "s1val-00535",
+   "role": "train_pair",
+   "excluded": null,
+   "choice_valid": true,
+   "same_question": true,
+   "cos_TA_TB": 0.7258058190345764,
+   "slot_cos_TA_TB": [
+    0.8370510339736938,
+    0.9286207556724548,
+    0.654549777507782,
+    0.6373230218887329,
+    0.7117043137550354,
+    0.6886764764785767,
+    0.6957072019577026,
+    0.6528139114379883
+   ],
+   "plan_hash_differs": true,
+   "lcp_tokens": 2,
+   "len_A": 316,
+   "len_B": 916,
+   "strategy_span_A": [
+    2,
+    311
+   ],
+   "strategy_span_B": [
+    2,
+    911
+   ],
+   "method_label_A": null,
+   "method_label_B": null
+  },
+  {
+   "id": "s1val-00491",
+   "role": "train_pair",
+   "excluded": null,
+   "choice_valid": true,
+   "same_question": true,
+   "cos_TA_TB": 0.7695640921592712,
+   "slot_cos_TA_TB": [
+    0.7292768955230713,
+    0.9139121174812317,
+    0.7391263246536255,
+    0.814348578453064,
+    0.7206621170043945,
+    0.8147784471511841,
+    0.8068697452545166,
+    0.6175380945205688
+   ],
+   "plan_hash_differs": true,
+   "lcp_tokens": 2,
+   "len_A": 2217,
+   "len_B": 1612,
+   "strategy_span_A": [
+    2,
+    2212
+   ],
+   "strategy_span_B": [
+    2,
+    1607
+   ],
+   "method_label_A": null,
+   "method_label_B": null
+  },
+  {
+   "id": "s1val-00653",
+   "role": "train_pair",
+   "excluded": null,
+   "choice_valid": false,
+   "same_question": true,
+   "cos_TA_TB": 0.7072705030441284,
+   "slot_cos_TA_TB": [
+    0.8264331817626953,
+    0.8831104636192322,
+    0.6567345857620239,
+    0.7429618835449219,
+    0.8052021265029907,
+    0.5995520353317261,
+    0.6125930547714233,
+    0.5315767526626587
+   ],
+   "plan_hash_differs": true,
+   "lcp_tokens": 2,
+   "len_A": 736,
+   "len_B": 775,
+   "strategy_span_A": [
+    2,
+    731
+   ],
+   "strategy_span_B": [
+    2,
+    770
+   ],
+   "method_label_A": null,
+   "method_label_B": null
+  },
+  {
+   "id": "s1val-00281",
+   "role": "train_pair",
+   "excluded": null,
+   "choice_valid": false,
+   "same_question": true,
+   "cos_TA_TB": 0.8343819379806519,
+   "slot_cos_TA_TB": [
+    0.8008091449737549,
+    0.9235513210296631,
+    0.7905535697937012,
+    0.8641061782836914,
+    0.795525074005127,
+    0.8165693283081055,
+    0.7844123840332031,
+    0.8995285630226135
+   ],
+   "plan_hash_differs": true,
+   "lcp_tokens": 23,
+   "len_A": 1466,
+   "len_B": 1735,
+   "strategy_span_A": [
+    23,
+    1461
+   ],
+   "strategy_span_B": [
+    23,
+    1730
+   ],
+   "method_label_A": null,
+   "method_label_B": null
+  },
+  {
+   "id": "s1val-00439",
+   "role": "train_pair",
+   "excluded": null,
+   "choice_valid": false,
+   "same_question": true,
+   "cos_TA_TB": 0.7791234850883484,
+   "slot_cos_TA_TB": [
+    0.4992266297340393,
+    0.8537178039550781,
+    0.6816726922988892,
+    0.9801418781280518,
+    0.8590434789657593,
+    0.7244400978088379,
+    0.7526024580001831,
+    0.8821423053741455
+   ],
+   "plan_hash_differs": true,
+   "lcp_tokens": 10,
+   "len_A": 752,
+   "len_B": 751,
+   "strategy_span_A": [
+    10,
+    747
+   ],
+   "strategy_span_B": [
+    10,
+    746
+   ],
+   "method_label_A": null,
+   "method_label_B": null
+  },
+  {
+   "id": "s1val-00498",
+   "role": "train_pair",
+   "excluded": null,
+   "choice_valid": false,
+   "same_question": true,
+   "cos_TA_TB": 0.760903000831604,
+   "slot_cos_TA_TB": [
+    0.8481693267822266,
+    0.8616950511932373,
+    0.8409372568130493,
+    0.8192096948623657,
+    0.7748910188674927,
+    0.6072834730148315,
+    0.7460634708404541,
+    0.588975191116333
+   ],
+   "plan_hash_differs": true,
+   "lcp_tokens": 2,
+   "len_A": 955,
+   "len_B": 1209,
+   "strategy_span_A": [
+    2,
+    950
+   ],
+   "strategy_span_B": [
+    2,
+    1204
+   ],
+   "method_label_A": null,
+   "method_label_B": null
+  },
+  {
+   "id": "s1val-00313",
+   "role": "train_pair",
+   "excluded": null,
+   "choice_valid": false,
+   "same_question": true,
+   "cos_TA_TB": 0.8412312269210815,
+   "slot_cos_TA_TB": [
+    0.7776876091957092,
+    0.9081296324729919,
+    0.7443939447402954,
+    0.8954026699066162,
+    0.8834022879600525,
+    0.8439124822616577,
+    0.7585465908050537,
+    0.9183748364448547
+   ],
+   "plan_hash_differs": true,
+   "lcp_tokens": 4,
+   "len_A": 769,
+   "len_B": 892,
+   "strategy_span_A": [
+    4,
+    764
+   ],
+   "strategy_span_B": [
+    4,
+    887
+   ],
+   "method_label_A": null,
+   "method_label_B": null
+  },
+  {
+   "id": "s1val-00471",
+   "role": "train_pair",
+   "excluded": "plans A/B are the same method (center (r,2) + point (8,0) on the circle)",
+   "choice_valid": false,
+   "same_question": true,
+   "cos_TA_TB": 0.8095704913139343,
+   "slot_cos_TA_TB": [
+    0.7173510789871216,
+    0.9307396411895752,
+    0.5635568499565125,
+    0.8724340796470642,
+    0.9004901647567749,
+    0.7823872566223145,
+    0.7586747407913208,
+    0.9509294033050537
+   ],
+   "plan_hash_differs": true,
+   "lcp_tokens": 11,
+   "len_A": 407,
+   "len_B": 438,
+   "strategy_span_A": [
+    11,
+    402
+   ],
+   "strategy_span_B": [
+    11,
+    433
+   ],
+   "method_label_A": null,
+   "method_label_B": null
+  },
+  {
+   "id": "s1val-00336",
+   "role": "heldout8",
+   "excluded": null,
+   "choice_valid": true,
+   "same_question": true,
+   "cos_TA_TB": 0.6640210747718811,
+   "slot_cos_TA_TB": [
+    0.7163988351821899,
+    0.8990597724914551,
+    0.523582935333252,
+    0.6034049987792969,
+    0.6374044418334961,
+    0.5597265958786011,
+    0.6413859128952026,
+    0.7312045693397522
+   ],
+   "plan_hash_differs": true,
+   "lcp_tokens": 2,
+   "len_A": 900,
+   "len_B": 1777,
+   "strategy_span_A": [
+    2,
+    895
+   ],
+   "strategy_span_B": [
+    2,
+    1772
+   ],
+   "method_label_A": "Lagrange multipliers",
+   "method_label_B": "Cauchy-Schwarz inequality"
+  },
+  {
+   "id": "s1val-00574",
+   "role": "heldout8",
+   "excluded": null,
+   "choice_valid": true,
+   "same_question": true,
+   "cos_TA_TB": 0.6553813219070435,
+   "slot_cos_TA_TB": [
+    0.6877126097679138,
+    0.8276218175888062,
+    0.6799030900001526,
+    0.5683591365814209,
+    0.7793620824813843,
+    0.5428188443183899,
+    0.6326353549957275,
+    0.5246378779411316
+   ],
+   "plan_hash_differs": true,
+   "lcp_tokens": 2,
+   "len_A": 1015,
+   "len_B": 879,
+   "strategy_span_A": [
+    2,
+    1010
+   ],
+   "strategy_span_B": [
+    2,
+    874
+   ],
+   "method_label_A": "difference-of-squares factoring of 65",
+   "method_label_B": "testing small n + modular arithmetic"
+  },
+  {
+   "id": "s1val-00569",
+   "role": "heldout8",
+   "excluded": null,
+   "choice_valid": true,
+   "same_question": true,
+   "cos_TA_TB": 0.62842857837677,
+   "slot_cos_TA_TB": [
+    0.6564282178878784,
+    0.8979293704032898,
+    0.5839192271232605,
+    0.44124528765678406,
+    0.4969615936279297,
+    0.7840031385421753,
+    0.7699354887008667,
+    0.39700645208358765
+   ],
+   "plan_hash_differs": true,
+   "lcp_tokens": 2,
+   "len_A": 1023,
+   "len_B": 1161,
+   "strategy_span_A": [
+    2,
+    1018
+   ],
+   "strategy_span_B": [
+    2,
+    1156
+   ],
+   "method_label_A": "discriminant of a quadratic in x",
+   "method_label_B": "derivative / critical points"
+  },
+  {
+   "id": "s1val-00507",
+   "role": "heldout8",
+   "excluded": null,
+   "choice_valid": false,
+   "same_question": true,
+   "cos_TA_TB": 0.6933336853981018,
+   "slot_cos_TA_TB": [
+    0.48083600401878357,
+    0.8215790390968323,
+    0.6476377248764038,
+    0.8072000741958618,
+    0.735736608505249,
+    0.7386279106140137,
+    0.7276369333267212,
+    0.5874152183532715
+   ],
+   "plan_hash_differs": true,
+   "lcp_tokens": 2,
+   "len_A": 818,
+   "len_B": 626,
+   "strategy_span_A": [
+    2,
+    813
+   ],
+   "strategy_span_B": [
+    2,
+    621
+   ],
+   "method_label_A": "differentiate F to a density + double integral",
+   "method_label_B": "inclusion-exclusion on the CDF"
+  },
+  {
+   "id": "s1val-00479",
+   "role": "heldout8",
+   "excluded": null,
+   "choice_valid": false,
+   "same_question": true,
+   "cos_TA_TB": 0.6527835130691528,
+   "slot_cos_TA_TB": [
+    0.5216317772865295,
+    0.8090920448303223,
+    0.6087647676467896,
+    0.7014642953872681,
+    0.6169213652610779,
+    0.6749151945114136,
+    0.614271879196167,
+    0.6752066016197205
+   ],
+   "plan_hash_differs": true,
+   "lcp_tokens": 2,
+   "len_A": 835,
+   "len_B": 481,
+   "strategy_span_A": [
+    2,
+    830
+   ],
+   "strategy_span_B": [
+    2,
+    476
+   ],
+   "method_label_A": "factor into linear x quadratic",
+   "method_label_B": "Vieta's formula on the expanded cubic"
+  },
+  {
+   "id": "s1val-00309",
+   "role": "heldout8",
+   "excluded": null,
+   "choice_valid": false,
+   "same_question": true,
+   "cos_TA_TB": 0.8432484269142151,
+   "slot_cos_TA_TB": [
+    0.7198129892349243,
+    0.8665412068367004,
+    0.6642263531684875,
+    0.9404935836791992,
+    0.8505189418792725,
+    0.9182846546173096,
+    0.8549754023551941,
+    0.9311337471008301
+   ],
+   "plan_hash_differs": true,
+   "lcp_tokens": 29,
+   "len_A": 366,
+   "len_B": 554,
+   "strategy_span_A": [
+    29,
+    361
+   ],
+   "strategy_span_B": [
+    29,
+    549
+   ],
+   "method_label_A": "Euler's theorem (phi(9)=6)",
+   "method_label_B": "order of 4 mod 9 is 3"
+  },
+  {
+   "id": "s1val-00305",
+   "role": "heldout8",
+   "excluded": null,
+   "choice_valid": true,
+   "same_question": true,
+   "cos_TA_TB": 0.7848275303840637,
+   "slot_cos_TA_TB": [
+    0.7130652666091919,
+    0.9051928520202637,
+    0.6141304969787598,
+    0.9155357480049133,
+    0.6949619054794312,
+    0.8043375015258789,
+    0.7349169254302979,
+    0.8964790105819702
+   ],
+   "plan_hash_differs": true,
+   "lcp_tokens": 13,
+   "len_A": 1108,
+   "len_B": 425,
+   "strategy_span_A": [
+    13,
+    1103
+   ],
+   "strategy_span_B": [
+    13,
+    420
+   ],
+   "method_label_A": "substitute y=6/x + quadratic formula",
+   "method_label_B": "factor xy(x+y)+(x+y), then x^2+y^2 identity"
+  },
+  {
+   "id": "s1val-00486",
+   "role": "heldout8",
+   "excluded": null,
+   "choice_valid": true,
+   "same_question": true,
+   "cos_TA_TB": 0.6011701822280884,
+   "slot_cos_TA_TB": [
+    0.6009913682937622,
+    0.8332012891769409,
+    0.5562774538993835,
+    0.6033402681350708,
+    0.5950205326080322,
+    0.662106990814209,
+    0.598134458065033,
+    0.36028894782066345
+   ],
+   "plan_hash_differs": true,
+   "lcp_tokens": 2,
+   "len_A": 1040,
+   "len_B": 837,
+   "strategy_span_A": [
+    2,
+    1035
+   ],
+   "strategy_span_B": [
+    2,
+    832
+   ],
+   "method_label_A": "sum-of-cosines-in-AP identity",
+   "method_label_B": "7th roots of unity"
+  }
+ ],
+ "G1_sameQ_cos_TA_TB": {
+  "mean": 0.7191580214670726,
+  "min": 0.5409185290336609,
+  "max": 0.8432484269142151
+ },
+ "G1_crossQ_cos": {
+  "mean": 0.488688696707998,
+  "min": 0.359066367149353,
+  "max": 0.7049793004989624
+ },
+ "G1_n": {
+  "train_pairs_used": 19,
+  "heldout": 8,
+  "excluded": [
+   "s1val-00471"
+  ],
+  "train_choice_valid": 8,
+  "heldout_choice_valid": 5
+ },
+ "G1_split_overlaps": {
+  "trainpair_heldout": 0,
+  "trainpair_singles": 0,
+  "heldout_singles": 0,
+  "heldout_val": 0,
+  "trainpair_val": 0
+ },
+ "G2_acc_questions": {
+  "n": 128,
+  "candidates_after_dedup": 2316,
+  "source": "stage2_val.parquet (seed 0 shuffle), excluding train_singles/val_singles/pairs questions"
+ }
+}
