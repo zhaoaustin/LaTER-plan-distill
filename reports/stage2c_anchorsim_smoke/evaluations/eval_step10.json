@@ -1,0 +1,14 @@
+{
+ "train_distill_jsd": 0.02349130972288549,
+ "train_with_blind_jsd": 0.13219787715934217,
+ "eval_correct": 0,
+ "eval_format_ok": 2,
+ "n_eval": 16,
+ "eval_jsd_with_blind": 0.11627907142974436,
+ "eval_nll_self": 0.919062877073884,
+ "eval_dnll_zero": -0.7041596947237849,
+ "eval_dnll_crossq": 0.01033441349864006,
+ "eval_dnll_drop": -0.7043972928076982,
+ "eval_zs_crossq_cos": 0.99094557762146,
+ "step": 10
+}

@@ -1,0 +1,149 @@
+{
+ "ckpt": "/scratch/hz33227/e2c/stage2/outputs/stage2b_joint_two_loss_20261012/checkpoints/joint_step50.pt",
+ "ckpt_step": 50,
+ "train_ids": [
+  "s1train-00077-ad2a25f9",
+  "s1train-00079-a331b40e",
+  "s1train-00115-58526062",
+  "s1train-00124-6a8a5979",
+  "s1train-00130-b89487f3",
+  "s1train-00142-0d43257a",
+  "s1train-00167-6b30cad1",
+  "s1train-00196-fd63dd78",
+  "s1train-00201-5b5323db",
+  "s1train-00222-65ce49bf",
+  "s1train-00241-38f61104",
+  "s1train-00246-28a1d96a",
+  "s1train-00279-37bbe2c5",
+  "s1train-00281-5042cf34",
+  "s1train-00291-1b202f0c",
+  "s1train-00305-6e3de841"
+ ],
+ "eval_ids": [
+  "s1val-01422-380b7c77",
+  "s1val-01444-70af61d3",
+  "s1val-01463-9c195014",
+  "s1val-01485-5b135627",
+  "s1val-01497-0775a042",
+  "s1val-01527-7fcec76d",
+  "s1val-01531-ac57038f",
+  "s1val-01537-dab5b832",
+  "s1val-01575-4d8b50aa",
+  "s1val-01605-7de8669a",
+  "s1val-01625-1800ba0b",
+  "s1val-01652-9a577ba9",
+  "s1val-01674-b552894d",
+  "s1val-01699-d70c4637",
+  "s1val-01718-9245a78e",
+  "s1val-01725-6bc50f1a"
+ ],
+ "student_trainable": {
+  "projector": 13112320,
+  "lora": 9732096
+ },
+ "teacher_trainable": 0,
+ "hint_template": "\n\n(Reference final answer, visible to the teacher only: ${}$)",
+ "lam_distill": 1.0,
+ "lam_anchor": 1.0,
+ "items": [
+  {
+   "id": "s1train-00077-ad2a25f9",
+   "distill_jsd": 0.0016720423009246588,
+   "anchor_jsd_pos": 9.477106505073607e-05,
+   "total": 0.0015772712649777532,
+   "n_valid_tokens": 1315,
+   "labels_aligned_3_branches": true,
+   "n_pre_student": 167,
+   "n_pre_teacher": 184
+  },
+  {
+   "id": "s1train-00079-a331b40e",
+   "distill_jsd": 0.0021138114389032125,
+   "anchor_jsd_pos": 0.00011722015187842771,
+   "total": 0.0019965912215411663,
+   "n_valid_tokens": 837,
+   "labels_aligned_3_branches": true,
+   "n_pre_student": 46,
+   "n_pre_teacher": 71
+  },
+  {
+   "id": "s1train-00115-58526062",
+   "distill_jsd": 0.0017089610919356346,
+   "anchor_jsd_pos": 0.00020503559790086,
+   "total": 0.0015039255376905203,
+   "n_valid_tokens": 677,
+   "labels_aligned_3_branches": true,
+   "n_pre_student": 65,
+   "n_pre_teacher": 80
+  },
+  {
+   "id": "s1train-00124-6a8a5979",
+   "distill_jsd": 0.00030762850656174123,
+   "anchor_jsd_pos": 0.00010047042451333255,
+   "total": 0.0002071580820484087,
+   "n_valid_tokens": 639,
+   "labels_aligned_3_branches": true,
+   "n_pre_student": 75,
+   "n_pre_teacher": 91
+  }
+ ],
+ "finite": true,
+ "aligned": true,
+ "grads": {
+  "distill": {
+   "projector": 0.0027527972124516964,
+   "lora": 0.013242112472653389,
+   "finite": true
+  },
+  "anchor": {
+   "projector": 0.0009543921914882958,
+   "lora": 0.0038426867686212063,
+   "finite": true
+  },
+  "total": {
+   "projector": 0.002732435939833522,
+   "lora": 0.014852341264486313,
+   "finite": true
+  },
+  "ratio_anchor_over_distill": {
+   "projector": 0.3466990547546708,
+   "lora": 0.29018683964184966
+  }
+ },
+ "teacher_grads_none": true,
+ "replace": {
+  "slots_hold_zS": true,
+  "zero_changes_slot_emb": 0.08154296875,
+  "crossq_changes_slot_emb": 0.0062255859375,
+  "nonslot_emb_identical": true,
+  "zero_logit_maxdiff": 8.5,
+  "crossq_logit_maxdiff": 9.03125,
+  "zS_vs_crossq_cos": 0.9986470937728882,
+  "jsd_with_zero": 9.477106505073607e-05,
+  "jsd_with_crossq": 6.335652869893238e-05
+ },
+ "answer_leak": {
+  "answer": "\\text{No}",
+  "in_student_prompt": false,
+  "in_teacher_prompt": true,
+  "teacher_prompt_tail": "\\right)_{n \\geq 1}$ to be 2015?\n\nDan Popescu\n\n\n(Reference final answer, visible to the teacher only: $\\text{No}$)<|im_end|>\n<|im_start|>assistant\n<EXPLORATION>\n"
+ },
+ "hard_vector": [
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true
+ ],
+ "ALL_HARD_PASS": true
+}
