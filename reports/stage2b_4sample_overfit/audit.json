@@ -1,0 +1,120 @@
+{
+ "init": "/scratch/hz33227/e2c/stage2/outputs/stage2b_joint_two_loss_20261012/checkpoints/joint_step50.pt",
+ "init_step": 50,
+ "lr": 0.0001,
+ "requires_grad": {
+  "lora": 9732096,
+  "projector": 0,
+  "base": 0,
+  "encoder": "frozen 2A step-300 compressor; Z_T read from the verified z_cache (online-vs-cache max |diff| 2.4e-4)"
+ },
+ "data": {
+  "train_pairs": [
+   "s1val-00626",
+   "s1val-00496"
+  ],
+  "heldout_pairs": [],
+  "excluded": [
+   "s1val-00471: plans A/B are the same method (center (r,2) + point (8,0) on the circle)"
+  ],
+  "question_overlap_train_heldout": 0
+ },
+ "teacher_latents_sample": [
+  {
+   "id": "s1val-00626",
+   "plan": "A",
+   "shape": [
+    8,
+    2560
+   ],
+   "finite": true,
+   "nonzero": true,
+   "slot_rms": [
+    0.021953,
+    0.021953,
+    0.021953,
+    0.021953,
+    0.021953,
+    0.021953,
+    0.021953,
+    0.021953
+   ]
+  },
+  {
+   "id": "s1val-00626",
+   "plan": "B",
+   "shape": [
+    8,
+    2560
+   ],
+   "finite": true,
+   "nonzero": true,
+   "slot_rms": [
+    0.021953,
+    0.021953,
+    0.021953,
+    0.021953,
+    0.021953,
+    0.021953,
+    0.021953,
+    0.021953
+   ]
+  },
+  {
+   "id": "s1val-00496",
+   "plan": "A",
+   "shape": [
+    8,
+    2560
+   ],
+   "finite": true,
+   "nonzero": true,
+   "slot_rms": [
+    0.021953,
+    0.021953,
+    0.021953,
+    0.021953,
+    0.021953,
+    0.021953,
+    0.021953,
+    0.021953
+   ]
+  },
+  {
+   "id": "s1val-00496",
+   "plan": "B",
+   "shape": [
+    8,
+    2560
+   ],
+   "finite": true,
+   "nonzero": true,
+   "slot_rms": [
+    0.021953,
+    0.021953,
+    0.021953,
+    0.021953,
+    0.021953,
+    0.021953,
+    0.021953,
+    0.021953
+   ]
+  }
+ ],
+ "tok_rms": 0.02195320464670658,
+ "injection": {
+  "slots_hold_ZA_ZB": true,
+  "prefix_ids_identical": true,
+  "no_plan_or_exec_in_prefix": true,
+  "no_method_label_in_prefix": true,
+  "prefix_tail": "<|endoftext|><|endoftext|><|endoftext|></EXPLORATION><EXECUTION>\n",
+  "target_tail": "</EXECUTION><|im_end|>"
+ },
+ "grads": {
+  "lora": 0.34432128071784973,
+  "projector": 0.0,
+  "base_any_grad": false,
+  "finite": true
+ },
+ "PASS": true
+}

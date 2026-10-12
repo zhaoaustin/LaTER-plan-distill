@@ -38,6 +38,10 @@ def scores(S, p):
         out[nm] = {"AA": s[0], "BA": s[1], "AB": s[2], "BB": s[3], "delta_match": ((s[0] - s[1]) + (s[3] - s[2])) / 2,
                    "delta_A": s[0] - s[1], "delta_B": s[3] - s[2]}
     out["matched_ce"] = -(out["full"]["AA"] + out["full"]["BB"]) / 2
+    Z0 = torch.zeros_like(TA)
+    sz, _, _, _ = exec_forward(S, p["question"], torch.stack([Z0, Z0]), [p["tgt_A"], p["tgt_B"]])
+    _, szk, _, _ = exec_forward(S, p["question"], torch.stack([Z0, Z0]), [p["tgt_A"], p["tgt_B"]], [kpA, kpB])
+    out["zero_ce"] = -float(sz.mean()); out["zero_key_A"], out["zero_key_B"] = float(szk[0]), float(szk[1])
     return out
 
 
@@ -77,6 +81,8 @@ def evaluate(S, tr, ho, out, tag, gen_tokens, bs):
         r["identical_AB"] = r["gen_ZA"]["text"] == r["gen_ZB"]["text"]
     for role in ("train", "heldout"):
         R = [r for r in rows if r["role"] == role]
+        if not R:
+            continue
         o = {"n_pairs": len(R), "matched_ce": float(np.mean([r["matched_ce"] for r in R]))}
         for nm in ("full", "span", "key"):
             v = [r[nm]["delta_match"] for r in R]
@@ -103,6 +109,7 @@ def main():
     ap.add_argument("--init", required=True); ap.add_argument("--resume", default=None); ap.add_argument("--ckpt", default=None)
     ap.add_argument("--stop_at", type=int, default=5); ap.add_argument("--lr", type=float, default=1e-4)
     ap.add_argument("--gen_tokens", type=int, default=2048); ap.add_argument("--gen_bs", type=int, default=27)
+    ap.add_argument("--only_ids", default=None)
     a = ap.parse_args(); os.makedirs(a.out, exist_ok=True); torch.manual_seed(0)
     S = TStudent(a.model, a.s2b, seed=0)
     ck0 = torch.load(a.init, weights_only=False); S.load(ck0["state"])
@@ -110,6 +117,9 @@ def main():
         p.requires_grad_(False)
     lora = [p for _, p in S.lora]
     tr, ho, allp = train_pairs(S, a.s2b)
+    if a.only_ids:                                  # overfit subset: these train pairs only, no held-out
+        ids = a.only_ids.split(","); tr = [p for p in tr if short(p["id"]) in ids]; ho = []
+        assert len(tr) == len(ids), ids
     print("INIT", a.init, "step", ck0.get("step"), "phase", ck0.get("phase"), "| train pairs", len(tr), "held-out", len(ho), flush=True)
 
     if a.mode == "audit":

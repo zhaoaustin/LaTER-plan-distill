@@ -1,0 +1,77 @@
+{
+ "tag": "bridge_step20",
+ "train": {
+  "n_pairs": 19,
+  "matched_ce": 0.38403535540495987,
+  "delta_match_full": {
+   "mean": 0.0010413888686391722,
+   "ci95": [
+    -0.00157854509981055,
+    0.0036565507758304625
+   ],
+   "n_pos": 9
+  },
+  "both_dirs_pos_full": 4,
+  "delta_match_span": {
+   "mean": 0.0014508546634093172,
+   "ci95": [
+    -0.0010511512890317182,
+    0.00393959155725928
+   ],
+   "n_pos": 10
+  },
+  "both_dirs_pos_span": 3,
+  "delta_match_key": {
+   "mean": 0.01527147405737962,
+   "ci95": [
+    -0.01834136407552777,
+    0.045877926523405076
+   ],
+   "n_pos": 10
+  },
+  "both_dirs_pos_key": 7,
+  "auto_switch": 2,
+  "identical_AB_text": 0,
+  "auto_labels_ZA": "ABBABABAABBAABBBBAB",
+  "auto_labels_ZB": "AABABABBBBAAABABBAB",
+  "correct": "18/38",
+  "format_ok": "37/38"
+ },
+ "heldout": {
+  "n_pairs": 8,
+  "matched_ce": 0.4449546951800585,
+  "delta_match_full": {
+   "mean": 0.00018317438662052155,
+   "ci95": [
+    -0.00734839029610157,
+    0.007079798728227615
+   ],
+   "n_pos": 5
+  },
+  "both_dirs_pos_full": 2,
+  "delta_match_span": {
+   "mean": 0.0002420172095298767,
+   "ci95": [
+    -0.007328346371650696,
+    0.007460586726665497
+   ],
+   "n_pos": 5
+  },
+  "both_dirs_pos_span": 3,
+  "delta_match_key": {
+   "mean": 0.017928071320056915,
+   "ci95": [
+    -0.02989354357123375,
+    0.0703749842941761
+   ],
+   "n_pos": 5
+  },
+  "both_dirs_pos_key": 3,
+  "auto_switch": 0,
+  "identical_AB_text": 1,
+  "auto_labels_ZA": "BBBBBBBA",
+  "auto_labels_ZB": "BBBBBBBA",
+  "correct": "14/16",
+  "format_ok": "16/16"
+ }
+}

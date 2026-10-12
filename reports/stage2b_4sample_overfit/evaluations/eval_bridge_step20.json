@@ -1,0 +1,40 @@
+{
+ "tag": "bridge_step20",
+ "train": {
+  "n_pairs": 2,
+  "matched_ce": 0.00042022246270789765,
+  "delta_match_full": {
+   "mean": 0.007205583566246787,
+   "ci95": [
+    0.006666903951554559,
+    0.007744263180939015
+   ],
+   "n_pos": 2
+  },
+  "both_dirs_pos_full": 2,
+  "delta_match_span": {
+   "mean": 0.007488600593205774,
+   "ci95": [
+    0.006956052282475866,
+    0.008021148903935682
+   ],
+   "n_pos": 2
+  },
+  "both_dirs_pos_span": 2,
+  "delta_match_key": {
+   "mean": 0.1250494810665259,
+   "ci95": [
+    0.0990801447769627,
+    0.15101881735608913
+   ],
+   "n_pos": 2
+  },
+  "both_dirs_pos_key": 2,
+  "auto_switch": 2,
+  "identical_AB_text": 0,
+  "auto_labels_ZA": "AA",
+  "auto_labels_ZB": "BB",
+  "correct": "4/4",
+  "format_ok": "4/4"
+ }
+}

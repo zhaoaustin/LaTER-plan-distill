@@ -1,0 +1,40 @@
+{
+ "tag": "step0",
+ "train": {
+  "n_pairs": 2,
+  "matched_ce": 0.18089789897203445,
+  "delta_match_full": {
+   "mean": 7.39172101020813e-05,
+   "ci95": [
+    -0.00022061169147491455,
+    0.00036844611167907715
+   ],
+   "n_pos": 1
+  },
+  "both_dirs_pos_full": 1,
+  "delta_match_span": {
+   "mean": 0.00010353699326515198,
+   "ci95": [
+    -0.00022561103105545044,
+    0.0004326850175857544
+   ],
+   "n_pos": 1
+  },
+  "both_dirs_pos_span": 1,
+  "delta_match_key": {
+   "mean": 0.0009495653212070465,
+   "ci95": [
+    2.1182000637054443e-05,
+    0.0018779486417770386
+   ],
+   "n_pos": 2
+  },
+  "both_dirs_pos_key": 1,
+  "auto_switch": 0,
+  "identical_AB_text": 0,
+  "auto_labels_ZA": "=A",
+  "auto_labels_ZB": "=A",
+  "correct": "4/4",
+  "format_ok": "4/4"
+ }
+}
