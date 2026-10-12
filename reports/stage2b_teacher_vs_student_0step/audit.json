@@ -1,0 +1,382 @@
+{
+ "executor": {
+  "base": "/scratch/hz33227/e2c/Explore-Execute-Chain/outputs/e2c_qwen3_4b_sft/best_hf",
+  "ckpt": "/scratch/hz33227/e2c/stage2/outputs/stage2b_joint_two_loss_20261012/checkpoints/joint_step50.pt",
+  "ckpt_step": 50,
+  "phase": "joint",
+  "lora_tensors_loaded": 216,
+  "projector_tensors_loaded": 4,
+  "loaded_equals_ckpt": true,
+  "trainable_params": 0
+ },
+ "data": [
+  {
+   "id": "s1val-00336",
+   "labels": [
+    "Lagrange multipliers",
+    "Cauchy-Schwarz inequality"
+   ],
+   "verified": [
+    true,
+    true
+   ],
+   "pred": [
+    "36",
+    "36"
+   ],
+   "gold": "36",
+   "pred_correct": [
+    true,
+    true
+   ],
+   "in_train_singles": false
+  },
+  {
+   "id": "s1val-00574",
+   "labels": [
+    "difference-of-squares factoring of 65",
+    "testing small n + modular arithmetic"
+   ],
+   "verified": [
+    true,
+    true
+   ],
+   "pred": [
+    "(2, 2)",
+    "(2, 2)"
+   ],
+   "gold": "(2, 2)",
+   "pred_correct": [
+    true,
+    true
+   ],
+   "in_train_singles": false
+  },
+  {
+   "id": "s1val-00569",
+   "labels": [
+    "discriminant of a quadratic in x",
+    "derivative / critical points"
+   ],
+   "verified": [
+    true,
+    true
+   ],
+   "pred": [
+    "4 \\frac{1}{3}",
+    "4 \\frac{1}{3}"
+   ],
+   "gold": "4 \\frac{1}{3}",
+   "pred_correct": [
+    true,
+    true
+   ],
+   "in_train_singles": false
+  },
+  {
+   "id": "s1val-00507",
+   "labels": [
+    "differentiate F to a density + double integral",
+    "inclusion-exclusion on the CDF"
+   ],
+   "verified": [
+    true,
+    true
+   ],
+   "pred": [
+    "\\frac{\\sqrt{2}(\\sqrt{3} - 1)}{4}",
+    "\\frac{\\sqrt{6} - \\sqrt{2}}{4}"
+   ],
+   "gold": "\\frac{\\sqrt{6} - \\sqrt{2}}{4}",
+   "pred_correct": [
+    true,
+    true
+   ],
+   "in_train_singles": false
+  },
+  {
+   "id": "s1val-00479",
+   "labels": [
+    "factor into linear x quadratic",
+    "Vieta's formula on the expanded cubic"
+   ],
+   "verified": [
+    true,
+    true
+   ],
+   "pred": [
+    "0",
+    "0"
+   ],
+   "gold": "0",
+   "pred_correct": [
+    true,
+    true
+   ],
+   "in_train_singles": false
+  },
+  {
+   "id": "s1val-00309",
+   "labels": [
+    "Euler's theorem (phi(9)=6)",
+    "order of 4 mod 9 is 3"
+   ],
+   "verified": [
+    true,
+    true
+   ],
+   "pred": [
+    "21_3",
+    "21"
+   ],
+   "gold": "21",
+   "pred_correct": [
+    true,
+    true
+   ],
+   "in_train_singles": false
+  },
+  {
+   "id": "s1val-00305",
+   "labels": [
+    "substitute y=6/x + quadratic formula",
+    "factor xy(x+y)+(x+y), then x^2+y^2 identity"
+   ],
+   "verified": [
+    true,
+    true
+   ],
+   "pred": [
+    "69",
+    "69"
+   ],
+   "gold": "69",
+   "pred_correct": [
+    true,
+    true
+   ],
+   "in_train_singles": false
+  },
+  {
+   "id": "s1val-00486",
+   "labels": [
+    "sum-of-cosines-in-AP identity",
+    "7th roots of unity"
+   ],
+   "verified": [
+    true,
+    true
+   ],
+   "pred": [
+    "\\frac{1}{2}",
+    "\\frac{1}{2}"
+   ],
+   "gold": "\\frac{1}{2}",
+   "pred_correct": [
+    true,
+    true
+   ],
+   "in_train_singles": false
+  }
+ ],
+ "encoder_states_available": "16/16",
+ "encoder_online_vs_cache_maxabs": 0.0002379976212978363,
+ "encoder_ckpt": "/scratch/hz33227/e2c/stage2/outputs/stage2a_external_plan_ae/checkpoints/step300.pt",
+ "student_collapse_48val": {
+  "crossq_cos": 0.9962153434753418,
+  "var_over_teacher": 0.007074333261698484
+ },
+ "slot_stats_TA_norm_mean_var": [
+  [
+   1.1107540130615234,
+   -7.27745282347314e-05,
+   0.0004820443573407829
+  ],
+  [
+   1.1107540130615234,
+   -0.00019797288405243307,
+   0.00048204028280451894
+  ],
+  [
+   1.1107540130615234,
+   0.00011718706809915602,
+   0.000482062780065462
+  ],
+  [
+   1.1107540130615234,
+   -0.0005467886221595109,
+   0.0004817689477931708
+  ],
+  [
+   1.1107540130615234,
+   -0.0003107224474661052,
+   0.00048196205170825124
+  ],
+  [
+   1.1107540130615234,
+   -0.0004444632795639336,
+   0.0004818769230041653
+  ],
+  [
+   1.1107540130615234,
+   -0.0002686465159058571,
+   0.000481946743093431
+  ],
+  [
+   1.1107540130615234,
+   -0.0005238106823526323,
+   0.00048181370948441327
+  ]
+ ],
+ "slot_stats_TB_norm_mean_var": [
+  [
+   1.1107540130615234,
+   -7.869023102102801e-05,
+   0.0004820491885766387
+  ],
+  [
+   1.1107540130615234,
+   -0.00020245715859346092,
+   0.0004820525646209717
+  ],
+  [
+   1.1107540130615234,
+   2.8808892238885164e-05,
+   0.0004820076283067465
+  ],
+  [
+   1.1107540130615234,
+   -0.0006173932342790067,
+   0.00048171187518164515
+  ],
+  [
+   1.1107540130615234,
+   -0.00031172099988907576,
+   0.00048200247692875564
+  ],
+  [
+   1.1107540130615234,
+   -0.000496173626743257,
+   0.0004817819281015545
+  ],
+  [
+   1.1107540130615234,
+   -0.0004002329660579562,
+   0.0004818564048036933
+  ],
+  [
+   1.1107540130615234,
+   -0.0007719775894656777,
+   0.00048145680921152234
+  ]
+ ],
+ "slot_stats_ZS_norm_mean_var": [
+  [
+   1.1107409000396729,
+   -0.0002484991564415395,
+   0.00048205818166024983
+  ],
+  [
+   1.1106913089752197,
+   -0.0001259496493730694,
+   0.00048206106293946505
+  ],
+  [
+   1.1107100248336792,
+   -0.0008596758125349879,
+   0.00048135354882106185
+  ],
+  [
+   1.110710620880127,
+   -0.0009958138689398766,
+   0.00048110150964930654
+  ],
+  [
+   1.110736608505249,
+   -0.001069381134584546,
+   0.00048097214312292635
+  ],
+  [
+   1.1107523441314697,
+   -0.0011581918224692345,
+   0.0004807879449799657
+  ],
+  [
+   1.1107378005981445,
+   -0.0011149104684591293,
+   0.00048087333561852574
+  ],
+  [
+   1.1107306480407715,
+   -0.001068335142917931,
+   0.00048096879618242383
+  ]
+ ],
+ "injection": [
+  {
+   "id": "s1val-00336",
+   "slots_hold_latents": true,
+   "nonslot_emb_identical": true,
+   "ids_pos_att_identical": true,
+   "no_plan_text_in_prefix": true,
+   "prefix_tail": "<|endoftext|><|endoftext|><|endoftext|></EXPLORATION><EXECUTION>\n"
+  },
+  {
+   "id": "s1val-00574",
+   "slots_hold_latents": true,
+   "nonslot_emb_identical": true,
+   "ids_pos_att_identical": true,
+   "no_plan_text_in_prefix": true,
+   "prefix_tail": "<|endoftext|><|endoftext|><|endoftext|></EXPLORATION><EXECUTION>\n"
+  },
+  {
+   "id": "s1val-00569",
+   "slots_hold_latents": true,
+   "nonslot_emb_identical": true,
+   "ids_pos_att_identical": true,
+   "no_plan_text_in_prefix": true,
+   "prefix_tail": "<|endoftext|><|endoftext|><|endoftext|></EXPLORATION><EXECUTION>\n"
+  },
+  {
+   "id": "s1val-00507",
+   "slots_hold_latents": true,
+   "nonslot_emb_identical": true,
+   "ids_pos_att_identical": true,
+   "no_plan_text_in_prefix": true,
+   "prefix_tail": "<|endoftext|><|endoftext|><|endoftext|></EXPLORATION><EXECUTION>\n"
+  },
+  {
+   "id": "s1val-00479",
+   "slots_hold_latents": true,
+   "nonslot_emb_identical": true,
+   "ids_pos_att_identical": true,
+   "no_plan_text_in_prefix": true,
+   "prefix_tail": "<|endoftext|><|endoftext|><|endoftext|></EXPLORATION><EXECUTION>\n"
+  },
+  {
+   "id": "s1val-00309",
+   "slots_hold_latents": true,
+   "nonslot_emb_identical": true,
+   "ids_pos_att_identical": true,
+   "no_plan_text_in_prefix": true,
+   "prefix_tail": "<|endoftext|><|endoftext|><|endoftext|></EXPLORATION><EXECUTION>\n"
+  },
+  {
+   "id": "s1val-00305",
+   "slots_hold_latents": true,
+   "nonslot_emb_identical": true,
+   "ids_pos_att_identical": true,
+   "no_plan_text_in_prefix": true,
+   "prefix_tail": "<|endoftext|><|endoftext|><|endoftext|></EXPLORATION><EXECUTION>\n"
+  },
+  {
+   "id": "s1val-00486",
+   "slots_hold_latents": true,
+   "nonslot_emb_identical": true,
+   "ids_pos_att_identical": true,
+   "no_plan_text_in_prefix": true,
+   "prefix_tail": "<|endoftext|><|endoftext|><|endoftext|></EXPLORATION><EXECUTION>\n"
+  }
+ ],
+ "INTERFACE_PASS": true
+}

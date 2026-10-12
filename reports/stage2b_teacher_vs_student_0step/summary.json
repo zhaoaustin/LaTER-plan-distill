@@ -1,0 +1,85 @@
+{
+ "teacher_delta_match": {
+  "mean": -0.00022172275930643082,
+  "ci95": [
+   -0.0048405383713543415,
+   0.004047221504151821
+  ],
+  "n_pos": 3,
+  "n": 8
+ },
+ "teacher_delta_A": {
+  "mean": -0.002401980571448803,
+  "ci95": [
+   -0.00939762219786644,
+   0.002936357632279396
+  ],
+  "n_pos": 2,
+  "n": 8
+ },
+ "teacher_delta_B": {
+  "mean": 0.0019585350528359413,
+  "ci95": [
+   -0.004117213189601898,
+   0.009896150790154934
+  ],
+  "n_pos": 4,
+  "n": 8
+ },
+ "teacher_full_delta_match": {
+  "mean": -0.00022842362523078918,
+  "ci95": [
+   -0.004677858203649521,
+   0.0037684207782149315
+  ],
+  "n_pos": 3,
+  "n": 8
+ },
+ "oracle_delta_match": {
+  "mean": 0.13497210294008255,
+  "ci95": [
+   0.0994718587026,
+   0.17754118447192013
+  ],
+  "n_pos": 8,
+  "n": 8
+ },
+ "dnll_zero_minus_student": {
+  "mean": -0.00010478124022483826,
+  "ci95": [
+   -0.0004869205877184868,
+   0.00024600327014923096
+  ],
+  "n_pos": 4,
+  "n": 8
+ },
+ "teacher_switch": 0,
+ "text_switch": 8,
+ "TA_TB_identical_text": 2,
+ "labels": {
+  "TA": "BBBABBAB",
+  "TB": "BBBABBAB",
+  "ZS": "BBBABBAA",
+  "zero": "ABBABBAA",
+  "text_PA": "AAAAAAAA",
+  "text_PB": "BBBBBBBB"
+ },
+ "correct": {
+  "TA": 6,
+  "TB": 7,
+  "ZS": 7,
+  "zero": 6,
+  "text_PA": 7,
+  "text_PB": 6
+ },
+ "format_ok": {
+  "TA": 8,
+  "TB": 8,
+  "ZS": 8,
+  "zero": 8,
+  "text_PA": 8,
+  "text_PB": 8
+ },
+ "teacher_AB_cos_mean": 0.6903992891311646,
+ "teacher_AB_l2_rel_mean": 0.7796889096498489
+}
