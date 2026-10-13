@@ -7,7 +7,7 @@ import sys
 
 import numpy as np
 
-STEPS = (0, 50, 100, 150, 200)
+STEPS = (0, 5, 10, 50, 100, 150, 200)
 
 
 def J(p):
@@ -35,7 +35,8 @@ def collect(d, base):
     tr = [json.loads(l) for l in open(f"{d}/train.jsonl")] if os.path.exists(f"{d}/train.jsonl") else []
     meta = J(f"{d}/run_meta.json")
     with open(f"{d}/train_curve.csv", "w", newline="") as f:
-        keys = ["step", "distill_jsd", "anchor_jsd_pos", "anchor_weighted", "total_loss", "grad_norm_projector", "grad_norm_lora", "grad_total_preclip", "clipped", "lr", "finite", "exec_tokens", "step_s"]
+        keys = [k for k in ["step", "distill_jsd", "anchor_jsd_pos", "anchor_weighted", "exec_ce", "cos_tf", "total_loss", "grad_norm_projector", "grad_norm_lora", "grad_total_preclip",
+                            "clipped", "lr", "finite", "exec_tokens", "step_s"] if tr and k in tr[0]]
         w = csv.writer(f); w.writerow(keys)
         for r in tr:
             w.writerow([r[k] for k in keys])
@@ -44,20 +45,27 @@ def collect(d, base):
         L = J(f"{d}/evaluations/light_step{s}.json")
         win = [r for r in tr if s - 9 <= r["step"] <= s] if s else []
         m = lambda k: float(np.mean([r[k] for r in win])) if win else None
+        if s and not L and not win:
+            continue
         row = {"step": s, "train_distill_jsd_win10": m("distill_jsd"), "train_anchor_jsd_win10": m("anchor_jsd_pos"), "train_total_win10": m("total_loss"),
                "train_gn_win10": m("grad_total_preclip")}
+        if win and win[0].get("exec_ce") is not None:
+            row["train_exec_ce_win10"] = m("exec_ce")
+        if win and win[0].get("cos_tf") is not None:
+            row["train_cos_tf_win10"] = m("cos_tf")
         if L:
             row.update({k: L[k] for k in ("jsd_with_blind", "jsd_with_swap", "nll_self", "dnll_zero", "dnll_zero_frac_pos", "dnll_swap", "dnll_swap_frac_pos", "dnll_drop",
-                                          "gen_correct", "gen_format_ok", "gen_empty", "gen_degenerate", "severe_collapse", "teacher_unchanged")})
+                                          "gen_correct", "gen_format_ok", "gen_empty", "gen_degenerate", "severe_collapse", "teacher_unchanged") if k in L})
+            row["n_gen"] = L.get("n_gen"); row["smoke_collapse"] = L.get("smoke_collapse")
             for k, v in (L.get("diag48") or {}).items():
                 row["diag48_" + k] = v
         rows.append(row)
     keys = sorted({k for r in rows for k in r}, key=lambda k: (k != "step", k))
     with open(f"{d}/metrics.csv", "w", newline="") as f:
         w = csv.DictWriter(f, keys); w.writeheader(); [w.writerow(r) for r in rows]
-    out = {"run": d, "lam_anchor": meta and meta["lam_anchor"], "n_train_steps_logged": len(tr),
+    out = {"run": d, "lam_anchor": meta and meta.get("lam_anchor"), "lambdas": meta and meta.get("lambdas"), "n_train_steps_logged": len(tr),
            "train_summary": {"max_grad_total_preclip": max((r["grad_total_preclip"] for r in tr), default=None), "n_clipped": sum(r["clipped"] for r in tr),
-                             "all_finite": all(r["finite"] for r in tr), "all_aligned": all(r["labels_aligned"] for r in tr), "teacher_grad_none_all": all(r["teacher_grad_none"] for r in tr),
+                             "all_finite": all(r["finite"] for r in tr), "all_aligned": all(r["labels_aligned"] for r in tr), "last_step": tr[-1]["step"] if tr else None, "teacher_grad_none_all": all(r["teacher_grad_none"] for r in tr),
                              "train_minutes": (tr[-1]["elapsed_s"] / 60) if tr else None, "mean_step_s": float(np.mean([r["step_s"] for r in tr])) if tr else None,
                              "peak_mem_gb": max((r["peak_mem_gb"] for r in tr), default=None)},
            "steps": rows, "full_step0_baseline_stage2b_500": full(base, "joint_step500"), "full_step200": full(d, "stage2c_step200")}
