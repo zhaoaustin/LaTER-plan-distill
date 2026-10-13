@@ -26,9 +26,16 @@ from later.scripts.stage2t.anchorsim_2c import HINT, fwd, item_terms, jsd, stude
 from later.scripts.stage2t.joint_2b import cosd, tf_latents
 from later.scripts.stage2t.joint_2b_continue import diag
 from later.scripts.stage2t.stage2c_long import INIT_GLOBAL_STEP, light, sha256
+from later.scripts.stage2t.plan_teacher_gate0 import PLAN_HINT, plan_teacher_pre
 from later.scripts.stage2t.three_step import TStudent, batches, load_jsonl, save_ck
 
 LAM_DISTILL, LAM_ANCHOR, LAM_EXEC = 1.0, 1.0, 0.1
+TEACHER_COND = "answer"          # "answer": Q + answer hint (all earlier 2C runs) | "plan": Q + verified explicit plan text (plan_norm), no answer
+                                 # "plankd": teacher Q + plan text with ZERO slots; the distill student branch reads Q + frozen 2A Z_T (not Z_S)
+
+
+def tpre(Tm, s):
+    return plan_teacher_pre(Tm, s["question"], s["plan_norm"]) if TEACHER_COND in ("plan", "plankd") else teacher_pre(Tm, s["question"], s["answer"])
 
 
 def item(S, Tm, s, n_tail, lam_cos):
@@ -38,12 +45,18 @@ def item(S, Tm, s, n_tail, lam_cos):
     lw = lw_full[:nE]
     with torch.no_grad():
         lb, yb, _ = fwd(S, pre, torch.zeros_like(z), tgt, nE)
-        lt, yt, _ = fwd(Tm, teacher_pre(Tm, q, s["answer"]), z.detach(), tgt, nE)
-    parts = {"distill": jsd(lt.detach(), lw).mean(), "anchor": -jsd(lw, lb.detach()).mean(),
+        lt, yt, _ = fwd(Tm, tpre(Tm, s), torch.zeros_like(z) if TEACHER_COND == "plankd" else z.detach(), tgt, nE)
+    if TEACHER_COND == "plankd":       # PlanKD: student reads the frozen 2A Z_T (buffer, no projector path); LoRA gets the gradient
+        T = S.teacher(s["plan_norm"])
+        lk, yk, _ = fwd(S, pre, T, tgt, nE)
+        dist = jsd(lt.detach(), lk).mean(); al_k = bool(torch.equal(yk, yt))
+    else:
+        dist = jsd(lt.detach(), lw).mean(); al_k = True
+    parts = {"distill": dist, "anchor": -jsd(lw, lb.detach()).mean(),
              "exec": F.cross_entropy(lw_full, torch.tensor(tgt, device=S.dev))}
     if lam_cos > 0:
         T = S.teacher(s["plan_norm"]); parts["cos"] = cosd(tf_latents(S, q, T), T)
-    info = {"nE": nE, "n_tgt": len(tgt), "aligned": bool(torch.equal(yw[:nE], yb) and torch.equal(yb, yt)) and yw.tolist() == tgt}
+    info = {"nE": nE, "n_tgt": len(tgt), "aligned": bool(torch.equal(yw[:nE], yb) and torch.equal(yb, yt)) and yw.tolist() == tgt and al_k}
     return parts, info
 
 
@@ -60,8 +73,11 @@ def main():
     ap.add_argument("--steps", type=int, default=200); ap.add_argument("--lr", type=float, default=1e-4); ap.add_argument("--n_single", type=int, default=16)
     ap.add_argument("--save_at", default="0,10,50,100,150,200"); ap.add_argument("--smoke_at", default="0,5,10"); ap.add_argument("--light_at", default="50,100,150,200")
     ap.add_argument("--diag_at", default="100"); ap.add_argument("--gen_tokens", type=int, default=2048); ap.add_argument("--data_seed", type=int, default=42)
+    ap.add_argument("--teacher_cond", choices=["answer", "plan", "plankd"], default="answer"); ap.add_argument("--smoke_min_correct", type=int, default=None); ap.add_argument("--min_fr_gap", type=float, default=None)
     ap.add_argument("--student_ckpt", default=None, help="audit only: load the Student from this Stage 2C checkpoint (Teacher stays the init)")
     a = ap.parse_args()
+    global TEACHER_COND
+    TEACHER_COND = a.teacher_cond
     for d in ("checkpoints", "evaluations"):
         os.makedirs(f"{a.out}/{d}", exist_ok=True)
     ck = torch.load(a.init, weights_only=False)
@@ -81,7 +97,7 @@ def main():
             "gpu": {"CUDA_VISIBLE_DEVICES": os.environ.get("CUDA_VISIBLE_DEVICES"), "SLURM_STEP_GPUS": os.environ.get("SLURM_STEP_GPUS"), "SLURM_JOB_ID": os.environ.get("SLURM_JOB_ID"),
                     "name": torch.cuda.get_device_name(0), "uuid": str(torch.cuda.get_device_properties(0).uuid)},
             "lambdas": lams, "loss": "1.0*JSD(sg pT, p_with) - 1.0*JSD(p_with, sg p_blind) + 0.1*CE_FR(E+close) " + ("+ 1.0*TF cos (joint_2b)" if a.lam_cos > 0 else "(TF cos not computed)"),
-            "ema": False, "hint_template": HINT, "z_teacher_source": f"{a.s2b}/data/z_cache.pt (frozen Stage 2A step-300 compressor outputs, read-only)",
+            "ema": False, "teacher_cond": TEACHER_COND, "hint_template": PLAN_HINT if TEACHER_COND == "plan" else HINT, "min_fr_gap_stop": a.min_fr_gap, "smoke_min_correct": a.smoke_min_correct, "z_teacher_source": f"{a.s2b}/data/z_cache.pt (frozen Stage 2A step-300 compressor outputs, read-only)",
             "optimizer": f"AdamW(lr={a.lr}, wd=0, fresh), constant lr, clip 1.0", "precision": "bf16 autocast, fp32 JSD / CE / cos", "seed": 0,
             "batch": f"{a.n_single}/step, per-sample backward /{a.n_single}", "data": f"{a.s2b}/data/train_singles.jsonl", "data_sha256": sha256(f"{a.s2b}/data/train_singles.jsonl"),
             "n_train": len(singles), "data_order": f"three_step.batches(seed={a.data_seed})", "smoke_eval_ids": [s["id"] for s in ev], "light_gen_ids": [s["id"] for s in ev[:4]],
@@ -100,7 +116,21 @@ def main():
         with torch.no_grad():
             for s in B:
                 parts, info = item(S, Tm, s, n_tail, a.lam_cos)
-                d0, a0, aux0 = item_terms(S, Tm, s, n_tail)                       # reference implementation used by all earlier 2C runs
+                if TEACHER_COND == "answer":
+                    d0, a0, aux0 = item_terms(S, Tm, s, n_tail)                   # reference implementation used by all earlier 2C runs
+                else:                                                             # plan / plankd teacher: independent recomputation through the same fwd
+                    q_, t_ = s["question"], S.target_ids(s["execution"]); nE_ = len(t_) - n_tail; z_ = S.zlat(q_)
+                    lw_, yw_, _ = fwd(S, student_pre(S, q_), z_, t_, nE_); lb_, yb_, _ = fwd(S, student_pre(S, q_), torch.zeros_like(z_), t_, nE_)
+                    if TEACHER_COND == "plankd":
+                        lt_, yt_, _ = fwd(Tm, plan_teacher_pre(Tm, q_, s["plan_norm"]), torch.zeros_like(z_), t_, nE_)
+                        lk_, _, ek_ = fwd(S, student_pre(S, q_), S.teacher(s["plan_norm"]), t_, nE_); d0 = jsd(lt_, lk_).mean()
+                        n_ = len(student_pre(S, q_)); g.setdefault("plankd_slots_hold_ZT", []).append(bool(torch.equal(ek_[0, n_:n_ + 8], S.teacher(s["plan_norm"]).to(ek_.dtype))))
+                    else:
+                        lt_, yt_, _ = fwd(Tm, plan_teacher_pre(Tm, q_, s["plan_norm"]), z_, t_, nE_); d0 = jsd(lt_, lw_).mean()
+                    a0 = jsd(lw_, lb_).mean(); aux0 = {"labels_equal": bool(torch.equal(yw_, yb_) and torch.equal(yw_, yt_))}
+                tp_txt, sp_txt = S.tok.decode(tpre(Tm, s)), S.tok.decode(student_pre(S, s["question"]))
+                g.setdefault("leak", []).append({"id": s["id"], "teacher_has_answer_hint": "Reference final answer" in tp_txt, "teacher_has_plan": s["plan_norm"][:80] in tp_txt,
+                                                 "student_has_plan": s["plan_norm"][:80] in sp_txt or "Reference plan" in sp_txt, "student_has_answer_hint": "Reference final answer" in sp_txt})
                 sf, _, _ = S.score(s["question"], S.zlat(s["question"]).unsqueeze(0), [S.target_ids(s["execution"])])   # reference 2B exec CE path
                 g["items"].append({"id": s["id"], **{k: float(v) for k, v in parts.items()}, "total": float(total(parts, a.lam_cos)), **info,
                                    "ref_distill": float(d0), "ref_anchor_pos": float(a0), "ref_exec_score": float(-sf[0]), "ref_aligned": aux0["labels_equal"]})
@@ -128,9 +158,16 @@ def main():
                 "matches_ref_anchor": g["max_abs_diff_vs_ref"]["anchor"] < 1e-4, "matches_ref_exec": g["max_abs_diff_vs_ref"]["exec"] < 5e-3,
                 "all_grads_finite": all(v.get("finite", True) for v in gr.values()), "exec_reaches_projector": gr["exec_weighted"]["projector"] > 0,
                 "with_branch_reaches_projector": gr["distill_weighted"]["projector"] > 0 and gr["anchor_weighted"]["projector"] > 0,
-                "cos_only_if_lam_cos": g["cos_computed"] == (a.lam_cos > 0), "teacher_frozen": meta["teacher_trainable"] == 0 and g["teacher_grads_none"]}
+                "cos_only_if_lam_cos": g["cos_computed"] == (a.lam_cos > 0),
+                "no_leak_to_student": not any(x["student_has_plan"] or x["student_has_answer_hint"] for x in g["leak"]),
+                "teacher_condition_as_configured": all((x["teacher_has_plan"] and not x["teacher_has_answer_hint"]) if TEACHER_COND in ("plan", "plankd") else (x["teacher_has_answer_hint"] and not x["teacher_has_plan"]) for x in g["leak"]), "teacher_frozen": meta["teacher_trainable"] == 0 and g["teacher_grads_none"]}
         if a.lam_cos > 0:
             hard["cos_reaches_projector"] = gr["cos_weighted"]["projector"] > 0
+        if TEACHER_COND == "plankd":
+            hard["plankd_no_projector_grad"] = gr["distill_weighted"]["projector"] == 0.0
+            hard["plankd_lora_grad"] = gr["distill_weighted"]["lora"] > 0
+            hard["plankd_slots_hold_ZT"] = all(g.get("plankd_slots_hold_ZT", [False]))
+            hard.pop("with_branch_reaches_projector", None); hard["anchor_reaches_projector"] = gr["anchor_weighted"]["projector"] > 0
         g["hard"] = hard; g["ALL_HARD_PASS"] = all(hard.values())
         json.dump(g, open(f"{a.out}/audit_terms{tag}.json", "w"), indent=1); print(json.dumps(g, indent=1))
         return
@@ -160,10 +197,13 @@ def main():
                 state["smoke0"] = res
             else:                     # pre-registered smoke criteria vs this run's own step 0 (same 16 questions, full generation)
                 b = state["smoke0"]
-                res["smoke_collapse"] = (res["gen_format_ok"] <= b["gen_format_ok"] - 4 or res["gen_correct"] <= b["gen_correct"] // 2
+                min_c = a.smoke_min_correct if a.smoke_min_correct is not None else b["gen_correct"] // 2
+                res["smoke_collapse"] = (res["gen_format_ok"] <= b["gen_format_ok"] - 4 or res["gen_correct"] <= min_c
                                          or res["gen_empty"] >= 3 or res["gen_degenerate"] >= 3)
                 if res["smoke_collapse"]:
                     stop = f"smoke collapse at step {step}"
+                if a.min_fr_gap is not None and "diag48" in res and res["diag48"]["fr_gap_perm"] < a.min_fr_gap:
+                    res["grounding_drop"] = True; stop = f"FR gap {res['diag48']['fr_gap_perm']:.3f} < {a.min_fr_gap} at step {step}"
         else:
             if res["severe_collapse"] and state["prev_severe"]:
                 stop = "two consecutive 4-question checks with severe collapse"
