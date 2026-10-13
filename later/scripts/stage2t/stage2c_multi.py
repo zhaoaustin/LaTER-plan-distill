@@ -60,6 +60,7 @@ def main():
     ap.add_argument("--steps", type=int, default=200); ap.add_argument("--lr", type=float, default=1e-4); ap.add_argument("--n_single", type=int, default=16)
     ap.add_argument("--save_at", default="0,10,50,100,150,200"); ap.add_argument("--smoke_at", default="0,5,10"); ap.add_argument("--light_at", default="50,100,150,200")
     ap.add_argument("--diag_at", default="100"); ap.add_argument("--gen_tokens", type=int, default=2048); ap.add_argument("--data_seed", type=int, default=42)
+    ap.add_argument("--student_ckpt", default=None, help="audit only: load the Student from this Stage 2C checkpoint (Teacher stays the init)")
     a = ap.parse_args()
     for d in ("checkpoints", "evaluations"):
         os.makedirs(f"{a.out}/{d}", exist_ok=True)
@@ -91,6 +92,10 @@ def main():
     print("META", json.dumps(meta), flush=True)
 
     if a.mode == "audit":
+        tag = ""
+        if a.student_ckpt:
+            sc = torch.load(a.student_ckpt, weights_only=False); S.load(sc["state"]); tag = f"_step{sc['step']}"
+            meta["student_ckpt"] = a.student_ckpt; meta["student_ckpt_local_step"] = sc["step"]
         B = singles[:4]; g = {"meta": meta, "items": []}
         with torch.no_grad():
             for s in B:
@@ -127,7 +132,7 @@ def main():
         if a.lam_cos > 0:
             hard["cos_reaches_projector"] = gr["cos_weighted"]["projector"] > 0
         g["hard"] = hard; g["ALL_HARD_PASS"] = all(hard.values())
-        json.dump(g, open(f"{a.out}/audit_terms.json", "w"), indent=1); print(json.dumps(g, indent=1))
+        json.dump(g, open(f"{a.out}/audit_terms{tag}.json", "w"), indent=1); print(json.dumps(g, indent=1))
         return
 
     json.dump(meta, open(f"{a.out}/run_meta.json", "w"), indent=1)
