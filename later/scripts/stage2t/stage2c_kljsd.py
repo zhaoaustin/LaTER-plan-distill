@@ -206,7 +206,8 @@ def main():
     ap.add_argument("--save_at", default="0,10,50,100,150,200"); ap.add_argument("--smoke_at", default="0,5,10"); ap.add_argument("--light_at", default="50,100,150,200")
     ap.add_argument("--grad_at", default="0,5,10,100,200"); ap.add_argument("--interv_at", default="0,10,200"); ap.add_argument("--diag_at", default="0,100")
     ap.add_argument("--gen_tokens", type=int, default=2048); ap.add_argument("--data_seed", type=int, default=42)
-    a = ap.parse_args(); DIV = a.distill_type
+    ap.add_argument("--lam_kd", type=float, default=1.0, help="KD coefficient (user-set 0.25 for the GPU0 forward-KL run on 2026-10-14)")
+    a = ap.parse_args(); DIV = a.distill_type; LAMS["kd"] = a.lam_kd
     for d in ("checkpoints", "evaluations"):
         os.makedirs(f"{a.out}/{d}", exist_ok=True)
     torch.manual_seed(0)
@@ -321,7 +322,7 @@ def main():
                 "no_dropout": all(x["student_eval_mode_no_dropout"] for x in it), "no_leak_to_student": not any(x["student_has_plan"] or x["student_has_answer_hint"] for x in g["leak"]),
                 "teacher_plan_only": all(x["teacher_has_plan"] and not x["teacher_has_answer_hint"] for x in g["leak"])}
         g["hard"] = hard; g["ALL_HARD_PASS"] = all(hard.values())
-        json.dump(g, open(f"{a.out}/audit_gate0.json", "w"), indent=1, default=str); print(json.dumps({k: g[k] for k in ("unit", "hard", "ALL_HARD_PASS", "grads", "decision0")}, indent=1, default=str))
+        json.dump(g, open(f"{a.out}/audit_gate0" + ("" if a.lam_kd == 1.0 else f"_lamkd{a.lam_kd:g}") + ".json", "w"), indent=1, default=str); print(json.dumps({k: g[k] for k in ("unit", "hard", "ALL_HARD_PASS", "grads", "decision0")}, indent=1, default=str))
         print("GATE0A", json.dumps({k: v for k, v in g["gate0A"].items() if k != "rows"}))
         return
 
